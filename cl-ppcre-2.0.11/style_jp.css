@@ -1,0 +1,165 @@
+﻿@charset "UTF-8";
+
+body {
+	font-family : "HGGothicM";
+	line-height : 1.3em;
+}
+code {
+	background-color : #e0e0e0;	/* preと同じ色 */
+}
+/* 関数やマクロのシグネチャ  */
+p.signature {
+	border : solid 1px;
+	padding : 10px;
+}
+/* 強調１ */
+span.e1 {
+	background-color : #fcc;
+}
+/* 強調２ */
+span.e2 {
+	color : #f00;
+}
+/* 強調３ */
+span.e3 {
+	font-weight : bold;
+}
+/* 強調  */
+p.important {
+	color : green;
+	font-weight : bold;
+}
+/* オペレータ（関数、マクロなど） */
+.operator {
+	color : #068;
+}
+/* 型名 */
+.type {
+	text-decoration : underline;
+}
+/* パラメータ */
+.parameter {
+	font-style : oblique;
+}
+/* 結果／戻り値 */
+.result {
+	color : #a0a;
+}
+/* 文字列定数 */
+.literal {
+	color : #a04;
+}
+/* キーワード */
+.keyword {
+	color : #a0a
+}
+/* Lisp コード中のコメント */
+span.comment {
+	color : #080;
+}
+/* グローバル変数 */
+.variable {
+	color : #00f;
+}
+/* 翻訳の際発生した疑問 */
+span.wonder {
+	background-color : #ffc;
+	color : #00f;
+	border-bottom : dashed 1px #f00;
+	font-size : smaller;
+}
+/* かざすとポップアップが出る箇所 */
+span.popup_mark {
+	position : relative;
+	min-width : 20px;
+	border : solid 2px #ccc;
+	border-radius : 4px;
+	background-color : #ffc;
+	font-size : smaller;
+}
+/* ポップアップする文章 */
+div.popup_box {
+	display : none;
+	position : absolute;
+	z-index : 9;
+	left : 10px;
+	top : 10px;
+	width : 200px;
+	padding : 10px;
+	border : solid 2px #ccc;
+	border-radius : 10px;
+	box-shadow: 0 0 8px #aaa;
+	background-color : #ffd;
+	font-size : small;
+	font-weight : normal;
+}
+.popup_mark:hover > div.popup_box {
+	display : block;
+}
+
+pre {
+	padding:5px;
+	background-color:#e0e0e0;
+}
+pre.none {
+	padding:5px;
+	background-color:#ffffff;
+}
+h3, h4 {
+	text-decoration: underline;
+}
+a {
+	text-decoration: none;
+	padding: 1px 2px 1px 2px;
+}
+a:visited {
+	text-decoration: none;
+	padding: 1px 2px 1px 2px;
+}
+a:hover {
+	text-decoration: none;
+	padding: 1px 1px 1px 1px;
+	border: 1px solid #000000;
+}
+a:focus {
+	text-decoration: none;
+	padding: 1px 2px 1px 2px;
+	border: none;
+}
+a.none {
+	text-decoration: none;
+	padding: 0;
+}
+a.none:visited {
+	text-decoration: none;
+	padding: 0;
+}
+a.none:hover {
+	text-decoration: none;
+	border: none;
+	padding: 0;
+}
+a.none:focus {
+	text-decoration: none;
+	border: none;
+	padding: 0;
+}
+a.noborder {
+	text-decoration: none;
+	padding: 0;
+}
+a.noborder:visited {
+	text-decoration: none;
+	padding: 0;
+}
+a.noborder:hover {
+	text-decoration: none;
+	border: none;
+	padding: 0;
+}
+a.noborder:focus {
+	text-decoration: none;
+	border: none;
+	padding: 0;
+}
+

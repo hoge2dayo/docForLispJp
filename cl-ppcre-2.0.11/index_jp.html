@@ -1,0 +1,1785 @@
+﻿<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>CL-PPCRE - Common Lisp 用 Perl 互換正規表現ライブラリ</title>
+	<link rel="stylesheet" href="./style_jp.css" />
+	<meta name="description" content="Common Lisp 用 高速 Perl 互換正規表現ライブラリ">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+</head>
+
+<body>
+
+<h2>CL-PPCRE - Portable Perl-compatible regular expressions for Common Lisp</h2>
+
+<blockquote>
+<br>
+<br>
+<h3>概要</h3>
+
+CL-PPCRE は Common Lisp 用のポータブル（移植可能な）正規表現ライブラリであり、次の機能を持つ。：
+
+<ul>
+
+<li><span class="e1">Perl 互換</span>。
+<li><span class="e1">高速</span>。
+<li>ANSI 準拠の Common Lisp 実装間で<span class="e1">移植可能</span>。
+<li><span class="e1">スレッドセーフ</span>
+<li>加えて、 Perl における文字列での正規表現の指定のように、<a href="#create-scanner2"><span class="e1">Ｓ式</span></a>も使用可能。
+<li><a href="http://www.opensource.org/licenses/bsd-license.php"><span class="e1">BSD スタイルライセンス</span></a>が適用され、基本的に自由に使用できる。
+</ul>
+
+CL-PPCRE は<a href="http://nostoc.stanford.edu/Docs/">BioBike</a> や <a href="http://clutu.com/">clutu</a> 、<a href="http://www.hpc.unm.edu/~download/LoGS/">LoGS</a> 、 <a href="http://cafespot.net/">CafeSpot</a> 、 <a href="http://www.eboy.com/">Eboy</a> 、 <a href="http://weitz.de/regex-coach/">The Regex Coach</a> の様に様々なアプリケーションで使用されている。
+
+<p>
+<span class="e2"><a href="https://github.com/edicl/cl-ppcre/releases/latest">最新バージョンのダウンロード</a></span> 、あるいは <a href="https://github.com/edicl/cl-ppcre/">Github</a> の訪問。
+</p>
+
+</blockquote>
+
+<br>
+<br>
+<a name="contents" class="none"></a>
+<h3>目次</h3>
+<ol>
+  <li><a href="#install">ダウンロードおよびインストール</a>
+  <li><a href="#support">サポート</a>
+  <li><a href="#dict">CL-PPCRE 辞典</a>
+  <ol>
+    <li><a href="#scanning">スキャン</a>
+    <ol>
+      <li><a href="#create-scanner"><code class="operator">create-scanner</code></a> （ Perl 正規表現文字列用）
+      <li><a href="#create-scanner2"><code class="operator">create-scanner</code></a> （構文木用）
+      <li><a href="#scan"><code class="operator">scan</code></a>
+      <li><a href="#scan-to-strings"><code class="operator">scan-to-strings</code></a>
+      <li><a href="#register-groups-bind"><code class="operator">register-groups-bind</code></a>
+      <li><a href="#do-scans"><code class="operator">do-scans</code></a>
+      <li><a href="#do-matches"><code class="operator">do-matches</code></a>
+      <li><a href="#do-matches-as-strings"><code class="operator">do-matches-as-strings</code></a>
+      <li><a href="#do-register-groups"><code class="operator">do-register-groups</code></a>
+      <li><a href="#all-matches"><code class="operator">all-matches</code></a>
+      <li><a href="#all-matches-as-strings"><code class="operator">all-matches-as-strings</code></a>
+    </ol>
+    <li><a href="#splitting">分割および置き換え</a>
+    <ol>
+      <li><a href="#split"><code class="operator">split</code></a>
+      <li><a href="#regex-replace"><code class="operator">regex-replace</code></a>
+      <li><a href="#regex-replace-all"><code class="operator">regex-replace-all</code></a>
+    </ol>
+    <li><a href="#modify">スキャナの動作を変更</a>
+    <ol>
+      <li><a href="#*property-resolver*"><code class="variable">*property-resolver*</code></a>
+      <li><a href="#parse-tree-synonym"><code class="operator">parse-tree-synonym</code></a>
+      <li><a href="#define-parse-tree-synonym"><code class="operator">define-parse-tree-synonym</code></a>
+      <li><a href="#*regex-char-code-limit*"><code class="variable">*regex-char-code-limit*</code></a>
+      <li><a href="#*use-bmh-matchers*"><code class="variable">*use-bmh-matchers*</code></a>
+      <li><a href="#*optimize-char-classes*"><code class="variable">*optimize-char-classes*</code></a>
+      <li><a href="#*allow-quoting*"><code class="variable">*allow-quoting*</code></a>
+      <li><a href="#*allow-named-registers*"><code class="variable">*allow-named-registers*</code></a>
+    </ol>
+    <li><a href="#misc">雑多</a>
+    <ol>
+      <li><a href="#parse-string"><code class="operator">parse-string</code></a>
+      <li><a href="#create-optimized-test-function"><code class="operator">create-optimized-test-function</code></a>
+      <li><a href="#quote-meta-chars"><code class="operator">quote-meta-chars</code></a>
+      <li><a href="#regex-apropos"><code class="operator">regex-apropos</code></a>
+      <li><a href="#regex-apropos-list"><code class="operator">regex-apropos-list</code></a>
+    </ol>
+    <li><a href="#conditions">コンディション</a>
+    <ol>
+      <li><a href="#ppcre-error"><code class="type">ppcre-error</code></a>
+      <li><a href="#ppcre-invocation-error"><code class="type">ppcre-invocation-error</code></a>
+      <li><a href="#ppcre-syntax-error"><code class="type">ppcre-syntax-error</code></a>
+      <li><a href="#ppcre-syntax-error-string"><code class="operator">ppcre-syntax-error-string</code></a>
+      <li><a href="#ppcre-syntax-error-pos"><code class="operator">ppcre-syntax-error-pos</code></a>
+    </ol>
+  </ol>
+  <li><a href="#unicode">Unicode プロパティ</a>
+  <ol>
+      <li><a href="#unicode-property-resolver"><code class="operator">unicode-property-resolver</code></a>
+  </ol>
+  <li><a href="#filters">フィルタ</a>
+  <li><a href="#perl">Perl との互換性</a>
+    <ol>
+      <li><a href="#empty"><code>$1</code> 、 <code>$2</code> 、などで <code>undef</code> の代わりに空文字列</a>
+      <li><a href="#scope">埋め込まれた変更の奇妙なスコープ</a>
+      <li><a href="#inconsistent"><code>$1</code> 、 <code>$2</code> などの不整合なキャプチャ</a>
+      <li><a href="#lookaround">補足したグループが前方参照<span class="wonder">［ look-aheads ：妥当な翻訳か不明］</span>および後方参照<span class="wonder">［ look-behinds ：妥当な翻訳か不明］</span>の外で有効でない</a></a>
+      <li><a href="#order">代替（※ <code class="keyword">:ALTERNATION</code> ）が常に左から右へ働く訳ではない</a>
+      <li><a href="#uprops">Unicode プロパティの名前が異なる</a>
+      <li><a href="#mac">MCL で <code>&quot;\r&quot;</code> が働かない</a>
+      <li><a href="#alpha"><code class="literal">&quot;\w&quot;</code> とは何？</a>
+    </ol>
+  <li><a href="#bugs">不具合と問題</a>
+  <ol>
+    <li><a href="#quote"><code class="literal">&quot;\Q&quot;</code> は動作しない？それともする？</a>
+    <li><a href="#backslash">バックスラッシュが混乱させる…</a>
+  </ol>
+  <li><a href="#allegro">AllegroCL 互換モード</a>
+  <li><a href="#blabla">ヒント、コメント、パフォーマンスに関する考慮事項</a>
+  <li><a href="#ack">謝辞</a>
+</ol>
+
+<br>
+<br>
+<a name="install" class="none"></a>
+<h3>ダウンロードおよびインストール</h3>
+
+<p>
+CL-PPCRE とドキュメントは、一緒に <a href="https://github.com/edicl/cl-ppcre/archive/master.zip">Github</a> からダウンロード出来る。現在のバージョンは 2.0.11 である。
+</p>
+<p>
+CL-PPCRE は <a href="http://www.cliki.net/asdf">ASDF</a> でシステム定義されており、その定石でコンパイルとロードを行う。モジュール依存はない。（例外は通常の使用では不要な <a href="#test">test suite</a> であり、 <a href="https://github.com/edicl/flexi-streams/">FLEXI-STREAMS</a> に依存する。 ）
+</p>
+<p>
+CL-PPCRE をインストールする望ましい方法は、 <a href="http://www.quicklisp.org/" target="_new">Quicklisp</a> を介した方法である。：
+<pre>
+(<span class="operator">ql:quickload</span> <span class="keyword">:cl-ppcre</span>)
+</pre>
+</p>
+<p>
+<a name="test" class="none"></a>次の方法で、ライブラリのほとんどの機能をテストできる。
+<pre>
+(<span class="operator">asdf:oos</span> 'asdf:test-op <span class="keyword">:cl-ppcre</span>)
+</pre>
+</p>
+<p>
+CL-PPCRE の現在の開発バージョンは <a href="https://github.com/edicl/cl-ppcre">https://github.com/edicl/cl-ppcre</a> で知ることができる。もしパッチを送りたいなら、 github リポジトリを分岐させて プル要求して下さい。
+</p>
+
+<br>
+<br>
+<a name="support" class="none"></a>
+<h3>サポート</h3>
+
+<p>
+cc-ppcre の開発バージョンは <a href="https://github.com/edicl/cl-ppcre" target="_new">github</a> で見つけることができる。バグレポート提出には、 github 問題トラッキングシステム使用して下さい。パッチは大歓迎である。 <a href="https://github.com/edicl/cl-ppcre/pulls">GitHub プル要求</a> を使用して下さい。もし変更を加えたいなら、まず <a href="http://weitz.de/patches.html" target="_new">ここ</a> をお読み下さい。
+</p>
+
+<br>
+<br>
+<a name="dict" class="none"></a>
+<h3>CL-PPCRE 辞典</h3>
+
+<a name="scanning" class="none"></a>
+<h4>スキャン</h4>
+
+<a name="create-scanner" class="none"></a>
+<p class="signature">
+［メソッド］<br>
+<span class="operator">create-scanner</span> <span class="parameter">(string <span class="type">string</span>) <tt>&amp;key</tt> case-insensitive-mode multi-line-mode single-line-mode extended-mode destructive</span><br>
+=&gt; <span class="result">scanner, register-names</span>
+</p>
+
+<blockquote><br>
+Perl 規則による正規表現文字列を受け入れ、この正規表現で文字列をスキャンするクロージャを返す。第２値は
+ <a href="#*allow-named-registers*"><code>*ALLOW-NAMED-REGISTERS*</code></a> が<i>真</i>の場合のみ返される。それは文字列マッピング登録のリストをそれぞれの名前で表す。第１要素は１番目の登録、第２要素は２番目の登録、など。スキャナ<span class="popup_mark">&nbsp;*&nbsp;<div class="popup_box">スキャナとは <span class="operator">create-scanner</span> の戻り値のクロージャのこと。</div></span>は登録名に関する情報を保持しないので、後で登録番号を名前にマッピングしたい場合、この値を格納する必要がある。もし登録に名前がつけられない場合、その名前は NIL になる。
+<p>
+キーワード引数の mode は Perl の <code class="literal">&quot;imsx&quot;</code> 修飾に相当する。キーワード引数 <code>destructive</code> は無視される。
+</p>
+<p>
+この関数は、 <a href="http://perldoc.perl.org/5.8.8/perlre.html"><code>man perlre</code></a> に記載されている非貪欲な繰り返し<span class="wonder">［ non-greedy repetitions ：妥当な翻訳か不明］</span>や正負の前方参照<span class="wonder">［ positive and negative look-ahead ：妥当な翻訳か不明］</span>、後方参照判断<span class="wonder">［ look-behind assertions ：妥当な翻訳か不明］</span>、単独の部分式<span class="wonder">［ &quot;standalone&quot; subexpressions ：妥当な翻訳か不明］</span>、条件付き副パターン<span class="wonder">［ conditional subpatterns ：妥当な翻訳か不明］</span>のような拡張機能を含む Perl 5.8 の正規表現規則のほとんどを受け入れる。 Perl の次の機能は（現状）<span class="e1">未対応</span>である。：
+</p>
+
+<ul>
+
+<li><code>(?{ code })</code> および <code>(??{ code })</code> 。何故なら Lisp では明らかに無意味である。
+
+<li><code>\N{name}</code> （名前付き文字）および <code>\x{263a}</code> （ワイド16進文字）、 <code>\l</code> 、 <code>\u</code> 、 <code>\L</code> 、 <code>\U</code> 。何故なら事実上それらは Perl の<span class="e3">正規表現</span>規則ではないからである。だが、 <a href="https://github.com/edicl/cl-interpol/">CL-INTERPOL</a> 参照。
+
+<li><code>\X</code> （拡張 Unicode ）および <code>\C</code> （単一文字）。しかし当然のことながら、お使いの Common Lisp 実装でサポートされている全ての文字が使用可能である。
+
+<li><code>[[:alpha]]</code> の様な Posix 文字クラス。代わりに <a href="#unicode">Unicode プロパティ</a> を使用する。
+
+<li>Perl の <code>pos()</code> 用の <code>\G</code> 。何故ならそれがないためである。
+
+</ul>
+
+<p>
+注釈：しかしながら、 <code>\t</code> 、 <code>\n</code> 、 <code>\r</code> 、 <code>\f</code> 、 <code>\a</code> 、 <code>\e</code> 、 <code>\033</code> （8進文字コード）、 <code>\x1B</code> （16進文字コード）、 <code>\c[</code> （制御文字）、 <code>\w</code> 、 <code>\W</code> 、 <code>\s</code> 、 <code>\S</code> 、 <code>\d</code> 、 <code>\D</code> 、 <code>\b</code> 、 <code>\B</code> 、 <code>\A</code> 、 <code>\Z</code> 、 <code>\z</code> には<span class="e2">対応</span>している。
+</p>
+<p>
+バージョン 0.6.0 以降、 CL-PPCRE は Perl の <code>\Q</code> 、 <code>\E</code> にも対応している。後述の <a href="#*allow-quoting*"><code>*ALLOW-QUOTING*</code></a> 参照。 &quot;<a href="#bugs">不具合と問題</a>&quot; の<a href="#quote">該当セクション</a>も読むべきである。
+</p>
+<p>
+バージョン 1.3.0 以降、 CL-PPCRE は <a href="http://www.franz.com/support/documentation/7.0/doc/regexp.htm#regexp-new-capturing-2">AllegroCL</a> の名前付き登録 <code>(?&lt;name&gt;"&lt;regex&gt;")</code> および後方参照規則の <code>\k&lt;name&gt;</code> に対応している。詳細は <a href="#*allow-named-registers*"><code>*ALLOW-NAMED-REGISTERS*</code></a> 参照。
+</p>
+<p>
+バージョン 2.0.0 以降、 CL-PPCRE は名前付きプロパティ（ <code>\p</code> および <code>\P</code> ）に対応している。しかし中括弧を伴う長い形式のみの対応である。つまり、 <code>\p{Letter}</code> および <code>\p{L}</code> は機能するが、 <code>\pL</code> は機能しない。
+</p>
+<p>
+キーワード引数は利便性のためである。代わりに常に <code class="literal">&quot;(?i-s)&quot;</code> の様な埋め込み修飾子が使用可能である。
+</p>
+</blockquote>
+
+
+<a name="create-scanner" class="none"></a>
+<p class="signature">
+［メソッド］<br>
+<span class="operator">create-scanner</span> <span class="parameter">(function <span class="type">function</span>) <tt>&amp;key</tt> case-insensitive-mode multi-line-mode single-line-mode extended-mode destructive</span><br>
+=&gt; <span class="result">スキャナ</span>
+</p>
+
+<blockquote><br>
+この場合 <code><span class="parameter">function</span></code> は <code class="operator">CREATE-SCANNER</code> の別の呼び出しにより返されたスキャナでなければならない。それはそのまま返される。スキャナは既に作成されていて不変なので、キーワード引数は使用できない。
+</blockquote>
+
+
+<a name="create-scanner2" class="none"></a>
+<p class="signature">
+［メソッド］<br>
+<span class="operator">create-scanner</span> <span class="parameter">(parse-tree <span class="type">t</span>) <tt>&amp;key</tt> case-insensitive-mode multi-line-mode single-line-mode extended-mode destructive</span><br>
+=&gt; <span class="result">scanner, register-names</span>
+</p>
+
+<blockquote><br>
+これは正規表現の文字列を指定する上記 <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> に似ているが、第１引数に<span class="e3">構文木</span>を受け入れる。構文木は次の文法に従うＳ式である。：
+
+<ul>
+
+<li>全ての文字列と文字は、正規表現の一部として<span class="e3">文字通りに</span>扱われる構文木である。つまり、括弧、中括弧、アスタリスクなどは特別なものではない。
+
+<li>シンボル <code class="keyword">:VOID</code> は空文字列と同等である。
+
+<li>シンボル <code class="keyword">:EVERYTHING</code> は Perl のピリオド相当、つまりあらゆるもの（モードにより改行文字は除く）に合致する。
+
+<li>シンボル <code class="keyword">:WORD-BOUNDARY</code> および <code class="keyword">:NON-WORD-BOUNDARY</code> は Perl の <code class="literal">&quot;\b&quot;</code> および <code class="literal">&quot;\B&quot;</code> と同等である。
+
+<li>シンボル <code class="keyword">:DIGIT-CLASS</code> 、 <code class="keyword">:NON-DIGIT-CLASS</code> 、  <code class="keyword">:WORD-CHAR-CLASS</code> 、 <code class="keyword">:NON-WORD-CHAR-CLASS</code> 、 <code class="keyword">:WHITESPACE-CHAR-CLASS</code> 、 <code class="keyword">:NON-WHITESPACE-CHAR-CLASS</code> はそれぞれ Perl の<span class="e3">特殊文字クラス</span> <code class="literal">&quot;\d&quot;</code> 、 <code class="literal">&quot;\D&quot;</code> 、  <code class="literal">&quot;\w&quot;</code> 、 <code class="literal">&quot;\W&quot;</code> 、  <code class="literal">&quot;\s&quot;</code> 、 <code class="literal">&quot;\S&quot;</code> と同等である。
+
+<li>シンボル <code class="keyword">:START-ANCHOR</code> 、 <code class="keyword">:END-ANCHOR</code> 、 <code class="keyword">:MODELESS-START-ANCHOR</code> 、 <code class="keyword">:MODELESS-END-ANCHOR</code> 、 <code class="keyword">:MODELESS-END-ANCHOR-NO-NEWLINE</code> はそれぞれ Perl の <code class="literal">&quot;^&quot;</code> 、 <code class="literal">&quot;$&quot;</code> 、 <code class="literal">&quot;\A&quot;</code> 、 <code class="literal">&quot;\Z&quot;</code> 、 <code class="literal">&quot;\z&quot;</code> と同等である。
+
+<li>シンボル <code class="keyword">:CASE-INSENSITIVE-P</code> 、 <code class="keyword">:CASE-SENSITIVE-P</code> 、 <code class="keyword">:MULTI-LINE-MODE-P</code> 、 <code class="keyword">:NOT-MULTI-LINE-MODE-P</code> 、 <code class="keyword">:SINGLE-LINE-MODE-P</code> 、 <code class="keyword">:NOT-SINGLE-LINE-MODE-P</code> は Perl の<span class="e3">埋め込み修飾子</span> <code class="literal">&quot;(?i)&quot;</code> 、 <code class="literal">&quot;(?-i)&quot;</code> 、 <code class="literal">&quot;(?m)&quot;</code> 、 <code class="literal">&quot;(?-m)&quot;</code> 、 <code class="literal">&quot;(?s)&quot;</code> 、 <code class="literal">&quot;(?-s)&quot;</code> と同等である。通常のように、モードに適用される変更は、最も内側のグループあるいはクラスタリング構造ローカルで保たれる。
+
+</li><li>その他全てのシンボルは、 <a href="#parse-tree-synonym"><span class="operator">parse-tree-synonyms</span></a> で<span class="e3">定義されていない限り</span>、 <a href="#ppcre-syntax-error"><code class="type">PPCRE-SYNTAX-ERROR</code></a> 型のエラーを通知する。
+
+<li><code>(<span class="keyword">:FLAGS</span> {&lt;<span class="parameter">modifier</span>&gt;}*)</code> に於いて <code>&lt;<span class="parameter">modifier</span>&gt;</code> が上記修飾子シンボルの一つであるものは、修飾子シンボルのグループ化に使用される。修飾子は左から右へ適用される。（この構文は空きからに冗長である。これはパーサに使用される為にのみ存在する。）
+
+<li><code>(<span class="keyword">:SEQUENCE</span> {&lt;<span class="parameter">parse-tree</span>&gt;}*)</code> は構文木のシーケンスを意味する。つまり構文木は順番に合致しなければならない。例： <code>(<span class="keyword">:SEQUENCE</span> #\f #\o #\o)</code> は構文木 <code class="literal">&quot;foo&quot;</code> と同等である。
+
+<li><code>(<span class="keyword">:GROUP</span> {&lt;<span class="parameter">parse-tree</span>&gt;}*)</code> は <code class="keyword">:SEQUENCE</code> に似ているが、修飾子フラグ（上記参照）に適用された変更は、この構文で囲まれた構文木に対してローカルに保持される。 Perl の <code class="literal">&quot;(?:&lt;<span class="parameter">pattern</span>&gt;)&quot;</code> 構文をＳ式に変形したと考えられる。
+
+<li><code>(<span class="keyword">:ALTERNATION</span> {&lt;<span class="parameter">parse-tree</span>&gt;}*)</code> は構文木の代替を意味する。つまり、構文木の一つは合致しなければならない。例： <code>(<span class="keyword">:ALTERNATION</span> #\b #\a #\z)</code> は Perl の正規表現文字列 <code class="literal">&quot;b|a|z&quot;</code> と同等である。
+
+<li><code>(<span class="keyword">:BRANCH</span> &lt;<span class="parameter">test</span>&gt; &lt;<span class="parameter">parse-tree</span>&gt;)</code> は条件付き正規表現である。 <code>&lt;<span class="parameter">test</span>&gt;</code> は登録を示す数値、あるいは前方参照（ look-ahead ）か後方参照（ look-behind ）かを判断する構文木である。この構文の意味については、 <a href="http://perldoc.perl.org/perlre.html#Extended-Patterns"><code>man perlre</code></a> の項 <code>(?(&lt;<span class="parameter">condition</span>&gt;)&lt;<span class="parameter">yes-pattern</span>&gt;|&lt;<span class="parameter">no-pattern</span>&gt;)</code> 参照。もし <code>&lt;<span class="parameter">parse-tree</span>&gt;</code> が代替（※ <code class="keyword">:ALTERNATION</code> ）なら、正確に一つの構文木あるいは二つの構文木を括る必要があり、二つ目（存在する場合）は &quot;no-pattern&quot; として扱われる。その他全ての場合、 <code>&lt;<span class="parameter">parse-tree</span>&gt;</code> は &quot;yes-pattern&quot; として扱われる。
+
+<li><code>(<span class="keyword">:POSITIVE-LOOKAHEAD</span>|<span class="keyword">:NEGATIVE-LOOKAHEAD</span>|<span class="keyword">:POSITIVE-LOOKBEHIND</span>|<span class="keyword">:NEGATIVE-LOOKBEHIND</span> &lt;<span class="parameter">parse-tree</span>&gt;)</code> は明らかであろう。
+
+<li><code>(<span class="keyword">:GREEDY-REPETITION</span>|<span class="keyword">:NON-GREEDY-REPETITION</span> &lt;<span class="parameter">min</span>&gt; &lt;<span class="parameter">max</span>&gt; &lt;<span class="parameter">parse-tree</span>&gt;)</code> に於いて、<code>&lt;<span class="parameter">min</span>&gt;</code> は非負の整数であり、 <code>&lt;<span class="parameter">max</span>&gt;</code> は <code>&lt;<span class="parameter">min</span>&gt;</code> より小さくない非負の整数あるいは <code>NIL</code> である。それは正規表現内で <code>&lt;<span class="parameter">parse-tree</span>&gt;</code> が最小 <code>&lt;<span class="parameter">min</span>&gt;</code> 回最大 <code>&lt;<span class="parameter">max</span>&gt;</code> 回（あるいは <code>&lt;<span class="parameter">max</span>&gt;</code> が <code>NIL</code> の場合は可能な限り多く）の合致を試みる。つまり<code>(<span class="keyword">:NON-GREEDY-REPETITION</span> 0 1 <span class="literal">&quot;ab&quot;</span>)</code> は Perl の正規表現文字列 <code class="literal">&quot;(?:ab)??&quot;</code> と同等である。
+
+<li><code>(<span class="keyword">:STANDALONE</span> &lt;<span class="parameter">parse-tree</span>&gt;)</code> は &quot;独立&quot; 部分式である。つまり<code>(<span class="keyword">:STANDALONE</span> <span class="literal">&quot;bar&quot;</span>)</code> は Perl の正規表現文字列 <code class="literal">&quot;(?>bar)&quot;</code> と同等である。
+
+<li><code>(<span class="keyword">:REGISTER</span> &lt;<span class="parameter">parse-tree</span>&gt;)</code> は登録グループの補足である。通常のように、登録は左から右に数えられ、１から始まる。
+
+<li><code>(<span class="keyword">:NAMED-REGISTER</span> &lt;<span class="parameter">name</span>&gt; &lt;<span class="parameter">parse-tree</span>&gt;)</code> は登録グループの名前付きの補足である。 <code class="keyword">:REGISTER</code> 同様に振る舞うが、 <code>&lt;<span class="parameter">name</span>&gt;</code> を登録に割り当てる。この <code>&lt;<span class="parameter">name</span>&gt;</code> は後で <code class="keyword">:BACK-REFERENCE</code> を介して参照できる。名前は大文字小文字が区別され、一意である必要はない。詳細は <a href="#*allow-named-registers*"><code>*ALLOW-NAMED-REGISTERS*</code></a> 参照。
+
+<li><code>(<span class="keyword">:BACK-REFERENCE</span> &lt;<span class="parameter">ref</span>&gt;)</code> は登録グループへの後方参照である。 <code>&lt;<span class="parameter">ref</span>&gt;</code> は正の整数あるいは登録名を示す文字列である。もし同名の登録が複数ある場合、正規表現エンジンはそれらの中で合致を試みる。合致が見つかるまで、最も最近見られた登録から始め、最後に見られたものへ続ける。詳細は、 <a href="#*allow-named-registers*"><code>*ALLOW-NAMED-REGISTERS*</code></a> 参照。
+
+<li><code>(<span class="keyword">:PROPERTY</span>|<span class="keyword">:INVERTED-PROPERTY</span> &lt;<span class="parameter">property</span>&gt;)</code> は、 <a href="#*property-resolver*"><code>*PROPERTY-RESOLVER*</code></a> により解決されなければならない関数指定子あるいは文字列である <code>&lt;<span class="parameter">property</span>&gt;</code> を持つ <a href="#*property-resolver*">名前付きプロパティ</a> （あるいはその逆）である。
+
+<li><a class="none" name="filterdef"></a><code>(<span class="keyword">:FILTER</span> &lt;<span class="parameter">function</span>&gt; <tt>&amp;optional</tt> &lt;<span class="parameter">length</span>&gt;)</code> に於いて、 <code>&lt;<span class="parameter">function</span>&gt;</code> が <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_f.htm#function_designator">関数指定子</a> であり <code>&lt;<span class="parameter">length</span>&gt;</code> が非負の整数あるいは <code>NIL</code> であるものは、ユーザ定義の <a href="#filters">フィルタ</a> である。
+
+<li><code>(<span class="keyword">:REGEX</span> &lt;<span class="parameter">string</span>&gt;)</code> に於ける <code>&lt;<span class="parameter">string</span>&gt;</code> は、埋め込まれている <a href="#create-scanner">Perl の正規表現構文</a> である。
+
+<li><code>(<span class="keyword">:CHAR-CLASS</span>|<span class="keyword">:INVERTED-CHAR-CLASS</span> {&lt;<span class="parameter">item</span>&gt;}*)</code> に於いて <code>&lt;<span class="parameter">item</span>&gt;</code> が文字あるいは <span class="e3">文字範囲</span>、名前付きプロパティ（上記参照）、特殊文字クラスのシンボル（上記参照）は、（一文字幅の）文字クラスに変換される。 <span class="e3">文字範囲</span> は <code>(<span class="keyword">:RANGE</span> &lt;<span class="parameter">char1</span>&gt; &lt;<span class="parameter">char2</span>&gt;)</code> に於ける <code>&lt;<span class="parameter">char1</span>&gt;</code> と <code>&lt;<span class="parameter">char2</span>&gt;</code> は、 <code>(<span class="operator">CHAR&lt;=</span> &lt;<span class="parameter">char1</span>&gt; &lt;<span class="parameter">char2</span>&gt;)</code> が真となるような文字である。例： <code>(<span class="keyword">:INVERTED-CHAR-CLASS</span> #\a (<span class="keyword">:RANGE</span> #\D #\G) <span class="keyword">:DIGIT-CLASS</span>)</code> は Perl の正規表現文字列 <code class="literal">&quot;[^aD-G\d]&quot;</code> と同等である。
+
+</ul>
+
+<code class="operator">CREATE-SCANNER</code> は第１引数でディスパッチされる総称関数として定義されているので、曖昧さがある。：文字列は有効な構文木であるが、それが <code class="operator">CREATE-SCANNER</code> に与えられると Perl の正規表現文字列に変換される。これを妨げるため、いつでも同等の構文木である <code>(<span class="keyword">:GROUP</span> &lt;<span class="parameter">string</span>&gt;)</code> を代わりに使用できる。
+
+<p>
+<code class="operator">CREATE-SCANNER</code> は第１引数が適切かどうか常にチェックするとは限らない点に注意。つまり、（※ユーザが）<span class="e3">正しい</span>構文木を提供することが期待される。
+</p>
+
+<p>
+キーワード引数 <code>extended-mode</code> の使用は、 <code class="operator">CREATE-SCANNER</code> が構文木に適用された場合明らかに無意味であり、そうした場合エラーを通知する。
+</p>
+
+<p>
+（※キーワード引数） <code>destructive</code> が <code>NIL</code> でない場合（デフォルトは <code>NIL</code> ）、関数はスキャナ作成中に <code><span class="parameter">parse-tree</span></code> の破壊的変更を許される。
+</p>
+
+<p>
+構文木が Perl の正規表現文字列とどのように関係しているか知りたいなら、<a href="#parse-string"><code class="operator">PARSE-STRING</code></a> を使って遊ぶべきである。：
+</p>
+
+<pre>
+* (<span class="operator">parse-string</span> <span class="literal">&quot;(ab)*&quot;</span>)
+(<span class="keyword">:GREEDY-REPETITION</span> 0 NIL (<span class="keyword">:REGISTER</span> <span class="literal">&quot;ab&quot;</span>))
+
+* (<span class="operator">parse-string</span> <span class="literal">&quot;(a(b))&quot;</span>)
+(<span class="keyword">:REGISTER</span> (<span class="keyword">:SEQUENCE</span> #\a (<span class="keyword">:REGISTER</span> #\b)))
+
+* (<span class="operator">parse-string</span> <span class="literal">&quot;(?:abc){3,5}&quot;</span>)
+(<span class="keyword">:GREEDY-REPETITION</span> 3 5 (<span class="keyword">:GROUP</span> <span class="literal">&quot;abc&quot;</span>))
+<span class="comment">;; (:GREEDY-REPETITION 3 5 &quot;abc&quot;) でもＯＫ</span>
+
+* (<span class="operator">parse-string</span> <span class="literal">&quot;a(?i)b(?-i)c&quot;</span>)
+(<span class="keyword">:SEQUENCE</span> #\a
+ (<span class="keyword">:SEQUENCE</span> (<span class="keyword">:FLAGS</span> <span class="keyword">:CASE-INSENSITIVE-P</span>)
+  (<span class="keyword">:SEQUENCE</span> #\b (<span class="keyword">:SEQUENCE</span> (<span class="keyword">:FLAGS</span> <span class="keyword">:CASE-SENSITIVE-P</span>) #\c))))
+<span class="comment">;; (:SEQUENCE #\a :CASE-INSENSITIVE-P #\b :CASE-SENSITIVE-P #\c) と同じ</span>
+
+* (<span class="operator">parse-string</span> <span class="literal">&quot;(?=a)b&quot;</span>)
+(<span class="keyword">:SEQUENCE</span> (<span class="keyword">:POSITIVE-LOOKAHEAD</span> #\a) #\b)
+</pre></blockquote>
+
+<p class="important">
+<br>
+残りの部分については、<code class="parameter">regex</code> は常に文字列（ Perl の正規表現に変換される）あるいは構文木あるいは <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> で作成されたスキャナである可能性がある。キーワードパラメータ <code class="parameter">start</code> および <code class="parameter">end</code> は、常に <a href="#scan"><code>SCAN</code></a> でのように使用される。
+</p>
+
+
+<a name="scan" class="none"></a>
+<p class="signature">
+［総称関数］<br>
+<span class="operator">scan</span> <span class="parameter">regex target-string <tt>&amp;key</tt> start end</span><br>
+=&gt; <span class="result">match-start, match-end, reg-starts, reg-ends</span>
+</p>
+
+<blockquote><br>
+<p>
+文字列 <code class="parameter">target-string</code> を <code class="parameter">start</code> （デフォルトで 0 ）から <code class="parameter">end</code> （デフォルトで <code class="parameter">target-string</code> の長さ）迄検索し、 <code class="parameter">regex</code> との合致を試みる。成功時４つの値を返す。合致の開始、合致の終了、登録合致の開始と終了を示す２つの配列。失敗時 <code>NIL</code> を返す。 <code class="parameter">target-string</code> が既に <span class="type">simple-string</span> でない場合<span class="wonder">［妥当な翻訳か不明］</span>、 <span class="type">simple-string</span> に変換される。（別のキーワードパラメータ <code class="parameter">real-start-pos</code> がある。これは<span class="e3">決して</span>ユーザコードからはセットされない。内部でのみ使用される。）
+</p>
+
+<p>
+<code class="operator">SCAN</code> は、 <code class="parameter">target-string</code> の <code class="parameter">start</code> から <code class="parameter">end</code> 迄の一部分が単独の文字列であるかのように動作する。つまり、前方参照<span class="wonder">［ look-aheads ：妥当な翻訳か不明］</span>および後方参照<span class="wonder">［ look-behinds ：妥当な翻訳か不明］</span>は、この境界を越えて参照できない。
+</p>
+
+<pre>
+* (<span class="operator">scan</span> <span class="literal">&quot;(a)*b&quot;</span> <span class="literal">&quot;xaaabd&quot;</span>)
+1
+5
+#(3)
+#(4)
+
+* (<span class="operator">scan</span> <span class="literal">&quot;(a)*b&quot;</span> <span class="literal">&quot;xaaabd&quot;</span> <span class="keyword">:start</span> 1)
+1
+5
+#(3)
+#(4)
+
+* (<span class="operator">scan</span> <span class="literal">&quot;(a)*b&quot;</span> <span class="literal">&quot;xaaabd&quot;</span> <span class="keyword">:start</span> 2)
+2
+5
+#(3)
+#(4)
+
+* (<span class="operator">scan</span> <span class="literal">&quot;(a)*b&quot;</span> <span class="literal">&quot;xaaabd&quot;</span> <span class="keyword">:end</span> 4)
+NIL
+
+* (<span class="operator">scan</span> '(<span class="keyword">:greedy-repetition</span> 0 nil #\b) <span class="literal">&quot;bbbc&quot;</span>)
+0
+3
+#()
+#()
+
+* (<span class="operator">scan</span> '(<span class="keyword">:greedy-repetition</span> 4 6 #\b) <span class="literal">&quot;bbbc&quot;</span>)
+NIL
+
+* (<span class="operator">let</span> ((s (<span class="operator">create-scanner</span> <span class="literal">&quot;(([a-c])+)x&quot;</span>)))
+    (<span class="operator">scan</span> s <span class="literal">&quot;abcxy&quot;</span>))
+0
+4
+#(0 2)
+#(3 3)
+</pre>
+</blockquote>
+
+
+<a name="scan-to-strings" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">scan-to-strings</span> <span class="parameter">regex target-string <tt>&amp;key</tt> start end sharedp</span><br>
+=&gt; <span class="result">match, regs</span>
+</p>
+
+<blockquote><br>
+<a href="#scan"><code class="operator">SCAN</code></a> に似ているが、位置の代わりに <code class="parameter">target-string</code> の部分文字列を返す。つまり、関数は成功時に２つの値を返す。：合致した文字列全体と、合致した登録に対応する部分文字列（あるいは <code>NIL</code> ）の配列。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+
+<pre>
+* (<span class="operator">scan-to-strings</span> <span class="literal">&quot;[^b]*b&quot;</span> <span class="literal">&quot;aaabd&quot;</span>)
+<span class="literal">&quot;aaab&quot;</span>
+#()
+
+* (<span class="operator">scan-to-strings</span> <span class="literal">&quot;([^b])*b&quot;</span> <span class="literal">&quot;aaabd&quot;</span>)
+<span class="literal">&quot;aaab&quot;</span>
+#(<span class="literal">&quot;a&quot;</span>)
+
+* (<span class="operator">scan-to-strings</span> <span class="literal">&quot;(([^b])*)b&quot;</span> <span class="literal">&quot;aaabd&quot;</span>)
+<span class="literal">&quot;aaab&quot;</span>
+#(<span class="literal">&quot;aaa&quot;</span> <span class="literal">&quot;a&quot;</span>)
+</pre></blockquote>
+
+
+<a name="register-groups-bind" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">register-groups-bind</span> <span class="parameter">var-list (regex target-string <tt>&amp;key</tt> start end sharedp) declaration* statement*</span><br>
+=&gt; <span class="result">result*</span>
+</p>
+
+<blockquote><br>
+<code class="parameter">target-string</code> が <code class="parameter">regex</code> に合致した後、対応する登録グループに束縛された <code class="parameter">var-list</code> の変数を伴って <code class="parameter">statement*</code> を評価する。つまり、各変数は文字列あるいは <code>NIL</code> に束縛される。ショートカットとして、 <code class="parameter">var-list</code> の要素はフォーム <code>(FN&nbsp;VAR)</code> でもよい。ここで <code>VAR</code> は変数のシンボルで、 <code>FN</code> は結果が <code>VAR</code> に束縛される前に文字列に適用される関数を示す<a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_f.htm#function_designator">関数指定子</a>（評価される）である。これをさらに便利にする為、 <code>(FN&nbsp;VAR1)&nbsp;...&nbsp;(FN&nbsp;VARn)</code> の省略形として、フォーム <code>(FN&nbsp;VAR1&nbsp;...VARn)</code> が使用できる。
+
+<p>
+もし全く合致しなければ、フォーム <code class="parameter">statement*</code> は実行され<span class="e3">ない</span>。 <code class="parameter">var-list</code> の要素で <code>NIL</code> のものは、対応する登録グループに束縛されない。 <code class="parameter">var-list</code> 内の変数の数は、登録グループの数より多くてはならない。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+</p>
+
+<pre>
+* (<span class="operator">register-groups-bind</span> (first second third fourth)
+      (<span class="literal">&quot;((a)|(b)|(c))+&quot;</span> <span class="literal">&quot;abababc&quot;</span> <span class="keyword">:sharedp</span> t)
+    (<span class="operator">list</span> first second third fourth))
+(<span class="literal">&quot;c&quot;</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;c&quot;</span>)
+
+* (<span class="operator">register-groups-bind</span> (nil second third fourth)
+      <span class="comment">;; note that we don't bind the first and fifth register group</span>
+      (<span class="literal">&quot;((a)|(b)|(c))()+&quot;</span> <span class="literal">&quot;abababc&quot;</span> <span class="keyword">:start</span> 6)
+    (<span class="operator">list</span> second third fourth))
+(NIL NIL <span class="literal">&quot;c&quot;</span>)
+
+* (<span class="operator">register-groups-bind</span> (first)
+      (<span class="literal">&quot;(a|b)+&quot;</span> <span class="literal">&quot;accc&quot;</span> <span class="keyword">:start</span> 1)
+    (<span class="operator">format</span> t <span class="literal">&quot;This will not be printed: ~A&quot;</span> first))
+NIL
+
+* (<span class="operator">register-groups-bind</span> (fname lname (#'parse-integer date month year))
+      (<span class="literal">&quot;(\\w+)\\s+(\\w+)\\s+(\\d{1,2})\\.(\\d{1,2})\\.(\\d{4})&quot;</span> <span class="literal">&quot;Frank Zappa 21.12.1940&quot;</span>)
+    (<span class="operator">list</span> fname lname (encode-universal-time 0 0 0 date month year 0)))
+(<span class="literal">&quot;Frank&quot;</span> <span class="literal">&quot;Zappa&quot;</span> 1292889600)
+</pre>
+</blockquote>
+
+
+<a name="do-scans" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">do-scans</span> <span class="parameter">(match-start match-end reg-starts reg-ends regex target-string <tt>&amp;optional</tt> result-form <tt>&amp;key</tt> start end) declaration* statement*</span><br>
+=&gt; <span class="result">result*</span>
+</p>
+
+<blockquote><br>
+<code class="parameter">target-string</code> を通じて可能な限り <code class="parameter">regex</code> と多くの合致を試みて、各合致（ <a href="#scan"><code class="operator">SCAN</code></a> 参照）ごと順番に４つの戻り値に束縛された <code class="parameter">match-start</code> および <code class="parameter">match-end</code> 、 <code class="parameter">reg-starts</code> 、 <code class="parameter">reg-ends</code> と共に <code>statement*</code> を評価することを繰り返す。最後の合致の後、 <code class="parameter">result-form</code> が指定されているならそれを返す。そうでなければ <code>NIL</code> を返す。 <code>NIL</code> と名付けられた暗黙のブロックが <code class="operator">DO-SCANS</code> を囲んでおり、 <code class="operator">RETURN</code> で即座にループを終了できる。 <code class="parameter">regex</code> が空文字列と合致した場合、この合致の１つ後からスキャンが続けられる。
+
+<p>
+これは対象の文字列の全ての合致を通じて繰り返す、最も一般的なマクロである。使い方の例は、 <a href="#do-matches"><code class="operator">DO-MATCHES</code></a> あるいは <a href="#all-matches"><code class="operator">ALL-MATCHES</code></a> 、 <a href="#split"><code class="operator">SPLIT</code></a> 、 <a href="#regex-replace-all"><code class="operator">REGEX-REPLACE-ALL</code></a> のソースコード参照。
+</blockquote>
+</p>
+
+
+<a name="do-matches" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">do-matches</span> <span class="parameter">(match-start match-end regex target-string <tt>&amp;optional</tt> result-form <tt>&amp;key</tt> start end) declaration* statement*</span><br>
+=&gt; <span class="result">result*</span>
+</p>
+
+<blockquote><br>
+ <a href="#do-scans"><code class="operator">DO-SCANS</code></a> に似ているが、変数を登録の配列に束縛しない。
+
+<pre>
+* (<span class="operator">defun</span> foo (regex target-string &amp;key (start 0) (end (length target-string)))
+    (<span class="operator">let</span> ((sum 0))
+      (<span class="operator">do-matches</span> (s e regex target-string nil <span class="keyword">:start</span> start <span class="keyword">:end</span> end)
+        (<span class="operator">incf</span> sum (<span class="operator">-</span> e s)))
+      (<span class="operator">format</span> t <span class="literal">&quot;~,2F% of the string was inside of a match~%&quot;</span>
+                <span class="comment">;; 注釈：ゼロ除算をチェックしていない</span>
+                (<span class="operator">float</span> (<span class="operator">*</span> 100 (<span class="operator">/</span> sum (<span class="operator">-</span> end start)))))))
+
+FOO
+
+* (<span class="operator">foo</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;abcabcabc&quot;</span>)
+33.33% of the string was inside of a match
+NIL
+* (<span class="operator">foo</span> <span class="literal">&quot;aa|b&quot;</span> <span class="literal">&quot;aacabcbbc&quot;</span>)
+55.56% of the string was inside of a match
+NIL
+</pre></blockquote>
+
+
+<a name="do-matches-as-strings" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">do-matches-as-strings</span> <span class="parameter">(match-var regex target-string <tt>&amp;optional</tt> result-form <tt>&amp;key</tt> start end sharedp) declaration* statement*</span><br>
+=&gt; <span class="result">result*</span>
+</p>
+
+<blockquote><br>
+<a href="#do-matches"><code class="operator">DO-MATCHES</code></a> に似ているが、 <code class="parameter">match-var</code> を各合致に相当する <code class="parameter">target-string</code> の部分文字列に束縛しない。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+
+<pre>
+* (<span class="operator">defun</span> crossfoot (target-string &amp;key (start 0) (end (<span class="operator">length</span> target-string)))
+    (<span class="operator">let</span> ((sum 0))
+      (<span class="operator">do-matches-as-strings</span> (m <span class="keyword">:digit-class</span>
+                                         target-string nil
+                                         <span class="keyword">:start</span> start <span class="keyword">:end</span> end)
+        (<span class="operator">incf</span> sum (<span class="operator">parse-integer</span> m)))
+      (<span class="operator">if</span> (<span class="operator"><</span> sum 10)
+        sum
+        (<span class="operator">crossfoot</span> (<span class="operator">format</span> nil <span class="literal">&quot;~A&quot;</span> sum)))))
+
+CROSSFOOT
+
+* (<span class="operator">crossfoot</span> <span class="literal">&quot;bar&quot;</span>)
+0
+
+* (<span class="operator">crossfoot</span> <span class="literal">&quot;a3x&quot;</span>)
+3
+
+* (<span class="operator">crossfoot</span> <span class="literal">&quot;12345&quot;</span>)
+6
+</pre>
+
+<p>
+当然、実生活上では <a href="#do-matches"><code class="operator">DO-MATCHES</code></a> を行い、 <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_parse_.htm"><code class="operator">PARSE-INTEGER</code></a> のキーワード引数 <code class="parameter">start</code> および <code class="parameter">end</code> を使用する。
+</blockquote>
+</p>
+
+
+<a name="do-register-groups" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">do-register-groups</span> <span class="parameter">var-list (regex target-string <tt>&amp;optional</tt> result-form <tt>&amp;key</tt> start end sharedp) declaration* statement*</span><br>
+=&gt; <span class="result">result*</span>
+</p>
+
+<blockquote><br>
+<code class="parameter">target-string</code> を通じて可能な限り多く <code class="parameter">regex</code> との合致を試みて、各合致ごとに <code class="parameter">var-list</code> 内の変数を対応する登録グループで束縛し、 <code class="parameter">statement*</code> の評価を繰り返す。つまり、各変数は文字列あるいは <code>NIL</code> に束縛される。 <a href="#register-groups-bind"><code>REGISTER-GROUPS-BIND</code></a> のショートカットと省略形が使用可能である。 <code class="parameter">var-list</code> 内の変数の数は、登録グループの数より多くてはならない。 <code class="parameter">var-list</code> の <code>NIL</code> である要素は、対応する登録グループに束縛されない。 <code class="parameter">result-form</code> が指定されている場合、最後の合致の後、 <code class="parameter">result-form</code> を返す。そうでない場合 <code>NIL</code> を返す。 <code>NIL</code> と名付けられた暗黙のブロックが <code class="operator">DO-REGISTER-GROUPS</code> を囲んでおり、 <code class="operator">RETURN</code> で即座にループを終了できる。 <code class="parameter">regex</code> が空文字列と合致した場合、この合致の１つ後からスキャンが続けられる。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+
+<pre>
+* (<span class="operator">do-register-groups</span> (first second third fourth)
+      (<span class="literal">&quot;((a)|(b)|(c))&quot;</span> <span class="literal">&quot;abababc&quot;</span> nil <span class="keyword">:start</span> 2 <span class="keyword">:sharedp</span> t)
+    (<span class="operator">print</span> (<span class="operator">list</span> first second third fourth)))
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;a&quot;</span> NIL NIL)
+(<span class="literal">&quot;b&quot;</span> NIL <span class="literal">&quot;b&quot;</span> NIL)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;a&quot;</span> NIL NIL)
+(<span class="literal">&quot;b&quot;</span> NIL <span class="literal">&quot;b&quot;</span> NIL)
+(<span class="literal">&quot;c&quot;</span> NIL NIL <span class="literal">&quot;c&quot;</span>)
+NIL
+
+* (<span class="operator">let</span> (result)
+    (<span class="operator">do-register-groups</span> ((#'<span class="operator">parse-integer</span> n) (#'<span class="operator">intern</span> sign) whitespace)
+        (<span class="literal">&quot;(\\d+)|(\\+|-|\\*|/)|(\\s+)&quot;</span> <span class="literal">&quot;12*15 - 42/3&quot;</span>)
+      (<span class="operator">unless</span> whitespace
+        (<span class="operator">push</span> (<span class="operator">or</span> n sign) result)))
+    (<span class="operator">nreverse</span> result))
+(12 * 15 - 42 / 3)
+</pre>
+</blockquote>
+
+
+<a name="all-matches" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">all-matches</span> <span class="parameter">regex target-string <tt>&amp;key</tt> start end</span><br>
+=&gt; <span class="result">list</span>
+</p>
+
+<blockquote><br>
+ <code class="parameter">regex</code> の <code class="parameter">target-string</code> との全ての合致の開始位置および終了位置を含んだリストを返す。つまり、仮に <code>N</code> 回合致すれば、リストは <code>(* 2 N)</code> 個の要素を含む。 <code class="parameter">regex</code> が空文字列と合致した場合、この合致の１つ後からスキャンが続けられる。
+
+<pre>
+* (<span class="operator">all-matches</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span>)
+(5 6 9 10)
+
+* (<span class="operator">all-matches</span> <span class="literal">&quot;\\w*&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span>)
+(0 3 3 3 4 7 7 7 8 11 11 11)
+</pre>
+</blockquote>
+
+
+<a name="all-matches-as-strings" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">all-matches-as-strings</span> <span class="parameter">regex target-string <tt>&amp;key</tt> start end sharedp</span><br>
+=&gt; <span class="result">list</span>
+</p>
+
+<blockquote><br>
+ <a href="#all-matches"><code class="operator">ALL-MATCHES</code></a> に似ているが、部分文字列のリストを返す。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+
+<pre>
+* (<span class="operator">all-matches-as-strings</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span>)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;a&quot;</span>)
+
+* (<span class="operator">all-matches-as-strings</span> <span class="literal">&quot;\\w*&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span>)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot;&quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;&quot;</span> <span class="literal">&quot;baz&quot;</span> <span class="literal">&quot;&quot;</span>)
+</pre></blockquote>
+
+
+<a name="splitting" class="none"></a>
+<h4>分割および置き換え</h4>
+
+
+<a name="split" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">split</span> <span class="parameter">regex target-string <tt>&amp;key</tt> start end limit with-registers-p omit-unmatched-p sharedp</span><br>
+=&gt; <span class="result">list</span>
+</p>
+
+<blockquote><br>
+<code class="parameter">target-string</code> を通じて可能な限り多く <code class="parameter">regex</code> との合致を行い、合致の間の部分文字列のリストを返す。もし <code class="parameter">with-registers-p</code> が真なら、合致した登録に対応する部分文字列も同様にリストに挿入される。もし <code class="parameter">omit-unmatched-p</code> が真なら、合致しなかった登録は単に除かれ、そうでない場合は <code>NIL</code> として現れる。 <code class="parameter">limit</code> は返される要素数を制限する。登録数は数えられない。もし <code class="parameter">limit</code> が <code>NIL</code> なら（あるいは同等である 0）、後続の空文字列は結果リストから削除される。 <code class="parameter">regex</code> が空文字列と合致した場合、この合致の１つ後からスキャンが続けられる。もし <code class="parameter">sharedp</code> が真なら、部分文字列は <code class="parameter">target-string</code> と構造を共有することがある。
+
+<p>
+この関数はまた強度の Perl 互換を試みる。従って、やや独特な振る舞いをする。
+</p>
+
+<pre>
+* (<span class="operator">split</span> <span class="literal">&quot;\\s+&quot;</span> <span class="literal">&quot;foo   bar baz
+frob&quot;</span>)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;baz&quot;</span> <span class="literal">&quot;frob&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;\\s*&quot;</span> <span class="literal">&quot;foo bar   baz&quot;</span>)
+(<span class="literal">&quot;f&quot;</span> <span class="literal">&quot;o&quot;</span> <span class="literal">&quot;o&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;r&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;z&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;(\\s+)&quot;</span> <span class="literal">&quot;foo bar   baz&quot;</span>)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;baz&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;(\\s+)&quot;</span> <span class="literal">&quot;foo bar   baz&quot;</span> <span class="keyword">:with-registers-p</span> t)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot; &quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;   &quot;</span> <span class="literal">&quot;baz&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;(\\s)(\\s*)&quot;</span> <span class="literal">&quot;foo bar   baz&quot;</span> <span class="keyword">:with-registers-p</span> t)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot; &quot;</span> <span class="literal">&quot;&quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot; &quot;</span> <span class="literal">&quot;  &quot;</span> <span class="literal">&quot;baz&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;(,)|(;)&quot;</span> <span class="literal">&quot;foo,bar;baz&quot;</span> <span class="keyword">:with-registers-p</span> t)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot;,&quot;</span> NIL <span class="literal">&quot;bar&quot;</span> NIL <span class="literal">&quot;;&quot;</span> <span class="literal">&quot;baz&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;(,)|(;)&quot;</span> <span class="literal">&quot;foo,bar;baz&quot;</span> <span class="keyword">:with-registers-p</span> t <span class="keyword">:omit-unmatched-p</span> t)
+(<span class="literal">&quot;foo&quot;</span> <span class="literal">&quot;,&quot;</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;;&quot;</span> <span class="literal">&quot;baz&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;:&quot;</span> <span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span>)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;c&quot;</span> <span class="literal">&quot;d&quot;</span> <span class="literal">&quot;e&quot;</span> <span class="literal">&quot;f&quot;</span> <span class="literal">&quot;g&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;:&quot;</span> <span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span> <span class="keyword">:limit</span> 1)
+(<span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;:&quot;</span> <span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span> <span class="keyword">:limit</span> 2)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;b:c:d:e:f:g::&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;:&quot;</span> <span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span> <span class="keyword">:limit</span> 3)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;c:d:e:f:g::&quot;</span>)
+
+* (<span class="operator">split</span> <span class="literal">&quot;:&quot;</span> <span class="literal">&quot;a:b:c:d:e:f:g::&quot;</span> <span class="keyword">:limit</span> 1000)
+(<span class="literal">&quot;a&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;c&quot;</span> <span class="literal">&quot;d&quot;</span> <span class="literal">&quot;e&quot;</span> <span class="literal">&quot;f&quot;</span> <span class="literal">&quot;g&quot;</span> <span class="literal">&quot;&quot;</span> <span class="literal">&quot;&quot;</span>)
+</pre></blockquote>
+
+
+<a name="regex-replace" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">regex-replace</span> <span class="parameter">regex target-string replacement <tt>&amp;key</tt> start end preserve-case simple-calls element-type</span><br>
+=&gt; <span class="result">string, matchp</span>
+</p>
+
+<blockquote><br>
+ <code class="parameter">regex</code> に対して <code class="parameter">start</code> から <code class="parameter">end</code> 迄の <code class="parameter">target-string</code> を合致させて、最初の合致を <code class="parameter">replacement</code> に置き換える。２つの値が返る。変更された文字列と、 <code class="parameter">regex</code> が合致した場合は <code>T</code> 、そうでない場合は <code>NIL</code> 。
+
+<p>
+<code class="parameter">replacement</code> は文字列であり、特殊な文字列を含めることができる。 <code class="literal">&quot;\&amp;&quot;</code> は合致全体、 <code class="literal">&quot;\`&quot;</code> は合致前<span class="wonder">［before は空間的な前？］</span>に於ける <code class="parameter">target-string</code> の一部分、 <code class="literal">&quot;\'&quot;</code> は合致後<span class="wonder">［after は空間的な後？］</span>に於ける <code class="parameter">target-string</code> の一部分、 <code class="literal">&quot;\N&quot;</code> あるいは <code class="literal">&quot;\{N}&quot;</code> は <code>N</code> が正の整数の場合 <code>N</code> 番目の登録。
+</p>
+
+<p>
+<code class="parameter">replacement</code> は <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_f.htm#function_designator">関数指定子</a>にもでき、合致を引数 <code class="parameter">target-string</code> 、 <code class="parameter">start</code> 、 <code class="parameter">end</code> 、 <code class="parameter">match-start</code> 、 <code class="parameter">match-end</code> 、 <code class="parameter">reg-starts</code> 、 <code class="parameter">reg-ends</code> を伴う関数呼出の結果で置き換える。（ <code class="parameter">reg-starts</code> と <code class="parameter">reg-ends</code> は合致した登録（あるいは <code>NIL</code> ）の開始位置および終了位置を保持する配列。他の引数の意味は明らかである。）
+</p>
+
+<p>
+もし <code class="parameter">simple-calls</code> が真なら、 <code class="parameter">replacement</code> による関数指定子は引数 <code class="parameter">match</code> 、 <code class="parameter">register-1</code> 、... 、 <code class="parameter">register-n</code> で呼ばれる。 <code><i>match</i></code> は合致全体の文字列、そして <code class="parameter">register-1</code> から <code class="parameter">register-n</code> は合致した登録で、これも文字列（あるいは <code>NIL</code> ）である。これらの文字列は <code class="parameter">target-string</code> と構造を共有しているので、これらを変更してはならない。
+</p>
+
+<p>
+最後に、 <code class="parameter">replacement</code> は各要素が文字列（そのまま挿入される）のリスト、あるいは <code class="keyword">:match</code> 、 <code class="keyword">:before-match</code> 、 <code class="keyword">:after-match</code> （上記 <code class="literal">&quot;\&amp;&quot;</code> 、 <code class="literal">&quot;\`&quot;</code> 、 <code class="literal">&quot;\'&quot;</code> に対応）、整数 <code>N</code> （登録 <code>(1+&nbsp;N)</code> を示す）、関数指定子にできる。
+</p>
+
+<p>
+もし <code class="parameter">preserve-case</code> が真なら（デフォルトは <code>NIL</code> ）、置き換えは大文字小文字（全て大文字、全て小文字、先頭のみ大文字）を保持しようとする。結果は <code class="parameter">regex</code> が合致しなかった場合でさえ常に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_f.htm#fresh">fresh</a> な（※新規作成された）文字列である。
+</p>
+
+<p>
+<code class="parameter">element-type</code> は、返す文字列の <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_a.htm#array_element_type">array element type</a> を指定し、LispWorks に於けるデフォルトは <a href="http://www.lispworks.com/documentation/lw50/LWRM/html/lwref-346.htm"><code class="type">LW:SIMPLE-CHAR</code></a> で、その他の Lisp に於けるデフォルトは <a href="http://www.lispworks.com/documentation/HyperSpec/Body/t_ch.htm"><code class="type">CHARACTER</code></a> である。
+</p>
+
+<pre>
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;fo+&quot;</span> <span class="literal">&quot;foo bar&quot;</span> <span class="literal">&quot;frob&quot;</span>)
+<span class="literal">&quot;frob bar&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;fo+&quot;</span> <span class="literal">&quot;FOO bar&quot;</span> <span class="literal">&quot;frob&quot;</span>)
+<span class="literal">&quot;FOO bar&quot;</span>
+NIL
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;(?i)fo+&quot;</span> <span class="literal">&quot;FOO bar&quot;</span> <span class="literal">&quot;frob&quot;</span>)
+<span class="literal">&quot;frob bar&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;(?i)fo+&quot;</span> <span class="literal">&quot;FOO bar&quot;</span> <span class="literal">&quot;frob&quot;</span> <span class="keyword">:preserve-case</span> t)
+<span class="literal">&quot;FROB bar&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;(?i)fo+&quot;</span> <span class="literal">&quot;Foo bar&quot;</span> <span class="literal">&quot;frob&quot;</span> <span class="keyword">:preserve-case</span> t)
+<span class="literal">&quot;Frob bar&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span> <span class="literal">&quot;[frob (was '\\&' between '\\`' and '\\'')]&quot;</span>)
+<span class="literal">&quot;foo [frob (was 'bar' between 'foo ' and ' baz')] baz&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;bar&quot;</span> <span class="literal">&quot;foo bar baz&quot;</span>
+                          '(<span class="literal">&quot;[frob (was '&quot;</span> <span class="keyword">:match</span> <span class="literal">&quot;' between '&quot;</span> <span class="keyword">:before-match</span> <span class="literal">&quot;' and '&quot;</span> <span class="keyword">:after-match</span> <span class="literal">&quot;')]&quot;</span>))
+<span class="literal">&quot;foo [frob (was 'bar' between 'foo ' and ' baz')] baz&quot;</span>
+T
+
+* (<span class="operator">regex-replace</span> <span class="literal">&quot;(be)(nev)(o)(lent)&quot;</span>
+                          <span class="literal">&quot;benevolent: adj. generous, kind&quot;</span>
+                          #'(lambda (match &amp;rest registers)
+                              (<span class="operator">format</span> nil <span class="literal">&quot;~A [~{~A~^.~}]&quot;</span> match registers))
+                          <span class="keyword">:simple-calls</span> t)
+<span class="literal">&quot;benevolent [be.nev.o.lent]: adj. generous, kind&quot;</span>
+T
+</pre></blockquote>
+
+
+<a name="regex-replace-all" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">regex-replace-all</span> <span class="parameter">regex target-string replacement <tt>&amp;key</tt> start end preserve-case simple-calls element-type</span><br>
+=&gt; <span class="result">string, matchp</span>
+</p>
+
+<blockquote><br>
+ <a href="#regex-replace"><code class="operator">REGEX-REPLACE</code></a> に似ているが、全ての合致を置き換える。
+<pre>
+* (<span class="operator">regex-replace-all</span> <span class="literal">&quot;(?i)fo+&quot;</span> <span class="literal">&quot;foo Fooo FOOOO bar&quot;</span> <span class="literal">&quot;frob&quot;</span> <span class="keyword">:preserve-case</span> t)
+<span class="literal">&quot;frob Frob FROB bar&quot;</span>
+T
+
+* (<span class="operator">regex-replace-all</span> <span class="literal">&quot;(?i)f(o+)&quot;</span> <span class="literal">&quot;foo Fooo FOOOO bar&quot;</span> <span class="literal">&quot;fr\\1b&quot;</span> <span class="keyword">:preserve-case</span> t)
+<span class="literal">&quot;froob Frooob FROOOOB bar&quot;</span>
+T
+
+* (<span class="operator">let</span> ((qp-regex (<span class="operator">create-scanner</span> <span class="literal">&quot;[\\x80-\\xff]&quot;</span>)))
+    (<span class="operator">defun</span> encode-quoted-printable (string)
+      <span class="literal">&quot;8ビット文字列を quoted-printable 形式に変換する。&quot;</span>
+      <span class="comment">;; 非 ASCII 文字は8ビットではないので、Corman Lisp では動作しない</span>
+      (<span class="operator">flet</span> ((convert (target-string start end match-start match-end reg-starts reg-ends)
+             (<span class="operator">declare</span> (ignore start end match-end reg-starts reg-ends))
+             (<span class="operator">format</span> nil <span class="literal">&quot;=~2,'0x&quot;</span> (<span class="operator">char-code</span> (<span class="operator">char</span> target-string match-start)))))
+        (<span class="operator">regex-replace-all</span> qp-regex string #'<span class="operator">convert</span>))))
+Converted ENCODE-QUOTED-PRINTABLE.
+ENCODE-QUOTED-PRINTABLE
+
+* (<span class="operator">encode-quoted-printable</span> <span class="literal">&quot;F&ecirc;te S&oslash;rensen na&iuml;ve H&uuml;hner Stra&szlig;e&quot;</span>)
+<span class="literal">&quot;F=EAte S=F8rensen na=EFve H=FChner Stra=DFe&quot;</span>
+T
+
+* (<span class="operator">let</span> ((url-regex (<span class="operator">create-scanner</span> <span class="literal">&quot;[^a-zA-Z0-9_\\-.]&quot;</span>)))
+    (<span class="operator">defun</span> url-encode (string)
+      <span class="literal">&quot;文字列を URL エンコードする。&quot;</span>
+      <span class="comment">;; 非 ASCII 文字は8ビットではないので、Corman Lisp では動作しない</span>
+      (<span class="operator">flet</span> ((convert (target-string start end match-start match-end reg-starts reg-ends)
+             (<span class="operator">declare</span> (ignore start end match-end reg-starts reg-ends))
+             (<span class="operator">format</span> nil <span class="literal">&quot;%~2,'0x&quot;</span> (<span class="operator">char-code</span> (<span class="operator">char</span> target-string match-start)))))
+        (<span class="operator">regex-replace-all</span> url-regex string #'<span class="operator">convert</span>))))
+Converted URL-ENCODE.
+URL-ENCODE
+
+* (<span class="operator">url-encode</span> <span class="literal">&quot;F&ecirc;te S&oslash;rensen na&iuml;ve H&uuml;hner Stra&szlig;e&quot;</span>)
+<span class="literal">&quot;F%EAte%20S%F8rensen%20na%EFve%20H%FChner%20Stra%DFe&quot;</span>
+T
+
+* (<span class="operator">defun</span> how-many (target-string start end match-start match-end reg-starts reg-ends)
+    (<span class="operator">declare</span> (ignore start end match-start match-end))
+    (<span class="operator">format</span> nil <span class="literal">&quot;~A&quot;</span> (<span class="operator">-</span> (<span class="operator">svref</span> reg-ends 0)
+                        (<span class="operator">svref</span> reg-starts 0))))
+HOW-MANY
+
+* (<span class="operator">regex-replace-all</span> <span class="literal">&quot;{(.+?)}&quot;</span>
+                              <span class="literal">&quot;foo{...}bar{.....}{..}baz{....}frob&quot;</span>
+                              (<span class="operator">list</span> <span class="literal">&quot;[&quot;</span> 'how-many <span class="literal">&quot; dots]&quot;</span>))
+<span class="literal">&quot;foo[3 dots]bar[5 dots][2 dots]baz[4 dots]frob&quot;</span>
+T
+
+* (<span class="operator">let</span> ((qp-regex (<span class="operator">create-scanner</span> <span class="literal">&quot;[\\x80-\\xff]&quot;</span>)))
+    (<span class="operator">defun</span> encode-quoted-printable (string)
+      <span class="literal">&quot;8ビット文字列を quoted-printable 形式に変換する。
+キーワード引数 SIMPLE-CALLS 使用版&quot;</span>
+      <span class="comment">;; ;; 非 ASCII 文字は8ビットではないので、Corman Lisp では動作しない</span>
+      (<span class="operator">flet</span> ((convert (match)
+               (<span class="operator">format</span> nil <span class="literal">&quot;=~2,'0x&quot;</span> (<span class="operator">char-code</span> (<span class="operator">char</span> match 0)))))
+        (<span class="operator">regex-replace-all</span> qp-regex string #'<span class="operator">convert</span>
+                                    <span class="keyword">:simple-calls</span> t))))
+
+Converted ENCODE-QUOTED-PRINTABLE.
+ENCODE-QUOTED-PRINTABLE
+
+* (<span class="operator">encode-quoted-printable</span> <span class="literal">&quot;F&ecirc;te S&oslash;rensen na&iuml;ve H&uuml;hner Stra&szlig;e&quot;</span>)
+<span class="literal">&quot;F=EAte S=F8rensen na=EFve H=FChner Stra=DFe&quot;</span>
+T
+
+* (<span class="operator">defun</span> how-many (match first-register)
+    (<span class="operator">declare</span> (ignore match))
+    (<span class="operator">format</span> nil <span class="literal">&quot;~A&quot;</span> (<span class="operator">length</span> first-register)))
+HOW-MANY
+
+* (<span class="operator">regex-replace-all</span> <span class="literal">&quot;{(.+?)}&quot;</span>
+                              <span class="literal">&quot;foo{...}bar{.....}{..}baz{....}frob&quot;</span>
+                              (<span class="operator">list</span> <span class="literal">&quot;[&quot;</span> 'how-many <span class="literal">&quot; dots]&quot;</span>)
+                              <span class="keyword">:simple-calls</span> t)
+
+<span class="literal">&quot;foo[3 dots]bar[5 dots][2 dots]baz[4 dots]frob&quot;</span>
+T
+</pre></blockquote>
+
+<a name="modify" class="none"></a>
+<h4>スキャナの動作を変更</h4>
+
+<a name="*property-resolver*" class="none"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*property-resolver*</span>
+</p>
+
+<blockquote><br>
+これは <code>\p{Number}</code> のような名前付きプロパティを解決する為の関数指定子である。もし CL-PPCRE が <code>\p</code> や <code>\P</code> に遭遇すると、その後すぐ開き中括弧があることを予期し、そして閉じ中括弧までの全てを読み取る。解決関数はこの文字列と共に呼び出され、文字を引数として受け付けて、その文字が名前付きプロパティの場合にのみ真を返す単項テスト関数を返さなければならない。もしその解決関数が <code>NIL</code> を返した場合、その名前のプロパティを知らないことを通知<span class="wonder">［ signal ：妥当な翻訳か不明］</span>する。
+
+<pre>
+* (<span class="operator">labels</span> ((char-code-odd-p (char)
+             (<span class="operator">oddp</span> (<span class="operator">char-code</span> char)))
+           (char-code-even-p (char)
+             (<span class="operator">evenp</span> (<span class="operator">char-code</span> char)))
+           (resolver (name)
+             (<span class="operator">cond</span> ((<span class="operator">string=</span> name <span class="literal">&quot;odd&quot;</span>) #'<span class="operator">char-code-odd-p</span>)
+                   ((<span class="operator">string=</span> name <span class="literal">&quot;even&quot;</span>) #'<span class="operator">char-code-even-p</span>)
+                   ((<span class="operator">string=</span> name <span class="literal">&quot;true&quot;</span>) (<span class="operator">constantly</span> t))
+                   (t (<span class="operator">error</span> <span class="literal">&quot;Can't resolve ~S.&quot;</span> name)))))
+    (<span class="operator">let</span> ((<span class="variable">*property-resolver*</span> #'<span class="operator">resolver</span>))
+      <span class="comment">;; クイズです - 何故ここで CREATE-SCANNER が必要なのか？</span>
+      (<span class="operator">list</span> (<span class="operator">regex-replace-all</span> (<span class="operator">create-scanner</span> <span class="literal">&quot;\\p{odd}&quot;</span>) <span class="literal">&quot;abcd&quot;</span> <span class="literal">&quot;+&quot;</span>)
+            (<span class="operator">regex-replace-all</span> (<span class="operator">create-scanner</span> <span class="literal">&quot;\\p{even}&quot;</span>) <span class="literal">&quot;abcd&quot;</span> <span class="literal">&quot;+&quot;</span>)
+            (<span class="operator">regex-replace-all</span> (<span class="operator">create-scanner</span> <span class="literal">&quot;\\p{true}&quot;</span>) <span class="literal">&quot;abcd&quot;</span> <span class="literal">&quot;+&quot;</span>))))
+(<span class="literal">&quot;+b+d&quot;</span> <span class="literal">&quot;a+c+&quot;</span> <span class="literal">&quot;++++&quot;</span>)
+</pre>
+
+もし <a href="#*property-resolver*"><code>*PROPERTY-RESOLVER*</code></a> の値が <code>NIL</code> なら（デフォルト）、正規表現文字列中の <code>\p</code> および <code>\P</code> は、CL-PPCRE 1.4.1 以前では単純に <code>p</code> あるいは <code>P</code> の様に扱う。これは<a href="#create-scanner2">Ｓ式構文</a>に於ける <code>(<span class="operator">:PROPERTY</span>&nbsp;&lt;<span class="parameter">name</span>&gt;)</code> の効力には影響しないので注意。
+</blockquote>
+
+
+<a name="parse-tree-synonym" class="none"></a>
+<p class="signature">
+［アクセサ］<br>
+<span class="operator">parse-tree-synonym</span> <span class="parameter type">symbol</span><br>
+=&gt; <span class="result">parse-tree</span>
+<br>
+(setf (<span class="operator">parse-tree-synonym</span> <span class="parameter type">symbol</span>) <span class="parameter">new-parse-tree</span>)
+</p>
+
+<blockquote><br>
+あらゆるシンボル（構文木中で特別な意味を持つシンボル以外）は『シノニム』<span class="popup_mark">&nbsp;*&nbsp;<div class="popup_box">『シノニム』とは、一般に異なるものが同じ値となることを指すが、 CL-PPCRE では特定の構文に名前をつけることを指す。 <span class="operator">defun</span> が関数に名前をつけるのと同様。</div></span>を作れる。つまり、このアクセサによって別の構文木用の省略形を作れる。 <code class="operator">PARSE-TREE-SYNONYM</code> は、 <code class="parameter">symbol</code> がまだシノニムでない場合 <code>NIL</code> を返す。
+
+<pre>
+* (<span class="operator">parse-string</span> <span class="literal">&quot;a*b+&quot;</span>)
+(<span class="keyword">:SEQUENCE</span> (<span class="keyword">:GREEDY-REPETITION</span> 0 NIL #\a) (<span class="keyword">:GREEDY-REPETITION</span> 1 NIL #\b))
+
+* (<span class="operator">defun</span> my-repetition (char min)
+    `(<span class="keyword">:greedy-repetition</span> ,min nil ,char))
+MY-REPETITION
+
+* (<span class="operator">setf</span> (<span class="operator">parse-tree-synonym</span> 'a*) (<span class="operator">my-repetition</span> #\a 0))
+(<span class="keyword">:GREEDY-REPETITION</span> 0 NIL #\a)
+
+* (<span class="operator">setf</span> (<span class="operator">parse-tree-synonym</span> 'b+) (<span class="operator">my-repetition</span> #\b 1))
+(<span class="keyword">:GREEDY-REPETITION</span> 1 NIL #\b)
+
+* (<span class="operator">let</span> ((scanner (<span class="operator">create-scanner</span> '(<span class="keyword">:sequence</span> a* b+))))
+    (<span class="operator">dolist</span> (string '(<span class="literal">&quot;ab&quot;</span> <span class="literal">&quot;b&quot;</span> <span class="literal">&quot;aab&quot;</span> <span class="literal">&quot;a&quot;</span> <span class="literal">&quot;x&quot;</span>))
+      (<span class="operator">print</span> (<span class="operator">scan</span> scanner string)))
+    (<span class="operator">values</span>))
+0
+0
+0
+NIL
+NIL
+
+* (<span class="operator">parse-tree-synonym</span> 'a*)
+(<span class="keyword">:GREEDY-REPETITION</span> 0 NIL #\a)
+
+* (<span class="operator">parse-tree-synonym</span> 'a+)
+NIL
+</pre></blockquote>
+
+
+<a name="define-parse-tree-synonym" class="none"></a>
+<p class="signature">
+［マクロ］<br>
+<span class="operator">define-parse-tree-synonym</span> <span class="parameter">name parse-tree</span><br>
+=&gt; <span class="result">parse-tree</span>
+</p>
+
+<blockquote><br>
+これは構文木のシノニムの為、次のように定義された便利なマクロである。
+
+<pre>
+(<span class="operator">defmacro</span> define-parse-tree-synonym (name parse-tree)
+  `(<span class="operator">eval-when</span> (<span class="keyword">:compile-toplevel</span> <span class="keyword">:load-toplevel</span> <span class="keyword">:execute</span>)
+     (<span class="operator">setf</span> (<span class="operator">parse-tree-synonym</span> ',name) ',parse-tree)))
+</pre>
+
+それによりコードをこのように書ける。：
+
+<pre>
+(<span class="operator">define-parse-tree-synonym</span> a-z
+  (<span class="keyword">:char-class</span> (<span class="keyword">:range</span> #\a #\z) (<span class="keyword">:range</span> #\A #\Z)))
+
+(<span class="operator">define-parse-tree-synonym</span> a-z*
+  (<span class="keyword">:greedy-repetition</span> 0 nil a-z))
+
+(<span class="operator">defun</span> ascii-char-tester (string)
+  (<span class="operator">scan</span> '(<span class="keyword">:sequence</span> <span class="keyword">:start-anchor</span> a-z* <span class="keyword">:end-anchor</span>)
+        string))
+</pre></blockquote>
+
+
+<a name="*regex-char-code-limit*" class="none"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*regex-char-code-limit*</span>
+</p>
+
+<blockquote><br>
+この変数は、スキャナが CL 実装に於ける全ての文字を考慮するか、あるいは指定値以下の <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_char_c.htm#char-code"><code class="operator">CHAR-CODE</code></a> のみ考慮するかを制御する。デフォルトは <a href="http://www.lispworks.com/documentation/HyperSpec/Body/v_char_c.htm"><code class="variable">CHAR-CODE-LIMIT</code></a> だが、もし対象とする文字列が <a href="http://czyborra.com/charsets/iso8859.html">ISO-8859-1</a> の文字だけであり、お使いの Lisp 実装の <code class="variable">CHAR-CODE-LIMIT</code> が 256 よりずっと大きい場合、大幅な速度とスペースの改善が見られるかもしれない。 <a href="#test">テスト</a> では、テスト中自動的に <code class="variable">*REGEX-CHAR-CODE-LIMIT*</code> を 256 にする。
+
+<p>
+注釈： <a href="http://www.lispworks.com/documentation/HyperSpec/Body/s_ld_tim.htm"><code class="operator">LOAD-TIME-VALUE</code></a> の性質および <a href="#compiler-macro"><code class="operator">SCAN</code> 用コンパイラマクロとその他の関数</a>およびいくつかのスキャナは、ロード時またはコンパイル時に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_n.htm#null_lexical_environment">null lexical environment</a><span class="wonder">［どう翻訳すべきか不明］</span> で作成されるので、その時 <code class="variable">*REGEX-CHAR-CODE-LIMIT*</code> がどのような値に束縛されるのか注意を要する。但し、実装依存の醜い仕掛けを使わない限り、デフォルト値は常に正しい結果を得なければならない。
+</p>
+</blockquote>
+
+
+<a name="*use-bmh-matchers*" class="none"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*use-bmh-matchers*</span>
+</p>
+
+<blockquote><br>
+通常、 <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> （あるいは他の関数およびマクロにより暗黙に）により作成されたスキャナは、正規表現の開始または終了に於いて文字列定数をチェックする為に標準関数 <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_search.htm"><code class="operator">SEARCH</code></a> を使用する。もし <code class="variable">*USE-BMH-MATCHERS*</code> が真（デフォルトは <code>NIL</code> ）なら、高速な <a href="http://www-igm.univ-mlv.fr/~lecroq/string/node18.html">Boyer-Moore-Horspool アルゴリズム（BMH 法）</a> が代わりに使用される。これは通常より高速だが、スキャナをかなり大きくする。 BMH 法はスキャナごとに最大２つある。<span class="wonder">［なにが？］</span> サイズが <a href="#*regex-char-code-limit*"><code class="variable">*REGEX-CHAR-CODE-LIMIT*</code></a> の <span class="type">fixnum</span> 配列が割り当て（ allocate ）られて閉じられる。
+
+<p>
+注釈： <a href="http://www.lispworks.com/documentation/HyperSpec/Body/s_ld_tim.htm"><code class="operator">LOAD-TIME-VALUE</code></a> の性質および <a href="#compiler-macro"><code class="operator">SCAN</code> 用コンパイラマクロとその他の関数</a>およびいくつかのスキャナは、ロード時またはコンパイル時に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_n.htm#null_lexical_environment">null lexical environment</a><span class="wonder">［どう翻訳すべきか不明］</span> で作成されるので、その時 <code class="variable">*USE-BMH-MATCHERS*</code> がどのような値に束縛されるのか注意を要する。
+</p>
+</blockquote>
+
+
+<a class="none" name="*optimize-char-classes*"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*optimize-char-classes*</span>
+</p>
+
+<blockquote><br>
+文字クラスを <span class="e3">O(1)</span> データ構造を見るようコンパイルすべきかどうか。これは通常高速だが、スキャナ作成時間の点で費用が大きく、かつ <a href="#*regex-char-code-limit*"><code class="variable">*REGEX-CHAR-CODE-LIMIT*</code></a> が大きい場合にサイズの点で費用が大きい。この値は <a href="#create-optimized-test-function"><code class="operator">CREATE-OPTIMIZED-TEST-FUNCTION</code></a> のキーワード引数 <code class="parameter">kind</code> に使用される。可能な非 <code>NIL</code> はそこを参照。デフォルト値（ <code>NIL</code> ）は、いくつかの文字クラスを完全に最適化しなければならない確信がない限り、通常問題ない。
+
+<p>
+注釈： <a href="http://www.lispworks.com/documentation/HyperSpec/Body/s_ld_tim.htm"><code class="operator">LOAD-TIME-VALUE</code></a> の性質および <a href="#compiler-macro"><code class="operator">SCAN</code> 用コンパイラマクロとその他の関数</a>およびいくつかのスキャナは、ロード時またはコンパイル時に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_n.htm#null_lexical_environment">null lexical environment</a><span class="wonder">［どう翻訳すべきか不明］</span> で作成されるので、その時 <code class="variable">*OPTIMIZE-CHAR-CLASSES*</code> がどのような値に束縛されるのか注意を要する。
+</p>
+</blockquote>
+
+
+<a name="*allow-quoting*" class="none"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*allow-quoting*</span>
+</p>
+
+<blockquote><br>
+もしこの値が真なら（デフォルトは <code>NIL</code> ）、 CL-PPCRE は正規表現文字列中の <code>\Q</code> および <code>\E</code> に対応し、メタ文字を引用（無効化）する。これはスキャナ作成時にわずかなパフォーマンスの低下を招く。何故なら、正規表現文字列（の複製）はパーサに与えられる前に（おそらく１回以上）変更される。また、パーサの <a href="#ppcre-syntax-error">文法エラーメッセージ</a> は、元の正規表現文字列についてではなく、変換された文字列について文句を言う。
+
+<pre>
+* (<span class="operator">scan</span> <span class="literal">&quot;^a+$&quot;</span> <span class="literal">&quot;a+&quot;</span>)
+NIL
+
+* (<span class="operator">let</span> ((<span class="variable">*allow-quoting*</span> t))
+    <span class="comment">;;SBCL の様なインタプリタのない Lisp のため CREATE-SCANNER を使用する</span>
+    (<span class="operator">scan</span> (<span class="operator">create-scanner</span> <span class="literal">&quot;^\\Qa+\\E$&quot;</span>) <span class="literal">&quot;a+&quot;</span>))
+0
+2
+#()
+#()
+
+* (<span class="operator">let</span> ((<span class="variable">*allow-quoting*</span> t))
+    (<span class="operator">scan</span> (<span class="operator">create-scanner</span> <span class="literal">&quot;\\Qa()\\E(?#comment\\Q)a**b&quot;</span>) <span class="literal">&quot;()ab&quot;</span>))
+
+Quantifier '*' not allowed at position 19 in string <span class="literal">&quot;a\\(\\)(?#commentQ)a**b&quot;</span>
+</pre>
+
+最後の例に於いて、エラーメッセージ中の正規表現文字列は、関数 <code class="operator">SCAN</code> の第１引数とどの様に異なるのか注意。また、２番目の例は次のように書くと理解しやすい（そして Lisp らしい）。：
+
+<pre>
+* (<span class="operator">scan</span> '(<span class="keyword">:sequence</span> <span class="keyword">:start-anchor</span>
+                    <span class="literal">&quot;a+&quot;</span> <span class="comment">;; 引用は不要</span>
+                    <span class="keyword">:end-anchor</span>)
+        <span class="literal">&quot;a+&quot;</span>)
+0
+2
+#()
+#()
+</pre>
+
+&quot;<a href="#bugs">不具合と問題</a>&quot; の<a href="#quote">該当セクション</a>もお読みください。
+
+<p>
+注釈： <a href="http://www.lispworks.com/documentation/HyperSpec/Body/s_ld_tim.htm"><code class="operator">LOAD-TIME-VALUE</code></a> の性質および <a href="#compiler-macro"><code class="operator">SCAN</code> 用コンパイラマクロとその他の関数</a>およびいくつかのスキャナは、ロード時またはコンパイル時に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_n.htm#null_lexical_environment">null lexical environment</a><span class="wonder">［どう翻訳すべきか不明］</span> で作成されるので、その時 <code class="variable">*ALLOW-QUOTING*</code> がどのような値に束縛されるのか注意を要する。
+</p>
+</blockquote>
+
+
+<a name="*allow-named-registers*" class="none"></a>
+<p class="signature">
+［スペシャル変数］<br>
+<span class="variable">*allow-named-registers*</span>
+
+<blockquote><br>
+もしこの値が<span class="e3">真</span>（デフォルトは <code>NIL</code> ）なら、 CL-PPCRE は正規表現文字列に、 <a href="http://www.franz.com/support/documentation/7.0/doc/regexp.htm#regexp-new-capturing-2">AllegroCL</a> のような名前付き登録と後方参照（ back-references ）を提供する <code>(?&lt;<span class="parameter">name</span>&gt;<span class="literal">&quot;&lt;<span class="parameter">regex</span>&gt;&quot;</span>)</code> と <code>\k&lt;<span class="parameter">name</span>&gt;</code> をサポートする。 <code class="parameter">name</code> は文字<span class="wonder">［ letter とはアルファベットの意味か？］</span>で始める必要があり、英数字とマイナス記号のみ使用できる。登録名は大文字小文字を区別して合致する。<a href="#create-scanner2">構文木の構文</a>は <code class="variable">*ALLOW-NAMED-REGISTERS*</code> および <code class="keyword">:NAMED-REGISTER</code> および <code class="keyword">:BACK-REFERENCE</code> の影響を受けない。フォームは常に期待通りに解決される。この構文では、登録名は文字列でなければならないという点を除いて制約はない
+
+<pre>
+<span class="comment">;; Perl 互換モード（ *ALLOW-NAMED-REGISTERS* が NIL ）</span>
+* (<span class="operator">create-scanner</span> <span class="literal">&quot;(?&lt;reg&gt;.*)&quot;</span>)
+Character 'r' may not follow '(?&lt' at position 3 in string <span class="literal">&quot;(?&lt;reg&gt;)&quot;</span>
+
+<span class="comment">;; &quot;\\k&quot; がエスケープされるだけ</span>
+* (<span class="operator">parse-string</span> <span class="literal">&quot;\\k&lt;reg&gt;&quot;</span>)
+<span class="literal">&quot;k&lt;reg&gt;&quot;</span>
+
+* (<span class="operator">setq</span> *allow-named-registers* t)
+T
+
+* (<span class="operator">create-scanner</span> <span class="literal">&quot;((?&lt;small&gt;[a-z]*)(?&lt;big&gt;[A-Z]*))&quot;</span>)
+#&LT;CLOSURE (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)) {AD75BFD}&gt;
+(NIL <span class="literal">&quot;small&quot;</span> <span class="literal">&quot;big&quot;</span>)
+
+<span class="comment">;; スキャナは名前付きグループに関する情報は保持しない。</span>
+<span class="comment">;; CREATE-SCANNER から返ってきた２番目の値は、自身で保存しなければならない</span>
+* (<span class="operator">scan</span> * <span class="literal">&quot;aaaBBB&quot;</span>)
+0
+6
+#(0 0 3)
+#(6 3 6)
+
+<span class="comment">;; 構文木の構文</span>
+* (<span class="operator">parse-string</span> <span class="literal">&quot;((?&lt;small&gt;[a-z]*)(?&lt;big&gt;[A-Z]*))&quot;</span>)
+(<span class="keyword">:REGISTER</span>
+ (<span class="keyword">:SEQUENCE</span>
+  (<span class="keyword">:NAMED-REGISTER</span> <span class="literal">&quot;small&quot;</span>
+   (<span class="keyword">:GREEDY-REPETITION</span> 0 NIL (<span class="keyword">:CHAR-CLASS</span> (<span class="keyword">:RANGE</span> #\a #\z))))
+  (<span class="keyword">:NAMED-REGISTER</span> <span class="literal">&quot;big&quot;</span>
+   (<span class="keyword">:GREEDY-REPETITION</span> 0 NIL (<span class="keyword">:CHAR-CLASS</span> (<span class="keyword">:RANGE</span> #\A #\Z))))))
+
+* (<span class="operator">create-scanner</span> *)
+#&lt;CLOSURE (LAMBDA (STRING CL-PPCRE::START CL-PPCRE::END)) {B158E3D}&gt;
+(NIL <span class="literal">&quot;small&quot;</span> <span class="literal">&quot;big&quot;</span>)
+
+<span class="comment">;; 複数選択（ multiple-choice ）後方参照（ back-reference ）</span>
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;[ab])(?&lt;reg&gt;[12])\\k&lt;reg&gt;\\k&lt;reg&gt;$&quot;</span> <span class="literal">&quot;a1aa&quot;</span>)
+0
+4
+#(0 1)
+#(1 2)
+
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;[ab])(?&lt;reg&gt;[12])\\k&lt;reg&gt;\\k&lt;reg&gt;$&quot;</span> <span class="literal">&quot;a22a&quot;</span>)
+0
+4
+#(0 1)
+#(1 2)
+
+<span class="comment">;; 後方参照の most-recently-seen-register-first （最近の登録が最初）プロパティのデモ;</span>
+<span class="comment">;; &quot;貪欲な&quot; 正規表現（ &quot;aa?&quot; に類似？）</span>
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;)(?&lt;reg&gt;a)(\\k&lt;reg&gt;)&quot;</span> <span class="literal">&quot;a&quot;</span>)
+0
+1
+#(0 0 1)
+#(0 1 1)
+
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;)(?&lt;reg&gt;a)(\\k&lt;reg&gt;)&quot;</span> <span class="literal">&quot;aa&quot;</span>)
+0
+2
+#(0 0 1)
+#(0 1 2)
+
+<span class="comment">;; 切り替えられるグループ</span>
+<span class="comment">;; &quot;怠惰な&quot; 正規表現（ &quot;aa??&quot; に類似？）</span>
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;a)(?&lt;reg&gt;)(\\k&lt;reg&gt;)&quot;</span> <span class="literal">&quot;a&quot;</span>)
+0
+1
+#(0 1 1)
+#(1 1 1)
+
+<span class="comment">;; スキャナは２番目の &quot;a&quot; を無視する</span>
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;a)(?&lt;reg&gt;)(\\k&lt;reg&gt;)&quot;</span> <span class="literal">&quot;aa&quot;</span>)
+0
+1
+#(0 1 1)
+#(1 1 1)
+
+<span class="comment">;; &quot;aa&quot; は末尾に &quot;$&quot; を加えた場合のみ合致する</span>
+* (<span class="operator">scan</span> <span class="literal">&quot;^(?&lt;reg&gt;a)(?&lt;reg&gt;)(\\k&lt;reg&gt;)$&quot;</span> <span class="literal">&quot;aa&quot;</span>)
+0
+2
+#(0 1 1)
+#(1 1 2)
+</pre>
+
+注釈： <a href="http://www.lispworks.com/documentation/HyperSpec/Body/s_ld_tim.htm"><code class="operator">LOAD-TIME-VALUE</code></a> の性質および <a href="#compiler-macro"><code class="operator">SCAN</code> 用コンパイラマクロとその他の関数</a>およびいくつかのスキャナは、ロード時またはコンパイル時に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_n.htm#null_lexical_environment">null lexical environment</a><span class="wonder">［どう翻訳すべきか不明］</span> で作成されるので、その時 <code class="variable">*ALLOW-NAMED-REGISTERS*</code> がどのような値に束縛されるのか注意を要する。
+</blockquote>
+
+
+<a name="misc" class="none"></a>
+<h4>雑多</h4>
+
+
+<a name="parse-string" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">parse-string</span> <span class="parameter">string</span><br>
+=&gt; <span class="result">parse-tree</span>
+</p>
+
+<blockquote><br>
+<a href="#create-scanner">正規表現文字列</a> の <code class="parameter">string</code> を <a href="#create-scanner2">構文木</a> に変換する。結果は通常等価な構文木作成の可能な方法の一つであり、必ずしも &quot;標準的&quot; なものではない。具体的には、構文木はスキャナ作成時に切り取られるであろう冗長な部分を含むことがある。
+</blockquote>
+
+
+<a name="create-optimized-test-function" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">create-optimized-test-function</span> <span class="parameter">test-function <tt>&amp;key</tt> start end kind</span><br>
+=&gt; <span class="result">function</span>
+<blockquote><br>
+
+文字コード <code class="parameter">start</code> から <code class="parameter">end</code> 迄（含まない）の全ての文字に適用されて、同じ真偽値を返す単項テスト関数 <code class="parameter">test-function</code> が与えられる。もし <code class="parameter">kind</code> が <code>NIL</code> なら、単純に <code class="parameter">test-function</code> が返される。そうでない場合、 <code class="parameter">kind</code> は次のうちの一つである。：
+
+<dl>
+<dt><code class="keyword">:HASH-TABLE</code></dt>
+<dd>関数は、テストを満たす全ての文字を表現したハッシュテーブルを作成し、ある文字がそのハッシュテーブルにあるかどうか調べるクロージャを返す。</dd>
+<dt><code class="keyword">:CHARSET</code></dt>
+<dd>関数はハッシュテーブルの代わりに、非線形ハッシュを使用し、高速かつ空間効率のよい方法で文字セットを表現する為に最適化されたデータ構造 &quot;charset&quot; を使用する。（ Nikodemus Siivola 寄稿）</dd>
+<dt><code class="keyword">:CHARMAP</code></dt>
+<dd>関数はハッシュテーブルの代わりに、文字セットを表現するビットベクタを使用する。</dd>
+</dl>
+
+<code class="keyword">:HASH-TABLE</code> および <code class="keyword">:CHARSET</code> に似た <code class="keyword">:HASH-TABLE*</code> あるいは <code class="keyword">:CHARSET*</code> も使用できる。但し、文字セットが <code class="parameter">start</code> から <code class="parameter">end</code> 迄の全ての文字の半分以上を含む場合、文字セットの補集合を使用する。これは空間を節約するが、データ構造作成の為に全ての文字に渡る追加パスが必要である。 <code class="keyword">:CHARMAP*</code> に相当する <code class="parameter">kind</code> はない。ビットベクタは既に、文字セットあるいはその補集合を含む最小範囲で作成されている。
+<p>
+<a href="#*optimize-char-classes*"><code class="variable">*OPTIMIZE-CHAR-CLASSES*</code></a> も参照。
+</p>
+</blockquote>
+
+
+<a name="quote-meta-chars" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">quote-meta-chars</span> <span class="parameter">string</span><br>
+=&gt; <span class="result">string&apos;</span>
+</p>
+
+<blockquote><br>
+これは <a href="#*allow-quoting*"><code class="variable">*ALLOW-QUOTING*</code></a> が <span class="e3">真</span> の時に使用される簡単なユーティリティ関数である。それは Perl の関数 <code>quotemeta</code> の様に、 <code class="parameter">STRING</code> の全非ワード文字（ ASCII 文字、数字、アンダースコア以外）が、バックスラッシュ前置きで引用された文字列 <code class="result">STRING&apos;</code> を返す。それは常に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_f.htm#fresh">fresh</a> な（※新規作成された）文字列を返す。
+
+<pre>
+* (<span class="operator">quote-meta-chars</span> <span class="literal">&quot;[a-z]*&quot;</span>)
+<span class="literal">&quot;\\[a\\-z\\]\\*&quot;</span>
+</pre>
+</blockquote>
+
+
+<a name="regex-apropos" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">regex-apropos</span> <span class="parameter">regex <tt>&amp;optional</tt> packages <tt>&amp;key</tt> case-insensitive</span><br>
+=&gt; <span class="result">list</span>
+</p>
+
+<blockquote><br>
+<a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_apropo.htm"><code class="operator">APROPOS</code></a> に似ているが、正規表現 <code class="parameter">regex</code> に合致するインターンされたシンボルを検索する。出力は実装依存である。もし <code class="parameter">case-insensitive</code> が真（デフォルト）であり、 <code class="parameter">regex</code> がスキャナでないなら、大文字小文字を区別しないスキャナが使用される。
+
+<p>
+これは CMUCL の例である。：
+</p>
+
+<pre>
+* <span class="variable">*package*</span>
+#&lt;The COMMON-LISP-USER package, 16/21 internal, 0/9 external&gt;
+
+* (<span class="operator">defun</span> foo (n &amp;optional (k 0)) (<span class="operator">+</span> 3 n k))
+FOO
+
+* (<span class="operator">defparameter</span> foo <span class="literal">&quot;bar&quot;</span>)
+FOO
+
+* (<span class="operator">defparameter</span> |foobar| 42)
+|foobar|
+
+* (<span class="operator">defparameter</span> fooboo 43)
+FOOBOO
+
+* (<span class="operator">defclass</span> frobar () ())
+#&lt;STANDARD-CLASS FROBAR {4874E625}&gt;
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;foo(?:bar)?&quot;</span>)
+FOO [variable] value: <span class="literal">&quot;bar&quot;</span>
+    [compiled function] (N &amp;OPTIONAL (K 0))
+FOOBOO [variable] value: 43
+|foobar| [variable] value: 42
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;(?:foo|fro)bar&quot;</span>)
+PCL::|COMMON-LISP-USER::FROBAR class predicate| [compiled closure]
+FROBAR [class] #&lt;STANDARD-CLASS FROBAR {4874E625}&gt;
+|foobar| [variable] value: 42
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;(?:foo|fro)bar&quot;</span> &apos;cl-user)
+FROBAR [class] #&lt;STANDARD-CLASS FROBAR {4874E625}&gt;
+|foobar| [variable] value: 42
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;(?:foo|fro)bar&quot;</span> &apos;(pcl ext))
+PCL::|COMMON-LISP-USER::FROBAR class predicate| [compiled closure]
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;foo&quot;</span>)
+FOO [variable] value: <span class="literal">&quot;bar&quot;</span>
+    [compiled function] (N &amp;OPTIONAL (K 0))
+FOOBOO [variable] value: 43
+|foobar| [variable] value: 42
+
+* (<span class="operator">regex-apropos</span> <span class="literal">&quot;foo&quot;</span> nil <span class="keyword">:case-insensitive</span> nil)
+|foobar| [variable] value: 42
+</pre>
+</blockquote>
+
+
+<a name="regex-apropos-list" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">regex-apropos-list</span> <span class="parameter">regex <tt>&amp;optional</tt> packages <tt>&amp;key</tt> upcase</span><br>
+=&gt; <span class="result">list</span>
+</p>
+
+<blockquote><br>
+ <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_apropo.htm"><code class="operator">APROPOS-LIST</code></a> に似ているが、正規表現 <code class="parameter">regex</code> に合致するインターンされたシンボルを検索する。もし <code class="parameter">case-insensitive</code> が真（デフォルト）であり、 <code class="parameter">regex</code> がスキャナでないなら、大文字小文字を区別しないスキャナが使用される。
+
+<p>
+例（上記の続き）：
+</p>
+
+<pre>
+* (<span class="operator">regex-apropos-list</span> <span class="literal">&quot;foo(?:bar)?&quot;</span>)
+(|foobar| FOOBOO FOO)
+</pre>
+</blockquote>
+
+
+<a name="conditions" class="none"></a>
+<h4>コンディション</h4>
+
+<a name="ppcre-error" class="none"></a>
+<p class="signature">
+［コンディション］<br>
+<span class="type">ppcre-error</span>
+</p>
+
+<blockquote><br>
+CL-PPCRE から通知される全てのエラーは、 <code class="type">PPCRE-ERROR</code> 型である。これは、追加のスロットとオプションのない <a href="http://www.lispworks.com/documentation/HyperSpec/Body/e_smp_er.htm"><code class="type">SIMPLE-ERROR</code></a> 直接の副型である。
+</blockquote>
+
+
+<a name="ppcre-invocation-error" class="none"></a>
+<p class="signature">
+［コンディション］<br>
+<span class="type">ppcre-invocation-error</span>
+</p>
+
+<blockquote><br>
+<code class="type">PPCRE-INVOCATION-ERROR</code> 型のエラーは、 CL-PPCRE のエクスポート関数の一つが、間違ったあるいは一貫性のない引数で呼び出された場合に通知される。これは、追加のスロットとオプションのない  <a href="#ppcre-error"><code class="type">PPCRE-ERROR</code></a> 直接の副型である。
+</blockquote>
+
+
+<a name="ppcre-syntax-error" class="none"></a>
+<p class="signature">
+［コンディション］<br>
+<span class="type">ppcre-syntax-error</span>
+</p>
+
+<blockquote><br>
+CL-PPCRE のパーサが、正規表現文字列を分析しようとした時、あるいは構文木を内部表現に変換しようとした時にエラーが発生した場合、 <code class="type">PPCRE-SYNTAX-ERROR</code> 型のエラーが通知される。これは２つの追加スロットを伴う <a href="#ppcre-error"><code class="type">PPCRE-ERROR</code></a> 直接の副型である。これら（追加スロット）は、 HTML-PPCRE が分析していた正規表現文字列と、エラーが発生した文字列中の位置を意味する。 CL-PPCRE が構文木を変換中にエラーが発生した場合、これら両方のスロットは <code>NIL</code> を含む。（これらのスロットにアクセスする方法については、次の２項目を参照。）
+
+<p>
+パーサがストリームの終端に来る前に検出できない構文エラーが増えると、行と列は通常パーサが問題なかった最後の位置を意味し、断念した場所を意味するのではない。
+</p>
+
+<pre>
+* (<span class="operator">handler-case</span>
+    (<span class="operator">scan</span> <span class="literal">&quot;foo**x&quot;</span> <span class="literal">&quot;fooox&quot;</span>)
+    (<span class="type">ppcre-syntax-error</span> (condition)
+      (<span class="operator">format</span> t <span class="literal">"Houston, we've got a problem with the string ~S:~%~
+                 Looks like something went wrong at position ~A.~%~
+                 The last message we received was \"~?\"."</span>
+              (<span class="operator">ppcre-syntax-error-string</span> condition)
+              (<span class="operator">ppcre-syntax-error-pos</span> condition)
+              (<span class="operator">simple-condition-format-control</span> condition)
+              (<span class="operator">simple-condition-format-arguments</span> condition))
+      (<span class="operator">values</span>)))
+Houston, we've got a problem with the string "foo**x":
+Looks like something went wrong at position 4.
+The last message we received was "Quantifier '*' not allowed.".
+</pre>
+</blockquote>
+
+
+<a name="ppcre-syntax-error-string" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">ppcre-syntax-error-string</span> <span class="parameter">condition</span><br>
+=&gt; <span class="result">string</span>
+</p>
+
+<blockquote><br>
+もし <code class="parameter">condition</code> が <a href="#ppcre-syntax-error"><code class="type">PPCRE-SYNTAX-ERROR</code></a> 型のコンディションなら、この関数はエラーが発生した時にパーサが分析していた文字列（あるいは、構文木を変換しようとしてる時にエラーが発生した場合は <code>NIL</code> ）を返す。これは <a href="#*allow-quoting*"><code class="variable">*ALLOW-QUOTING*</code></a> が真の場合、特に有用である。何故ならこの場合、問題の文字列は関数 <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> に与えたものではない可能性があるからである。
+</blockquote>
+
+
+<a name="ppcre-syntax-error-pos" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">ppcre-syntax-error-pos</span> <span class="parameter">condition</span><br>
+=&gt; <span class="result">number</span>
+</p>
+
+<blockquote><br>
+もし <code class="parameter">condition</i></code> が <a href="#ppcre-syntax-error"><code class="type">PPCRE-SYNTAX-ERROR</code></a> 型のコンディションなら、この関数は文字列内のエラーが発生した位置（あるいは、構文木を変換しようとしてる時にエラーが発生した場合は <code>NIL</code> ）を返す。
+</blockquote>
+
+<br>
+<br>
+<a name="unicode" class="none"></a>
+<h3>Unicode プロパティ</h3>
+
+CL-PPCRE-UNICODE システム（ <a href="https://github.com/edicl/cl-unicode/">CL-UNICODE</a> に依存）をロードすることで、 CL-PPCRE に Unicode プロパティ対応を追加できる。：
+
+<pre>
+(<span class="operator">asdf:oos</span> 'asdf:load-op <span class="keyword">:cl-ppcre-unicode</span>)
+</pre>
+
+これは自動的に <a href="#unicode-property-resolver"><code class="operator">UNICODE-PROPERTY-RESOLVER</code></a> を <a href="#*property-resolver*"><span class="variable">property resolver</span></a> としてインストールする。
+
+<p>
+対応されている Unicode プロパティとその名前については、ドキュメント <a href="https://github.com/edicl/cl-unicode/">CL-UNICODE</a> 参照。
+</p>
+
+
+<a name="unicode-property-resolver" class="none"></a>
+<p class="signature">
+［関数］<br>
+<span class="operator">unicode-property-resolver</span> <span class="parameter">property-name</span><br>
+=&gt; <span class="result">function-or-nil</span>
+</p>
+
+<blockquote><br>
+<a href="#*property-resolver*">property resolver</a> は <a href="https://github.com/edicl/cl-unicode/">CL-UNICODE</a> の関数 <code class="operator">PROPERTY-TEST</code> を使用して Unicode を理解する。 resolver は <a href="#unicode">CL-PPCRE-UNICODE</a> システムがロードされた時、自動的に <a href="#*property-resolver*"><code class="variable">*PROPERTY-RESOLVER*</code></a> にインストールされる。
+
+<pre>
+* (<span class="operator">scan-to-strings</span> <span class="literal">&quot;\\p{Script:Latin}+&quot;</span> <span class="literal">&quot;0+AB_*&quot;</span>)
+<span class="literal">&quot;AB&quot;</span>
+#()
+</pre>
+
+このシンボルは パッケージ <code>CL-PPCRE-UNICODE</code> からエクスポートされる。パッケージ <code>CL-PPCRE</code> からではないので注意。
+</blockquote>
+
+<br>
+<br>
+<a name="filters" class="none"></a>
+<h3>フィルタ</h3>
+
+求めるユーザがいるので、現在 CL-PPCRE は、基本的に任意のユーザ定義関数で正規表現のビルディングブロックとして機能できる &quot;フィルタ&quot; （文法は <a href="#filterdef">上記</a> 参照）を提供するようになった。フィルタは <a href="#create-scanner2">構文木</a> の中でのみ使用でき、 Perl 正規表現文字列ではできない。
+
+<p>
+フィルタは単一引数の関数でなければならない <span class="e3">フィルタ関数</span> により定義される。構文解析の間この関数は一回あるいは数回呼び出されるかもしれないし、あるいは全く呼び出されないかもしれない。もしそれが呼び出されるなら、引数の整数 <code class="parameter">pos</code>は、対象文字列内の現在位置である。フィルタは <code>NIL</code> （このフィルタで表現された部分木は合致しないことを意味する。）を返すか、成功事に <code class="parameter">pos</code> より小さい整数を返す。長さ 0 の通知<span class="wonder">［ assertion ：妥当な翻訳か不明］</span>は <code class="parameter">pos</code> を返すべきで、 <code>N</code> 文字の消費を望むフィルタは <code>(<span class="operator">+</span>&nbsp;POS&nbsp;N)</code> を返すべきである。
+</p>
+
+<p>
+もしオプションの値 <code>length</code> を指定し、それが <code>NIL</code> でないなら、フィルタが <span class="e3">常に</span><span class="e3">正確に</span> <code>length</code> 文字消費するのが正規表現エンジンとの決まり事である。正規表現エンジンは最適化の為にこの情報を使うかもしれない。しかしそれ以外は合致処理の結果と無関係である。
+</p>
+
+<p>
+フィルタ関数はコード本体から次のスペシャル変数にアクセスできる。
+</p>
+
+<dl>
+
+<dt><code class="variable">CL-PPCRE::*STRING*</code></dt>
+<dd>現在の合致処理の対象（文字列）。</dd>
+
+<dt><code class="variable">CL-PPCRE::*START-POS*</code> および <code class="variable">CL-PPCRE::*END-POS*</code></dt>
+<dd>現在の合致処理の開始インデックスと終了インデックス。これらは <a href="#scan"><code class="operator">SCAN</code></a> のキーワードパラメータ <code class="parameter">START</code> と <code class="parameter">END</code> に対応する。</dd>
+
+<dt><code class="variable">CL-PPCRE::*REAL-START-POS*</code></dt>
+<dd>最初の開始位置。これは <code class="variable">CL-PPCRE::*REAL-START-POS*</code> が前方へ移動しない間に <code class="variable">CL-PPCRE::*START-POS*</code> が前方へ移動する繰り返しスキャン（ <a href="#do-scans"><code class="operator">DO-SCANS</code></a> での様に ）にのみ関連する。通常のスキャンに於けるこの変数の値は <code>NIL</code> である。</dd>
+
+<dt><code class="variable">CL-PPCRE::*REG-STARTS*</code> および <code class="variable">CL-PPCRE::*REG-ENDS*</code></dt>
+<dd>正規表現内の登録の開始インデックスおよび終了インデックスを示す２つの <span class="type">simple-vector</span> である。最初の登録のインデックスは 0 である。もし登録がまだ合致していないなら、対応する <code class="variable">CL-PPCRE::*REG-STARTS*</code> 内のエントリは <code>NIL</code> である。</dd>
+
+</dl>
+
+これらの変数は読取専用と見なす必要がある。していることを本当に知っていない限り、これらの値を変更しては<span class="e3">いけない</span>！
+
+<p>
+変数の名前はパッケージ <code>CL-PPCRE</code> からはエクスポートされない。何故なら、将来のリリースでそれらが有効である明確な保証がないためである。（しかしそれは何年後かになくなることは<span class="e3">とても</span>ありそうにない…）
+</p>
+
+<pre>
+* (<span class="operator">defun</span> my-info-filter (pos)
+    <span class="literal">&quot;Show some info about the matching process.&quot;</span>
+    (<span class="operator">format</span> t <span class="literal">&quot;Called at position ~A~%&quot;</span> pos)
+    (<span class="operator">loop</span> with dim = (<span class="operator">array-dimension</span> <span class="variable">cl-ppcre::*reg-starts*</span> 0)
+          for i below dim
+          for reg-start = (<span class="operator">aref</span> <span class="variable">cl-ppcre::*reg-starts*</span> i)
+          for reg-end = (<span class="operator">aref</span> <span class="variable">cl-ppcre::*reg-ends*</span> i)
+          do (<span class="operator">format</span> t <span class="literal">&quot;Register ~A is currently &quot;</span> (<span class="operator">1+</span> i))
+          when reg-start
+               (<span class="operator">write-string</span> <span class="variable">cl-ppcre::*string*</span> nil
+            do (<span class="operator">write-char</span> #\')
+               (<span class="operator">write-string</span> <span class="variable">cl-ppcre::*string*</span> nil
+                     <span class="keyword">:start</span> reg-start <span class="keyword">:end</span> reg-end)
+               (<span class="operator">write-char</span> #\')
+          else
+            do (<span class="operator">write-string</span> <span class="literal">&quot;unbound&quot;</span>)
+          do (<span class="operator">terpri</span>))
+    (<span class="operator">terpri</span>)
+    pos)
+MY-INFO-FILTER
+
+* (<span class="operator">scan</span> '(<span class="keyword">:sequence</span>
+           (<span class="keyword">:register</span>
+             (<span class="keyword">:greedy-repetition</span> 0 nil
+                                 (<span class="keyword">:char-class</span> (<span class="keyword">:range</span> #\a #\z))))
+           (<span class="keyword">:filter</span> my-info-filter 0) <span class="literal">&quot;X&quot;</span>)
+        <span class="literal">&quot;bYcdeX&quot;</span>)
+Called at position 1
+Register 1 is currently 'b'
+
+Called at position 0
+Register 1 is currently ''
+
+Called at position 1
+Register 1 is currently ''
+
+Called at position 5
+Register 1 is currently 'cde'
+
+2
+6
+#(2)
+#(5)
+
+* (<span class="operator">scan</span> '(<span class="keyword">:sequence</span>
+           (<span class="keyword">:register</span>
+             (<span class="keyword">:greedy-repetition</span> 0 nil
+                                 (<span class="keyword">:char-class</span> (<span class="keyword">:range</span> #\a #\z))))
+           (<span class="keyword">:filter</span> my-info-filter 0) <span class="literal">&quot;X&quot;</span>)
+        <span class="literal">&quot;bYcdeZ&quot;</span>)
+NIL
+
+* (<span class="operator">defun</span> my-weird-filter (pos)
+    <span class="literal">&quot;Only match at this point if either pos is odd and the character
+  we're looking at is lowercase or if pos is even and the next two
+  characters we're looking at are uppercase. Consume these characters if
+  there's a match.&quot;</span>
+    (<span class="operator">format</span> t <span class="literal">&quot;Trying at position ~A~%&quot;</span> pos)
+    (<span class="operator">cond</span> ((<span class="operator">and</span> (<span class="operator">oddp</span> pos)
+                (<span class="operator">&lt;</span> pos <span class="variable">cl-ppcre::*end-pos*</span>)
+                (<span class="operator">lower-case-p</span> (<span class="operator">char</span> <span class="variable">cl-ppcre::*string*</span> pos)))
+           (<span class="operator">1+</span> pos))
+          ((<span class="operator">and</span> (<span class="operator">evenp</span> pos)
+                (<span class="operator">&lt;</span> (<span class="operator">1+</span> pos) <span class="variable">cl-ppcre::*end-pos*</span>)
+                (<span class="operator">upper-case-p</span> (<span class="operator">char</span> <span class="variable">cl-ppcre::*string*</span> pos))
+                (<span class="operator">upper-case-p</span> (<span class="operator">char</span> <span class="variable">cl-ppcre::*string*</span> (<span class="operator">1+</span> pos))))
+           (<span class="operator">+</span> pos 2))
+          (t nil)))
+MY-WEIRD-FILTER
+
+* (<span class="operator">defparameter</span> <span class="variable">*weird-regex*</span>
+                `(<span class="keyword">:sequence</span> <span class="literal">&quot;+&quot;</span> (<span class="keyword">:filter</span> ,#'<span class="operator">my-weird-filter</span>) <span class="literal">&quot;+&quot;</span>))
+<span class="variable">*WEIRD-REGEX*</span>
+
+* (<span class="operator">scan</span> <span class="variable">*weird-regex*</span> <span class="literal">&quot;+A++a+AA+&quot;</span>)
+Trying at position 1
+Trying at position 3
+Trying at position 4
+Trying at position 6
+5
+9
+#()
+#()
+
+* (<span class="operator">fmakunbound</span> 'my-weird-filter)
+MY-WEIRD-FILTER
+
+* (<span class="operator">scan</span> <span class="variable">*weird-regex*</span> <span class="literal">&quot;+A++a+AA+&quot;</span>)
+Trying at position 1
+Trying at position 3
+Trying at position 4
+Trying at position 6
+5
+9
+#()
+#()
+</pre>
+
+<code class="operator">SCAN</code> の２回目の呼び出しで、フィルタが全く呼び出されなかった点に注意。それは合致しないことを知っていたので、正規表現エンジンにより最適化された。また、グローバル関数定義 <code class="operator">MY-WEIRD-FILTER</code> 削除後も、 <code class="variable">*WEIRD-REGEX*</code> がまだ機能した点にも注意。何故なら正規表現が元の定義を取得していたからである。
+
+<p>
+フィルタでできる事の詳細については、<a href="#mail">メーリングリスト</a>上の<a href="http://common-lisp.net/pipermail/cl-ppcre-devel/2004-October/000069.html">このスレッド</a>を参照。
+</p>
+
+<br>
+<br>
+<a name="perl" class="none"></a>
+<h3>Perl との互換性</h3>
+
+Perl のバージョンにより、Perl との小さな非互換があるが、そのほとんどは CL-PPCRE に起因していない。：
+
+<a name="empty" class="none"></a>
+<h4><code>$1</code> 、 <code>$2</code> 、などで <code>undef</code> の代わりに空文字列</h4>
+
+（ Cf.<span class="wonder">［ Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #629 ）　これは Perl 5.6.1 の<a href="http://groups.google.com/groups?threadm=87u1kw8hfr.fsf%40dyn164.dbdmedia.de">不具合</a>であり、 5.8.0 ですぐ修正された。
+
+<a name="scope" class="none"></a>
+<h4>埋め込まれた変更の奇妙なスコープ</h4>
+
+（ Cf.<span class="wonder">［Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #430 ）　これは Perl 5.6.1 の <a href="http://groups.google.com/groups?threadm=871y80dpqh.fsf%40bird.agharta.de">不具合</a>であり、 5.8.0 ですぐ修正された。
+
+<a name="inconsistent" class="none"></a>
+<h4><code>$1</code> 、 <code>$2</code> などの不整合なキャプチャ</h4>
+
+（ Cf.<span class="wonder">［Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #662 ）　これはまだ修正されていない Perl の<a href="http://bugs6.perl.org/rt2/Ticket/Display.html?id=18708">不具合</a>である。
+
+<a name="lookaround" class="none"></a>
+<h4>補足したグループが前方参照<span class="wonder">［ look-aheads ：妥当な翻訳か不明］</span>および後方参照<span class="wonder">［ look-behinds ：妥当な翻訳か不明］</span>の外で有効でない</h4>
+
+（ Cf.<span class="wonder">［Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #1439 ）　さて、これは Perl の不具合ではない。補足されたグループが何故前方参照<span class="wonder">［ look-aheads ：妥当な翻訳か不明］</span>あるいは後方参照<span class="wonder">［ look-behinds ：妥当な翻訳か不明］</span>のスコープ内でしか見えないのか、全く理解できない。今のところ、 CL-PPCRE と Perl が同意しないことに同意する…(^^)
+
+<a name="order" class="none"></a>
+<h4>代替（※ <code class="keyword">:ALTERNATION</code> ）が常に左から右へ働く訳ではない</h4>
+
+（ Cf.<span class="wonder">［Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #790 ）　これも Perl の不具合と思っているが、現在それを報告するドライブ<span class="wonder">［不明］</span>を失っている。
+
+<a name="uprops" class="none"></a>
+<h4>Unicode プロパティの名前が異なる</h4>
+
+ <a href="#unicode">Unicode プロパティ</a>の名前は <a href="https://github.com/edicl/cl-unicode/">CL-UNICODE</a> から派生しており、 Perl での名前とは若干異なる。しかしそれらの大部分は同一であるべきである。また、 <a href="https://github.com/edicl/cl-unicode/">CL-UNICODE</a> は Unicode&nbsp;5.1 を基礎としているが、インストールされている Perl はそうではない。
+
+<a name="mac" class="none"></a>
+<h4>MCL で <code>&quot;\r&quot;</code> が働かない</h4>
+
+（ Cf.<span class="wonder">［Cf. とは？］</span> <a href="#test"><code>perltestdata</code></a> のケース #9 ）　奇妙なことに、 MacPerl は <code class="literal">&quot;\r&quot;</code> を <code>(<span class="operator">CODE-CHAR</span> 13)</code> に変換するが、 MCL は <code>#\Return</code> を <code>(<span class="operator">CODE-CHAR</span> 10)</code> に変換する。理解できない。うーん…
+
+<a name="alpha" class="none"></a>
+<h4><code class="literal">&quot;\w&quot;</code> とは何？</h4>
+
+CL-PPCRE は、文字が Perl の <code class="literal">&quot;\w&quot;</code> に合致するかどうかの決定に <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_alphan.htm"><code class="operator">ALPHANUMERICP</code></a> を使用する。そのため CL 実装に応じて、非 ASCII 文字合致の際、 Perl と CL-PPCRE 間に違いが生じるかもしれない。
+
+<br>
+<br>
+<a name="bugs" class="none"></a>
+<h3>不具合と問題</h3>
+
+<a name="quote" class="none"></a>
+<h4><code class="literal">&quot;\Q&quot;</code> は動作しない？それともする？</h4>
+
+Perl では次のコードは期待通りに動く。つまり <code>1</code> を出力する。
+
+<pre>
+#!/usr/bin/perl -l
+
+$a = '\E*';
+print 1
+  if '\E*\E*' =~ /(?:\Q$a\E){2}/;
+</pre>
+
+CL-PPCRE で同様のことをしようとすると、エラーが発生する。：
+
+<pre>
+* (<span class="operator">let</span> ((<span class="variable">*allow-quoting*</span> t)
+        (a <span class="literal">&quot;\\E*&quot;</span>))
+    (<span class="operator">scan</span> (<span class="operator">concatenate</span> '<span class="type">string</span> <span class="literal">&quot;(?:\\Q&quot;</span> a <span class="literal">&quot;\\E){2}&quot;</span>) <span class="literal">&quot;\\E*\\E*&quot;</span>))
+Quantifier '*' not allowed at position 3 in string "(?:*\\E){2}"
+</pre>
+
+このエラーメッセージは何故これが起こるのかのヒントを与えるかも知れない。：何故なら <a href="#*allow-quoting*"><code class="variable">*ALLOW-QUOTING*</code></a> は <span class="e3">真</span> であったので、連結された文字列は CL-PPCRE のパーサに与えられる前に前処理された。前処理の結果は <code class="literal">&quot;(?:*\\E){2}&quot;</code> である。何故なら文字列 <code>A</code> の <code class="literal">&quot;\\E&quot;</code> は、 <code class="literal">&quot;\\Q&quot;</code> で始まる引用セクションの終わりとみなされたためである。これは複雑な補間ルールのため、 Perl では起こり得ない。怖ろしい詳細は <code>man&nbsp;perlop</code> 参照。しかしそれは CL-PPCRE では起こり<span class="e3">得る</span>。 Bummer! <span class="wonder">［不明］</span>
+
+<p>
+What gives?<span class="wonder">［不明］</span>　CL-PPCRE の <code class="literal">&quot;\\Q...\\E&quot;</code> は文字列定数としてのみ使用されるべきである。もし任意の文字列を引用したいなら、 <a href="https://github.com/edicl/cl-interpol/">CL-INTERPOL</a> を試すか、 <a href="#quote-meta-chars"><code class="operator">QUOTE-META-CHARS</code></a> を使用する。：
+
+<pre>
+* (<span class="operator">let</span> ((a <span class="literal">&quot;\\E*&quot;</span>))
+    (<span class="operator">scan</span> (<span class="operator">concatenate</span> 'string <span class="literal">&quot;(?:&quot;</span> (<span class="operator">quote-meta-chars</span> a) <span class="literal">&quot;){2}&quot;</span>) <span class="literal">&quot;\\E*\\E*&quot;</span>))
+0
+6
+#()
+#()
+</pre>
+
+あるいは、さらによく Lisp らしく、<a href="#create-scanner2">Ｓ式構文</a>を代わりに使用する。この場合、引用は不要である。
+
+<pre>
+* (<span class="operator">let</span> ((a <span class="literal">&quot;\\E*&quot;</span>))
+    (<span class="operator">scan</span> `(<span class="keyword">:greedy-repetition</span> 2 2 ,a) <span class="literal">&quot;\\E*\\E*&quot;</span>))
+0
+6
+#()
+#()
+</pre>
+
+<a name="backslash" class="none"></a>
+<h4>バックスラッシュが混乱させる…</h4>
+
+<pre>
+* (<span class="operator">let</span> ((a <span class="literal">&quot;y\\y&quot;</span>))
+    (<span class="operator">scan</span> a a))
+NIL
+</pre>
+これで <code>NIL</code> が返ることは予期してないのではないか？　 <code>(<span class="operator">SCAN</span>&nbsp;A&nbsp;A)</code> の様なコードは常に真を返すべきではないのか？　常に真を返すべきとは言えない。何故なら、 <code class="operator">SCAN</code> の第１引数と第２引数は別々に処理されるためである。：第１引数は CL-PPCRE のパーサに与えられ、 Perl の正規表現のように扱われる。特に、パーサは <code>\y</code> を&quot;見て&quot;、それを <code>y</code> に変換する。何故なら <code>\y</code> は正規表現では特別な意味を持たないからである。そのため正規表現は文字列定数 <code class="literal">&quot;yy&quot;</code> となる。しかし第２引数は変換されずそのままである。つまり、 Perl の <code>'y\y'</code> と同等である。言い替えれば、この例は 次の Perl のコード
+
+<pre>
+'y\y' =~ /y\y/;
+</pre>
+
+あるいは
+
+<pre>
+$a = 'y\y';
+$a =~ /$a/;
+</pre>
+
+と同等であり、何故合致しないのかを説明している。
+
+<p>
+まだ混乱するだろうか？　 <a href="https://github.com/edicl/cl-interpol/">CL-INTERPOL</a> を試しなさい。
+</p>
+
+<br>
+<br>
+<a class="none" name="allegro"></a>
+<h3>AllegroCL 互換モード</h3>
+
+2004 年秋以降、 <a href="http://www.franz.com/products/allegrocl/">AllegroCL</a> は CL-PPCRE と非常によく似た文法の<a href="http://www.franz.com/support/documentation/7.0/doc/regexp.htm">新しい正規表現 API</a> を提供している。 CL-PPCRE は既にかなり高速だが、 AllegroCL のエンジンはおそらくもっと高速になるだろう。（但しもちろん AllegroCL 上のみ）　しかし、アプリケーション &quot;遺産&quot; があったり、他の Lisp 実装へ移植可能にしたいことから、 CL-PPCRE にとどまりたいだろう。従って、バージョン 1.2.0 から、 CL-PPCRE は &quot;互換モード&quot; を提供し、それは<a href="#dict">上で</a>説明してきた CL-PPCRE API の継続使用を可能にする。しかし AllegroCL を覆いの下に配置する。（詳細： <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> および <a href="#scan"><code class="operator">SCAN</code></a> の呼び出しは、それらの AllegroCL の対応する <a href="http://www.franz.com/support/documentation/7.0/doc/operators/excl/compile-re.htm"><code class="operator">EXCL:COMPILE-RE</code></a> および <a href="http://www.franz.com/support/documentation/7.0/doc/operators/excl/match-re.htm"><code class="operator">EXCL:MATCH-RE</code></a> へディスパッチされるが、その他はそのまま。）
+
+<p>
+このモードの利点は、大幅に小さなイメージおよび最も高速化の見込みがあるコードを得ることである。（しかし、 CL-PPCRE は AllegroCL の出力を CL-PPCRE が期待するフォーマットに変形する少しばかりの作業を行う必要がある。）　欠点は、もはや CL-PPCRE との完全な互換性がなくなることである。ここにいくつかの差異がある。（ほとんどの場合、おそらくそれほど重要ではない。）：
+</p>
+
+<ul>
+<li>AllegroCL エンジンは <a href="#parse-tree-synonym"><span class="operator">parse-tree-synonym</span></a> と<a href="#filters">フィルタ</a>を提供しない。
+<li>AllegroCL エンジンは、 Perl および CL-PPCRE エンジンでは受け入れる <a href="http://www.franz.com/support/documentation/8.0/doc/regexp.htm#regexp-new-compatibility-2">中括弧を伴ういくつかの正規表現を締め付ける</a>。
+<li>AllegroCL エンジンの case-folding モードスイッチ（ CL-PPCRE のキーワードパラメータ <a href="#create-scanner"><code class="keyword">:CASE-INSENSITIVE</code></a> の代わりに使用される）は、<a href="http://www.franz.com/support/documentation/8.0/doc/regexp.htm#regexp-new-matching-2">現在 ASCII 文字にのみ有効</a>である。
+<li>AllegroCL エンジンは、<a href="#*allow-quoting*">メタ文字の引用</a>を<a href="http://www.franz.com/support/documentation/8.0/doc/regexp.htm#regexp-new-compatibility-2">サポートしない</a>。
+<li>AllegorCL 互換モードでは、コンパイルされた式（ <a href="#create-scanner"><code class="operator">CREATE-SCANNER</code></a> により返される）は関数ではなく構造体である。
+<li>AllegroCL エンジンは、<a href="#*property-resolver*">名前付きプロパティ</a>を<a href="http://www.franz.com/support/documentation/8.0/doc/regexp.htm#regexp-new-compatibility-2">サポートしない</a>。
+</ul>
+
+AllegroCL エンジンおよび CL-PPCRE から逸脱する可能性の詳細については、 <a href="http://www.franz.com/">Franz Inc. ウェブサイト</a>の<a href="http://www.franz.com/support/documentation/8.0/doc/regexp.htm">ドキュメント</a>参照。
+
+<p>
+AllegroCL 互換モードを使用するには、 CL-PPCRE をコンパイルする<span class="e3">前</span>に、
+</p>
+
+<pre>
+(<span class="operator">push</span> <span class="keyword">:use-acl-regexp2-engine</span> <span class="variable">*features*</span>)
+</pre>
+
+をしなければならない。
+
+<br>
+<br>
+<a class="none" name="blabla"></a>
+<h3>ヒント、コメント、パフォーマンスに関する考慮事項</h3>
+
+ここに、特別な指示はなく、読みたいかどうかわからないが、 CL-PPCRE および正規表現 に関する一般的なことを示す。
+
+<ul>
+  <li>多くのハッカー（特に Perl および他のスクリプト言語のユーザ）は、正規表現をスライスされたパン以来の偉大なものと考え、それをほとんど全てのものに使用する。それは全く間違っている。他のハッカー（特に Lisp ユーザ）は、正規表現を悪魔の仕事と考え、どんな犠牲を払ってでもそれらを避けようとする傾向がある。それもまた間違いである。正規表現は、適宜使用できる便利な道具への追加である。最初にそれらが手元の作業に適している<span class="e3">か</span>理解すべきである。
+
+  <li>ノイズに見える正規表現構文の文字列について心配し、長い式の読取りが本当に難しい場合、代わりに CL-PPCRE の <a href="#create-scanner2">Ｓ式構文</a> を使用することを検討しなさい。それは間違いが少なく、エスケープ文字の心配をする必要がない。また、プログラム的に操作する方が簡単である。
+
+  <li>代替（※ <code class="keyword">:ALTERNATION</code> ）は順序が重要である。一般的なルールは、正規表現エンジンは左から右へ試み、可能な限り合致させようとする。
+
+<pre>
+CL-USER 1 > (<span class="operator">scan-to-strings</span> <span class="literal">&quot;<=|<&quot;</span> <span class="literal">&quot;<=&quot;</span>)
+<span class="literal">&quot;<=&quot;</span>
+#()
+
+CL-USER 2 > (<span class="operator">scan-to-strings</span> <span class="literal">&quot;<|<=&quot;</span> <span class="literal">&quot;<=&quot;</span>)
+<span class="literal">&quot;<&quot;</span>
+#()
+</pre>
+
+<li><a class="none" name="compiler-macro">CL-PPCRE</a> は、可能なら<a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_l.htm#load_time">ロード時</a>にスキャナをプリコンパイルする為、<a href="http://www.lispworks.com/documentation/HyperSpec/Body/03_bba.htm">コンパイラマクロ</a>を使用する。これはもしコンパイラが、正規表現（文字列かＳ式かを問わない）が <a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_c.htm#compile_time">コンパイル時</a>に<a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_consta.htm">定数</a>であり、<a href="http://www.lispworks.com/documentation/HyperSpec/Body/26_glo_e.htm#execution_time">実行時</a>（おそらくループで同じスキャナを繰り返し作成）のスキャナ作成時間節約が意図された場合に発生する。コンパイラが助けるのを妨げないように。例えば、このような定義は通常よくない考えである。：
+
+<pre>
+(<span class="operator">defun</span> regex-match (regex target)
+  <span class="comment">;; don't do that!</span>
+  (<span class="operator">scan</span> regex target))
+</pre>
+
+<li>大きな文字列の中の部分文字列を検索したい場合、あるいは非常に頻繁に同じ文字列を検索したい場合、 <a href="#*use-bmh-matchers*">BMH 法を使用</a>するなら、 <a href="#scan"><code class="operator">SCAN</code></a> は通常 Common Lisp の <a href="http://www.lispworks.com/documentation/HyperSpec/Body/f_search.htm"><code class="operator">SEARCH</code></a> より高速である。但し、スキャナの作成時間が制限要因でない場合にのみ有効である。つまり、検索対象が<span class="e3">非常に</span>大きい場合、あるいは同じスキャナを非常に頻繁に使用している場合である。
+
+<li>最後のヒントへの補足、文字列定数の１回限りの検索に正規表現を使用してはならない。それは酷い資源の無駄である。
+
+<li>大きな値の <a href="#*regex-char-code-limit*"><code class="variable">*REGEX-CHAR-CODE-LIMIT*</code></a> を伴う <a href="#*use-bmh-matchers*"><code class="variable">*USE-BMH-MATCHERS*</code></a> は巨大なスキャナにつながる。
+
+<li>文字クラスはデフォルトで期待通りテストの列に変換される。例えば、<code class="literal">&quot;[af-l\\d]&quot;</code> は、文字が <code>#\a</code> に等しいかテストし、そしてそれが <code>#\f</code> から <code>#\l</code> の間かどうかテストし、そしてそれが数字かどうかテストすることを意味する。デフォルトでは冗長さ（ <code class="literal">&quot;[a-ge-kf]&quot;</code> のような ）を削除しようとしたり、これらのテストを速度のために最適化しようとしたりはしない。但し、文字クラスをボトルネックと認識し、 <span class="e3">O(1)</span> テスト関数があることを確認したい場合は、 <a href="#*optimize-char-classes*"><code class="variable">*OPTIMIZE-CHAR-CLASSES*</code></a> を伴って操作することができる。
+
+<li>もし求めている式が固定されていると知っている場合、正規表現で固定するものを使用する。これはエンジンがスキャナを効率的にするのに大きく役立つ。
+
+<li>固定するもの<span class="wonder">［ anchor ：妥当な翻訳か不明］</span>に加えて、正規表現の開始あるいは終端にある一定の文字列は、エンジンが素早く文字列をスキャンするのに役立つ。例えば、 <code class="literal">&quot;(a-d|aebf)&quot;</code>（※ <code class="literal">&quot;(a-d|abef)&quot;</code> の誤り？） と <code class="literal">&quot;ab(cd|ef)&quot;</code> は同等だが、正規表現エンジンは２番目のフォームのみが一定の開始であると認識できる。
+
+<li>代替（※ <code class="keyword">:ALTERNATION</code> ）を可能な限り避けようとするか、少なくとも上記例のように除外しようとする。
+
+<li>固定するもの<span class="wonder">［ anchor ：妥当な翻訳か不明］</span>も一定の文字列も見えない場合、&quot;独立した&quot;（時には&quot;所有&quot;とも呼ばれる）正規表現が役に立つかもしれない。次の試して見よ。：
+
+<pre>
+(<span class="operator">let</span> ((target (<span class="operator">make-string</span> 10000 <span class="keyword">:initial-element</span> #\a))
+      (scanner-1 (<span class="operator">create-scanner</span> <span class="literal">&quot;a*\\d&quot;</span>))
+      (scanner-2 (<span class="operator">create-scanner</span> <span class="literal">&quot;(?>a*)\\d&quot;</span>)))
+  (<span class="operator">time</span> (<span class="operator">scan</span> scanner-1 target))
+  (<span class="operator">time</span> (<span class="operator">scan</span> scanner-2 target)))
+</pre>
+
+<li>もし作業の理にかなうなら、 <a href="#create-scanner">&quot;単一行モード&quot;</a>（ single-line mode ） の使用を検討せよ。デフォルト（次の Perl の練習）で、ピリオドは改行<span class="e3">以外</span>のあらゆる文字の検索を意味する。単一行モードに於いて、ピリオドは時には対象の大部分が実際にスキップされることを意味する<span class="e3">あらゆる</span>文字を検索する。これは大きな対象について遙かに効率的と成り得る。
+
+<li>補足していないグループが補足した登録グループを使用してはならない。<span class="wondow">［適切か？］</span>つまり、後で参照の必要がある場合<span class="e3">のみ</span>、登録を使用せよ。登録を使用した場合、各スキャン処理はその為に空間を割り当て、それが完了するまで内容を更新（おそらく多くの回数）する必要がある。（ Perl では可能な時は常に、 <code>&quot;(foo)&quot;</code> の代わりに <code>&quot;(?:foo)&quot;</code> を使用する。）
+
+<li>最後のヒントに加え、 Perl のセマンティクスは正規表現エンジンに各登録の<span class="e3">最後の</span>合致を報告することを強制する。これは例えば、 <code>&quot;([a-c])+&quot;</code> と <code>&quot;[a-c]*([a-c])&quot;</code> は正確に同じセマンティクスだが、完全に性能の特性は異なることを暗に意味する。（実際、いくつかのケースでは CL-PPCRE は式を最初のタイプから２番目のタイプへ自動的に変換する。それは常に可能な訳ではないが、それに頼るべきではない。）
+
+<li>デフォルトで、 Perl での（従って CL-PPCRE で）繰り返しは&quot;貪欲&quot; である。これは性能および実際のスキャンの出力にも影響を及ぼす。繰り返しを見て、貪欲な繰り返しが望むものか熟考せよ。
+</ul>
+
+<br>
+<br>
+<a class="none" name="ack"></a>
+<h3>謝辞</h3>
+
+わたしは彼らのコードを使用していないが、 <a href="http://www.ccs.neu.edu/home/dorai/pregexp/pregexp.html">Dorai Sitaram</a> と <a href="http://www.geocities.com/mparker762/clawk#regex">Michael Parker</a> による Scheme/CL 正規表現実装を見て、非常に刺激を受けた。また、 CMUCL の<a href="http://www.cons.org/cmucl/support.html">メーリングリスト</a>の素晴らしい人々と、 Perl の <code>use re &quot;debug&quot;</code> の出力は、 CL-PPCRE で作成されたスキャナの最適化に於いて非常に役立った。
+
+<p>このプロジェクトに参加した人々のリストは大きくなり、ここで維持するにはあまりにも長くなっている。パッチあるいは不具合報告あるいはその他の方法で助けてくれた人の ChangeLog を見てください。彼ら全員に感謝する！
+</p>
+
+<p>
+リリース 0.1.0 の大部分をかいた場所である <a href="http://en.wikipedia.org/wiki/Hamburg">Hamburg</a> の &quot;<a href="http://www.weinhandel-ottensen.de/">Caf&eacute; Ol&eacute;</a>&quot; の皆さんに感謝する。そして CL-PPCRE の早期バージョンを MCL および OpenMCL でテストする為に、 PowerBook を貸してくれた妻に感謝する。
+</p>
+
+<p>
+$Header: /usr/local/cvsrep/cl-ppcre/doc/index.html,v 1.200 2009/10/28 07:36:31 edi Exp $
+</p>
+
+<p>
+<a href="https://edicl.github.io">ホームページへ戻る</a>
+</p>
+
+</body>
+</html>
