@@ -1,0 +1,176 @@
+﻿@charset "UTF-8";
+
+body {
+	margin: 0;
+	font-family: tahoma, arial, sans-serif;
+	padding: 50px 100px;
+	color: black;
+}
+
+h1 {
+	font-size: 250%;
+	border-bottom: 3px solid #449977;
+}
+
+h2 {
+	font-size: 140%;
+	border-bottom: 1px solid #449977;
+}
+
+h3 {
+	font-size: 110%;
+}
+
+code {
+	font-size: 1.2em;
+	background-color : #ddd;	/* 追加 */
+}
+
+p.news {
+	text-indent: -3em;
+	padding-left: 3em;
+}
+
+pre.code {
+	margin: 0 16px;
+	padding: 7px;
+	border: 1px solid #99CCBB;
+}
+
+p.def {
+	margin-top: 1.5em;
+	font-family: courier;
+}
+
+p.def span {
+	color: #555555;
+	font-weight: bold;
+	font-family: tahoma, arial, sans-serif;
+	font-size: .8em;
+}
+
+.desc {
+	margin-left: 1em;
+}
+
+thead {
+	font-weight: bold;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+tr + tr {
+	border-top: 1px solid #88BB99;
+}
+
+thead tr {
+	border-bottom: 2px solid #88BB99;
+}
+
+td + td, th + th {
+	border-left: 2px solid #88BB99;
+}
+
+th {
+	text-align: left;
+	padding: 2px 5px;
+}
+
+td {
+	padding: 2px 5px;
+	vertical-align: top;
+}
+
+a:link {
+	color: #3333AA;
+	text-decoration: none;
+}
+
+a:visited {
+	color: #773377;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+ul.symbol-index {
+	font-family: monospace;
+	font-size: 1.2em;
+}
+
+/* 強調１ */
+.e1 {
+	background-color : #fcc;
+}
+/* オペレータ（関数、マクロなど） */
+.operator {
+	color : #068;
+}
+/* 型名 */
+.type {
+	text-decoration : underline;
+}
+/* パラメータ */
+.parameter {
+	font-style : oblique;
+}
+/* 結果／戻り値 */
+.result {
+	color : #a0a;
+}
+/* 文字列定数 */
+.literal {
+	color : #a04;
+}
+/* キーワード */
+.keyword {
+	color : #a0a
+}
+/* Lisp コード中のコメント */
+.comment {
+	color : #080;
+}
+/* グローバル変数 */
+.variable {
+	color : #00f;
+}
+/* 翻訳の際発生した疑問 */
+.wonder {
+	background-color : #ffc;
+	color : #00f;
+	border-bottom : dashed 1px #f00;
+	font-size : smaller;
+}
+/* かざすとポップアップが出る箇所 */
+.popup_mark {
+	position : relative;
+	min-width : 20px;
+	border : solid 2px #ccc;
+	border-radius : 4px;
+	background-color : #ffc;
+	font-size : smaller;
+}
+/* ポップアップする文章 */
+div.popup_box {
+	display : none;
+	position : absolute;
+	z-index : 9;
+	left : 10px;
+	top : 10px;
+	width : 200px;
+	padding : 10px;
+	border : solid 2px #ccc;
+	border-radius : 10px;
+	box-shadow: 0 0 8px #aaa;
+	background-color : #ffd;
+	font-size : small;
+	font-weight : normal;
+}
+/* かざした時の表示 */
+.popup_mark:hover > div.popup_box {
+	display : block;
+}

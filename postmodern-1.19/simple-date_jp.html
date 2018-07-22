@@ -1,0 +1,289 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>simple-date リファレンスマニュアル</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+
+<style>
+/* 関数などの定義 */
+p.def {
+	background-color : #ddd;
+}
+</style>
+
+<h1>simple-date リファレンスマニュアル</h1>
+
+<p>
+　simple-date は <span class="type">date</span> 、<span class="type">timestamp</span>、および <span class="type">interval</span> のような SQL データベースが使用する型の為に提供する型（ CLOS クラス）で、容易にデータベースへの格納とデータベースからの読込を可能にするものである。これらの型は、いくつかの明白な操作が定義されている。
+</p>
+
+<p>
+　このライブラリの最も大きな欠陥は、タイムゾーンに無頓着な点である。それはまるで世界全体が UTC で生活してるようである。<span class="e1">注意して使用すること。</span>
+</p>
+
+<p>
+　このライブラリが <a href="cl-postgres.html">CL-postgres</a> の後に読み込まれると、関連するデータベースに適した SQL リーダとライタを登録する。
+</p>
+
+<h2>目次</h2>
+
+<ol>
+<li><a href="#date">date 型</a></li>
+<li><a href="#timestamp">timestamp 型</a></li>
+<li><a href="#interval">interval 型</a></li>
+<li><a href="#operations">操作</a></li>
+<li><a href="#index">シンボル索引</a></li>
+</ol>
+
+<a name="date"></a>
+<h2>date 型</h2>
+
+<p class="def">
+<span>クラス</span>
+date
+</p>
+
+<p class="desc">
+　時刻情報を持たない日付を表す。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="encode-date"></a>
+encode-date (year month day)<br />
+&#8594; date
+</p>
+
+<p class="desc">
+　<span class="type">date</span> オブジェクトを作成する。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="decode-date"></a>
+decode-date (date)<br />
+&#8594; (values year month day)
+</p>
+
+<p class="desc">
+　<span class="type">date</span> オブジェクトから要素を抽出する。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="day-of-week"></a>
+day-of-week (date)<br />
+&#8594; integer
+</p>
+
+<p class="desc">
+　指定された日付に該当する曜日を決定する。値の範囲は 0 から 6 で、 0 は日曜日、 6 は土曜日である。
+</p>
+
+<a name="timestamp"></a>
+<h2>timestamp 型</h2>
+
+<p class="def">
+<span>クラス</span>
+timestamp
+</p>
+
+<p class="desc">
+　ミリ秒精度でのタイムスタンプを表す。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="encode-timestamp"></a>
+encode-timestamp (year month day &amp;optional (hour 0) (minute 0) (second 0) (millisecond 0))
+<br />&#8594; timestamp
+</p>
+
+<p class="desc">
+　<span class="type">timestamp</span> を作成する。負の値または標準範囲外の値（つまり、分は 60 、ミリ秒は 1000）は渡せない。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="decode-timestamp"></a>
+decode-timestamp (timestamp)
+<br />&#8594; (values year month day hour minute second millisecond)
+</p>
+
+<p class="desc">
+　<span class="type">timestamp</span> を要素にデコードする。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="timestamp-to-universal-time"></a>
+timestamp-to-universal-time (timestamp)
+<br />&#8594; universal-time
+</p>
+
+<p class="desc">
+　<span class="type">timestamp</span> を対応する世界時に変換し、秒単位で四捨五入する。これは <span class="type">timestamp</span> を UTC のように扱うことに注意。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="universal-time-to-timestamp"></a>
+universal-time-to-timestamp (universal-time)
+<br />&#8594; timestamp
+</p>
+
+<p class="desc">
+　世界時から <span class="type">timestamp</span> を作成する。繰り返すが、結果の <span class="type">timestamp</span> は UTC であるかのように扱われるべきである。
+</p>
+
+<a name="interval"></a>
+<h2>interval 型</h2>
+
+<p class="def">
+<span>クラス</span>
+interval
+</p>
+
+<p class="desc">
+　<span class="type">interval</span> は時間間隔を表す。ミリ秒単位の絶対部分（日、週、分などは常に同じ長さ）と、月と年の相対部分の両方が含まれる。月または年が表す時間は常に同一ではない。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="encode-interval"></a>
+encode-interval (&amp;key (year 0) (month 0) (week 0) (day 0) (hour 0) (minute 0) (second 0) (millisecond 0))
+<br />&#8594; interval
+</p>
+
+<p class="desc">
+　<span class="type">interval</span> を作成する。引数は負を含め任意の大きさを指定できる。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="decode-interval"></a>
+decode-interval (interval)
+<br />&#8594; (values year month day hour minute second millisecond)
+</p>
+
+<p class="desc">
+　<span class="type">interval</span> を部品に分解する。これらは、（ <span class="type">interval</span> を）作成した時のパラメータと異なる場合がある。3600 秒の <span class="type">interval</span> は1時間の <span class="type">interval</span> と同じである。
+</p>
+
+<a name="operations"></a>
+<h2>操作</h2>
+
+<p>
+　異なる関数名の拡散を防ぐ為、時間値の操作に総称関数を使用する。これらの意味はオペランドの型によって異なる。
+</p>
+
+<p class="def">
+<span>メソッド</span>
+<a name="time-add"></a>
+time-add (a b)
+<br />&#8594; value
+</p>
+
+<p class="desc">
+　2 つの時間関連オブジェクトを加算する。 <span class="type">interval</span> を <span class="type">date</span> または <span class="type">timestamp</span> に加算すると、 <span class="type">interval</span> の値だけ加算された新しい <span class="type">date</span> または <span class="type">timestamp</span> が返される。2 つの <span class="type">interval</span> を加算すると、2 つの引数の合計を伴う新しい <span class="type">interval</span> が返される。 <span class="type">interval</span> の代わりに整数を使うことができ、ミリ秒単位での値と解釈される。
+</p>
+
+<p class="def">
+<span>メソッド</span>
+<a name="time-subtract"></a>
+time-subtract (a b)
+<br />&#8594; value
+</p>
+
+<p class="desc">
+　時間関連オブジェクトを減算する。2 つの <span class="type">date</span> または <span class="type">timestamp</span> の減算は、それらの差を表す <span class="type">interval</span> が得られる。同様に、2 つの<span class="type">interval</span> の減算でその差が得られる。
+</p>
+
+<p class="def">
+<span>メソッド</span>
+<a name="time="></a>
+time= (a b)
+<br />&#8594; boolean
+</p>
+
+<p class="desc">
+　2 つの時間関連値を比較し、それらが同じ時間または期間を示すかどうかを示す真偽値を返す。
+</p>
+
+<p class="def">
+<span>メソッド</span>
+<a name="time&lt;"></a>
+time&lt; (a b)
+<br />&#8594; boolean
+</p>
+
+<p class="desc">
+　2 つの時間関連値を比較し、最初の値が 2 番目の値よりも小さいかどうかを示す真偽値を返す。
+</p>
+
+<p class="def">
+<span>メソッド</span>
+<a name="time&gt;"></a>
+time&gt; (a b)
+<br />&#8594; boolean
+</p>
+
+<p class="desc">
+　2 つの時間関連値を比較し、最初の値が 2 番目の値より大きいかどうかを示す真偽値を返す。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="time&lt;="></a>
+time&lt;= (a b)
+<br />&#8594; boolean
+</p>
+
+<p class="desc">
+　<a href="#time&gt;"><code class="operator">time&gt;</code></a> の逆。
+</p>
+
+<p class="def">
+<span>関数</span>
+<a name="time&gt;="></a>
+time&gt;= (a b)
+<br />&#8594; boolean
+</p>
+
+<p class="desc">
+　<a href="#time&lt;"><code class="operator">time&lt;</code></a> の逆。
+</p>
+
+<a name="index"></a>
+<h2>シンボル索引</h2>
+
+<ul class="symbol-index">
+<li><a href="#date"><span class="type">date</span></a></li>
+<li><a href="#day-of-week"><span class="operator">day-of-week</span></a></li>
+<li><a href="#decode-date"><span class="operator">decode-date</span></a></li>
+<li><a href="#decode-interval"><span class="operator">decode-interval</span></a></li>
+<li><a href="#decode-timestamp"><span class="operator">decode-timestamp</span></a></li>
+<li><a href="#encode-date"><span class="operator">encode-date</span></a></li>
+<li><a href="#encode-interval"><span class="operator">encode-interval</span></a></li>
+<li><a href="#encode-timestamp"><span class="operator">encode-timestamp</span></a></li>
+<li><a href="#interval"><span class="type">interval</span></a></li>
+<li><a href="#time&gt;"><span class="operator">time&gt;</span></a></li>
+<li><a href="#time&lt;"><span class="operator">time&lt;</span></a></li>
+<li><a href="#time&lt;="><span class="operator">time&gt;=</span></a></li>
+<li><a href="#time&lt;="><span class="operator">time&lt;=</span></a></li>
+<li><a href="#time-add"><span class="operator">time-add</span></a></li>
+<li><a href="#time-subtract"><span class="operator">time-subtract</span></a></li>
+<li><a href="#time="><span class="operator">time=</span></a></li>
+<li><a href="#timestamp"><span class="type">timestamp</span></a></li>
+<li><a href="#timestamp-to-universal-time"><span class="operator">timestamp-to-universal-time</span></a></li>
+<li><a href="#universal-time-to-timestamp"><span class="operator">universal-time-to-timestamp</span></a></li>
+</ul>
+
+</body>
+
+</html>
