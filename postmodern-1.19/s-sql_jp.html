@@ -1,0 +1,1106 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>S-SQL リファレンスマニュアル</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.inview.js"></script>
+	<script type="text/javascript" src="./js/decorateLispCode.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./js/lispOperator.js" charset="UTF-8"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<script language="javascript">
+//<!--
+var lisOpe = lisOpeCL.concat(lisOpeSSql, lisOpePostmodern);
+
+$(function() {
+	$('pre.code').one('inview', function(event, isInView, visiblePartX, visiblePartY) {
+		decorateLispCode(this, lisOpe);
+	});
+});
+// -->
+</script>
+
+<h1>S-SQL リファレンスマニュアル</h1>
+
+<p>
+　これは <a href="index_jp.html">postmodern</a> ライブラリの S-SQL コンポーネントのリファレンスマニュアルである。
+</p>
+
+<p>
+　S-SQL は、 SQL クエリのための Lisp 的な構文を提供し、さまざまな Lisp 型をテキスト形式の SQL 表現に変換する方法を知っている。コンパイル時にできるだけ多くの作業を行うので、最終的な SQL クエリを生成するため実行時（ランタイム）に必要なのは、文字列の連結だけである。 
+</p>
+
+<h2>目次</h2>
+
+<ol>
+<li><a href="#interface">インタフェース</a></li>
+<li><a href="#types">SQL 型</a></li>
+<li><a href="#syntax">SQL 構文</a></li>
+<li><a href="#index">シンボル索引</a></li>
+</ol>
+
+<a name="interface"></a>
+<h2>インタフェース</h2>
+
+<a name="sql"></a>
+<p class="def">
+<span class="deftype">マクロ</span>
+<span class="operator">sql</span> <span class="parameter">(form)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　<a href="#syntax">ここ</a>で説明する規則に従って、指定されたフォーム（キーワードで始まるリスト）をコンパイル時に SQL クエリ文字列に変換する。
+</p>
+
+<a name="sql-compile"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">sql-compile</span> <span class="parameter">(form)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　これは実行時（ランタイム）のマクロ <a href="#sql"><code class="operator">sql</code></a> の変形である。同様のルールを用いて与えられたリストを SQL クエリに変換するが、このリスト内のシンボルはクォートされる必要はなく、識別子として解釈される。
+</p>
+
+<a name="sql-template"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">sql-template</span> <span class="parameter">(form)</span>
+</p>
+
+<p class="desc">
+　実行時（ランタイム）にクエリをビルドする必要がある場合で、常に再コンパイルするのを望まない場合は、この関数を使用して一度コンパイルして結果を格納することができる。 <code>$$</code> プレースホルダシンボルを含む S-SQL フォームから、 <code>$$</code> ごとに 1 つの引数を取る関数を返す。呼び出されると、返された関数はプレースホルダが引数の値に置き換えられた SQL 文字列を生成する。
+</p>
+
+<a name="enable-s-sql-syntax"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">enable-s-sql-syntax</span> <span class="parameter">(&amp;optional (char #\Q))</span>
+</p>
+
+<p class="desc">
+　現在のリードテーブルを変更して、 <code>(<span class="operator">sql</span> ...)</code> を読み込む #Q 構文を追加する。使用する文字は、引数を渡すことで上書きできる。
+</p>
+
+<a name="sql-escape-string"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">sql-escape-string</span> <span class="parameter">(string)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　PostgreSQL クエリに含めるために文字列を <a href="http://www.postgresql.org/docs/current/static/sql-syntax-lexical.html#SQL-SYNTAX-STRINGS">エスケープ</a>する。
+</p>
+
+<a name="sql-escape"></a>
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">sql-escape</span> <span class="parameter">(value)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　関数 <a href="#sql-escape-string"><code class="operator">sql-escape-string</code></a> の一般化。渡された値の型を調べ、それを SQL クエリに含めるため適切に出力する。シンボルは SQL 名に変換される。
+</p>
+
+<a name="*standard-sql-strings*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*standard-sql-strings*</span>
+</p>
+
+<p class="desc">
+　S-SQL が標準の SQL 文字列を使用するかどうか（#\'を''と置き換えるか）、またはバックスラッシュ形式のエスケープを使用するかどうかを設定するのに使用される。これを <code>NIL</code> に設定することは常に安全だが、サーバが標準の文字列（コンパイル時パラメータ '<code>standard_conforming_strings</code>' が '<code>on</code>' 。これは PostgreSQL の将来のバージョンではデフォルトとなる）を許可するよう設定されていると、 <code>T</code> に設定することでクエリのノイズを減らすことができる。
+</p>
+
+<a name="*escape-sql-names-p*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*escape-sql-names-p*</span>
+</p>
+
+<p class="desc">
+　クエリ内の列、テーブルおよび関数名の前後に、ダブルクォートを追加するかどうかを指定する。 <code>T</code> にした場合、全ての名前がエスケープされ、 <code>NIL</code> 場合はエスケープされず、 <code class="keyword">:auto</code> 場合は<a href="http://www.postgresql.org/docs/current/static/sql-keywords-appendix.html">予約語</a>のみエスケープされる。デフォルト値は <code class="keyword">:auto</code> である。これを <code>let</code> などで束縛するときは注意を要する。コンパイル時に多くの SQL コンパイルが発生する傾向があり、結果が期待通りではない可能性がある。
+</p>
+
+<a name="sql-type-name"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">sql-type-name</span> <span class="parameter">(type)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　指定された Lisp 型が既知の場合、それと同等の SQL を作成する。 <a href="#types">SQL 型</a> を参照。
+</p>
+
+<a name="to-sql-name"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">to-sql-name</span> <span class="parameter">(name &amp;optional (escape-p *escape-sql-names-p*))</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　シンボルまたは文字列を、英数字以外の全ての文字をアンダースコアに変換することで、SQL 識別子として使用できる名前に変換する。 また、名前を小文字にして、クエリを少し見やすくする。第２引数が与えられると、これは <a href="#*escape-sql-names-p*"><code class="variable">*escape-sql-names-p*</code></a> の値よりも優先される。
+</p>
+
+<p class="desc e2">
+※日本語の文字（全角文字など）がアンダースコアになってしまう。この点を修正しなければ、日本語名のテーブルやフィールドにアクセスできない
+</p>
+
+<a name="from-sql-name"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">from-sql-name</span> <span class="parameter">(string)</span><br />
+&#8594; keyword
+</p>
+
+<p class="desc">
+　SQL 識別子を表す文字列を、大文字変換しアンダースコアをダッシュ（※ハイフン）にしてキーワードに変換する。
+</p>
+
+<a name="register-sql-operators"></a>
+<p class="def">
+<span class="deftype">マクロ</span>
+<span class="operator">register-sql-operators</span> <span class="parameter">(arity &amp;rest names)</span>
+</p>
+
+<p class="desc">
+　単純な SQL 演算子を定義する。引数 <code class="parameter">arity</code> は、 <code class="keyword">:unary</code> （ '<code>not</code>' のような）、 <code class="keyword">:unary-postfix</code> （演算子がオペランドの後に来る）、 <code class="keyword">:n-ary</code> （ '<code>+</code>' のように、オペランドがただ一つの場合に消え去る）、 <code class="keyword">:2+-ary</code> （ '<code>=</code>' のように、 1 つのオペランドには無意味）、 <code class="keyword">:n-or-unary</code> （ '<code>-</code>' のように、オペレータが単項の場合に保持される）の内の一つである。引数 <code class="parameter">arity</code> の後に演算子が続く場合、小文字化されたシンボル名が SQL 演算子となるキーワード、またはキーワードと名前文字列を含む 2 要素のリストである。
+</p>
+
+<a name="types"></a>
+<h2>SQL 型</h2>
+
+<p>
+　S-SQL は、多数の Lisp 型に相当する SQL を認識し、他の SQL 型を示すために使用できる特別な型を定義する。次の表は対応を示す。：
+</p>
+
+<table>
+<thead>
+	<tr><th>Lisp 型</th><th>SQL 型</th></tr>
+</thead>
+<tbody>
+	<tr>
+		<td><code class="type">smallint</code></td>
+		<td>smallint</td>
+	</tr>
+	<tr>
+		<td><code class="type">integer</code></td>
+		<td>integer</td>
+	</tr>
+	<tr>
+		<td><code class="type">bigint</code></td>
+		<td>bigint</td>
+	</tr>
+	<tr>
+		<td><code class="type">(numeric X Y)</code></td>
+		<td>numeric(X, Y)</td>
+	</tr>
+	<tr>
+		<td><code class="type">float</code>, <code class="type">real</code></td>
+		<td>real</td>
+	</tr>
+	<tr>
+		<td><code class="type">double-float</code>, <code class="type">double-precision</code></td>
+		<td>double-precision</td>
+	</tr>
+	<tr>
+		<td><code class="type">string</code>, <code class="type">text</code></td>
+		<td>text</td>
+	</tr>
+	<tr>
+		<td><code class="type">(string X)</code></td>
+		<td>char(X)</td>
+	</tr>
+	<tr>
+		<td><code class="type">(varchar X)</code></td>
+		<td>varchar(X)</td>
+	</tr>
+	<tr>
+		<td><code class="type">boolean</code></td>
+		<td>boolean</td>
+	</tr>
+	<tr>
+		<td><code class="type">bytea</code></td>
+		<td>bytea</td>
+	</tr>
+	<tr>
+		<td><a href="simple-date_jp.html#date"><code class="type">date</code></a></td>
+		<td>date</td>
+	</tr>
+	<tr>
+		<td><a href="simple-date_jp.html#timestamp"><code class="type">timestamp</code></a></td>
+		<td>timestamp</td>
+	</tr>
+	<tr>
+		<td><a href="simple-date_jp.html#interval"><code class="type">interval</code></a></td>
+		<td>interval</td>
+	</tr>
+</tbody>
+</table>
+
+<a name="db-null"></a>
+<p class="def">
+<span class="deftype">型</span>
+<span class="type">db-null</span>
+</p>
+
+<p class="desc">
+　これはキーワード <code class="keyword">:null</code> のみがメンバーの型である。これはデータベースからの NULL 値を表すために使用される。
+</p>
+
+<a name="syntax"></a>
+<h2>SQL 構文</h2>
+
+<p>
+　S-SQL フォームは、次の規則に従ってクエリに変換される。：
+</p>
+
+<ul>
+<li>キーワードで始まるリストは演算子である。知られている場合、それらは以下のように展開され、それ以外の場合は標準的な方法で展開される： <code>operator(arguments, ...)</code>
+</li>
+<li>クォートされたシンボルまたはキーワードは、列名またはテーブル名として解釈され、関数 <a href="#to-sql-name"><code>to-sql-name</code></a> で文字列に変換される。
+</li>
+<li>それ以外のものは評価され、結果の Lisp 値はテキスト形式の SQL 表現に変換される。（または、変換規則がないタイプのオブジェクトの場合、エラーを発生させる）自己評価オブジェクトは、コンパイル時文字列に変換される可能性がある。
+</li>
+</ul>
+
+<p>
+次の演算子が定義されている。：
+</p>
+
+<a name="infix"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:+</span>, <span class="keyword">:*</span>, <span class="keyword">:%</span>, <span class="keyword">:&amp;</span>, <span class="keyword">:|</span>, <span class="keyword">:||</span>, <span class="keyword">:and</span>, <span class="keyword">:or</span>, <span class="keyword">:=</span>, <span class="keyword">:/</span>, <span class="keyword">:!=</span>, <span class="keyword">:&lt;</span>, <span class="keyword">:&gt;</span>, <span class="keyword">:&lt;=</span>, <span class="keyword">:&gt;=</span>, <span class="keyword">:^</span>, <span class="keyword">:union</span>, <span class="keyword">:union-all</span>, <span class="keyword">:intersect</span>, <span class="keyword">:intersect-all</span>, <span class="keyword">:except</span>, <span class="keyword">:except-all</span> <span class="parameter">(&amp;rest args)</span>
+</p>
+
+<p class="e2">
+<code class="keyword">:-</code> が未記載。
+</p>
+
+<p class="desc">
+　これらは中置演算子として拡張されている。意味がある場合、それらは2つ以上の引数を許す。 <code class="keyword">:-</code> は値を負にする単項演算子としても使用できる。 <code class="keyword">:union</code> 、 <code class="keyword">:union-all</code> 、 <code class="keyword">:intersect</code> 、および <code class="keyword">:except</code> の引数は、クエリ（ <code class="keyword">:select</code> フォーム）でなければならないことに注意。
+</p>
+
+<p class="desc">
+　キーワードとして入力するには、パイプ文字をエスケープする必要があることに注意。S-SQL は空のキーワードシンボル（ <code class="keyword">:||</code> と記述）を特別に扱い、それを <code class="keyword">:\|\|</code> のように扱うので、それはエスケープなしで書くことができる。 <code class="keyword">:\|</code> とすると機能しない。
+</p>
+
+<a name="unary"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:~</span>, <span class="keyword">:not</span> <span class="parameter">(arg)</span>
+</p>
+
+<p class="e2">
+<code class="keyword">:-</code> が未記載。
+</p>
+
+<p class="desc">
+　ビット単位否定および論理否定の単項演算子。
+</p>
+
+<a name="regexp"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:~</span>, <span class="keyword">:~*</span>, <span class="keyword">:!~</span>, <span class="keyword">:!~*</span> <span class="parameter">(string pattern)</span>
+</p>
+
+<p class="desc">
+　正規表現にマッチする演算子。感嘆符は「一致しない」ことを意味し、アスタリスクは大文字小文字を区別しない事を意味する。
+</p>
+
+<a name="like"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:like</span>, <span class="keyword">:ilike</span> <span class="parameter">(string pattern)</span>
+</p>
+
+<p class="desc">
+　単純な SQL の文字列一致演算子。（ <code class="keyword">:ilike</code> は大文字小文字を区別しない）
+</p>
+
+<a name="match"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:@@</span>
+</p>
+
+<p class="desc">
+　高速テキスト検索一致演算子。
+</p>
+
+<a name="desc"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:desc</span> <span class="parameter">(column)</span>
+</p>
+
+<p class="desc">
+　<a href="#order-by"><code class="keyword">:order-by</code></a> 句で演算子の意味を反転させるために使用される。
+</p>
+
+<a name="nulls-first"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:nulls-first</span>, <span class="keyword">:nulls-last</span> <span class="parameter">(column)</span>
+</p>
+
+<p class="desc">
+　<a href="#order-by"><code class="keyword">:order-by</code></a> 句で <code class="keyword">:null</code> 値が現れる位置の決定に使用される。
+</p>
+
+<a name="as"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:as</span> <span class="parameter">(form name &amp;rest fields)</span>
+</p>
+
+<p class="desc">
+　<a href="#select"><code class="keyword">:select</code></a> フォームで列または表に名前を割り当てる。フィールドが指定された時、括弧内でそのフィールド名の後に追加される。例、 <code>(<span class="keyword">:as</span> 'table1 't1 'foo 'bar)</code> は <code>table1 AS t1(foo, bar)</code> になる。フィールドの型を指定する必要がある時は、 <code>(<span class="keyword">:as</span> 'table2 't2 ('foo integer))</code> のようにできる。名前はクォートされるが、型はクォートされない点に注意。（関数 <code><a href="#sql-compile">sql-compile</a></code> または関数 <code><a href="#sql-template">sql-template</a></code> を使用する場合は、引用符を完全に放棄できる）
+</p>
+
+<a name="exists"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:exists</span> <span class="parameter">(query)</span>
+</p>
+
+<p class="desc">
+　EXISTS 演算子。引数としてクエリをとり、そのクエリが行を返すかどうかによって、true または false を返す。
+</p>
+
+<a name="is-null"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:is-null</span> <span class="parameter">(arg)</span>
+</p>
+
+<p class="desc">
+　値が null かどうかをテストする。
+</p>
+
+<a name="not-null"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:not-null</span> <span class="parameter">(arg)</span>
+</p>
+
+<p class="desc">
+　値が null でないかどうかをテストする。
+</p>
+
+<a name="in"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:in</span> <span class="parameter">(value set)</span>
+</p>
+
+<p class="desc">
+　値が値のセット内にあるかどうかをテストする。
+</p>
+
+<a name="not-in"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:not-in</span> <span class="parameter">(value set)</span>
+</p>
+
+<p class="desc">
+　上記の逆。
+</p>
+
+<a name="set"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:set</span> <span class="parameter">(&amp;rest elements)</span>
+</p>
+
+<p class="desc">
+　値のセットを示す。これには 2 つのインタフェースがある。コンパイル時に要素が分かっている場合、複数の引数として演算子に渡すことができる。そうでない場合、リストに評価される単一の引数が使用される必要がある。
+</p>
+
+<a name="deref"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:[]</span> <span class="parameter">(form start &amp;optional end)</span>
+</p>
+
+<p class="desc">
+　配列値を参照する。引数 <code class="parameter">end</code> が指定された場合は、配列のスライスを抽出する。
+</p>
+
+<a name="extract"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:extract</span> <span class="parameter">(unit form)</span>
+</p>
+
+<p class="desc">
+　日付/時刻の値からフィールドを<a href="http://www.postgresql.org/docs/current/static/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT">抽出する</a>。例、<code>(:<span class="keyword">extract</span> <span class="keyword">:month</span> (<span class="keyword">:now</span>))</code>。
+</p>
+
+<a name="case"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:case</span> <span class="parameter">(&amp;rest clauses)</span>
+</p>
+
+<p class="desc">
+　条件式。引数 <code class="parameter">clauses</code> はフォーム <code>(test value)</code> を取る。 test が <code class="keyword">:else</code> の場合、 <code>ELSE</code> 節が生成される。
+</p>
+
+<a name="between"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:between</span> <span class="parameter">(n start end)</span>
+</p>
+
+<p class="desc">
+　値が他の 2 つの値の間にあるかテストする。
+</p>
+
+<a name="between"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:between-symmetric</span> <span class="parameter">(n start end)</span>
+</p>
+
+<p class="desc">
+　<a href="#between"><code class="keyword">:between</code></a> に似た動作だが、開始値が終了値より小さくなくてもよい。
+</p>
+
+<a name="dot"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:dot</span> <span class="parameter">(&amp;rest names)</span>
+</p>
+
+<p class="desc">
+　複数の名前を A.B 形式の名前に結合して、テーブルの列またはスキーマ内のテーブルを参照するために使用できる。点（ドット）を含むシンボルも使える点に注意。
+</p>
+
+<a name="type"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:type</span> <span class="parameter">(form type)</span>
+</p>
+
+<p class="desc">
+　"4.3::real"のように、値に型宣言を追加する。第２引数は通常評価されないが、関数 <a href="#sql-type-name"><code>sql-type-name</code></a> に渡して型識別子を取得する。
+</p>
+
+<a name="raw"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:raw</span> <span class="parameter">(string)</span>
+</p>
+
+<p class="desc">
+　文字列をそのままクエリに挿入する。これは構文でサポートされていないことをする場合や、複数のクエリでクエリの一部を再利用する場合に便利である。：
+</p>
+
+<pre class="code desc">
+(let* ((test (sql (:and (:= 'foo 22) (:not-null 'bar))))
+       (rows (query (:select '* :from 'baz :where (:raw test)))))
+  (query (:delete-from 'baz :where (:raw test)))
+  (do-stuff rows))
+</pre>
+
+<a name="select"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<code class="keyword">:select</code> <span class="parameter">(&amp;rest args)</span>
+</p>
+
+<p class="desc">
+　選択（ select ）クエリを作成する。引数はその中にあるキーワードで分割される。 <code class="keyword">:select</code> 直後の引数のグループは、選択すべき式として解釈される。この後、オプションで <code class="keyword">:distinct</code> が続く。これによりクエリで個別の行のみが選択される。あるいは行のグループ名の後に <code class="keyword">:distinct-on</code> が続く。次にオプションのキーワード <code class="keyword">:from</code> 、その後には少なくとも 1 つのテーブル名と任意の数の結合（ join ）ステートメントが続く。結合ステートメントは <code class="keyword">:left-join</code> 、 <code class="keyword">:right-join</code> 、 <code class="keyword">:inner-join</code> 、 <code class="keyword">:outer-join</code> または <code class="keyword">:cross-join</code> の内の一つで始まり、続いてテーブル名またはサブクエリ、続いてキーワード <code class="keyword">:on</code> または適用可能なら <code class="keyword">:using</code> 、そしてフォームが続く。 join に先行する <code class="keyword">:natural</code> （ <code class="keyword">:on</code> 節を省略）で自然結合を使用する。 join の後、オプションの <code class="keyword">:where</code> 後に単一フォームが続くことがある。最後に <code class="keyword">:group-by</code> と <code class="keyword">:having</code> がオプションで指定される。最初に任意の数の引数をとり、第 2 引数は 1 つのみである。 例：
+</p>
+
+<pre class="code desc">
+(:select (:+ 'field-1 100) 'field-5
+   :from (:as 'my-table 'x)
+   :left-join 'your-table :on (:= 'x.field-2 'your-table.field-1)
+   :where (:not-null 'a.field-3))
+</pre>
+
+<p class="e2">
+<span class="keyword">:where</span> 句の a.field-3 は、 x.field-3 の誤記か？
+</p>
+
+<a name="limit"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:limit</span> <span class="parameter">(query amount &amp;optional offset)</span>
+</p>
+
+<p class="desc">
+　S-SQL の limit は、 select 演算子の部分ではなく、クエリに適用される特別な演算子である。（これは、複数のクエリの結合（ union ）または共通部分（ intersection ）を制限（ limit ）する場合、ソートの場合と同じ）。結果の数を第２引数で与えられた数に制限し、オプションで第 3 引数として与えられた数だけ結果をオフセットする。
+</p>
+
+<a name="order-by"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:order-by</span> <span class="parameter">(query &amp;rest exprs)</span>
+</p>
+
+<p class="desc">
+　指定された式でクエリの結果を並べ替える。並びを反転させたいときの <a href="#desc"><code class="keyword">:desc</code></a> を参照。
+</p>
+
+<a name="over"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:over</span> <span class="parameter">(form &amp;rest args)</span>
+</p>
+
+<p class="desc">
+　<code>over</code> 、 <code>partition-by</code> および <code>window</code> は、いわゆるウィンドウ関数である。ウィンドウ関数は、現在の行に何らかの形で関連しているテーブル行のセットを通じて計算を実行する。
+</p>
+
+<pre class="code desc">
+(query (:select 'salary (:over (:sum 'salary))
+                :from 'empsalary))
+</pre>
+
+<a name="partition-by"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:partition-by</span> <span class="parameter">(&amp;rest args)</span>
+</p>
+
+<p class="desc">
+　引数 <code class="parameter">args</code> は、パーティション化する1つまたは複数の列のリストで、オプションで <code class="keyword">:order-by</code> 句が続く。
+</p>
+
+<pre class="code desc">
+(query (:select 'depname 'subdepname 'empno 'salary
+                (:over (:avg 'salary)
+                       (:partition-by 'depname 'subdepname))
+                :from 'empsalary))
+</pre>
+
+<p class="desc">
+　括弧なしでの <code class="keyword">:order-by</code> 使用に注意しなさい。：
+</p>
+
+<pre class="code desc">
+(query (:select 'depname 'empno 'salary
+                (:over (:rank)
+                       (:partition-by 'depname :order-by (:desc 'salary)))
+                :from 'empsalary))
+</pre>
+
+<a name="window"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:window</span> <span class="parameter">(form)</span>
+</p>
+
+<pre class="code desc">
+(query (:select (:over (:sum 'salary) 'w)
+              (:over (:avg 'salary) 'w)
+              :from 'empsalary :window
+              (:as 'w (:partition-by 'depname :order-by (:desc 'salary)))))
+</pre>
+
+<a name="with"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:with</span> <span class="parameter">(&amp;rest args)</span>
+</p>
+
+<p class="desc">
+　with は大きなクエリで使用するための補助的なステートメントを記述する方法を提供する。しばしば Common Table Expressions または CTE と呼ばれる。
+</p>
+
+<pre class="code desc">
+(query (:with (:as 'upd
+                 (:parens
+                  (:update 'employees :set 'sales-count (:+ 'sales-count 1)
+                           :where (:= 'id
+                                      (:select 'sales-person
+                                               :from 'accounts
+                                               :where (:= 'name "Acme Corporation")))
+                           :returning '*)))
+            (:insert-into 'employees-log
+                          (:select '* 'current-timestamp :from
+                 'upd))))
+</pre>
+
+<a name="with-recursive"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:with-recursive</span> <span class="parameter">(&amp;rest args)</span>
+</p>
+
+<p class="desc">
+　WITH ステートメントへの再帰的修飾子。クエリが独自の出力を参照できるようにする。
+</p>
+
+<pre class="code desc">
+(query (:with-recursive
+      (:as (:t1 'n)
+           (:union-all (:values 1)
+                       (:select (:+ 'n 1)
+                                :from 't1
+                                :where (:< 'n 100))))
+      (:select (:sum 'n) :from 't1)))
+
+(query (:with-recursive
+      (:as (:included_parts 'sub-part 'part 'quantity)
+           (:union-all
+            (:select 'sub-part 'part 'quantity
+                     :from 'parts
+                     :where (:= 'part "our-product"))
+            (:select 'p.sub-part 'p.part 'p.quantity
+                     :from (:as 'included-parts 'pr)
+                     (:as 'parts 'p)
+                     :where (:= 'p.part 'pr.sub-part) )))
+      (:select 'sub-part (:as (:sum 'quantity) 'total-quantity)
+               :from 'included-parts
+               :group-by 'sub-part)))
+
+(query (:with-recursive
+      (:as (:search-graph 'id 'link 'data 'depth)
+           (:union-all (:select 'g.id 'g.link 'g.data 1
+                                :from (:as 'graph 'g))
+                       (:select 'g.id 'g.link 'g.data (:+ 'sg.depth 1)
+                                :from (:as 'graph 'g) (:as 'search-graph 'sg)
+                                :where (:= 'g.id 'sg.link))))
+      (:select '* :from 'search-graph)))
+
+(query (:with-recursive
+      (:as (:search-graph 'id 'link 'data'depth 'path 'cycle)
+           (:union-all
+            (:select 'g.id 'g.link 'g.data 1
+                     (:[] 'g.f1 'g.f2) nil
+                     :from (:as 'graph 'g))
+            (:select 'g.id 'g.link 'g.data (:+ 'sg.depth 1)
+                     (:|| 'path (:row 'g.f1 'g.f2))
+                     (:= (:row 'g.f1 'g.f2)
+                         (:any* 'path))
+                     :from (:as 'graph 'g)
+                     (:as 'search-graph 'sg)
+                     :where (:and (:= 'g.id 'sg.link)
+                                  (:not 'cycle)))))
+      (:select '* :from 'search-graph)))
+</pre>
+
+<a name="for-update"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:for-update</span> <span class="parameter">(query &amp;key of nowait)</span>
+</p>
+
+<p class="desc">
+　選択した行を同時更新に対してロックする。これにより現在のトランザクションが終了するまで他のトランザクションによって行が変更または削除されることがなくなる。キーワード <code class="keyword">:of</code> の後には、1 つまたは複数のテーブル名を続ける必要がある。指定されている場合、PostgreSQL は select 文で検出されたテーブルの代わりにこれらのテーブルをロックする。キーワード <code class="keyword">:nowait</code> は、全ての <code class="keyword">:of</code> 引数の後、単独で（引数を付けずに）提供する必要がある。もし <code class="keyword">:nowait</code> が指定されていれば、 PostgreSQL はすぐにテーブルをロックできない場合、ロック可能になるまで一時停止するのではなく、エラーをスローする。
+</p>
+
+<pre class="desc code">
+(:for-update (:select :* :from 'foo 'bar 'baz) :of 'bar 'baz :nowait)
+</pre>
+
+<a name="for-share"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:for-share</span> <span class="parameter">(query &amp;key of nowait)</span>
+</p>
+
+<p class="desc">
+　<a href="#for-update"><code class="keyword">:for-update</code></a> に似ているが、テーブル上で共有ロックを取得し、他のトランザクションがロックされたテーブルで <code class="keyword">:for-share</code> を選択できる点が異なる。
+</p>
+
+<a name="function"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:function</span> <span class="parameter">(name (&amp;rest arg-types) return-type stability body)</span>
+</p>
+
+<p class="desc">
+　ストアドプロシージャを作成する。引数と戻り値の型は型名として解釈され、評価されない。引数 <code class="parameter">stability</code> は、 <code class="keyword">:immutable</code> 、 <code class="keyword">:stable</code> 、または <code class="keyword">:volatile</code> いずれかでなければならない。（ <a href="http://www.postgresql.org/docs/current/static/sql-createfunction.html">PostgreSQL のドキュメント</a>を参照）　例えば、 foobar を id で取得する関数は次のようになる。
+</p>
+
+<pre class="desc code">
+(:function 'get-foobar (integer) foobar :stable (:select '* :from 'foobar :where (:= 'id '$1)))
+</pre>
+
+<a name="insert-into"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:insert-into</span> <span class="parameter">(table &amp;rest rest)</span>
+</p>
+
+<p class="desc">
+　行をテーブルに挿入する。第 2 引数が <code class="keyword">:set</code> の場合、他の引数はフィールド名と値との交互指定であるべきである。そうでない場合、挿入される値を生成する <a href="#select"><code class="keyword">:select</code></a> フォームである必要がある。例：
+</p>
+
+<pre class="code desc">
+(:insert-into 'my-table :set 'field-1 42 'field-2 "foobar")
+</pre>
+
+<p class="desc">
+　<code class="keyword">:insert-into</code> フォームの最後に、フィールド名や式のリストが続く <code class="keyword">:returning</code> を追加できる。これにより、これらの式の値が単一行として返される。
+</p>
+
+<a name="update"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:update</span> <span class="parameter">(table &amp;rest rest)</span>
+</p>
+
+<p class="desc">
+　テーブルの値を更新する。テーブル名の後、キーワード <code class="keyword">:set</code> と、  <a href="#insert-into"><code class="keyword">:insert-into</code></a> ように任意の数のフィールド名と値を交互指定の必要がある。次にオプションのキーワード <code class="keyword">:from</code> が来て、少なくとも 1 つのテーブル名、次に任意の数の join 文が続く。 <a href="#select"><code class="keyword">:select</code></a> の様に。 join の後、オプションで <code class="keyword">:where</code> キーワードとそれに続く条件、そして <code class="keyword">:returning</code> キーワードの後に、フィールド名またはクエリ結果として返される式のリストが続く。
+</p>
+
+<a name="delete-from"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:delete-from</span> <span class="parameter">(table &amp;rest rest)</span>
+</p>
+
+<p class="desc">
+　名前付きテーブルから行を削除する。条件が続く <code class="keyword">:where</code> 引数を与えることができ、 <code class="keyword">:returning</code> 引数の後には、削除された行ごとに返される 1 つ以上の式が続く。
+</p>
+
+<a name="create-table"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:create-table</span> <span class="parameter">(name (&amp;rest columns) &amp;rest options)</span>
+</p>
+
+<p class="desc">
+　新しいテーブルを作成する。テーブル名の後に列定義のリストが続く。リストは名前で始まり、その後に 1 つ以上のキーワード引数が続く。：
+</p>
+
+<div class="desc">
+<dl>
+<dt><code class="keyword">:type</code></dt>
+<dd>これは必須である。列のタイプを指定する。 NULL 値を持てる列を指定するには、 <code>(or db-null integer)</code> の様にする。 </dd>
+
+<dt><code class="keyword">:default</code></dt>
+<dd>フィールドのデフォルト値を指定する。</dd>
+
+<dt><code class="keyword">:unique</code></dt>
+<dd>この引数が非 nil の場合、列の値は一意でなければならない。</dd>
+
+<dt><code class="keyword">:primary-key</code></dt>
+<dd>非 nil の場合、その列は表の主キーである。</dd>
+
+<dt><code class="keyword">:check</code></dt>
+<dd>この列に制約を追加する。この引数に指定された値は、真偽値を返す S-SQL 式でなければならない。必要に応じて、テーブルの他の列を参照できる。</dd>
+
+<dt><code class="keyword">:references</code></dt>
+<dd>このテーブルに外部キー制約を追加する。指定される引数は、フォーム <code class="parameter">(target &amp;optional on-delete on-update)</code> のリストでなければならない。 <code class="parameter">target</code> がシンボルの場合、この制約が参照する主キーのテーブルに名前を付ける。それがリストの場合、第 1 要素はテーブルであり、第 2 要素はそのテーブル内でキーが参照する列である。 <code class="parameter">on-delete</code> と <code class="parameter">on-update</code> を使用して、このキーが参照する行がデリートまたはアップデートされたときに実行する必要がある動作を指定できる。指定できる値は、 <code class="keyword">:restrict</code> 、 <code class="keyword">:set-null</code> 、 <code class="keyword">:set-default</code> 、 <code class="keyword">:cascade</code> 、および <code class="keyword">:no-action</code> である。
+</dd>
+</dl>
+</div>
+
+<a name="table-constraints"></a>
+<p class="desc">
+　列のリストの後には、 0 個以上の特別なオプション（テーブルの制約）を指定できる。これらは次のいずれかのキーワードで始まるリストである。：
+</p>
+
+<div class="desc"><dl>
+<dt><code class="keyword">:check</code></dt>
+<dd>テーブルに制約を追加する。引数として真偽値を生成する単一の S-SQL 式をとる。</dd>
+
+<dt><code class="keyword">:primary-key</code></dt>
+<dd>テーブルの主キーを指定する。このオプションの引数は、このキーが構成する列の名前である。</dd>
+
+<dt><code class="keyword">:unique</code></dt>
+<dd>列のグループに一意制約を追加する。引数は関連する列を示すシンボルのリストである。</dd>
+
+<dt><code class="keyword">:foreign-key</code></dt>
+<dd>外部キーを作成する。引数は <code class="parameter">(columns target &amp;optional on-delete on-update)</code> 形式の必要があり、 <code class="parameter">columns</code> はこのキーにより使用される列のリストである。引数の残りは列への <code class="keyword">:references</code> オプションと同じ意味を持つ。</dd>
+</dl>
+</div>
+
+<p class="desc">
+　具体的に名付けられた制約を作成するために、全てのリストは <code><span class="keyword">:constraint</span> name</code> で始めることができる。
+</p>
+
+<p class="desc">
+　他のほとんどの演算子とは異なり、 <code class="keyword">:create-table</code> は引数の大部分にクォートされてないシンボルを求める。例外は <code class="keyword">:check</code> 制約（ constraints ）である：これらは通常の S-SQL 式でなければならない。これは、含まれる全ての列名がクォートされる必要があることを意味する。プログラムでテーブル定義を生成するときは、通常マクロ <a href="#sql"><code class="operator">sql</code></a> よりも関数 <a href="#sql-compile"><code class="operator">sql-compile</code></a> が実用的である。
+</p>
+
+<p class="desc">
+　<code class="keyword">:create-table</code> フォームの例：
+</p>
+
+<pre class="code desc">
+(:create-table enemy
+  ((name :type string :primary-key t)
+   (age :type integer)
+   (address :type (or db-null string) :references (important-addresses :cascade :cascade))
+   (fatal-weakness :type text :default "None")
+   (identifying-color :type (string 20) :unique t))
+  (:foreign-key (identifying-color) (colors name))
+  (:constraint enemy-age-check :check (:> 'age 12))
+</pre>
+
+<a name="alter-table"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:alter-table</span> <span class="parameter">(name action &amp;rest args)</span>
+</p>
+
+<p class="desc">
+　名前付きテーブルを変更する。現在、列のデータ型変更はサポートされていない。引数 <code class="parameter">args</code> の意味は引数 <code class="parameter">action</code> に依存：
+</p>
+
+<div class="desc"><dl>
+<dt><code class="keyword">:add-column</code></dt>
+<dd>テーブルに列を追加する。引数 <code class="parameter">args</code> は <a href="#create-table"><code class="keyword">:create-table</code></a> と同じ形式の列でなければならない。</dd>
+
+<dt><code class="keyword">:drop-column</code></dt>
+<dd>テーブルから列を削除する。</dd>
+
+<dt><code class="keyword">:add-constraint</code></dt>
+<dd>テーブルに名前付き制約を追加する。</dd>
+
+<dt><code class="keyword">:drop-constraint</code></dt>
+<dd>制約を破棄する。 <code class="parameter">args</code> の最初のものは、破棄される制約の名前である。オプションの第 2 引数は、制約に依存するオブジェクトに関する動作を指定する。 <code class="keyword">:cascade</code> または <code class="keyword">:restrict</code> である。</dd>
+
+<dt><code class="keyword">:add</code></dt>
+<dd>テーブルに名前のない制約を追加する。 <code class="parameter">args</code> は <a href="#table-constraints"><code class="keyword">:create-table</code></a> と同じ形式の制約でなければならない。 （これは下位互換性のため、名前付き制約を使用する必要がある）</dd>
+</dl>
+</div>
+
+<p class="desc">
+　上で定義されたテーブルを使った例を示す。：
+</p>
+
+<pre class="code desc">
+(:alter-table enemy :drop-constraint enemy-age-check)
+(:alter-table enemy :add-constraint enemy-age-check :check (:> 'age 21))
+</pre>
+
+<a name="drop-table"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<code class="keyword">:drop-table</code> <span class="parameter">(name)</span>
+</p>
+
+<p class="desc">
+　名付けられたテーブルを削除する。オプションで、エラーメッセージを抑制するために、引数 <code class="parameter">name</code> の前に <code class="keyword">:if-exists</code> 渡すことができる。
+</p>
+
+<a name="create-index"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:create-index</span> <span class="parameter">(name &amp;rest args)</span>
+</p>
+
+<p class="desc">
+　テーブルにインデックスを作成する。索引の名前の後にキーワード <code class="keyword">:on</code> が続く必要があり、その後にテーブル名が続く。そしてキーワード <code class="keyword">:fields</code> 後に1つ以上の列名が続く。オプションで条件付きの <code class="keyword">:where</code> 句を最後に追加して、部分インデックスを作成できる。
+</p>
+
+<a name="create-unique-index"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:create-unique-index</span> <span class="parameter">(name &amp;rest args)</span>
+</p>
+
+<p class="desc">
+　作成されたインデックスが一意であることを除いて、 <a href="#create-index"><code class="keyword">:create-index</code></a> 同様に動作する。
+</p>
+
+<a name="drop-index"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:drop-index</span> <span class="parameter">(name)</span>
+</p>
+
+<p class="desc">
+　インデックスを削除する。 <a href="#drop-table"><code class="keyword">:drop-table</code></a> のように引数 <code class="keyword">:if-exists</code> をとる。
+</p>
+
+<a name="create-sequence"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:create-sequence</span> <span class="parameter">(name &amp;key increment min-value max-value start cache cycle)</span>
+</p>
+
+<p class="desc">
+　指定された名前でシーケンスを作成する。残りの引数でシーケンスが値を選択する方法を制御する。
+</p>
+
+<a name="drop-sequence"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:drop-sequence</span> <span class="parameter">(name)</span>
+</p>
+
+<p class="desc">
+　シーケンスを削除する。特別な最初の引数として <code class="keyword">:if-exists</code> を渡せる。
+</p>
+
+<a name="create-view"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:create-view</span> <span class="parameter">(name query)</span>
+</p>
+
+<p class="desc">
+　S-SQL 形式のクエリからビューを作成する。
+</p>
+
+<a name="drop-view"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:drop-view</span> <span class="parameter">(name)</span>
+</p>
+
+<p class="desc">
+　ビューを削除する。オプションとして引数 <code class="keyword">:if-exists</code> をとる。
+</p>
+
+<a name="set-constraints"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:set-constraints</span> <span class="parameter">(state &amp;rest constraints)</span>
+</p>
+
+<p class="desc">
+　ステートメントが実行されたとき、またはそのステートメントを含むトランザクションが完了したとき、遅延可能な制約をチェックするかどうかを設定する。提供される状態は、事前を示す <code class="keyword">:immediate</code> または事後を示す <code class="keyword">:deferred</code> でなければならない。引数 <code class="parameter">constraints</code> は設定される制約の名前、または指定しない。指定しない場合、全ての遅延可能な制約が設定される。
+</p>
+
+<a name="listen"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:listen</span> <span class="parameter">(channel)</span>
+</p>
+
+<p class="desc">
+　現在の接続のサーバに、引数 <code class="parameter">channel</code> （文字列）のチャネルで通知イベントを待機するよう指示する。
+</p>
+
+<a name="unlisten"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:unlisten</span> <span class="parameter">(channel)</span>
+</p>
+
+<p class="desc">
+　引数 <code class="parameter">channel</code> でのイベント受信を停止する。
+</p>
+
+<a name="notify"></a>
+<p class="def">
+<span class="deftype">sql-op</span>
+<span class="keyword">:notify</span> <span class="parameter">(channel &optional payload)</span>
+</p>
+
+<p class="desc">
+　引数 <code class="parameter">channel</code> （文字列）のチャネルで通知イベントを通知する。オプション引数 <code class="parameter">payload</code> 文字列は、追加のイベント情報をリスナに送信するのに使用できる。
+</p>
+
+<a name="index"></a>
+<h2>シンボル索引</h2>
+
+<ul class="symbol-index">
+  <li><a href="#infix"><code class="keyword">:+</code></a></li>
+  <li><a href="#unary"><code class="keyword">:-</code></a>
+<span class="e2">
+※<a href="#infix">中置演算子</a>の説明に、<code class="keyword">:-</code> が単項演算子として使用できる記述あり。だが、単項演算子には列挙されていない。
+</span>
+</li>
+  <li><a href="#infix"><span class="keyword">:*</span></a></li>
+  <li><a href="#infix"><span class="keyword">:&amp;</span></a></li>
+  <li><a href="#infix"><span class="keyword">:|</span></a></li>
+  <li><a href="#infix"><span class="keyword">:||</span></a></li>
+  <li><a href="#infix"><span class="keyword">:=</span></a></li>
+  <li><a href="#infix"><span class="keyword">:/</span></a></li>
+  <li><a href="#infix"><span class="keyword">:!=</span></a></li>
+  <li><a href="#infix"><span class="keyword">:&lt;</span></a></li>
+  <li><a href="#infix"><span class="keyword">:&gt;</span></a></li>
+  <li><a href="#infix"><span class="keyword">:&lt;=</span></a></li>
+  <li><a href="#infix"><span class="keyword">:&gt;=</span></a></li>
+  <li><a href="#infix"><span class="keyword">:^</span></a></li>
+  <li><a href="#unary"><span class="keyword">:~</span></a></li>
+  <li><a href="#regexp"><span class="keyword">:!~</span></a></li>
+  <li><a href="#regexp"><span class="keyword">:!~*</span></a></li>
+  <li><a href="#regexp"><span class="keyword">:~*</span></a></li>
+  <li><a href="#match"><span class="keyword">:@@</span></a></li>
+  <li><a href="#deref"><span class="keyword">:[]</span></a></li>
+  <li><a href="#sql-template"><span>$$</span></a></li>
+  <li><a href="#infix"><span class="keyword">:and</span></a></li>
+  <li><a href="#as"><span class="keyword">:as</span></a></li>
+  <li><a href="#between"><span class="keyword">:between</span></a></li>
+  <li><a href="#types"><span class="type">bytea</span></a></li>
+  <li><a href="#types"><span class="type">bigint</span></a></li>
+  <li><a href="#case"><span class="keyword">:case</span></a></li>
+  <li><a href="#create-index"><span class="keyword">:create-index</span></a></li>
+  <li><a href="#create-sequence"><span class="keyword">:create-sequence</span></a></li>
+  <li><a href="#create-table"><span class="keyword">:create-table</span></a></li>
+  <li><a href="#create-unique-index"><span class="keyword">:create-unique-index</span></a></li>
+  <li><a href="#db-null"><span class="type">db-null</span></a></li>
+  <li><a href="#delete-from"><span class="keyword">:delete-from</span></a></li>
+  <li><a href="#desc"><span class="keyword">:desc</span></a></li>
+  <li><a href="#dot"><span class="keyword">:dot</span></a></li>
+  <li><a href="#types"><span class="type">double-precision</span></a></li>
+  <li><a href="#drop-index"><span class="keyword">:drop-index</span></a></li>
+  <li><a href="#drop-sequence"><span class="keyword">:drop-sequence</span></a></li>
+  <li><a href="#drop-table"><span class="keyword">:drop-table</span></a></li>
+  <li><a href="#drop-view"><span class="keyword">:drop-view</span></a></li>
+  <li><a href="#set-constraints"><span class="keyword">:set-constraints</span></a></li>
+  <li><a href="#enable-s-sql-syntax"><span class="operator">enable-s-sql-syntax</span></a></li>
+  <li><a href="#*escape-sql-names-p*"><span class="variable">*escape-sql-names-p*</span></a></li>
+  <li><a href="#infix"><span class="keyword">:except</span></a></li>
+  <li><a href="#exists"><span class="keyword">:exists</span></a></li>
+  <li><a href="#extract"><span class="keyword">:extract</span></a></li>
+  <li><a href="#from-sql-name"><span class="operator">from-sql-name</span></a></li>
+  <li><a href="#function"><span class="keyword">:function</span></a></li>
+  <li><a href="#like"><span class="keyword">:ilike</span></a></li>
+  <li><a href="#in"><span class="keyword">:in</span></a></li>
+  <li><a href="#insert-into"><span class="keyword">:insert-into</span></a></li>
+  <li><a href="#infix"><span class="keyword">:intersect</span></a></li>
+  <li><a href="#is-null"><span class="keyword">:is-null</span></a></li>
+  <li><a href="#like"><span class="keyword">:like</span></a></li>
+  <li><a href="#limit"><span class="keyword">:limit</span></a></li>
+  <li><a href="#listen"><span class="keyword">:listen</span></a></li>
+  <li><a href="#unary"><span class="keyword">:not</span></a></li>
+  <li><a href="#not-in"><span class="keyword">:not-in</span></a></li>
+  <li><a href="#not-null"><span class="keyword">:not-null</span></a></li>
+  <li><a href="#notify"><span class="keyword">:notify</span></a></li>
+  <li><a href="#types"><span class="type">numeric</span></a></li>
+  <li><a href="#nulls-first"><span class="keyword">:nulls-first</span></a></li>
+  <li><a href="#nulls-first"><span class="keyword">:nulls-last</span></a></li>
+  <li><a href="#infix"><span class="keyword">:or</span></a></li>
+  <li><a href="#order-by"><span class="keyword">:order-by</span></a></li>
+  <li><a href="#raw"><span class="keyword">:raw</span></a></li>
+  <li><a href="#types"><span class="type">real</span></a></li>
+  <li><a href="#register-sql-operators"><span class="operator">register-sql-operators</span></a></li>
+  <li><a href="#*standard-sql-strings*"><span class="variable">*standard-sql-strings*</span></a></li>
+  <li><a href="#select"><span class="keyword">:select</span></a></li>
+  <li><a href="#set"><span class="keyword">:set</span></a></li>
+  <li><a href="#types"><span class="type">smallint</span></a></li>
+  <li><a href="#sql"><span class="operator">sql</span></a></li>
+  <li><a href="#sql-compile"><span class="operator">sql-compile</span></a></li>
+  <li><a href="#sql-escape"><span class="operator">sql-escape</span></a></li>
+  <li><a href="#sql-escape-string"><span class="operator">sql-escape-string</span></a></li>
+  <li><a href="#sql-template"><span class="operator">sql-template</span></a></li>
+  <li><a href="#sql-type-name"><span class="operator">sql-type-name</span></a></li>
+  <li><a href="#types"><span class="type">text</span></a></li>
+  <li><a href="#to-sql-name"><span class="operator">to-sql-name</span></a></li>
+  <li><a href="#type"><span class="keyword">:type</span></a></li>
+  <li><a href="#infix"><span class="keyword">:union</span></a></li>
+  <li><a href="#infix"><span class="keyword">:union-all</span></a></li>
+  <li><a href="#unlisten"><span class="keyword">:unlisten</span></a></li>
+  <li><a href="#update"><span class="keyword">:update</span></a></li>
+  <li><a href="#types"><span class="type">varchar</span></a></li>
+</ul>
+
+</body>
+</html>

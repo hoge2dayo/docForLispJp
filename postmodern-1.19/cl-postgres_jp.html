@@ -1,0 +1,740 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>CL-postgres リファレンスマニュアル</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.inview.js"></script>
+	<script type="text/javascript" src="./js/decorateLispCode.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./js/lispOperator.js" charset="UTF-8"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<script language="javascript">
+//<!--
+var lisOpe = lisOpeCL.concat(lisOpeClPostgres);
+
+$(function() {
+	$('pre.code').one('inview', function(event, isInView, visiblePartX, visiblePartY) {
+		decorateLispCode(this, lisOpe);
+	});
+});
+// -->
+</script>
+
+<h1>CL-postgres リファレンスマニュアル</h1>
+
+<p>
+　CL-postgres モジュールは、 <a href="http://postgresql.org">PostgreSQL</a> データベースサーバと通信するための、かなり低レベルのインタフェースを実装している。これは <a href="index_jp.html">Postmodern</a> ライブラリの一部だが、分離して使用できる。
+</p>
+
+<h2>Contents</h2>
+
+<ol>
+<li><a href="#connecting">接続</a></li>
+<li><a href="#querying">クエリ</a></li>
+<li><a href="#reading">値の読込</a></li>
+<li><a href="#row-readers">行リーダ</a></li>
+<li><a href="#bulk-copying">一括コピー</a></li>
+<li><a href="#conditions">コンディション</a></li>
+<li><a href="#index">シンボル索引</a></li>
+</ol>
+
+<a name="connecting"></a>
+<h2>接続</h2>
+
+<a name="database-connection"></a>
+<p class="def">
+<span class="deftype">クラス</span>
+<span class="type">database-connection</span>
+</p>
+
+<p class="desc">
+　この型のオブジェクトはデータベース接続を表す。
+</p>
+
+<a name="open-database"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">open-database</span> <span class="parameter">(database user password host &amp;optional (port 5432) (use-ssl :no))</span><br />
+&#8594; database-connection
+</p>
+
+<p class="desc">
+　指定したサーバ、データベース、およびユーザーの接続を作成してオープンする。引数 <code class="parameter">use-ssl</code> は、 <code class="keyword">:no</code> 、 <code class="keyword">:yes</code> 、または <code class="keyword">:try</code> であり、 <code class="keyword">:try</code> は「サーバがサポートしている場合」を意味する。 <code class="keyword">:no</code> 以外の場合、接続開始のために <a href="http://common-lisp.net/project/cl-plus-ssl/">CL+SSL</a> パッケージをロードする必要がある。
+</p>
+
+<p class="desc">
+　SBCL および Clozure CL 上では、 TCP ソケットの代わりに Unix ドメインソケットを使用して接続するため、引数 <code class="parameter">host</code> に <code class="keyword">:unix</code> を指定できる。
+</p>
+
+<a name="close-database"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">close-database</span> <span class="parameter">(database-connection)</span>
+</p>
+
+<p class="desc">
+　データベース接続をクローズする。接続を使い終えたら、この呼出を勧める。そうでなければ、オープンしているソケットはガーベジコレクションされるまでつきまとい、データベースサーバに使い終わったことを伝えられない。
+</p>
+
+<a name="reopen-database"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">reopen-database</span> <span class="parameter">(database-connectio)</span>
+</p>
+
+<p class="desc">
+　以前閉じられた接続オブジェクトのデータベース接続を再確立する。（まだオープンしてる接続でこれを呼び出すのは無害である。）
+</p>
+
+<a name="database-open-p"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">database-open-p</span> <span class="parameter">(database-connection)</span><br />
+&#8594; boolean
+</p>
+
+<p class="desc">
+　データベース接続がまだオープンしているかテストする。
+</p>
+
+<a name="connection-meta"></a>
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">connection-meta</span> <span class="parameter">(database-connection)</span><br />
+&#8594; hash-table
+</p>
+
+<p class="desc">
+　このメソッドは、現在のデータベース接続に関連付けられているハッシュテーブルへのアクセスを提供する。接続をクローズして再オープンすると、このハッシュテーブルはリセットされる。この接続で解析されたプリペアドステートメントに関する情報の格納に、最もよく使用される。
+</p>
+
+<a name="connection-parameters"></a>
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">connection-parameters</span> <span class="parameter">(database-connection)</span><br />
+&#8594; hash-table
+</p>
+
+<p class="desc">
+　このメソッドは、接続のすべての<a href="http://www.postgresql.org/docs/current/static/runtime-config.html">構成パラメータ</a>を含むマッピング（文字列から文字列へ）を返す。
+</p>
+
+<a name="*unix-socket-dir*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*unix-socket-dir*</span>
+</p>
+
+<p class="desc">
+　SBCL で接続を作成する時、引数 <code class="parameter">host</code> にキーワード <code class="keyword">:unix</code> を使用すると、この変数で CL-Postgres がソケットファイルを探すディレクトリが決定する。
+</p>
+
+<a name="*ssl-certificate-file*"></a>
+<a name="*ssl-key-file*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*ssl-certificate-file*</span><br />
+
+<span class="deftype">変数</span>
+<a name="*ssl-key-file*"></a>
+<span class="variable">*ssl-key-file*</span>
+</p>
+
+<p class="desc">
+　SSL を使用する場合（関数 <a href="#open-database"><code class="operator">open-database</code></a> 参照）、これらを使用してクライアントキーと証明書ファイルを提供できる。ファイルがない場合は NIL 、またはパス名になる。
+</p>
+
+<a name="wait-for-notification"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">wait-for-notification</span> <span class="parameter">(database-connection)</span>
+</p>
+
+<p class="desc">
+　この関数は、接続上で通知を受け取るまでブロックする。 PostgreSQL <code>LISTEN</code> コマンドを使用して、通知受信を有効にする必要がある。
+</p>
+
+<a name="querying"></a>
+<h2>クエリ</h2>
+
+<a name="exec-query"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">exec-query</span> <span class="parameter">(database-connection query &amp;optional (row-reader '<a href="#ignore-row-reader"><span class="operator">ignore-row-reader</span></a>))</span><br />
+&#8594; result
+</p>
+
+<p class="desc">
+　指定されたクエリを指定された接続に送信し、指定された<a href="#row-readers">行リーダ</a>で結果（存在するなら）を解釈する。データベースが影響を受けた行数の情報を返す場合、これは第 2 の値として返される。
+</p>
+
+<a name="prepare-query"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">prepare-query</span> <span class="parameter">(database-connection name query)</span>
+</p>
+
+<p class="desc">
+　指定されたクエリを解析して計画し、指定された名前で格納する。プリペアドステートメントは接続別に用意されるため、それらを準備した同じ接続を介してのみ実行できる。
+</p>
+
+<a name="exec-prepared"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">exec-prepared</span> <span class="parameter">(database-connection name parameters &amp;optional (row-reader '<a href="#ignore-row-reader"><span class="operator">ignore-row-reader</span></a>))</span><br />
+&#8594; result
+</p>
+
+<p class="desc">
+　指定された名前のプリペアドステートメントを実行する。パラメータはリストとして与えられる必要がある。このリストの各値はメソッド <a href="#to-sql-string"><code class="operator">to-sql-string</code></a> が特化した型でなければならない。（バイト配列は、メソッド <a href="#to-sql-string"><code class="operator">to-sql-string</code></a> に介さずにバイナリ形式で渡される）　ステートメントの実行結果は、もしあれば、指定された<a href="#row-readers">行リーダ</a>によって解釈され返される。この場合も、影響を受けた行数は、第 2 の値として返される。
+</p>
+
+<a name="unprepare-query"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">unprepare-query</span> <span class="parameter">(database-connection name)</span>
+</p>
+
+<p class="desc">
+　指定された名前のプリペアドステートメントをクローズする。これによりリソースが解放され、名前を新しいプリペアドクエリに関連付けることができる。
+</p>
+
+<a name="to-sql-string"></a>
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">to-sql-string</span> <span class="parameter">(value)</span><br />
+&#8594; (values string needs-escaping)
+</p>
+
+<p class="desc">
+　Lisp 値をテキストの<span class="e3">エスケープされていない</span> SQL 表現に変換する。クエリに直接出力する場合、この値をエスケープする必要があるかどうかを 2 番目の値で返す。
+</p>
+
+<p class="desc">
+　独自のデータ型を関数 <a href="#exec-prepared"><code class="operator">exec-prepared</code></a> に渡せるようにしたいなら、それ対するメソッド <code class="operator">to-sql-string</code> を定義できる。第 2 の値に非 <code>NIL</code> が返された場合、これは第 1 の値を単に文字列としてエスケープする必要があることを示す <code>T</code> 、または値の型プレフィックスを提供する 2 番目の文字列である。（これは <a href="s-sql_jp.html">S-SQL</a> で使用される）
+</p>
+
+<a name="*silently-truncate-rationals*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*silently-truncate-rationals*</span>
+</p>
+
+<p class="desc">
+　有理数がクエリに渡されたとき（メソッド <a href="#to-sql-string"><code class="operator">to-sql-string</code></a> ごとに）、小数点以下 38 桁以内で表現できない（例えば 1/3 ）場合、切り詰められて精度が失われる。この変数に <code>nil</code> を設定すると、その動作を抑制し、代わりにエラーを発生させる。
+</p>
+
+<a name="*query-log*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*query-log*</span>
+</p>
+
+<p class="desc">
+　デバッグ時、データベースに送信されているクエリを調べると便利である。この変数に出力ストリームの値（例えば <code class="variable">*standard-output*</code> ）を設定すると、クエリごとに CL-postgres ログを作成する。
+</p>
+
+<a name="*query-callback*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*query-callback*</span>
+</p>
+
+<p class="desc">
+　プロファイリングやデバッグの際、 <a href="#*query-log*"><code class="variable">*query-log*</code></a> が十分な情報を提供しないか、出力の再解析が実現できない可能性がある。この変数は、 2 つの引数を取る関数の指定子に設定できる。この関数は各クエリ後に呼び出され、クエリ文字列とクエリに費やされた内部時間単位（ <code>(<span class="operator">CL:GET-INTERNAL-REAL-TIME</span>)</code> として）を引数として受け取る。
+</p>
+
+<p class="desc">
+　この変数のデフォルト値は <a href="#log-query"><code>'<span class="operator">LOG-QUERY</span></code></a> で、 <a href="#*query-log*"><code class="variable">*QUERY-LOG*</code></a> 処理が行われる。独自のクエリコールバックを提供し <a href="#*query-log*"><code class="variable">*QUERY-LOG*</code></a> 機能を保持したい場合は、コールバック関数から関数 <a href="#log-query"><code class="operator">LOG-QUERY</code></a> を呼び出さなければならない。
+</p>
+
+<a name="log-query"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">log-query</span> <span class="parameter">(query internal-time)</span>
+</p>
+
+<p class="desc">
+　この関数は変数 <a href="#*query-callback*"><code class="variable">*QUERY-CALLBACK*</code></a> のデフォルト値で、 <code>NIL</code> でない場合、クエリを <a href="#*query-log*"><code class="variable">*QUERY-LOG*</code></a> に記録する。
+</p>
+
+<a name="reading"></a>
+<h2>値の読込</h2>
+
+<p>
+　CL-postgres は、よく使われる PostgreSQL のデータ型を Lisp 値に変換する方法を知っている。次の表にマッピングを示す。：
+</p>
+
+<table>
+<thead>
+	<tr>
+		<th>PostgreSQL</th>
+		<th>Lisp</th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<td>smallint</td>
+		<td><code>integer</code></td>
+	</tr>
+	<tr>
+		<td>integer</td>
+		<td><code>integer</code></td>
+	</tr>
+	<tr>
+		<td>bigint</td>
+		<td><code>integer</code></td>
+	</tr>
+	<tr>
+		<td>numeric</td>
+		<td><code>ratio</code></td>
+	</tr>
+	<tr>
+		<td>real</td>
+		<td><code>float</code></td>
+	</tr>
+	<tr>
+		<td>double precision</td>
+		<td><code>double-float</code></td>
+	</tr>
+	<tr>
+		<td>boolean</td>
+		<td><code>boolean</code></td>
+	</tr>
+	<tr>
+		<td>varchar</td>
+		<td><code>string</code></td>
+	</tr>
+	<tr>
+		<td>text</td>
+		<td><code>string</code></td>
+	</tr>
+	<tr>
+		<td>bytea</td>
+		<td><code>(vector (unsigned-byte 8))</code></td>
+	</tr>
+</tbody>
+</table>
+
+<p>
+　PostgreSQL の型（ OID 番号で識別される）からそれらを解釈する関数へのマッピングは、いわゆる SQL リードテーブルに保持される。リーダが定義されていないすべての型は、 PostgreSQL 表現を含む文字列値として返される。
+</p>
+
+<a name="*sql-readtable*"></a>
+<p class="def">
+<span class="deftype">変数</span>
+<span class="variable">*sql-readtable*</span>
+</p>
+
+<p class="desc">
+　この変数は、現在のリードテーブルを選択するために使用される。単純な使用では、これに触れる必要はないが、 Lisp イメージ内のコードが異なる状況で異なるリーダを必要とする場合では、別のリードテーブルを作成できる。
+</p>
+
+<a name="copy-sql-readtable"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">copy-sql-readtable</span> <span class="parameter">(table)</span><br />
+&#8594; readtable
+</p>
+
+<p class="desc">
+　指定されたリードテーブルをコピーする。
+</p>
+
+<a name="default-sql-readtable"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">default-sql-readtable</span> <span class="parameter">()</span><br />
+&#8594; readtable
+</p>
+
+<p class="desc">
+　デフォルトのリードテーブルを返す。これは CL-postgres によって定義された読込専用のものである。
+</p>
+
+<a name="set-sql-reader"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">set-sql-reader</span> <span class="parameter">(oid function &amp;key table binary-p)</span>
+</p>
+
+<p class="desc">
+　指定された型の新しいリーダを定義する。引数 <code class="parameter">table</code> のデフォルト値は <a href="#*sql-readtable*"><code>*sql-readtable*</code></a> である。リーダ関数は単一の引数、文字列をとり、それをある種の同等の Lisp 値に変換する必要がある。引数 <code class="parameter">binary-p</code> が真の場合、リーダ関数は直接値のバイナリ表現を読み込むことを想定する。ほとんどの場合は勧められないが、望む場合はバイナリの入力ストリームと整数（値のバイト単位サイズ）をとり、ストリームから値を読み込む関数を提供できる。指定されたサイズよりも少ないバイト数またはより多くのバイト数を読み込むと、接続がひどく破壊されることに注意。
+</p>
+
+<a name="set-sql-datetime-readers"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">set-sql-datetime-readers</span> <span class="parameter">(&amp;key date timestamp timestamp-with-timezone time interval table)</span>
+</p>
+
+<p class="desc">
+　Common Lisp で日時を表す標準的な方法は広く知られておらず、そして文字列表現からこれらを読み取ることは洗練されておらず遅い。この関数は <code class="type">date</code> 、 <code class="type">time</code> 、 <code class="type">timestamp</code> 、および <code class="type">interval</code> 型のバイナリリーダを簡単に接続する方法を提供する。次のシグネチャを持つ関数を与える必要がある。：
+</p>
+
+<dl class="desc">
+<dt><code class="keyword">:date <span class="parameter">(days)</span></code></dt>
+<dd>ここで <code class="parameter">days</code> は 2000 年 1 月 1 日以降の日数である。 </dd>
+
+<dt><code class="keyword">:timestamp <span class="parameter">(useconds)</span></code></dt>
+<dd>タイムスタンプはマイクロ秒の分解能を持つ。ゼロ点は UTC の 2000 年の始まりである。</dd>
+
+<dt><code class="keyword">:timestamp-with-timezone</code></dt>
+<dd><code class="keyword">:timestamp</code> に似ているが、'timestamp with time zone'型の値である。（ PostgreSQL は通常の timestamp とまったく同じものを内部的に格納する）</dd>
+
+<dt><code class="keyword">:time <span class="parameter">(useconds)</span></code></dt>
+<dd>真夜中から数えて 1 日の時間を指す。 </dd>
+
+<dt><code class="keyword">:interval <span class="parameter">(months days useconds)</span></code></dt>
+<dd> interval はいくつかの別のコンポーネントで表される。日とマイクロ秒が分かれている理由は、うるう秒を考慮する必要があるからである。</dd>
+</dl>
+
+<a name="row-readers"></a>
+<h2>行リーダ</h2>
+
+<p>
+　行リーダは、クエリ結果を読み取り、グループ化する方法である。大まかに言えば、結果の行やセルに渡って繰り返し処理を実行し、返された値と共に<span class="e3">何か</span>を実行する関数である。
+</p>
+
+<a name="row-reader"></a>
+<p class="def">
+<span class="deftype">マクロ</span>
+<span class="operator">row-reader</span> <span class="parameter">((fields) &amp;body body)</span><br />
+&#8594; function
+</p>
+
+<p class="desc">
+　変数に指定された名前を使用して、行リーダを作成する。 <code class="parameter">body</code> 内部では、この変数は <span class="type">field-description</span> のベクタを参照する。その上に 2 つのローカル関数 <code class="operator">next-row</code> と <code class="operator">next-field</code> が束縛される。最初は結果の次の行の読み込みを開始し、別の行があるかどうかを示す真偽値を返す。次に 1 フィールドを読み込んで返し、引数 <code class="parameter">fields</code> から対応する <span class="type">field-description</span> をパラメータとして渡す必要がある。
+</p>
+
+<p class="desc">
+　行リーダは、結果のすべての行を繰り返し処理し、各行内ですべてのフィールドを反復処理する必要がある。つまり <code class="operator">next-row</code> を呼び出す外側のループが含まれていなければならず、 <code class="operator">next-row</code> が <code>T</code> 返すたびに、フィールドのベクタに渡って、 <code class="operator">next-field</code> を呼び出す必要がある。
+</p>
+
+<p class="desc">
+　関数 <a href="#list-row-reader"><code class="operator">list-row-reader</code></a> の定義は、行リーダがどのように見えるかを示す。 ：
+</p>
+
+<pre class="desc code">
+(row-reader (fields)
+  (loop :while (next-row)
+        :collect (loop :for field :across fields
+                       :collect (next-field field))))
+</pre>
+
+<p class="desc">
+　明らかに行リーダは、データベース接続を使用して何かすべきで<span class="e3">ない</span>。つまり、現在のクエリから結果を読み込んでいるので、クローズしたり新しいクエリを開始したりすべきではない。
+</p>
+
+<a name="def-row-reader"></a>
+<p class="def">
+<span class="deftype">マクロ</span>
+<span class="operator">def-row-reader</span> <span class="parameter">(name (fields) &amp;body body)</span>
+</p>
+
+<p class="desc">
+　<code class="operator">defun</code> のようにしたマクロ <a href="#row-reader"><code class="operator">row-reader</code></a> ：行リーダを作成し、トップレベルの関数名を与える。
+</p>
+
+<a name="field-name"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">field-name</span> <span class="parameter">(field)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　これは行リーダが読み取ったフィールドに関する情報を取得するために使用できる。 <span class="type">field-description</span> を指定すると、この列に関連付けられているデータベースの名前を返す。
+</p>
+
+<a name="field-type"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">field-type</span> <span class="parameter">(field)</span><br />
+&#8594; oid
+</p>
+
+<p class="desc">
+　この列に関連付けられた PostgreSQL <a href="http://www.postgresql.org/docs/current/static/datatype-oid.html">OID</a> を抽出する。本当に望むのであれば、 pg_types テーブルに問い合わせて、 OID で指定された型についてもっと知ることができる。
+</p>
+
+<a name="list-row-reader"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">list-row-reader</span> <span class="parameter">(socket fields)</span><br />
+&#8594; list
+</p>
+
+<p class="desc">
+　クエリ結果からリストのリストを作成する行リーダ。
+</p>
+
+<a name="alist-row-reader"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">alist-row-reader</span> <span class="parameter">(socket fields)</span><br />
+&#8594; alist
+</p>
+
+<p class="desc">
+　列名を値に関連付けた連想リストのリストを返す行リーダ。
+</p>
+
+<a name="ignore-row-reader"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">ignore-row-reader</span> <span class="parameter">(socket fields)</span>
+</p>
+
+<p class="desc">
+　クエリ結果を完全に無視する行リーダ。
+</p>
+
+<a name="bulk-copying"></a>
+<h2>一括コピー</h2>
+
+<p>
+　大量のデータを PostgreSQL にロードするときは、一括コピー機能を使用すると大幅に高速化できる。このアプローチの欠点は、バッチ全体が完了するまでデータの整合性エラーが見つからないことだが、時には速度がそれより価値ある場合もある。
+</p>
+
+<a name="open-db-writer"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">open-db-writer</span> <span class="parameter">(db table &optional columns)</span>
+</p>
+
+<p class="desc">
+　関数 <code class="operator">db-write-row</code> を使用して、一度に1行を書き込めるテーブルストリームを開く。引数 <code class="parameter">db</code> は、 <a href="#database-connection">接続</a> オブジェクトか、関数 <code class="operator">open-database</code> へ渡すことができる引数のリストである。引数 <code class="parameter">table</code> は、このライタが行を書き込む既存のテーブルの名前である。すべての列のデータがない場合は、引数 <code class="parameter">columns</code> を使用して示す。
+</p>
+
+<a name="close-db-writer"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">close-db-writer</span> <span class="parameter">(writer &key abort)</span>
+</p>
+
+<p class="desc">
+　関数 <code class="operator">open-db-writer</code> によってオープンされた一括ライタを閉じる。それが複製用に作成された時、または引数 <code class="parameter">abort</code> が真である時、関連するデータベース接続をクローズする。
+</p>
+
+<a name="db-write-row"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">db-write-row</span> <span class="parameter">(writer row-data)</span>
+</p>
+
+<p class="desc">
+　ライタから参照されるテーブルと列に、引数 <code class="parameter">row-data</code> を書き込む。引数 <code class="parameter">row-data</code> は、ライタを開くときに含まれる各列の Lisp オブジェクトのリストである。配列（要素はすべて同じ型でなければならない）は、 DB に書き込まれる前に PostgreSQL 表現にシリアル化される。
+</p>
+
+<a name="conditions"></a>
+<h2>コンディション</h2>
+
+<p>
+　データベースを開くかクエリを問い合わせると、エラーが発生する可能性がある。 CL-postgres は、サーバが返すエラーを Lisp コンディションでラップし、何らかの問題自体を検出したときに同じタイプのコンディションを発生させる。ソケットエラーはそのまま通過する。
+</p>
+
+<a name="database-error"></a>
+<p class="def">
+<span class="deftype">コンディション</span>
+<span class="type">database-error</span>
+</p>
+
+<p class="desc">
+　データベース関連のコンディション型。型によりキャッチしたいエラーのため、パッケージ <code>cl-postgres-error</code> は特定のエラーに使用される派生型を定義する。そのリストは <code>cl-postgres/package.lisp</code> ファイルを参照。
+</p>
+
+<a name="database-error-message"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">database-error-message</span> <span class="parameter">(database-error)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　このエラーに関連する短いメッセージ。
+</p>
+
+<a name="database-error-detail"></a>
+<p class="def">
+<span class="deftype">リーダ</span>
+<span class="operator">database-error-detail</span> <span class="parameter">(database-error)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　問題の詳細な説明。ない場合は <code>NIL</code> 。
+</p>
+
+<a name="database-error-code"></a>
+<p class="def">
+<span class="deftype">リーダ</span>
+<span class="operator">database-error-code</span> <span class="parameter">(database-error)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　PostgreSQL がこのエラーと関連づけるエラーコード。（存在する場合）　その意味は <a href="http://www.postgresql.org/docs/current/static/errcodes-appendix.html">PostgreSQL マニュアル</a>参照。
+</p>
+
+<a name="database-error-query"></a>
+<p class="def">
+<span class="deftype">リーダ</span>
+<span class="operator">database-error-query</span> <span class="parameter">(database-error)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　このエラーを引き起こしたクエリ、またはクエリが関与していない場合は <code>NIL</code> 。
+</p>
+
+<a name="database-error-cause"></a>
+<p class="def">
+<span class="deftype">リーダ</span>
+<span class="operator">database-error-cause</span> <span class="parameter">(database-error)</span><br />
+&#8594; condition
+</p>
+
+<p class="desc">
+　このエラーの原因となるコンディション、または別のコンディションが原因でない場合は <code>NIL</code>。
+</p>
+
+<a name="database-error-constraint-name"></a>
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">database-error-constraint-name</span> <span class="parameter">(database-error)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　整合性違反エラーの場合、違反した制約の名前を返す。（あるいは制約が見つからなかった場合は <code>nil</code> ）
+</p>
+
+<a name="database-connection-error"></a>
+<p class="def">
+<span class="deftype">コンディション</span>
+<span class="type">database-connection-error</span>
+</p>
+
+<p class="desc">
+　コンディション <a href="#database-error"><code class="type">database-error</code></a> の派生型。この型（またはその派生クラスの 1 つ）のエラーは、接続が切断された接続オブジェクトを使用してクエリを実行しようとしたとき、またはクエリ中にデータベース接続が無効になったときに通知される。常に再起動 <code class="keyword">:reconnect</code> を提供する。これにより、ライブラリは接続を復元してクエリを再試行する。
+</p>
+
+<p class="desc">
+　次の例はこの機能の使用例を示す。最初の接続エラーで再接続が行われ、その他では普通に通るようにする方法である。このテーマのバリエーションは、長い停止と共に継続的に再接続を試みる可能性がある。 
+</p>
+
+<pre class="desc code">
+(defun call-with-single-reconnect (fun)
+  (let ((reconnected nil))
+    (handler-bind
+        ((database-connection-error
+          (lambda (err)
+            (when (not reconnected)
+              (setf reconnected t)
+              (invoke-restart :reconnect)))))
+      (funcall fun))))
+</pre>
+
+<a name="postgresql-notification"></a>
+<p class="def">
+<span class="deftype">コンディション</span>
+<span class="type">postgresql-notification</span>
+</p>
+
+<p class="desc">
+　PostgreSQL サーバから通知メッセージを受信したときに通知されるコンディション。これは、通知の同期的待機を実装した関数 <code class="operator">WAIT-FOR-NOTIFICATION</code> によってキャッチされる <code>WARNING</code> コンディションである。
+</p>
+
+<a name="postgresql-notification-channel"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">postgresql-notification-channel</span> <span class="parameter">(postgresql-notification)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　この通知のチャネル文字列。（スロット <code>channel</code> 値）
+</p>
+
+<a name="postgresql-notification-payload"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">postgresql-notification-payload</span> <span class="parameter">(postgresql-notification)</span><br />
+&#8594; string
+</p>
+
+<p class="desc">
+　この通知のスロット <code>payload</code> 値。
+</p>
+
+<a name="postgresql-notification-pid"></a>
+<p class="def">
+<span class="deftype">アクセサ</span>
+<span class="operator">postgresql-notification-pid</span> <span class="parameter">(postgresql-notification)</span><br />
+&#8594; integer
+</p>
+
+<p class="desc">
+　通知を送信したプロセスのプロセス ID。（スロット <code>pid</code> 値）
+</p>
+
+<h2><a name="index">シンボル索引</a></h2>
+
+<ul class="symbol-index">
+<li><a href="#alist-row-reader"><span class="operator">alist-row-reader</span></a></li>
+<li><a href="#close-database"><span class="operator">close-database</span></a></li>
+<li><a href="#close-db-writer"><span class="operator">close-db-writer</span></a></li>
+<li><a href="#connection-meta"><span class="operator">connection-meta</span></a></li>
+<li><a href="#connection-parameters"><span class="operator">connection-parameters</span></a></li>
+<li><a href="#copy-sql-readtable"><span class="operator">copy-sql-readtable</span></a></li>
+<li><a href="#database-connection"><span class="type">database-connection</span></a></li>
+<li><a href="#database-connection-error"><span class="type">database-connection-error</span></a></li>
+<li><a href="#database-error"><span class="type">database-error</span></a></li>
+<li><a href="#database-error-cause"><span class="operator">database-error-cause</span></a></li>
+<li><a href="#database-error-code"><span class="operator">database-error-code</span></a></li>
+<li><a href="#database-error-constraint-name"><span class="operator">database-error-constraint-name</span></a></li>
+<li><a href="#database-error-detail"><span class="operator">database-error-detail</span></a></li>
+<li><a href="#database-error-message"><span class="operator">database-error-message</span></a></li>
+<li><a href="#database-error-query"><span class="operator">database-error-query</span></a></li>
+<li><a href="#database-open-p"><span class="operator">database-open-p</span></a></li>
+<li><a href="#db-write-row"><span class="operator">db-write-row</span></a></li>
+<li><a href="#def-row-reader"><span class="operator">def-row-reader</span></a></li>
+<li><a href="#default-sql-readtable"><span class="operator">default-sql-readtable</span></a></li>
+<li><a href="#exec-prepared"><span class="operator">exec-prepared</span></a></li>
+<li><a href="#exec-query"><span class="operator">exec-query</span></a></li>
+<li><a href="#field-name"><span class="operator">field-name</span></a></li>
+<li><a href="#field-type"><span class="operator">field-type</span></a></li>
+<li><a href="#ignore-row-reader"><span class="operator">ignore-row-reader</span></a></li>
+<li><a href="#list-row-reader"><span class="operator">list-row-reader</span></a></li>
+<li><a href="#log-query"><span class="operator">log-query</span></a></li>
+<li><a href="#row-reader">next-field</a></li>
+<li><a href="#row-reader">next-row</a></li>
+<li><a href="#open-database"><span class="operator">open-database</span></a></li>
+<li><a href="#open-db-writer"><span class="operator">open-db-writer</span></a></li>
+<li><a href="#postgresql-notification"><span class="type">postgresql-notification</span></a></li>
+<li><a href="#postgresql-notification-channel"><span class="operator">postgresql-notification-channel</span></a></li>
+<li><a href="#postgresql-notification-payload"><span class="operator">postgresql-notification-payload</span></a></li>
+<li><a href="#postgresql-notification-pid"><span class="operator">postgresql-notification-pid</span></a></li>
+<li><a href="#prepare-query">prepare-query</a></li>
+<li><a href="#*query-callback*"><span class="variable">*query-callback*</span></a></li>
+<li><a href="#*query-log*"><span class="variable">*query-log*</span></a></li>
+<li><a href="#reopen-database"><span class="operator">reopen-database</span></a></li>
+<li><a href="#row-reader"><span class="operator">row-reader</span></a></li>
+<li><a href="#set-sql-datetime-readers"><span class="operator">set-sql-datetime-readers</span></a></li>
+<li><a href="#set-sql-reader"><span class="operator">set-sql-reader</span></a></li>
+<li><a href="#*silently-truncate-rationals*"><span class="variable">*silently-truncate-rationals*</span></a></li>
+<li><a href="#*sql-readtable*"><span class="variable">*sql-readtable*</span></a></li>
+<li><a href="#*ssl-certificate-file*"><span class="variable">*ssl-certificate-file*</span></a></li>
+<li><a href="#*ssl-key-file*"><span class="variable">*ssl-key-file*</span></a></li>
+<li><a href="#to-sql-string"><span class="operator">to-sql-string</span></a></li>
+<li><a href="#*unix-socket-dir*"><span class="variable">*unix-socket-dir*</span></a></li>
+<li><a href="#unprepare-query"><span class="operator">unprepare-query</span></a></li>
+<li><a href="#wait-for-notification"><span class="operator">wait-for-notification</span></a></li>
+</ul>
+</body>
+</html>

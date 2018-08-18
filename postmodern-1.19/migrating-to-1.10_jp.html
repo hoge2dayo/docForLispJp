@@ -1,0 +1,139 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Postmodern 1.10 への移行</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.inview.js"></script>
+	<script type="text/javascript" src="./js/decorateLispCode.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./js/lispOperator.js" charset="UTF-8"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<script language="javascript">
+//<!--
+var lisOpe = lisOpeCL.concat(lisOpePostmodern, lisOpeMigrating);
+
+$(function() {
+	$('pre.code').one('inview', function(event, isInView, visiblePartX, visiblePartY) {
+		decorateLispCode(this, lisOpe);
+	});
+});
+// -->
+</script>
+
+<h1>Postmodern 1.10 への移行</h1>
+
+<p>
+　いくつかの後方互換性のない変更がライブラリのこのバージョンで導入された。いくつかの小さなクリーンアップがあり、データベースアクセスオブジェクトシステムは完全に精査された。
+</p>
+
+<h2><code class="operator">with-connection</code></h2>
+
+<p>
+　古い <code class="operator">with-connection</code> フォームは、以前 <a href="postmodern.html#with-connection"><code class="operator">with-connection*</code></a> と呼ばれていたものに置き換えられた。つまり、次のようなコードがある場合、
+</p>
+
+<pre class="code">
+(with-connection ("my-db" "harry" "****" "localhost") ...)
+</pre>
+
+<p>
+次のように変更すべきである。
+</p>
+
+<pre class="code">
+(with-connection (list "my-db" "harry" "****" "localhost") ...)
+</pre>
+
+<p>
+　何故ならリスト全体が今は評価されるからである。同様に、 <code class="operator">with-connection*</code> を使用していた場合、アスタリスクを削除する必要がある。
+</p>
+
+<h2>カスタムデータ型の統合</h2>
+
+<p>
+　CL-postgresは、クエリ結果から値を読み取り方の<a href="cl-postgres_jp.html#reading">操作方法</a>をエクスポートするようになった。旧総称関数 <code class="operator">s-sql:sql-ize</code> は <a href="cl-postgres_jp.html#to-sql-string"><code class="operator">cl-posgres:to-sql-string</code></a> に移動され、プリペアドステートメントへの引数として渡される、あるいは <a href="s-sql.html">S-SQL</a> クエリに挿入される時に値が書き出される方法を制御するのに使用できる。
+</p>
+
+<p>
+　<a href="simple-date.html"><code>simple-date</code></a> はもはや CL-postgres と S-SQL から依存されなくなったが、上記のインターフェースを使って統合している。 CL-postgres ロード<span class="e3">後</span>に読み込み、その型に適したリーダとライタが登録される。他の日付/時刻ライブラリの統合は簡単である。
+</p>
+
+<h2>エラーと再接続</h2>
+
+<p>
+　以前のバージョンでは、コンディション <code class="type">database-connection-lost</code> のみが再起動 <code class="keyword">:reconnect</code> を提供していた。現在では様々なコンディション（全ての <a href="cl-postgres_jp.html#database-connection-error"><code class="type">database-connection-error</code></a> 副型）がこの再起動を提供する。そしてライブラリは、全ての防止困難なエラー（ソケットエラーやデータベースシャットダウン）をそのような再起動でラップするよう最善を尽くす。目標は、この機能を使用して、接続の問題およびサーバ再起動からの回復機能を簡単に追加可能とすることである。もしこれでもまだ問題があるなら、メーリングリストで議論してください。（普遍的なエラー回復はテスト困難である。）
+</p>
+
+<p>
+　現在では <code>cl-postgres-error</code> パッケージからエクスポートされる多量のコンディション型があり、データベースのコード周辺に <code>handler-case</code> フォームを書くことを大幅に心地よいものにする。そのリストは <code>cl-postgres/error.lisp</code> 参照。（あるいは単に発生する興味あるエラー型を調べる。）
+</p>
+
+<h2>DAO システム</h2>
+
+<p>
+　これはアップグレードが多少苦しいかもしれない。旧マクロ <code class="operator">deftable</code> は完全に削除されて、メタクラス <a href="postmodern_jp.html#dao-class"><code class="type">dao-class</code></a> になった。ライブラリのこの部分への焦点は、<span class="e3">テーブル</span>定義から<span class="e3">アクセスオブジェクト</span>定義へ移った。今でも関数 <a href="postmodern_jp.html#dao-table-definition"><code class="operator">dao-table-definition</code></a> を使用して単純な CREATE TABLE を作成可能だが、これは単なるショートカットに過ぎない。テーブル定義は今やライブラリユーザの責任であり、ライブラリの責任ではない。
+</p>
+
+<p>
+この機能的な後退は何故だろうか？　このようなアクセスオブジェクトとテーブル定義を結合することは、あまりよい考えではないと判明した。あらゆる種類の複雑な制約（ constraint ）を持つ、ビューやテーブルのアクセスオブジェクトを作成できる。 <code class="operator">deftable</code> にこの対応を追加することは、既存のものより巨大なものにしてしまい、根本的な問題の解決にはならなかった。
+</p>
+
+<p>
+そのため我々はクリーンな DAO インターフェースを持ち、スキーマ定義インターフェースは全くない。（ <code class="operator">create-template</code> と類似のものも破棄された。）　最も特記すべき変更は、おそらく <code class="keyword">:auto-id</code> オプションがなくなったことである。これはとても便利であるが、酷く'不可思議'である。もし次のようなコードがあれば、：
+</p>
+
+<pre class="code">
+(deftable product ()
+  ((name :type string :initarg :name :accessor product-name)
+   (weight :type float :initarg :weight :accessor product-weight))
+  (:class-name product)
+  (:auto-id t)
+  (:indices (:unique name)))
+
+(defun create-tables ()
+  ; ...
+  (create-table 'product))</pre>
+
+<p>
+　等価なものは次のようになる。：
+</p>
+
+<pre class="code">
+(defclass product ()
+  ((id :col-type serial :initarg :id :accessor product-id)
+   (name :col-type string :initarg :name :accessor product-name)
+   (weight :col-type float :initarg :weight :accessor product-weight))
+  (:keys id)
+  (:metaclass dao-class))
+
+(defun create-tables ()
+  ; ...
+  (execute (dao-table-definition 'product))
+  (execute (:create-unique-index 'product-name :on 'product :fields 'name)))</pre>
+
+<p>
+　あるいは、明示的に ID シーケンスを作成し、フィールド <code>id</code> に <code>(<span class="keyword">:nextval</span> <span class="string">"product_ids"</span>)</code> の <code class="keyword">:col-default</code> を与えれば、 ID 生成をより制御できる。
+</p>
+
+<p>
+　上記の例は新しいインターフェースの基本的なアイデアを示す。： DAO クラスは今や通常のクラス定義により作成される。 <code class="keyword">:type</code> オプションの代わりに、列スロットが <code class="keyword">:column</code> あるいは <code class="keyword">:col-type</code>  オプションを取得すべきである。 DAO の作成およびインサートの意味は、わずかに調整されている。：メソッド <code class="operator">make-instance</code> にキーワード引数 <code class="keyword">:fetch-defaults</code> を与えた場合を除いて、 DAO インスタンス作成時（ ID 値取得の為に使用される）、不可思議な出来事は起きない。キーワード引数 <code class="keyword">:fetch-defaults</code> を与えた場合、データベースへ行のデフォルト値を問い合わせて、それをインスタンスへ出力する。通常は、特別な問合せを生成し、 <code>serial</code> フィールドのようなものは機能しないので、これを使用しないのがより明瞭である。ここで <code class="keyword">:col-default</code> は指定できない。オブジェクトがメソッド <a href="postmodern_jp.html#insert-dao"><code class="operator">insert-dao</code></a> でデータベースにインサートされた時、いくつかのスロットは未束縛かもしれない。これらはデータベースおよびオブジェクトの両方に於いて、列のデフォルトに基づいた値が割り当てられる。例えば、上記 <code>product</code> クラスがある場合、：
+</p>
+
+<pre class="code">
+(defvar *p* (make-instance 'product :name "brick" :weight 2))
+;; スロット id は未束縛
+(insert-dao *p*)
+(print (product-id *p*))
+;; ここで既に新しい ID 値を受け取っている
+</pre>
+
+<p>
+　これは、 INSERT ステートメントに RETURNING 句を与えることによりデフォルトが読み取られるので、 <code>serial</code> 型でも機能することに注意。デフォルト値と列の関連付けは、 DAO クラスではなくデータベースにより処理される。
+</p>
+
+</body>
+</html>

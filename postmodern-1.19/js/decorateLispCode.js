@@ -8,14 +8,16 @@ function decorateLispCode(elm, lisOpe) {
 	// '&amp;', '&lt;', '&gt;'は、&より前に配置しないと、
 	// １文字ずつ適合されてしまう
 	var reSymChar = '(?:&amp;|&lt;|&gt;|\\w|!|[\\$-%]|&(?!quot;)|\\*|\\+|[--/]|[<-@]|\\[|\\]|\\^|_|\\{|\\}|~)'; //>
-	// シンボル（エスケープには未対応）　※数値も検出してしまうので注意
-	var reSymbol = '(?:' + reSymChar + '+:{1,2})?' + reSymChar + '+';
-	// キーワード（エスケープには未対応）
-	var reKeyword = ':' + reSymChar + '+';
+	// シンボルの綴り（'|'によるエスケープに対応）
+	var reSymWord = '(?:' + reSymChar + '+|\\|.*?\\|)';
+	// シンボル　※数値も検出してしまうので注意
+	var reSymbol = '(?:' + reSymWord + ':{1,2})?' + reSymWord;
+	// キーワード
+	var reKeyword = ':' + reSymWord;
 	// コメント
 	var reComment = ';.*$';
 	// 文字列
-	var reLiteral = '("|&quot;).*?("|&quot;)';
+	var reString = '("|&quot;)(?:.|\\n)*?("|&quot;)';
 
 	// テキストとHTMLタグが別々になるよう抽出
 	var txtTag = separateTagText(elm, true);
@@ -25,11 +27,11 @@ function decorateLispCode(elm, lisOpe) {
 	// 字句（シンボル、キーワード、文字列、コメント）の検出
 	var lisSymbol  = searchRegexLabel('symbol', reSymbol, txt);
 	var lisKeyword = searchRegexLabel('keyword', reKeyword, txt);
-	var lisLiteral = searchRegexLabel('literal', reLiteral, txt);
+	var lisString  = searchRegexLabel('string', reString, txt);
 	var lisComment = searchRegexLabel('comment', reComment, txt);
 
 	// 上記検出結果の結合
-	var lisPhrase = lisSymbol.concat(lisKeyword, lisLiteral, lisComment);
+	var lisPhrase = lisSymbol.concat(lisKeyword, lisString, lisComment);
 
 	// 位置でソート
 	lisPhrase = sortTagPosByPos(lisPhrase);
@@ -92,7 +94,7 @@ function addDecorateTagForLispPhrase(lisTagPos, lisPhrase, lisOpe) {
 			} else if (lisOpe && 0 <= lisOpe.indexOf(phrase[0])) {		//>
 				cls = 'operator';
 			}
-		} else if (phrase[2] == 'keyword' || phrase[2] == 'literal' || phrase[2] == 'comment') {
+		} else if (phrase[2] == 'keyword' || phrase[2] == 'string' || phrase[2] == 'comment') {
 			cls = phrase[2];
 		}
 
@@ -337,9 +339,13 @@ function parseHtmlTagPos(ht) {
 // @param label ラベル（任意）
 // @param reStr 正規表現（文字列）
 // @param str 検索対象の文字列
+// @param flags 省略時'gm'
 // @return 
-function searchRegexLabel(label, reStr, str) {
-	var lis = searchRegex(reStr, str, 'gm');
+function searchRegexLabel(label, reStr, str, flags) {
+	if (!flags) {
+		flags = 'gm';
+	}
+	var lis = searchRegex(reStr, str, flags);
 
 	lis.forEach(function(elm) {
 		elm[2] = label;

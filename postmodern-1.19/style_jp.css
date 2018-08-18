@@ -22,7 +22,7 @@ h3 {
 }
 
 code {
-	font-size: 1.2em;
+/*	font-size: 1.2em; */		/* 削除 */
 	background-color : #ddd;	/* 追加 */
 }
 
@@ -35,19 +35,36 @@ pre.code {
 	margin: 0 16px;
 	padding: 7px;
 	border: 1px solid #99CCBB;
+	line-height : 1.3em;		/* 追加 */
+}
+
+/* 追加 */
+pre.shell {
+	margin: 0 16px;
+	padding: 7px;
+	background-color : #000;
+	color : #fff;
+	line-height : 1.3em;
 }
 
 p.def {
 	margin-top: 1.5em;
-	font-family: courier;
+	padding : 10px;					/* 追加 */
+	border : solid 1px #000;		/* 追加 */
+	background-color : #eee;		/* 追加 */
+/*	font-family: courier; */		/* 削除 */
+	font-family : "HGGothicM";		/* 追加 */
 }
 
+/* 削除 */
+/*
 p.def span {
 	color: #555555;
 	font-weight: bold;
 	font-family: tahoma, arial, sans-serif;
 	font-size: .8em;
 }
+*/
 
 .desc {
 	margin-left: 1em;
@@ -106,6 +123,16 @@ ul.symbol-index {
 .e1 {
 	background-color : #fcc;
 }
+/* 強調２（翻訳で気づいた内容の追記） */
+.e2 {
+	background-color : #eee;
+	color : #f00;
+	font-size : smaller;
+}
+/* 強調３ */
+.e3 {
+	font-weight : bold;
+}
 /* オペレータ（関数、マクロなど） */
 .operator {
 	color : #068;
@@ -123,7 +150,7 @@ ul.symbol-index {
 	color : #a0a;
 }
 /* 文字列定数 */
-.literal {
+.string {
 	color : #a04;
 }
 /* キーワード */
@@ -137,6 +164,10 @@ ul.symbol-index {
 /* グローバル変数 */
 .variable {
 	color : #00f;
+}
+/* 定義しているものの種別（関数、変数など） */
+.deftype {
+	font-weight: bold;
 }
 /* 翻訳の際発生した疑問 */
 .wonder {

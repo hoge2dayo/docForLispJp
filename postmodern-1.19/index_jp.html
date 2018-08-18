@@ -1,0 +1,382 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<title>Postmodern</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="./js/jquery.inview.js"></script>
+	<script type="text/javascript" src="./js/decorateLispCode.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="./js/lispOperator.js" charset="UTF-8"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+
+<body>
+<script language="javascript">
+//<!--
+var lisOpe = lisOpeCL.concat(lisOpeIndex, lisOpePostmodern);
+
+$(function() {
+	$('pre.code').one('inview', function(event, isInView, visiblePartX, visiblePartY) {
+		decorateLispCode(this, lisOpe);
+	});
+});
+// -->
+</script>
+
+<h1>Postmodern</h1>
+
+<p>
+Postmodern は <a href="http://www.postgresql.org">PostgreSQL</a> データベースと通信する為の Common Lisp ライブラリである。特徴は：
+
+<ul>
+<li>外部ライブラリを必要としない、データベースサーバとの効率的な通信。</li>
+<li>Unicode 対応の Lisp 実装における UTF-8 対応</li>
+<li>SQL と Lisp コード を混在させる構文</li>
+<li>プリペアドステートメントとストアドプロシージャの便利なサポート</li>
+<li>単純なデータベースアクセスオブジェクトのメタクラス</li>
+</ul>
+
+<p>
+　このライブラリと <a href="http://clsql.b9.com/">CLSQL</a>/CommonSQL との最大の違いは、 Postmodern は異なる SQL 実装（非標準の PostgreSQL 機能を含む）に移植可能ではなく、まったく異なる方法で lisp の様な SQL やデータベースアクセスオブジェクトのような拡張に近づくということである。このライブラリは、CLSQL のアプローチが実際にはうまくいかなかったために書かれた。あなたの場合は異なるかもしれないが。
+</p>
+
+<h2>Contents</h2>
+
+<ol>
+<li><a href="#news">ニュース</a></li>
+<li><a href="#dependencies">依存関係</a></li>
+<li><a href="#license">ライセンス</a></li>
+<li><a href="#download">ダウンロードとインストール</a></li>
+<li><a href="#quickstart">クイックスタート</a></li>
+<li><a href="#reference">リファレンス</a></li>
+<li><a href="#caveats">注意と対処</a></li>
+<li><a href="#resources">リソース</a></li>
+</ol>
+
+<a name="news"></a>
+<h2>ニュース</h2>
+
+<p class="news">
+<em>28-11-2012:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.19.tgz">Version 1.19</a>: Fix ECL incompatibilities, add <a href="postmodern.html#upsert-dao"><code>upsert-dao</code></a> function, add support for <a href="cl-postgres.html#wait-for-notification">notifications</a> and <a href="cl-postgres.html#bulk-copying">bulk copying</a>, and make unix sockets work on CCL.
+</p>
+
+<p class="news">
+<em>19-10-2011:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.18.tgz">Version 1.18</a>: Improve support for array literals, add array slicing. Switch test suite over to <a href="https://github.com/adlai/Eos">Eos</a>. Added <a href="postmodern.html#make-dao"><code>make-dao</code></a>, <a href="postmodern.html#query"><code>:dao</code></a> query selectors, and <a href="postmodern.html#define-dao-finalization"><code>define-dao-finalization</code></a>. Support PostGIS operators, <a href="s-sql.html#for-update">locking</a>, and <a href="s-sql.html#set-constraints">constraint deferring</a> syntax in S-SQL. Add a <a href="postmodern.html#!unique"><code>!unique</code></a> operator for defining table constraints. Add a <a href="cl-postgres.html#database-error-constraint-name"><code>database-error-constraint-name</code></a> condition object accessor.
+</p>
+
+<p class="news">
+<em>02-02-2011:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.17.tgz">Version 1.17</a>: Another modest maintenance release. Fixes <a href="simple-date.html#day-of-week"><code>day-of-week</code></a> in simple-date. Makes the <code>:plist</code> <a href="postmodern.html#query">query format</a> actually work. Adds <a href="s-sql.html#sql-escape"><code>sql-escape</code></a> as an exported symbol for client code that needs to escape stuff. Adds support for multi-dimensional arrays. Adds the <a href="postmodern.html#*ignore-unknown-columns*"><code>*ignore-unknown-columns*</code></a> configuration variable.
+</p>
+
+<p class="news">
+<em>02-04-2010:</em> <a
+href="http://marijnhaverbeke.nl/postmodern/postmodern-1.16.tgz">Version 1.16</a>: Introduces a <code><a href="postmodern.html#save-dao/transaction">save-dao/transaction</a></code>, because the old semantics were broken (originally inside of transactions, after fixing that outside of them). Add support for passing vectors as argument to prepared queries, and reading them from query results. Add <code>:on-update</code> and <code>:on-delete</code> arguments to <code><a href="postmodern.html#!foreign">!foreign</a></code>. Add <code>:plist</code> and <code>:plists</code> query result formats. Guarantee that <code><a href="postmodern.html#deftable">deftable</a></code> definitions are executed in the order they were defined in. Moves the <a href="http://common-lisp.net/project/ieee-floats">ieee-floats</a> and <a href="http://common-lisp.net/project/trivial-utf-8">trivial-utf-8</a> dependencies into the repository, so they don't have to separately fetched.
+</p>
+
+<p class="news">
+<em>02-04-2010:</em> We are moving from common-lisp.net to marijnhaverbeke.nl, and from darcs to git. New project home: <a href="http://marijnhaverbeke.nl/postmodern">http://marijnhaverbeke.nl/postmodern</a>.
+</p>
+
+<p class="news">
+<em>01-03-2009:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.15.tgz">Version 1.15</a>: Almost a year since the last release. Postmodern is still alive—it is just <em>so</em> perfect it hardly needs updates anymore. In this release: Stop depending on the usocket library in Allegro CL and SBCL, just use the built-in socket bindings instead. Allow connecting over a Unix socket in SBCL. Support natural joins in <code>:select</code>. Add <code>:if-exists</code> argument to <code>:drop-...</code> operators, add support for <code>:add-column</code> form to <code>:alter-table</code>. Add <code>:between-symmetric</code> operator. Introduce "ghost slot" hack to DAO system to support fetching OIDs. Extend
+<code>doquery</code> to also handle parameterised queries.
+</p>
+
+<p class="news">
+<em>07-03-2009:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.14.tgz">Version 1.14</a>: Some more syntax supported in <a href="s-sql.html">S-SQL</a>, add <a href="cl-postgres.html#*silently-truncate-rationals*"><code>*silently-truncate-rationals*</code></a> and <a href="cl-postgres.html#*query-callback*"><code>*query-callback*</code></a>, export <a href="postmodern.html#dao-keys"><code>dao-keys</code></a>, and fix some small bugs.
+</p>
+
+<p class="news">
+<em>28-08-2008:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.13.tgz">Version 1.13</a>: A few small fixes and optimisations, and there is once again a <a href="postmodern.html#deftable"><code>deftable</code></a> &#x2015; though it has a different role than it used to have.
+</p>
+
+<p class="news">
+<em>30-04-2008:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.12.tgz">Version 1.12</a>: Restores the <a href="postmodern.html#save-dao"><code>save-dao</code></a> function (though you should still be careful with it), adds <a href="cl-postgres.html#open-database">support</a> <a href="postmodern.html#*default-use-ssl*">for</a> <a href="http://www.postgresql.org/docs/current/static/ssl-tcp.html">SSL</a> connections, makes some error messages clearer, adds some S-SQL <a href="s-sql.html#between">operators</a>, and fixes a few bugs.
+</p>
+
+<p class="news">
+<em>09-04-2008:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.11.tgz">Version 1.11</a>: Fixes bugs, most importantly one that caused <a href="cl-postgres.html">CL-postgres</a> to blow up whenever a <a href="http://www.postgresql.org/docs/current/static/config-setting.html">connection parameter</a> was changed for an open connection. Also adds <a href="s-sql.html#*escape-sql-names-p*">automatic escaping</a> of reserved words to S-SQL, a <a href="postmodern.html#*max-pool-size*"><code>*max-pool-size*</code></a> parameter and a <a href="postmodern.html#coalesce"><code>coalesce</code></a> function
+to Postmodern
+</p>
+
+<p class="news">
+<em>19-03-2008:</em> <a href="http://marijnhaverbeke.nl/postmodern/postmodern-1.10.tgz">Version 1.10</a>: Note that this release is <strong>not entirely backwards-compatible</strong>. It introduces a new, more flexible approach to <a href="postmodern.html#daos">DAO objects</a>, a more pluggable <a href="cl-postgres.html#reading">handling</a> of custom data types, and a bunch of small clean-ups, optimizations, and enhancements. See the <a href="migrating-to-1.10.html">migration guide</a> for details.
+</p>
+
+<a name="dependencies"></a>
+<h2>依存関係</h2>
+
+<p>
+　ライブラリは <a href="http://cliki.net/usocket">usocket</a> （ SBCL と ACL 、組み込みソケットライブラリを使用する場合を除く）、 <a href="http://www.cliki.net/CL-MD5">md5</a> 、 <a href="http://common-lisp.net/project/closer/closer-mop.html">closer-mop</a> 、スレッドセーフ接続プールが必要な場合は <a href="http://common-lisp.net/project/bordeaux-threads">bordeaux-threads</a> 、SSL 接続が必要な場合は <a href="http://common-lisp.net/project/cl-plus-ssl/">CL+SSL</a> に依存する。
+</p>
+
+<p>
+　Postmodern 自体は４つの異なるパッケージに分割されており、いくつかは独立して使用できる。 <a href="simple-date_jp.html">simple-date</a> は非常に基本的な日付および時刻オブジェクトの実装であり、時間関連の SQL 型の格納および取り出しをサポートするのに使用される。 <a href="cl-postgres_jp.html">CL-postgres</a> は、ソケット上で PostgreSQL サーバとのインタフェースに使用される低レベルのライブラリである。 <a href="s-sql_jp.html">S-SQL</a> はＳ式を SQL 文字列にコンパイルし、内部の Lisp 値を変換して、コンパイル時に可能な限り多くの作業を行う。 最後に <a href="postmodern_jp.html">Postmodern</a> 自体は、これらのすべてを便利なプログラミングインタフェースにまとめようとするライブラリである。 
+</p>
+
+<a name="license"></a>
+<h2>ライセンス</h2>
+
+<p>
+　Postmodern は zlib スタイルのライセンスでリリースされている。 おおよそあなたが好きなようにコードを使用することができる。ただし、あなた自身のコードとして渡したり、またはオリジナルではないことを示さずに修正版をリリースすることはできない。
+</p>
+
+<a name="download"></a>
+<h2>ダウンロードとインストール</h2>
+
+<p>
+　Postmodern の最新リリースは <a href="http://marijnhaverbeke.nl/postmodern/postmodern.tgz">http://marijnhaverbeke.nl/postmodern/postmodern.tgz</a> からダウンロードするか、 <a href="http://www.cliki.net/ASDF-Install">asdf-install</a> でインストールする。
+</p>
+
+<p>
+　最新の変更を含む <a href="http://git-scm.com/">git</a> リポジトリは、次のようにチェックアウトすることができる。：
+</p>
+
+<pre class="shell">
+&gt; git clone http://marijnhaverbeke.nl/git/postmodern
+</pre>
+
+<p>
+　<a href="http://github.com/marijnh/Postmodern">github</a> でリポジトリを見ることもできる。
+</p>
+
+<p>
+　ファイル <a href="http://marijnhaverbeke.nl/postmodern/postmodern-latest.tgz">http://marijnhaverbeke.nl/postmodern/postmodern-latest.tgz</a> には、常に現在のリポジトリヘッドのスナップショットが含まれている。 
+</p>
+
+<a name="quickstart"></a>
+<h2>クイックスタート</h2>
+
+<p>
+　このクイックスタートは、Postmodern 機能を用いたコーディング感覚の会得を目的とする。ライブラリ動作の詳細は、<a href="#reference">リファレンスマニュアル</a>参照。
+</p>
+
+<p>
+　既にインストールしている場合、まずシステムをロードして使用する。：
+</p>
+
+<pre class="code">
+(asdf:oos 'asdf:load-op :postmodern)
+(use-package :postmodern)
+</pre>
+
+<p>
+　ローカルホストで動いている PostgreSQL サーバがあり、データベース 'testdb' がその上にあって、ユーザ： 'foucault' 、パスワード： 'surveiller' でアクセスできる場合、このように接続できる。：
+</p>
+
+<pre class="code">
+(connect-toplevel "testdb" "foucault" "surveiller" "localhost")
+</pre>
+
+<p>
+　接続を確立する点は同じでも、 <a href="postmodern_jp.html#with-connection"><code class="operator">with-connection</code></a> 形式でラップされたフォームは同じ引数を取るが、確立する接続は局所的である。
+</p>
+
+<p>
+　まずは簡単なテスト： 
+</p>
+
+<pre class="code">
+(query "select 22, 'Folie et déraison', 4.5")
+;; => ((22 "Folie et déraison" 9/2))
+</pre>
+
+<p>
+それは問題なく動作するだろう。 <a href="postmodern_jp.html#query"><code class="operator">query</code></a> はデータベースにクエリを送信する基本的な方法である。 同じクエリをこのように表すことができる。：
+</p>
+
+<pre class="code">
+(query (:select 22 "Folie et déraison" 4.5))
+;; => ((22 "Folie et déraison" 9/2))
+</pre>
+
+<p>
+　多くの場合、クエリ文字列とキーワードで始まるリストは互換性がある。リストは SQL にコンパイルされる。 <a href="s-sql_jp.html">S-SQL</a> マニュアルでこれらの式で使用される構文を記載されている。それらに現れる Lisp 値は自動的に変換される。上記クエリでは定数値のみが使用されているが、実行時の値も同様に使用できる。：
+</p>
+
+<pre class="code">
+(defun database-powered-addition (a b)
+  (query (:select (:+ a b)) :single))
+(database-powered-addition 1030 204)
+;; => 1234
+</pre>
+
+<p>
+　最後の引数 <span class="keyword">:single</span> は、結果をリスト（結果行）のリストではなく、単一の値として求めることを指示している。その他のオプションには、 <span class="keyword">:rows</span> 、 <span class="keyword">:row</span> 、 <span class="keyword">:column</span> 、 <span class="keyword">:alists</span> 、 <span class="keyword">:none</span> がある。効果の詳細は<a href="postmodern_jp.html#query">リファレンスマニュアル</a>に記載されている。
+</p>
+
+<p>
+　クエリの結果全体を一度に取得する必要はない。 <a href="postmodern_jp.html#doquery"><code class="operator">doquery</code></a> マクロで繰り返し取得することもできる。
+</p>
+
+<pre class="code">
+(doquery (:select 'x 'y :from 'some-imaginary-table) (x y)
+  (format t "On this row, x = ~A and y = ~A.~%" x y))
+</pre>
+
+<p>
+　<span class="type">database-access</span> クラスは次の様に見える。：
+</p>
+
+<pre class="code">
+(defclass country ()
+  ((name :col-type string :initarg :name
+	     :reader country-name)
+   (inhabitants :col-type integer :initarg :inhabitants
+	            :accessor country-inhabitants)
+   (sovereign :col-type (or db-null string) :initarg :sovereign
+	          :accessor country-sovereign))
+  (:metaclass dao-class)
+  (:keys name))
+</pre>
+
+<p>
+　上記では、３つの列（ name 、 inhabitants および sovereign ）を持つテーブルのレコードを処理する為のクラスを定義している。単純なケースでは、上記情報だけでテーブル定義に十分である。：
+</p>
+
+<pre class="code">
+(dao-table-definition 'country)
+;; => "CREATE TABLE country (
+;;      name TEXT NOT NULL,
+;;      inhabitants INTEGER NOT NULL,
+;;      sovereign TEXT,
+;;      PRIMARY KEY (name))"
+(execute (dao-table-definition 'country))
+</pre>
+
+<p>
+　これはデータベース内にテーブルを定義する。 <a href="postmodern_jp.html#execute"><code class="operator">execute</code></a> は <a href="postmodern_jp.html#query"><code class="operator">query</code></a> のように動作するが、如何なる結果も返さない。
+</p>
+
+<p>
+　いくつか国（ country ）を追加してみよう：
+</p>
+
+<pre class="code">
+(insert-dao (make-instance 'country :name "The Netherlands"
+	                                :inhabitants 16800000
+	                                :sovereign "Willem-Alexander"))
+(insert-dao (make-instance 'country :name "Croatia"
+	                                :inhabitants 4400000))
+</pre>
+
+<p>
+　クロアチアの人口を更新するには、このようにする。：
+</p>
+
+<pre class="code">
+(let ((croatia (get-dao 'country "Croatia")))
+  (setf (country-inhabitants croatia) 4500000)
+  (update-dao croatia))
+(query (:select '* :from 'country))
+;; => (("The Netherlands" 16800000 "Willem-Alexander")
+;;     ("Croatia" 4500000 :NULL))
+</pre>
+
+<p>
+　次に、S-SQL 構文をもう少し説明する為、データベースのテーブルのリストを取得する為のユーティリティ関数 <a href="postmodern_jp.html#list-tables"><code class="operator">list-tables</code></a> を示す。<span class="e2">（※関数 <a href="postmodern_jp.html#list-tables"><code class="operator">list-tables</code></a> が使われていない）</span>：
+</p>
+
+<pre class="code">
+(sql (:select 'relname :from 'pg-catalog.pg-class
+	  :inner-join 'pg-catalog.pg-namespace :on (:= 'relnamespace 'pg-namespace.oid)
+	  :where (:and (:= 'relkind "r")
+	               (:not-in 'nspname (:set "pg_catalog" "pg_toast"))
+	               (:pg-catalog.pg-table-is-visible 'pg-class.oid))))
+;; => "(SELECT relname FROM pg_catalog.pg_class
+;;      INNER JOIN pg_catalog.pg_namespace ON (relnamespace = pg_namespace.oid)
+;;      WHERE ((relkind = 'r') and (nspname NOT IN ('pg_catalog', 'pg_toast'))
+;;             and pg_catalog.pg_table_is_visible(pg_class.oid)))"
+</pre>
+
+<p>
+　<a href="s-sql_jp.html#sql"><code class="operator">sql</code></a> は単にクエリをコンパイルするマクロであり、予期しない事象がある場合など、クエリがどのように展開されているか見るのは有用である。
+</p>
+
+<p>
+　見てのとおり、キーワードで始まるリストは、SQL コマンドと演算子を表すために使用される。（キーワード以外で始まるリストは評価され、クエリに挿入される）　クォートされたシンボルは列または表の名前である。（キーワードも使用できるが、曖昧さを招く可能性がある）　構文は、サブクエリ、複数の結合（ join ）、ストアドプロシージャなどをサポートする。完全な処理については、S-SQL <a href="s-sql_jp.html">リファレンスマニュアル</a>を参照。
+</p>
+
+<p>
+　最後にプリペアドステートメントの使用例を示す：
+</p>
+
+<pre class="code">
+(defprepared sovereign-of
+  (:select 'sovereign :from 'country :where (:= 'name '$1))
+  :single!)
+(sovereign-of "The Netherlands")
+;; => "Willem-Alexander"
+</pre>
+
+<p>
+　マクロ <a href="postmodern_jp.html#defprepared"><code class="operator">defprepared</code></a> は、与えられたクエリの <code>$X</code> プレースホルダーと同量の引数を取る関数を作成する。クエリは（データベース接続ごとに）１度だけ解析され計画される。これは特に複雑なクエリの場合には高速になる。
+</p>
+
+<p>
+　データベース切断。
+</p>
+
+<pre class="code">
+(disconnect-toplevel)
+</pre>
+
+<a name="reference"></a>
+<h2>リファレンス</h2>
+
+<p>
+　Postmodern のさまざまなコンポーネントのリファレンスマニュアルは別々のファイルになっている。最短でライブラリを使用するには、 <a href="postmodern_jp.html">Postmodern リファレンス</a>を読み、 <a href="s-sql_jp.html">S-SQL リファレンス</a>に目を通す必要がある。 <a href="simple-date_jp.html">simple-date リファレンス</a>は Postmodern に含まれる時間関連のデータ型を説明し、 <a href="cl-postgres_jp.html">CL-postgres リファレンス</a>は PostgreSQL サーバとの通信用ローレベルライブラリを求める場合に有用である。
+</p>
+
+<ul>
+<li><a href="postmodern_jp.html">Postmodern</a></li>
+<li><a href="s-sql_jp.html">S-SQL</a></li>
+<li><a href="simple-date_jp.html">simple-date</a></li>
+<li><a href="cl-postgres_jp.html">CL-postgres</a></li>
+</ul>
+
+<a name="caveats"></a>
+<h2>注意と対処</h2>
+
+<h3>タイムゾーン</h3>
+
+<p>
+　<a href="simple-date_jp.html"><code class="type">simple-date</code></a> にはタイムゾーンの概念がない。これはむしろエラーを起こしやすいことを意味する。信頼性のある普遍的な時間を保持する必要がある場合は、提供するタイプを使用しないか、タイムゾーンを扱う方法を真剣に考えなければならない。
+</p>
+
+<p>
+　最近多くの作業が <a href="http://www.common-lisp.net/project/local-time"><code>local-time</code></a> で行われており、それはタイムゾーンを理解し <a href="simple-date_jp.html"><code class="type">simple-date</code></a> の問題を解決する。 <a href="http://common-lisp.net/cgi-bin/darcsweb/darcsweb.cgi?r=local-time-local-time-1.0">1.0 のリポジトリ</a>には現在 CL-postgres との統合するの為のコードがあるが、まだ安定していない可能性がある。
+</p>
+
+<h3>移植性</h3>
+
+<p>
+　Postmodern の Lisp コードは、理論的には全ての（ Lisp ）実装を通じて移植可能であり、主要な実装で動作するようだ。メタオブジェクトプロトコルをサポートしていない実装に DAO は持てないが、ライブラリの他の部分はすべて動作する。（広く使用されている全ての実装がこれをサポートしている）
+</p>
+
+<p>
+　7.4 より古いバージョンの PostgreSQL では、ライブラリは間違いなく動作しない。（それはそのバージョンで導入されたクライアント/サーバプロトコルを使用する）　バージョン 8.1 より前のバージョンでは、バイナリ表現が変更されたため、取得した日付オブジェクトと時刻オブジェクトが破損していた。 <a href="postmodern_jp.html#insert-dao"><code class="operator">insert-dao</code></a> の機能の一部（未束縛スロットの自動デフォルト設定）は、PostgreSQL 8.2以降でのみ動作する。
+</p>
+
+<h3>実装すべき事項</h3>
+
+<p>
+　Postmodern がデータベーススキーマの定義、さらにはコード変更時のデータベース更新を支援できる機能があれば素晴らしい。理論的には、 Lisp 側のスキーマとデータベースの状態を比較する関数を構築するのは難しくなく、それで対話的なデータベース更新を支援する。 PostgreSQL は極めて完成された内部監視システムを持っている。残念ながら、データベースには多くの種類のエンティティ（テーブル、ビュー、インデックス、プロシージャ、制約、シーケンスなど）が含まれるため、この実装には多くの労力が必要である。
+</p>
+
+<a name="resources"></a>
+<h2 id="resources">リソース</h2>
+
+<ul>
+<li><a href="https://sites.google.com/site/sabraonthehill/postmodern-examples">Postmodern サンプル集</a></li>
+<li><a href="http://www.postgresql.org/docs/current/static/index.html">PostgreSQL マニュアル</a></li>
+<li><a href="http://www.postgresql.org/docs/current/static/protocol.html">Postmodern が使用するプロトコル</a></li>
+<li><a href="http://clsql.b9.com/">CLSQL</a></li>
+<li><a href="https://github.com/filonenko-mikhail/cl-ewkb">Common Lisp Postgis ライブラリ</a></li>
+<li><a href="http://common-lisp.net/project/local-time/">local-time</a></li>
+</ul>
+
+</body>
+
+</html>

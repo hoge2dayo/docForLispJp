@@ -9,15 +9,6 @@
 
 <body>
 
-<style>
-/* 関数などの定義 */
-p.def {
-	border : solid 1px;
-	padding : 10px;
-	background-color : #eee;
-}
-</style>
-
 <h1>simple-date リファレンスマニュアル</h1>
 
 <p>
@@ -29,35 +20,35 @@ p.def {
 </p>
 
 <p>
-　このライブラリが <a href="cl-postgres.html">CL-postgres</a> の後に読み込まれると、関連するデータベースに適した SQL リーダとライタを登録する。
+　このライブラリが <a href="cl-postgres_jp.html">CL-postgres</a> の後に読み込まれると、関連するデータベースに適した SQL リーダとライタを登録する。
 </p>
 
 <h2>目次</h2>
 
 <ol>
-<li><a href="#date">date 型</a></li>
-<li><a href="#timestamp">timestamp 型</a></li>
-<li><a href="#interval">interval 型</a></li>
+<li><a href="#date-class">date 型</a></li>
+<li><a href="#timestamp-class">timestamp 型</a></li>
+<li><a href="#interval-class">interval 型</a></li>
 <li><a href="#operations">操作</a></li>
 <li><a href="#index">シンボル索引</a></li>
 </ol>
 
-<a name="date"></a>
+<a name="date-class"></a>
 <h2>date 型</h2>
 
 <p class="def">
-<span>クラス</span>
-date
+<span class="deftype">クラス</span>
+<span class="type">date</span>
 </p>
 
 <p class="desc">
 　時刻情報を持たない日付を表す。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="encode-date"></a>
-encode-date (year month day)<br />
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">encode-date</span> <span class="parameter">(year month day)</span><br />
 &#8594; date
 </p>
 
@@ -65,10 +56,10 @@ encode-date (year month day)<br />
 　<span class="type">date</span> オブジェクトを作成する。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="decode-date"></a>
-decode-date (date)<br />
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">decode-date</span> <span class="parameter">(date)</span><br />
 &#8594; (values year month day)
 </p>
 
@@ -76,10 +67,10 @@ decode-date (date)<br />
 　<span class="type">date</span> オブジェクトから要素を抽出する。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="day-of-week"></a>
-day-of-week (date)<br />
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">day-of-week</span> <span class="parameter">(date)</span><br />
 &#8594; integer
 </p>
 
@@ -87,90 +78,92 @@ day-of-week (date)<br />
 　指定された日付に該当する曜日を決定する。値の範囲は 0 から 6 で、 0 は日曜日、 6 は土曜日である。
 </p>
 
-<a name="timestamp"></a>
+<a name="timestamp-class"></a>
 <h2>timestamp 型</h2>
 
+<a name="timestamp"></a>
 <p class="def">
-<span>クラス</span>
-timestamp
+<span class="deftype">クラス</span>
+<span class="type">timestamp</span>
 </p>
 
 <p class="desc">
 　ミリ秒精度でのタイムスタンプを表す。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="encode-timestamp"></a>
-encode-timestamp (year month day &amp;optional (hour 0) (minute 0) (second 0) (millisecond 0))
-<br />&#8594; timestamp
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">encode-timestamp</span> <span class="parameter">(year month day &amp;optional (hour 0) (minute 0) (second 0) (millisecond 0))</span><br />
+&#8594; timestamp
 </p>
 
 <p class="desc">
 　<span class="type">timestamp</span> を作成する。負の値または標準範囲外の値（つまり、分は 60 、ミリ秒は 1000）は渡せない。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="decode-timestamp"></a>
-decode-timestamp (timestamp)
-<br />&#8594; (values year month day hour minute second millisecond)
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">decode-timestamp</span> <span class="parameter">(timestamp)</span><br />
+&#8594; (values year month day hour minute second millisecond)
 </p>
 
 <p class="desc">
 　<span class="type">timestamp</span> を要素にデコードする。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="timestamp-to-universal-time"></a>
-timestamp-to-universal-time (timestamp)
-<br />&#8594; universal-time
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">timestamp-to-universal-time</span> <span class="parameter">(timestamp)</span><br />
+&#8594; universal-time
 </p>
 
 <p class="desc">
 　<span class="type">timestamp</span> を対応する世界時に変換し、秒単位で四捨五入する。これは <span class="type">timestamp</span> を UTC のように扱うことに注意。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="universal-time-to-timestamp"></a>
-universal-time-to-timestamp (universal-time)
-<br />&#8594; timestamp
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">universal-time-to-timestamp</span> <span class="parameter">(universal-time)</span><br />
+&#8594; timestamp
 </p>
 
 <p class="desc">
 　世界時から <span class="type">timestamp</span> を作成する。繰り返すが、結果の <span class="type">timestamp</span> は UTC であるかのように扱われるべきである。
 </p>
 
-<a name="interval"></a>
+<a name="interval-class"></a>
 <h2>interval 型</h2>
 
+<a name="interval"></a>
 <p class="def">
-<span>クラス</span>
-interval
+<span class="deftype">クラス</span>
+<span class="type">interval</span>
 </p>
 
 <p class="desc">
 　<span class="type">interval</span> は時間間隔を表す。ミリ秒単位の絶対部分（日、週、分などは常に同じ長さ）と、月と年の相対部分の両方が含まれる。月または年が表す時間は常に同一ではない。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="encode-interval"></a>
-encode-interval (&amp;key (year 0) (month 0) (week 0) (day 0) (hour 0) (minute 0) (second 0) (millisecond 0))
-<br />&#8594; interval
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">encode-interval</span> <span class="parameter">(&amp;key (year 0) (month 0) (week 0) (day 0) (hour 0) (minute 0) (second 0) (millisecond 0))</span><br />
+&#8594; interval
 </p>
 
 <p class="desc">
 　<span class="type">interval</span> を作成する。引数は負を含め任意の大きさを指定できる。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="decode-interval"></a>
-decode-interval (interval)
-<br />&#8594; (values year month day hour minute second millisecond)
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">decode-interval</span> <span class="parameter">(interval)</span><br />
+&#8594; (values year month day hour minute second millisecond)
 </p>
 
 <p class="desc">
@@ -184,77 +177,77 @@ decode-interval (interval)
 　異なる関数名の拡散を防ぐ為、時間値の操作に総称関数を使用する。これらの意味はオペランドの型によって異なる。
 </p>
 
-<p class="def">
-<span>メソッド</span>
 <a name="time-add"></a>
-time-add (a b)
-<br />&#8594; value
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">time-add</span> <span class="parameter">(a b)</span><br />
+&#8594; value
 </p>
 
 <p class="desc">
 　2 つの時間関連オブジェクトを加算する。 <span class="type">interval</span> を <span class="type">date</span> または <span class="type">timestamp</span> に加算すると、 <span class="type">interval</span> の値だけ加算された新しい <span class="type">date</span> または <span class="type">timestamp</span> が返される。2 つの <span class="type">interval</span> を加算すると、2 つの引数の合計を伴う新しい <span class="type">interval</span> が返される。 <span class="type">interval</span> の代わりに整数を使うことができ、ミリ秒単位での値と解釈される。
 </p>
 
-<p class="def">
-<span>メソッド</span>
 <a name="time-subtract"></a>
-time-subtract (a b)
-<br />&#8594; value
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">time-subtract</span> <span class="parameter">(a b)</span><br />
+&#8594; value
 </p>
 
 <p class="desc">
 　時間関連オブジェクトを減算する。2 つの <span class="type">date</span> または <span class="type">timestamp</span> の減算は、それらの差を表す <span class="type">interval</span> が得られる。同様に、2 つの<span class="type">interval</span> の減算でその差が得られる。
 </p>
 
-<p class="def">
-<span>メソッド</span>
 <a name="time="></a>
-time= (a b)
-<br />&#8594; boolean
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">time=</span> <span class="parameter">(a b)</span><br />
+&#8594; boolean
 </p>
 
 <p class="desc">
 　2 つの時間関連値を比較し、それらが同じ時間または期間を示すかどうかを示す真偽値を返す。
 </p>
 
-<p class="def">
-<span>メソッド</span>
 <a name="time&lt;"></a>
-time&lt; (a b)
-<br />&#8594; boolean
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">time&lt;</span> <span class="parameter">(a b)</span><br />
+&#8594; boolean
 </p>
 
 <p class="desc">
 　2 つの時間関連値を比較し、最初の値が 2 番目の値よりも小さいかどうかを示す真偽値を返す。
 </p>
 
-<p class="def">
-<span>メソッド</span>
 <a name="time&gt;"></a>
-time&gt; (a b)
-<br />&#8594; boolean
+<p class="def">
+<span class="deftype">メソッド</span>
+<span class="operator">time&gt;</span> <span class="parameter">(a b)</span><br />
+&#8594; boolean
 </p>
 
 <p class="desc">
 　2 つの時間関連値を比較し、最初の値が 2 番目の値より大きいかどうかを示す真偽値を返す。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="time&lt;="></a>
-time&lt;= (a b)
-<br />&#8594; boolean
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">time&lt;=</span> <span class="parameter">(a b)</span><br />
+&#8594; boolean
 </p>
 
 <p class="desc">
 　<a href="#time&gt;"><code class="operator">time&gt;</code></a> の逆。
 </p>
 
-<p class="def">
-<span>関数</span>
 <a name="time&gt;="></a>
-time&gt;= (a b)
-<br />&#8594; boolean
+<p class="def">
+<span class="deftype">関数</span>
+<span class="operator">time&gt;=</span> <span class="parameter">(a b)</span><br />
+&#8594; boolean
 </p>
 
 <p class="desc">
