@@ -645,11 +645,11 @@ $(function() {
 </p>
 
 <p class="desc">
-　DAO クラスを継承する場合、派生クラスの列セットには親クラスの全ての列も含まれる。そのようなクラスの主キーは、そのクラス自身でのキーと親クラスからの全てのキーの和である。 DAO クラスを継承するクラスはおそらく常にメタクラス <code class="type">dao-class</code> を使用するべきである。
+　DAO クラスを継承する場合、サブクラスの列セットにはスーパークラスの全ての列も含まれる。そのようなクラスの主キーは、そのクラス自身でのキーとスーパークラスからの全てのキーの和である。 DAO クラスを継承するクラスはおそらく常にメタクラス <code class="type">dao-class</code> を使用するべきである。
 </p>
 
 <p class="desc">
-　メソッド <code class="operator">make-instance</code> で DAO を作成すると、 <code class="keyword">:fetch-defaults</code> キーワード引数を渡すことができ、 <code>T</code> を指定した時、列を参照する全スロットのデフォルト値をフェッチして、 initarg で束縛されない。暗黙的なデフォルトを持つ <code>serial</code> 列などいくつかの場合は、これは機能しない。これを回避するには、 <code class="string">"my_sequence"</code> などの独自シーケンスを作成し、 <code>(<span class="keyword">:nextval</span> <span class="string">"my_sequence"</span>)</code> デフォルトを定義する。
+　関数 <code class="operator">make-instance</code> で DAO を作成すると、 <code class="keyword">:fetch-defaults</code> キーワード引数を渡すことができ、 <code>T</code> を指定した時、列を参照する全スロットのデフォルト値をフェッチして、 initarg で束縛されない。暗黙的なデフォルトを持つ <code>serial</code> 列などいくつかの場合は、これは機能しない。これを回避するには、 <code class="string">"my_sequence"</code> などの独自シーケンスを作成し、 <code>(<span class="keyword">:nextval</span> <span class="string">"my_sequence"</span>)</code> デフォルトを定義する。
 </p>
 
 <p class="desc">
@@ -700,7 +700,7 @@ $(function() {
 </p>
 
 <p class="desc">
-　メソッド <code class="operator">make-instance</code> とメソッド <a href="#insert-dao"><code class="operator">insert-dao</code></a> の複合。作成された dao を返す。
+　関数 <code class="operator">make-instance</code> とメソッド <a href="#insert-dao"><code class="operator">insert-dao</code></a> の複合。作成された dao を返す。
 </p>
 
 <a name="define-dao-finalization"></a>
