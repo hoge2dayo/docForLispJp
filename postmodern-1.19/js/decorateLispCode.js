@@ -263,58 +263,6 @@ function tailEq(seq, ch) {
 }
 
 
-// -------------------- ↓↓↓　没を検討　↓↓↓ --------------------
-
-// DOM要素内のhtmlに於いて、タグの間にあるテキストを置き換える
-// @param elm DOM要素。この中のhtmlに於けるテキストに対してコールバックされる。
-// @param fncReplaceText コールバック関数。
-//		型：function(txt, pos)
-//			txt : HTMLタグの間にあるテキスト
-//			pos : テキストの開始位置
-//			置き換える文字列を返す。
-// @return 生成されたhtml
-function replaceHtmlText(elm, fncReplaceText) {
-	var ht = $(elm).html();
-
-	// 各要素は配列。
-	// [0]:タグ文字列  [1]:タグの位置 
-	var lisTagPos = parseHtmlTagPos(ht);
-
-	if (lisTagPos.length == 0) {
-		// HTMLタグが皆無の場合
-		return fncReplaceText(ht, 0);
-	}
-
-	var lisResult = [];
-
-	var start = 0;
-	var end = 0;
-	var afterReplace;
-
-	for (var idxTagPos = 0; idxTagPos < lisTagPos.length; idxTagPos++) {	// >
-		var tagPos = lisTagPos[idxTagPos];
-
-		end = tagPos[1];
-		afterReplace = fncReplaceText(ht.substring(start, end), start);
-
-		lisResult.push(afterReplace);	// テキスト
-		lisResult.push(tagPos[0]);		// タグ
-
-		start = end + tagPos[0].length;
-	}
-
-	end = ht.length;
-	afterReplace = fncReplaceText(ht.substring(start, end), start);
-
-	lisResult.push(afterReplace);
-
-	return lisResult.join('');
-}
-
-
-// -------------------- ↑↑↑　没を検討　↑↑↑ --------------------
-
-
 // 文字列に含まれるHTMLタグとその位置を返す
 // @param ht 文字列
 // @return HTMLタグとその位置を要素とする配列。
