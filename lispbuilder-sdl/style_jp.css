@@ -139,6 +139,22 @@ div.title {
 .deftype {
 	font-weight: bold;
 }
+
+/* 強調１ */
+.e1 {
+	background-color : #fcc;
+}
+/* 強調２（翻訳で気づいた内容の追記） */
+.e2 {
+	background-color : #eee;
+	color : #f00;
+	font-size : smaller;
+}
+/* 強調３ */
+.e3 {
+	font-weight : bold;
+}
+
 /* オペレータ（関数、マクロなど） */
 .operator {
 	color : #068;
