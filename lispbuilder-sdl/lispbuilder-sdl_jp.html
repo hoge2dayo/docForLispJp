@@ -20,11 +20,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <font color=red>ダウンロードショートカット：</font> <a href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbuilder-sdl.tar.gz</a>.
 </div>
 
+<!-- 翻訳作業用テンプレート -->
+<!--
+<a name=""></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype"></span>
+		<span class="operator"></span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<div class="title"></div>
+		<pre class="code"></pre>
+	</div>
+</div>
+-->
+
 <br>&nbsp;<br>
 <h3><a class=none name="contents">Contents</a></h3>
 <ol>
   <li><a href="#download">ダウンロード</a>
-  <li><a href="#dictionary">The LISPBUILDER-SDL dictionary</a>
+  <li><a href="#dictionary">LISPBUILDER-SDL 用語辞典</a>
     <ol>
       <li><a href="#*black*"><code>*black*</code></a>
       <li><a href="#*blue*"><code>*blue*</code></a>
@@ -353,181 +368,188 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 カレントバージョンは、 0.1.0 である。
 
 <br>&nbsp;<br>
-<h3><a class=none name="dictionary">The LISPBUILDER-SDL dictionary</a></h3>
-
-
+<a name="dictionary"></a>
+<h3>LISPBUILDER-SDL 用語辞典</h3>
 
 <!-- Entry for *BLACK* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*black*'><b>*black*</b></a>
-<blockquote><br>
-
-<p><code>RGB</code> <a href="#color">COLOR</a> black. </p>
-
-</blockquote>
-
+<a name="*black*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*black*</span>
+	</p>
+	<div class="desc">
+		<code>RGB</code> <a href="#color"><span class="type">COLOR</span></a> の黒。
+	</div>
+</div>
 <!-- End of entry for *BLACK* -->
 
-
 <!-- Entry for *BLUE* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*blue*'><b>*blue*</b></a>
-<blockquote><br>
-
-<p><code>RGB</code> <a href="#color">COLOR</a> blue. </p>
-
-</blockquote>
-
+<a name="*blue*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*blue*</span>
+	</p>
+	<div class="desc">
+		<code>RGB</code> <a href="#color"><span class="type">COLOR</span></a> の青。
+	</div>
+</div>
 <!-- End of entry for *BLUE* -->
 
-
 <!-- Entry for *CYAN* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*cyan*'><b>*cyan*</b></a>
-<blockquote><br>
-
-<p><code>RGB</code> <a href="#color">COLOR</a> cyan. </p>
-
-</blockquote>
-
+<a name="*cyan*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*cyan*</span>
+	</p>
+	<div class="desc">
+		<code>RGB</code> <a href="#color"><span class="type">COLOR</span></a> の水色。
+	</div>
+</div>
 <!-- End of entry for *CYAN* -->
 
-
 <!-- Entry for *DEFAULT-COLOR* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-color*'><b>*default-color*</b></a>
-<blockquote><br>
-
-<p>Functions that accept the <code>KEY</code>word parameter <code>COLOR</code> will most likely bind to the symbol <code>*DEFAULT-COLOR*</code> by default if <code>COLOR</code> is not specified. </p><p>A color is bound to <code>*DEFAULT-COLOR*</code> by the following macro: <a href="#with-color">WITH-COLOR</a>. </p><h5>Example</h5><pre><code>(DRAW-BOX A-BOX :SURFACE SDL:DEFAULT-DISPLAY* :COLOR SDL:*BLACK*)
-(DRAW-BOX B-BOX :SURFACE SDL:DEFAULT-DISPLAY* :COLOR SDL:*BLACK*)
-(DRAW-BOX C-BOX :SURFACE SDL:DEFAULT-DISPLAY* :COLOR SDL:*BLACK*) </code></pre><p>The above can be shortened by setting <code>*DEFAULT-COLOR*</code> to <code>*BLACK*</code>. </p><pre><code>(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
-  (WITH-COLOR (COL SDL:*BLACK*)
+<a name="*default-color*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-color*</span>
+	</p>
+	<div class="desc">
+		<p>キーワードパラメータで <span class="type">COLOR</span> を受け入れる関数は <span class="type">COLOR</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-COLOR*</span> に束縛する可能性が高い。</p>
+		<p><span class="type">COLOR</span> は後述のマクロ <a href="#with-color"><span class="operator">WITH-COLOR</span></a> により、 <span class="variable">*DEFAULT-COLOR*</span> に束縛される。</p>
+		<div class="title">例</div>
+		<pre class="code">
+(DRAW-BOX A-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>)
+(DRAW-BOX B-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>)
+(DRAW-BOX C-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>) </pre>
+		<p>上記は、 <span class="variable">*DEFAULT-COLOR*</span> を <span class="variable">*BLACK*</span> へ設定することにより、短縮化できる。</p>
+		<pre class="code">(WITH-SURFACE (DISP <span class="variable">SDL:*DEFAULT-DISPLAY*</span>)
+  (WITH-COLOR (COL <span class="variable">SDL:*BLACK*</span>)
     (DRAW-BOX A-BOX)
     (DRAW-BOX B-BOX)
-    (DRAW-BOX C-BOX))) </code></pre>
-
-</blockquote>
-
+    (DRAW-BOX C-BOX)))</pre>
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-COLOR* -->
 
-
 <!-- Entry for *DEFAULT-DISPLAY* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-display*'><b>*default-display*</b></a>
-<blockquote><br>
-
-<p>The symbol <code>*DEFAULT-DISPLAY*</code> is bound to the current display surface <a href="#display-surface">DISPLAY-SURFACE</a>) by the function <a href="#WINDOW">WINDOW</a>). </p>
-
-</blockquote>
-
+<a name="*default-display*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-display*</span>
+	</p>
+	<div class="desc">
+		<p>シンボル <span class="variable">*DEFAULT-DISPLAY*</span> は、関数 <a href="#WINDOW"><span class="operator">WINDOW</span></a> により、その時点の画面表層 <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> に束縛される。</p>
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-DISPLAY* -->
 
-
 <!-- Entry for *DEFAULT-FONT* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-font*'><b>*default-font*</b></a>
-<blockquote><br>
-
-<p>Functions that accept the <code>KEY</code>word parameter <code>FONT</code> will most likely bind to the symbol <code>*DEFAULT-FONT*</code> by default if <code>FONT</code> is not specified. </p><p>A font is bound to <code>*DEFAULT-FONT*</code> by the following; <a href="#with-default-font">WITH-DEFAULT-FONT</a>, <a href="#with-font">WITH-FONT</a> and <a href="#initialise-default-font">INITIALISE-DEFAULT-FONT</a>. </p><h5>Example</h5><pre><code>(draw-string-solid-* &quot;draw string centered&quot; 100 100
+<a name="*default-font*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-font*</span>
+	</p>
+	<div class="desc">
+		<p>キーワードパラメータで <span class="type">FONT</span> を受け入れる関数は <span class="type">FONT</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-FONT*</span> に束縛する可能性が高い。
+		</p>
+		<p>マクロ <a href="#with-default-font"><span class="operator">WITH-DEFAULT-FONT</span></a> および <a href="#with-font"><span class="operator">WITH-FONT</span></a> 、 <a href="#initialise-default-font"><span class="operator">INITIALISE-DEFAULT-FONT</span></a> により、フォントは <span class="variable">*DEFAULT-FONT*</span> に束縛される。
+		</p>
+		<div class="title">例</div>
+		<pre class="code">(draw-string-solid-* &quot;draw string centered&quot; 100 100
                       :justify :center :color sdl:*white* :font a-font)
 (draw-string-solid-* &quot;draw string left&quot; 100 100
                       :justify :left :color sdl:*white* :font a-font)
 (draw-string-solid-* &quot;draw string right&quot; 100 100
-                      :justify :right :color sdl:*white* :font a-font) </code></pre><p>The above can be shortened by setting <code>*DEFAULT-FONT*</code> to <code>a-font</code>. </p><pre><code>(WITH-DEFAULT-FONT (a-font)
+                      :justify :right :color sdl:*white* :font a-font)</pre>
+		<p>上記は、 <span class="variable">*DEFAULT-FONT*</span> を <span class="code">a-font</span> へ設定することにより、短縮化できる。
+		</p>
+		<pre class="code">(WITH-DEFAULT-FONT (a-font)
   (WITH-COLOR (COL SDL:*WHITE*)
     (DRAW-STRING-SOLID-* &quot;draw string centered&quot; 100 100 :JUSTIFY :CENTER)
     (DRAW-STRING-SOLID-* &quot;draw string left&quot; 100 100 :JUSTIFY :LEFT)
-    (DRAW-STRING-SOLID-* &quot;draw string right&quot; 100 100 :JUSTIFY :RIGHT))) </code></pre>
-
-</blockquote>
-
+    (DRAW-STRING-SOLID-* &quot;draw string right&quot; 100 100 :JUSTIFY :RIGHT)))</pre>
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-FONT* -->
 
-
 <!-- Entry for *DEFAULT-FONT-PATH* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-font-path*'><b>*default-font-path*</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="*default-font-path*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-font-path*</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-FONT-PATH* -->
 
-
 <!-- Entry for *DEFAULT-POSITION* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-position*'><b>*default-position*</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="*default-position*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-position*</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-POSITION* -->
 
-
 <!-- Entry for *DEFAULT-RECTANGLE* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-rectangle*'><b>*default-rectangle*</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="*default-rectangle*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-rectangle*</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-RECTANGLE* -->
 
-
 <!-- Entry for *DEFAULT-SIMPLE-FONT* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-simple-font*'><b>*default-simple-font*</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="*default-simple-font*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-simple-font*</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-SIMPLE-FONT* -->
 
 
 <!-- Entry for *DEFAULT-SURFACE* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*default-surface*'><b>*default-surface*</b></a>
-<blockquote><br>
-
-<p>Functions that accept the <code>KEY</code>word parameter <code>:SURFACE</code> will most likely bind to the symbol <code>*DEFAULT-SURFACE*</code> by default if <code>SURFACE</code> is not specified. </p><p>A surface is bound to <code>*DEFAULT-SURFACE*</code> by the following macros: <a href="#with-surface">WITH-SURFACE</a>, and <a href="#with-surfaces">WITH-SURFACES</a>. </p><h5>Example</h5><pre><code>(DRAW-SURFACE SURF-1 :SURFACE SDL:*DEFAULT-DISPLAY*)
+<a name="*default-surface*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*default-surface*</span>
+	</p>
+	<div class="desc">
+		<p>Functions that accept the <code>KEY</code>word parameter <code>:SURFACE</code> will most likely bind to the symbol <code>*DEFAULT-SURFACE*</code> by default if <code>SURFACE</code> is not specified. 
+		</p>
+		<p>A surface is bound to <code>*DEFAULT-SURFACE*</code> by the following macros: <a href="#with-surface">WITH-SURFACE</a>, and <a href="#with-surfaces">WITH-SURFACES</a>. </p>
+		<div class="title">例</div>
+		<pre class="code">(DRAW-SURFACE SURF-1 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)
-(DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*) </code></pre><p>The above can be shortened using by setting the <code>*DEFAULT-SURFACE*</code> to the display surface. </p><pre><code>(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
+(DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)</pre>
+		<p>The above can be shortened using by setting the <code>*DEFAULT-SURFACE*</code> to the display surface.
+		 </p>
+		<pre class="code">(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
   (DRAW-SURFACE SURF-1)
   (DRAW-SURFACE SURF-2)
-  (DRAW-SURFACE SURF-2)) </code></pre>
-
-</blockquote>
-
+  (DRAW-SURFACE SURF-2))</pre>
+	</div>
+</div>
 <!-- End of entry for *DEFAULT-SURFACE* -->
 
 
@@ -982,7 +1004,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for A -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='a'><b>a</b> <i>color</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>a</b> <i>color</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -998,7 +1020,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for A -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>a</b> <i>(color color-a)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>a</b> <i>(color color-a)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1042,7 +1064,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for ALPHA -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='alpha'><b>alpha</b> <i>surface</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>alpha</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1058,7 +1080,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for ALPHA -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>alpha</b> <i>(surface sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>alpha</b> <i>(surface sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1074,7 +1096,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for ALPHA-ENABLED-P -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='alpha-enabled-p'><b>alpha-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>alpha-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1090,7 +1112,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for ALPHA-ENABLED-P -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>alpha-enabled-p</b> <i>(surface sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>alpha-enabled-p</b> <i>(surface sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1148,7 +1170,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for B -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='b'><b>b</b> <i>color</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>b</b> <i>color</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1164,7 +1186,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for B -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>b</b> <i>(color color)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>b</b> <i>(color color)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1222,7 +1244,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CACHED-SURFACE -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='cached-surface'><b>cached-surface</b> <i>font</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>cached-surface</b> <i>font</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1238,7 +1260,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CACHED-SURFACE -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>cached-surface</b> <i>(font font)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>cached-surface</b> <i>(font font)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1310,7 +1332,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CHAR-HEIGHT -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='char-height'><b>char-height</b> <i>bitmap-font-definition</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>char-height</b> <i>bitmap-font-definition</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1340,7 +1362,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CHAR-HEIGHT -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>char-height</b> <i>(bitmap-font-definition bitmap-font-definition)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>char-height</b> <i>(bitmap-font-definition bitmap-font-definition)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1356,7 +1378,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CHAR-WIDTH -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='char-width'><b>char-width</b> <i>bitmap-font-definition</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>char-width</b> <i>bitmap-font-definition</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1386,7 +1408,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CHAR-WIDTH -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>char-width</b> <i>(bitmap-font-definition bitmap-font-definition)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>char-width</b> <i>(bitmap-font-definition bitmap-font-definition)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1472,7 +1494,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CLIP-RECT -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='clip-rect'><b>clip-rect</b> <i>surface</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>clip-rect</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1488,7 +1510,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for CLIP-RECT -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>clip-rect</b> <i>(surface sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>clip-rect</b> <i>(surface sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1588,7 +1610,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for COLOR-KEY -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='color-key'><b>color-key</b> <i>simple-font-definition</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>color-key</b> <i>simple-font-definition</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1604,7 +1626,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for COLOR-KEY -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>color-key</b> <i>(simple-font-definition simple-font-definition)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>color-key</b> <i>(simple-font-definition simple-font-definition)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1620,7 +1642,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for COLOR-KEY -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>color-key</b> <i>(simple-font-definition sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>color-key</b> <i>(simple-font-definition sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1636,7 +1658,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for COLOR-KEY-ENABLED-P -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='color-key-enabled-p'><b>color-key-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>color-key-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -1652,7 +1674,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for COLOR-KEY-ENABLED-P -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>color-key-enabled-p</b> <i>(surface sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>color-key-enabled-p</b> <i>(surface sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2728,7 +2750,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for FP -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='fp'><b>fp</b> <i>rectangle-array</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>fp</b> <i>rectangle-array</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2744,7 +2766,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for FP -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>fp</b> <i>(rectangle-array rectangle-array)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array rectangle-array)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2760,7 +2782,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for FP -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>fp</b> <i>(rectangle-array color-a)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array color-a)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2776,7 +2798,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for FP -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>fp</b> <i>(rectangle-array color)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array color)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2906,7 +2928,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for G -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='g'><b>g</b> <i>color</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>g</b> <i>color</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -2922,7 +2944,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for G -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>g</b> <i>(color color)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>g</b> <i>(color color)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -3289,7 +3311,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for HEIGHT -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='height'><b>height</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>height</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -3333,7 +3355,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for HEIGHT -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>height</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>height</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -3377,30 +3399,33 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for INIT-SDL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='init-sdl'><b>init-sdl</b> <i><tt>&amp;optional</tt> init</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Initalizes the SDL library when the <code>OPTIONAL</code> parameter <code>INIT</code> is <code>T</code>, or the value returned by <a href="#sdl-init-on-startup">SDL-INIT-ON-STARTUP</a> is <code>T</code>. </p>
-
-</blockquote>
-
+<a name="init-sdl"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">init-sdl</span> <span class="parameter">&amp;optional init</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オプションパラメータ <span class="parameter">INIT</span> が <span class="code">T</span> 、あるいは関数 <a href="#sdl-init-on-startup"><span class="operator">SDL-INIT-ON-STARTUP</span></a> の戻り値が <span class="code">T</span> である時、 SDL ライブラリを初期化する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for INIT-SDL -->
 
-
 <!-- Entry for INIT-SUB-SYSTEMS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='init-sub-systems'><b>init-sub-systems</b> <i><tt>&amp;optional</tt> flags</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Initializes the SDL subsystems specified in <code>FLAGS</code>. <code>FLAGS</code> is an <code>INTEGER</code> bitmask containing the logior of zero or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code> and <code>SDL-INIT-NOPARACHUTE</code>. </p><p><code>INIT-SUB-SYSTEMS</code> can be called only after SDL is succesfully initialized by <a href="#init-sdl">INIT-SDL</a>. </p>
-
-</blockquote>
-
+<a name="init-sub-systems"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">init-sub-systems</span> <span class="parameter">&amp;optional flags</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FLAGS</span> で指定された SDL サブシステムを初期化する。 <span class="parameter">FLAGS</span> は、 0個以上の次の <span class="operator">logior</span> を含むビットマスク整数である。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。
+		</p>
+		<p>関数 <span class="operator">INIT-SUB-SYSTEMS</span> は、 SDL が関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> により正常に初期化された後にのみ呼び出すことができる。
+		</p>
+	</div>
+</div>
 <!-- End of entry for INIT-SUB-SYSTEMS -->
 
 
@@ -3475,16 +3500,27 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for INITIALIZE-ON-STARTUP -->
-
-<p><br>
-［関数］<br>
-<a class=none name='initialize-on-startup'><b>initialize-on-startup</b> <i><tt>&amp;rest</tt> flags</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Sets the SDL subsystems that must be initialized in subsequent calls to <a href="#init-sub-systems">INIT-SUB-SYSTEMS</a>. </p><h5>Parameters</h5><ul><li><code>FLAGS</code> may be one or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code> and <code>SDL-INIT-NOPARACHUTE</code>. </li></ul><h5>Returns</h5><ul><li>Returns an INTEGER bitmask of the SDL subsystems in <code>FLAGS</code>.</li></ul><h5>Example</h5><pre><code>(INITIALIZE-ON-STARTUP SDL:SDL-INIT-VIDEO SDL:SDL-INIT-CDROM) </code></pre>
-
-</blockquote>
-
+<a name="initialize-on-startup"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">initialize-on-startup</span> <span class="parameter">&amp;rest flags</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>後続の関数 <a href="#init-sub-systems"><span class="operator">INIT-SUB-SYSTEMS</span></a> への呼出に於いて、初期化される必要がある SDL サブシステムを設定する。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> は次のいずれか（複数可）にできる。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> に於ける SDL サブシステムのビットマスク整数を返す。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(INITIALIZE-ON-STARTUP SDL:SDL-INIT-VIDEO SDL:SDL-INIT-CDROM)</pre>
+	</div>
+</div>
 <!-- End of entry for INITIALIZE-ON-STARTUP -->
 
 
@@ -3629,18 +3665,20 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for LIST-SUB-SYSTEMS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='list-sub-systems'><b>list-sub-systems</b> <i>flag</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a list of SDL subsystems that are specified in <code>FLAGS</code>. </p><p><code>FLAGS</code> is an <code>INTEGER</code> bitmask containing the logior of zero or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code> and <code>SDL-INIT-NOPARACHUTE</code>. </p>
-
-</blockquote>
-
+<a name="list-sub-systems"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">list-sub-systems</span> <span class="parameter">flags</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FLAGS</span> で指定された SDL サブシステムのリストを返す。
+		</p>
+		<p><span class="parameter">FLAGS</span> は、0個以上の次の <span class="operator">logior</span> を含むビットマスク整数である。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。
+		</p>
+	</div>
+</div>
 <!-- End of entry for LIST-SUB-SYSTEMS -->
-
 
 <!-- Entry for LOAD-IMAGE -->
 
@@ -4035,78 +4073,84 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for QUIT-ON-EXIT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='quit-on-exit'><b>quit-on-exit</b> <i><tt>&amp;rest</tt> flags</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Sets one or more SDL subsystems that must be uninitialized in subsequent calls to <a href="#quit-sub-systems">QUIT-SUB-SYSTEMS</a>. </p><h5>Parameters</h5><ul><li><code>FLAGS</code> may be one or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code>, <code>SDL-INIT-NOPARACHUTE</code>. </li></ul><h5>Returns</h5><ul><li>Returns an INTEGER bitmask of the SDL subsystems in <code>FLAGS</code>.</li></ul><h5>Example</h5><pre><code>(QUIT-ON-EXIT SDL:SDL-INIT-VIDEO SDL:SDL-INIT-CDROM) </code></pre>
-
-</blockquote>
-
+<a name="quit-on-exit"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">quit-on-exit</span> <span class="parameter">&amp;rest flags</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>後続の関数 <a href="#quit-sub-systems"><span class="operator">QUIT-SUB-SYSTEMS</span></a> への呼出に於いて、初期化解除される必要がある SDL サブシステムを設定する。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> は次のいずれか（複数可）にできる。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> に於ける SDL サブシステムのビットマスク整数を返す。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(QUIT-ON-EXIT SDL:SDL-INIT-VIDEO SDL:SDL-INIT-CDROM)</pre>
+	</div>
+</div>
 <!-- End of entry for QUIT-ON-EXIT -->
 
-
 <!-- Entry for QUIT-SDL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='quit-sdl'><b>quit-sdl</b> <i><tt>&amp;optional</tt> quit</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Uninitalizes the SDL library when the <code>OPTIONAL</code> parameter <code>QUIT</code> is <code>T</code>, or the value returned by <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> is <code>T</code>. </p>
-
-</blockquote>
-
+<a name="quit-sdl"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">quit-sdl</span> <span class="parameter">&amp;optional quit</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オプションパラメータ <span class="parameter">QUIT</span> が <span class="code">T</span> 、あるいは関数 <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> によって返される値が <span class="code">T</span> である時に、 SDL ライブラリを初期化解除する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for QUIT-SDL -->
 
-
 <!-- Entry for QUIT-SUB-SYSTEMS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='quit-sub-systems'><b>quit-sub-systems</b> <i><tt>&amp;optional</tt> flags</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Uninitializes the SDL subsystems specified in the <code>INTEGER</code> bitmask <code>FLAGS</code>. <code>FLAGS</code> contains the logior of zero or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code>, <code>SDL-INIT-NOPARACHUTE</code>. </p><p><code>QUIT-SUB-SYSTEMS</code> can be called only after SDL is successfully intialized using <a href="#init-sdl">INIT-SDL</a>. </p>
-
-</blockquote>
-
+<a name="quit-sub-systems"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">quit-sub-systems</span> <span class="parameter">&amp;optional flags</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ビットマスク整数 <span class="parameter">FLAGS</span> で指定された SDL サブシステムを初期化解除する。 <span class="parameter">FLAGS</span> は、 0個以上の次の <span class="operator">logior</span> を含む。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。
+		</p>
+		<p>関数 <span class="operator">QUIT-SUB-SYSTEMS</span> は、関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> を使用して SDL が正常に初期化された後にのみ呼び出すことができる。
+		</p>
+	</div>
+</div>
 <!-- End of entry for QUIT-SUB-SYSTEMS -->
 
-
 <!-- Entry for R -->
-
-<p><br>
-[Generic accessor]<br>
-<a class=none name='r'><b>r</b> <i>color</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>r</b> <i>color</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="r"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">r</span> <span class="parameter">color</span> =&gt; <span class="result">result</span> ／
+		(setf (<span class="operator">r</span> <span class="parameter">color</span>) <span class="parameter">value</span></span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for R -->
 
 
 <!-- Entry for R -->
-
-<p><br>
-[Specialized accessor]<br>
-<a class=none><b>r</b> <i>(color color)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>r</b> <i>(color color)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<!-- <a name=""></a> -->
+<div class="def">
+	<p class="def">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">r</span> <span class="parameter">(color <span class="type">color</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">r</span> (color <span class="type">color</span>)) <span class="param">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for R -->
-
 
 <!-- Entry for RANDOM+1 -->
 
@@ -4319,23 +4363,33 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for RETURN-SUB-SYSTEMS-OF-STATUS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='return-sub-systems-of-status'><b>return-sub-systems-of-status</b> <i>flags status</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns the status <code>STATUS</code> of the the specified SDL subsystems in <code>FLAGS</code> as an INTEGER bitmask. </p><h5>Parameters</h5><ul><li><code>FLAGS</code> may contain a logior of zero or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code>, <code>SDL-INIT-NOPARACHUTE</code>. </li><li><code>STATUS</code> when <code>T</code> determines the status of initialised subsystems. <code>STATUS</code> when <code>NIL</code>, determines the status of uninitialised subsystems. </li></ul><h5>Returns</h5><ul><li>Returns an INTEGER bitmask of the SDL subsystems in <code>FLAGS</code> that are initialised when <code>STATUS</code> is <code>T</code> or uninitialised when <code>STATUS</code> is <code>NIL</code>. </li></ul>
-
-</blockquote>
-
+<a name="return-sub-systems-of-status"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">return-sub-systems-of-status</span> <span class="parameter">flags status</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FLAGS</span> でビットマスク整数として指定された SDL サブシステムの状態 <span class="parameter">STATUS</span> を返す。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> には、 0個以上の次の <span class="operator">logior</span> を含めることができる。： <span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。</li>
+			<li><span class="parameter">STATUS</span> が <span class="code">T</span> の時、初期化されたサブシステムの状態を決定する。 <span class="parameter">STATUS</span> が <span class="code">NIL</span> の時、初期化解除されたサブシステムの状態を決定する。</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> に於いて、<span class="parameter">STATUS</span> が <span class="code">T</span> の時は初期化された、あるいは <span class="parameter">STATUS</span> が <span class="code">NIL</span> の時は初期化解除された SDL サブシステムのビットマスク整数を返す。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for RETURN-SUB-SYSTEMS-OF-STATUS -->
 
 
 <!-- Entry for RLE-ACCEL-ENABLED-P -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='rle-accel-enabled-p'><b>rle-accel-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>rle-accel-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -4351,7 +4405,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for RLE-ACCEL-ENABLED-P -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>rle-accel-enabled-p</b> <i>(surface sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>rle-accel-enabled-p</b> <i>(surface sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -5628,7 +5682,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for WIDTH -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='width'><b>width</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>width</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -5672,7 +5726,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for WIDTH -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>width</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>width</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -5873,29 +5927,76 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for WITH-INIT -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-init'><b>with-init</b> <i>flags declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p><code>WITH-INIT</code> is a convenience macro that will attempt to initialise the SDL library and SDL subsystems prior to executing the forms in <code>BODY</code>. Upon exit <code>WITH-INIT</code> will uninitialize the SDL library and SDL subsystems. </p><p>The lispbuilder-sdl initialization routines are somewhat complicated by the fact that a Lisp development environment will load a foreign library once but then initialise and uninitialise the library multiple times. A C/C++ development environment will open and then close a library after each execution, freeing all resources left hanging by incomplete or buggy uninitialise functions. C libraries may therefore frequently core dump in a Lisp environment when resources are not feed properly prior to the library being reinitialized. </p><p>LISPBUILDER-SDL provides functionality affording the programmer a finer granularity of control of the initialisation/uninitialisation of foreign libraries. The fuctions that provide these capabilities are as follows: </p><ul><li><a href="#initialize-on-startup">INITIALIZE-ON-STARTUP</a></li><li><a href="#quit-on-exit">QUIT-ON-EXIT</a></li><li><a href="#list-sub-systems">LIST-SUB-SYSTEMS</a></li><li><a href="#return-sub-systems-of-status">RETURN-SUB-SYSTEMS-OF-STATUS</a></li><li><a href="#init-sub-systems">INIT-SUB-SYSTEMS</a></li><li><a href="#quit-sub-systems">QUIT-SUB-SYSTEMS</a></li><li><a href="#init-sdl">INIT-SDL</a></li><li><a href="#quit-sdl">QUIT-SDL</a></li></ul><h5>Defaults</h5><ul><li>By default <code>WITH-INIT</code> will only initialise the <code>SDL-INIT-VIDEO</code> SDL subsystem. Additional SDL subsystems can be initialized by calling <a href="#initialize-on-startup">INITIALIZE-ON-STARTUP</a>. </li><li>By default <code>WITH-INIT</code> will only uninitialise the <code>SDL-INIT-VIDEO</code> SDL subsystem. Additional SDL subsystems can be uninitialized by calling <a href="#quit-on-exit">QUIT-ON-EXIT</a>. </li></ul><h6>Initialisation/Uninitialisation of the SDL library</h6><p>The SDL library is initialised only: </p><ul><li>If the library is not yet already initialized, or</li><li><a href="#sdl-init-on-startup">SDL-INIT-ON-STARTUP</a> is <code>T</code>.</li></ul><p>The SDL library is uninitialised only: </p><ul><li>When <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> is <code>T</code>.</li></ul><h6>Initialisation/Uninitialisation of external libraries</h6><p>Hooks are provided to allow external libraries to be initialized or uninitialised automatically following the initialisation or uninitialisation of the SDL library. </p><p>To initialise an external library, push a function that initialises the external library onto <code>*EXTERNAL-INIT-ON-STARTUP*</code>. The function must take no arguments. For example: </p><pre><code>(defun init-ttf ()
+<a name="with-init"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-init</span> <span class="parameter">flags declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <span class="operator">WITH-INIT</span> は、 <span class="code">BODY</span> でフォームを実行する前に SDL ライブラリと SDL サブシステムの初期化を試みる便利なマクロである。 <span class="operator">WITH-INIT</span> 終了の際、 SDL ライブラリと SDL サブシステムを初期化解除する。
+		</p>
+		<p>lispbuilder-sdl 初期化ルーチンは、Lisp 開発環境が外部ライブラリを１回ロードする一方で、ライブラリを複数回初期化および初期化解除する事実により、やや複雑である。Ｃ／Ｃ＋＋開発環境は、オープンして各実行後にライブラリをクローズし、不完全あるいは不具合ある初期化解除関数によりハングされた全てのリソースを解放する。そのため、ライブラリが再初期化される前にリソースが適切に供給されない時、Ｃのライブラリは Lisp 環境に於いて頻繁にコアダンプする。
+		</p>
+		<p>LISPBUILDER-SDL は、外部ライブラリの初期化／初期化解除をより細かく制御できるようにする機能を、プログラマに提供する。これらの機能を提供する関数は次のとおりである。：
+		</p>
+		<ul>
+			<li>関数 <a href="#initialize-on-startup"><span class="operator">INITIALIZE-ON-STARTUP</span></a></li>
+			<li>関数 <a href="#quit-on-exit"><span class="operator">QUIT-ON-EXIT</span></a></li>
+			<li>関数 <a href="#list-sub-systems"><span class="operator">LIST-SUB-SYSTEMS</span></a></li>
+			<li>関数 <a href="#return-sub-systems-of-status"><span class="operator">RETURN-SUB-SYSTEMS-OF-STATUS</span></a></li>
+			<li>関数 <a href="#init-sub-systems"><span class="operator">INIT-SUB-SYSTEMS</span></a></li>
+			<li>関数 <a href="#quit-sub-systems"><span class="operator">QUIT-SUB-SYSTEMS</span></a></li>
+			<li>関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a></li>
+			<li>関数 <a href="#quit-sdl"><span class="operator">QUIT-SDL</span></a></li>
+		</ul>
+		<div class="title">デフォルト</div>
+		<ul>
+			<li>デフォルトでマクロ <span class="operator">WITH-INIT</span> は、 SDL サブシステムの <span class="code">SDL-INIT-VIDEO</span> のみを初期化する。追加の SDL サブシステムは、関数 <a href="#initialize-on-startup"><span class="operator">INITIALIZE-ON-STARTUP</span></a> を呼び出すことにより初期化できる。</li>
+			<li>デフォルトで、マクロ <span class="operator">WITH-INIT</span> は、 SDL サブシステムの <span class="code">SDL-INIT-VIDEO</span> のみを初期化解除する。追加の SDL サブシステムは、関数 <a href="#quit-on-exit"><span class="operator">QUIT-ON-EXIT</span></a> を呼び出すことにより初期化解除できる。</li>
+		</ul>
+		<div class="title2">SDL ライブラリの初期化／初期化解除</div>
+		<p>SDL ライブラリは次の場合のみ初期化される。：
+		</p>
+		<ul>
+			<li>ライブラリがまだ初期化されていない場合、あるいは</li>
+			<li>関数 <a href="#sdl-init-on-startup">SDL-INIT-ON-STARTUP</a> の結果が <span class="code">T</span> である場合。</li>
+		</ul>
+		<p>SDL ライブラリは次の場合のみ初期化解除される。：
+		</p>
+		<ul>
+			<li>関数 <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> の結果が <span class="code">T</span> である時。</li>
+		</ul>
+		<div class="title2">外部ライブラリの初期化／初期化解除</div>
+		<p>SDL ライブラリの初期化あるいは初期化解除に続いて外部ライブラリを自動的に初期化あるいは初期化解除できるようにするフックが提供されている。
+		</p>
+		<p>外部ライブラリの初期化するには、外部ライブラリを初期化する関数を <span class="variable">*EXTERNAL-INIT-ON-STARTUP*</span> へプッシュする。関数は引数なしの必要がある。例：
+		</p>
+		<pre class="code">(defun init-ttf ()
    (if (is-init)
      t
      (sdl-ttf-cffi::ttf-init)))
-(pushnew &#039;init-ttf sdl:*external-init-on-startup*) </code></pre><p>To uninitialise an external library, push a function that uninitialises the external library onto  <code>*EXTERNAL-QUIT-ON-EXIT*</code>. The function must take no arguments. For example: </p><pre><code>(defun quit-ttf ()
+(pushnew &#039;init-ttf sdl:*external-init-on-startup*)</pre>
+		<p>外部ライブラリの初期化解除するには、外部ライブラリを初期化解除する関数を <span class="variable">*EXTERNAL-QUIT-ON-EXIT*</span> へプッシュする。関数は引数なしの必要がある。例：
+		</p>
+		<pre class="code">(defun quit-ttf ()
    (if (is-init)
      (sdl-ttf-cffi::ttf-quit)))
-(pushnew &#039;quit-ttf sdl:*external-quit-on-exit*) </code></pre><h5>Parameters</h5><ul><li><code>FLAGS</code> may be one or more of: <code>SDL-INIT-EVERYTHING</code>, <code>SDL-INIT-VIDEO</code>, <code>SDL-INIT-CDROM</code>, <code>SDL-INIT-AUDIO</code>, <code>SDL-INIT-TIMER</code>, <code>SDL-INIT-JOYSTICK</code>, <code>SDL-INIT-EVENTTHREAD</code> and <code>SDL-INIT-NOPARACHUTE</code>. <em>Note</em>: When <code>FLAGS</code> is set by <code>WITH-INIT</code>, subsequent calls to <a href="#initialize-on-startup">INITIALIZE-ON-STARTUP</a> and <a href="#quit-on-exit">QUIT-ON-EXIT</a> are ignored. <code>WITH-INIT</code> will only initialize and uninitialize the subsytems specified in <code>FLAGS</code>. </li></ul><h5>Example</h5><pre><code>(with-init (SDL-INIT-VIDEO SDL-INIT-CDROM SDL-INIT-AUDIO)
+(pushnew &#039;quit-ttf sdl:*external-quit-on-exit*)</pre>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> は次のいずれか（複数可）にできる。：<span class="code">SDL-INIT-EVERYTHING</span> 、 <span class="code">SDL-INIT-VIDEO</span> 、 <span class="code">SDL-INIT-CDROM</span> 、 <span class="code">SDL-INIT-AUDIO</span> 、 <span class="code">SDL-INIT-TIMER</span> 、 <span class="code">SDL-INIT-JOYSTICK</span> 、 <span class="code">SDL-INIT-EVENTTHREAD</span> 、 <span class="code">SDL-INIT-NOPARACHUTE</span> 。<span class="note">注釈</span>： <span class="operator">WITH-INIT</span> により <span class="parameter">FLAGS</span> が設定される時、続く関数 <a href="#initialize-on-startup"><span class="operator">INITIALIZE-ON-STARTUP</span></a> および関数 <a href="#quit-on-exit"><span class="operator">QUIT-ON-EXIT</span></a> への呼出は無視される。 <span class="operator">WITH-INIT</span> は <span class="parameter">FLAGS</span> で指定されたサブシステムのみ初期化／初期化解除する。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(with-init (SDL-INIT-VIDEO SDL-INIT-CDROM SDL-INIT-AUDIO)
   ....)
 
 (with-init ()
   (INITIALIZE-ON-STARTUP SDL-INIT-VIDEO SDL-INIT-CDROM SDL-INIT-AUDIO)
   (QUIT-ON-EXIT SDL-INIT-VIDEO SDL-INIT-CDROM SDL-INIT-AUDIO)
-  ....) </code></pre>
-
-</blockquote>
-
+  ....)</pre>
+	</div>
+</div>
 <!-- End of entry for WITH-INIT -->
 
 
@@ -6065,7 +6166,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='x'><b>x</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6081,7 +6182,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>x</b> <i>(obj font)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x</b> <i>(obj font)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6097,7 +6198,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>x</b> <i>(obj sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x</b> <i>(obj sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6113,7 +6214,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>x</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6129,7 +6230,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>x</b> <i>(obj vector)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x</b> <i>(obj vector)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6145,7 +6246,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X2 -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='x2'><b>x2</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x2</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6161,7 +6262,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for X2 -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>x2</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>x2</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6177,7 +6278,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='y'><b>y</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6193,7 +6294,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>y</b> <i>(obj font)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y</b> <i>(obj font)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6209,7 +6310,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>y</b> <i>(obj sdl-surface)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y</b> <i>(obj sdl-surface)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6225,7 +6326,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>y</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6241,7 +6342,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>y</b> <i>(obj vector)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y</b> <i>(obj vector)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6257,7 +6358,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y2 -->
 
 <p><br>
-[Generic accessor]<br>
+［総称関数（アクセサ）］<br>
 <a class=none name='y2'><b>y2</b> <i>obj</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y2</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
@@ -6273,7 +6374,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- Entry for Y2 -->
 
 <p><br>
-[Specialized accessor]<br>
+［メソッド（アクセサ）］<br>
 <a class=none><b>y2</b> <i>(obj rectangle)</i> =&gt; <i>result</i></a>
 <br>
 <a class=none><tt>(setf (</tt><b>y2</b> <i>(obj rectangle)</i><tt>)</tt> <i>value</i><tt>)</tt></a>

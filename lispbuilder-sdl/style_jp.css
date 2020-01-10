@@ -7,11 +7,6 @@ body {
 	color : black;
 }
 
-pre {
-	padding : 5px;
-	background-color : #e0e0e0;
-}
-
 h2 {
 	font-size: 140%;
 	border-bottom: 1px solid #449977;
@@ -26,18 +21,18 @@ a {
 	padding : 1px 2px 1px 2px;
 }
 
-a : visited {
+a:visited {
 	text-decoration : none;
 	padding : 1px 2px 1px 2px;
 }
 
-a : hover {
+a:hover {
 	text-decoration : none;
 	padding : 1px 1px 1px 1px;
 	border : 1px solid #000000;
 }
 
-a : focus {
+a:focus {
 	text-decoration : none;
 	padding : 1px 2px 1px 2px;
 	border : none;
@@ -48,21 +43,19 @@ a.none {
 	padding : 0;
 }
 
-a.none : visited {
+a.none:visited {
 	text-decoration : none;
 	padding : 0;
 }
 
-a.none : hover {
+a.none:hover {
 	text-decoration : none;
 	border : none;
-	padding : 0;
 }
 
-a.none : focus {
+a.none:focus {
 	text-decoration : none;
 	border : none;
-	padding : 0;
 }
 
 a.noborder {
@@ -70,25 +63,113 @@ a.noborder {
 	padding : 0;
 }
 
-a.noborder : visited {
+a.noborder:visited {
 	text-decoration : none;
 	padding : 0;
 }
 
-a.noborder : hover {
+a.noborder:hover {
 	text-decoration : none;
-	border : none;
 	padding : 0;
+	border : none;
 }
 
-a.noborder : focus {
+a.noborder:focus {
 	text-decoration : none;
-	border : none;
 	padding : 0;
+	border : none;
+}
+
+pre {
+	padding : 5px;
 }
 
 pre.none {
 	padding : 5px;
 	background-color : #ffffff;
 }
+
+.code {
+	background-color : #e0e0e0;
+	font-family : "HGGothicM";
+}
+
+pre.code {
+	margin : 0 16px;
+	padding : 7px;
+	border : 1px solid #909090;
+	line-height : 1.3em;
+}
+
+div.def {
+	margin : 0;
+	padding : 0;
+}
+
+p.def {
+	margin: 0 0 20px 0;
+	padding : 10px;
+	border : solid 1px #000;
+	background-color : #f0f0f0;
+	font-family : "HGGothicM";
+}
+
+div.desc {
+	margin-left: 1em;
+}
+
+.title {
+	font-weight: bold;
+}
+/* title より低いレベルのタイトル */
+.title2 {
+	background-color : #ffffe0;
+}
+
+div.title {
+	margin : 10px 0px;
+}
+
+.note {
+	font-weight : bold;
+	color : #800000;
+}
+
+/* 定義しているものの種別（関数、変数など） */
+.deftype {
+	font-weight: bold;
+}
+/* オペレータ（関数、マクロなど） */
+.operator {
+	color : #068;
+}
+/* 型名 */
+.type {
+	text-decoration : underline;
+}
+/* パラメータ */
+.parameter {
+	font-style : oblique;
+}
+/* 結果／戻り値 */
+.result {
+	color : #a0a;
+}
+/* 文字列定数 */
+.string {
+	color : #a04;
+}
+/* キーワード */
+.keyword {
+	color : #a0a
+}
+/* Lisp コード中のコメント */
+.comment {
+	color : #080;
+}
+/* グローバル変数 */
+.variable {
+	color : #00f;
+}
+
 
