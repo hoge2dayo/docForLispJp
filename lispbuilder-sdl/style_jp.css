@@ -187,5 +187,9 @@ div.title {
 .variable {
 	color : #00f;
 }
+/* 定数 */
+.constant {
+	color : #660;
+}
 
 

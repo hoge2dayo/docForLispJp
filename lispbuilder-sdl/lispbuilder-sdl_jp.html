@@ -2059,17 +2059,18 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for DISPLAY-SURFACE -->
+<a name="display-surface"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">display-surface</span>
+	</p>
+	<div class="desc">
 
-<p><br>
-[Standard class]<br>
-<a class=none name='display-surface'><b>display-surface</b></a>
-<blockquote><br>
-
-<p>The current display surface. Can be accessed using <code>SDL:*DEFAULT-DISPLAY*</code>.
- </p>
-
-</blockquote>
-
+		<p>カレントの表示面。 <span class="variable">SDL:*DEFAULT-DISPLAY*</span> を使用することでアクセスできる。
+		</p>
+	</div>
+</div>
 <!-- End of entry for DISPLAY-SURFACE -->
 
 
@@ -2617,25 +2618,26 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 </div>
 <!-- End of entry for DRAW-HLINE -->
 
-
 <!-- Entry for DRAW-LINE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-line'><b>draw-line</b> <i>p1 p2 <tt>&amp;key</tt> surface color clipping aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>See <a href="#draw-line-*">DRAW-LINE-*</a>.
- </p>
-<h5>Parameters</h5>
-<ul><li><code>P1</code> and <code>P2</code> are the start and end x/y co-ordinates of the line, of <code>POINT</code>.</li>
-</ul>
-<h5>Packages</h5>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+<a name="draw-line"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-line</span> <span class="parameter">p1 p2 &amp;key surface color clipping aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#draw-line-*"><span class="operator">DRAW-LINE-*</span></a> 参照。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> および <span class="parameter">P2</span> は、線の始点および終点の x/y 座標であり、 <span class="type">POINT</span> である。</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="e1">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-LINE -->
 
 
@@ -5368,42 +5370,43 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-ANY-FORMAT -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-any-format'><b>sdl-any-format</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>;  Causes SDL to return a <a href="#display-surface">DISPLAY-SURFACE</a> of any pixel depth if the requested pixel depth is unavailable. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that the surface was created with <code>SDL-ANY-FORMAT</code>. </li>
-</ul>
-<p>Normally, if a <a href="#display-surface">DISPLAY-SURFACE</a> of the requested bits-per-pixel (bpp) is not available, SDL will emulate one with a shadow surface. Passing <code>SDL-ANY-FORMAT</code> prevents this and causes SDL to use the <a href="#display-surface">DISPLAY-SURFACE</a> surface, regardless of its pixel depth.
- </p>
-
-</blockquote>
-
+<a name="sdl-any-format"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-any-format</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window">WINDOW</a> へ <span class="code">FLAG</span> として渡された時 ： 要求されたピクセル深度が利用できない場合に、 SDL はあらゆるピクセル深度の <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を返す。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスが <span class="constant">SDL-ANY-FORMAT</span> で生成されたことを示す。</li>
+		</ul>
+		<p>通常、要求されたピクセルあたりのビット数（ bpp ）の <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> が利用できない場合、 SDL はシャドウサーフェスでエミュレートする。 <span class="constant">SDL-ANY-FORMAT</span> を渡すことはこれを防ぎ、ピクセル深度に拘わらず、 SDL のサーフェス <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を使用する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-ANY-FORMAT -->
 
-
 <!-- Entry for SDL-ASYNC-BLIT -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-async-blit'><b>sdl-async-blit</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; Enables the use of asynchronous updates of the <a href="#display-surface">DISPLAY-SURFACE</a>. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates if the surface uses asynchronous blits when possible. </li>
-</ul>
-<p>Asynchronous blits usually slows down blitting on single CPU machines, but may provide a speed increase on SMP systems.
- </p>
-
-</blockquote>
-
+<a name="sdl-async-blit"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-async-blit</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li><span class="code">FLAG</span> として関数 <a href="#window"><span class="operator">WINDOW</span></a> へ渡された時 ： <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の非同期更新の使用を有効にする。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： 可能な時、サーフェスが非同期ブリットを使用するかどうかを示す。</li>
+		</ul>
+		<p>非同期ブリットは通常、単一 CPU の機器上でのブリットを遅くするが、 SMP システム上では速度向上するかも知れない。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-ASYNC-BLIT -->
 
 
@@ -5427,54 +5430,54 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-DOUBLEBUF -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-doublebuf'><b>sdl-doublebuf</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; Enable hardware double buffering; only valid with <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; Indicages that the surface is double buffered. </li>
-</ul>
-<p>Calling <a href="#sdl-flip">SDL-FLIP</a> will flip the buffers and update the screen. All drawing will take place on the surface that is not displayed at the moment. If double buffering could not be enabled then <a href="#sdl-flip">SDL-FLIP</a> will just perform a <a href="#sdl-update-rect">SDL-UPDATE-RECT</a> on the entire screen.
- </p>
-
-</blockquote>
-
+<a name="sdl-doublebuf"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-doublebuf</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： ハードウェアのダブルバッファリングを有効にする。 ：  <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> を伴う時のみ有効。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがダブルバッファリングであることを示す。</li>
+		</ul>
+		<p><a href="#sdl-flip">SDL-FLIP</a> 呼び出しは、バッファを反転させて画面を更新する。全ての描画は、現在表示されていないサーフェス上で行われる。ダブルバッファリングを有効にできなかった場合、 <a href="#sdl-flip">SDL-FLIP</a> は単に画面全体で <a href="#sdl-update-rect">SDL-UPDATE-RECT</a> を実行する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-DOUBLEBUF -->
 
 
 <!-- Entry for SDL-FULLSCREEN -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-fullscreen'><b>sdl-fullscreen</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; SDL will attempt to use a fullscreen mode. If a hardware resolution change is not possible (for whatever reason), the next higher resolution will be used and the display window centered on a black background. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that the surface is full-screen. </li>
-</ul>
-
-</blockquote>
-
+<a name="sdl-fullscreen"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-fullscreen</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： SDL はフルスクリーンモードの使用を試みる。（何らかの理由で）ハードウェア解像度が変更できない場合、次に高い解像度が使用され、黒い背景上に中央配置のウィンドウを表示する。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがフルスクリーンであることを示す。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for SDL-FULLSCREEN -->
 
-
 <!-- Entry for SDL-GET-TICKS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='sdl-get-ticks'><b>sdl-get-ticks</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-get-ticks"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">sdl-get-ticks</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-GET-TICKS -->
 
 
@@ -5496,128 +5499,116 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-HW-PALETTE -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-hw-palette'><b>sdl-hw-palette</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a> and <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; Gives SDL exclusive palette access to <a href="#display-surface">DISPLAY-SURFACE</a>. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that the surface has an exclusive palette. </li>
-</ul>
-<p>Without this flag you may not always get the the colors you request with <a href="#sdl-set-colors">SDL-SET-COLORS</a> or <a href="#sdl-set-palette">SDL-SET-PALETTE</a>.
- </p>
-
-</blockquote>
-
+<a name="sdl-hw-palette"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-hw-palette</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> および <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> に適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> への専用パレットアクセスを SDL へ与える。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスが専用パレットを持つことを示す。</li>
+		</ul>
+		<p>このフラグがなければ、 <a href="#sdl-set-colors">SDL-SET-COLORS</a> あるいは <a href="#sdl-set-palette">SDL-SET-PALETTE</a> と共に要求された色が、常に取得できるとは限らない。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-HW-PALETTE -->
 
-
 <!-- Entry for SDL-HW-SURFACE -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-hw-surface'><b>sdl-hw-surface</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a> and <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a> or <a href="#create-surface">CREATE-SURFACE</a>;  Create the <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a> in video memory. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates if the surface is stored in video memory. </li>
-</ul>
-<p>This will allow SDL to take advantage of Video-&gt;Video blits (which are often accelerated).
- </p>
-
-</blockquote>
-
+<a name="sdl-hw-surface"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-hw-surface</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> および <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li><span class="code">FLAG</span> として関数 <a href="#window"><span class="operator">WINDOW</span></a> あるいは関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> へ渡した時 ： ビデオメモリに <a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を生成する。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがビデオメモリに保存されているかどうかを示す。</li>
+		</ul>
+		<p>これにより、SDL はビデオ-&gt;ビデオのブリットの利点（多くの場合加速される）を得られる。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-HW-SURFACE -->
 
-
 <!-- Entry for SDL-INIT-AUDIO -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-audio'><b>sdl-init-audio</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-audio"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-audio</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-AUDIO -->
 
-
 <!-- Entry for SDL-INIT-CDROM -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-cdrom'><b>sdl-init-cdrom</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-cdrom"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-cdrom</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-CDROM -->
 
-
 <!-- Entry for SDL-INIT-EVENTTHREAD -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-eventthread'><b>sdl-init-eventthread</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-eventthread"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-eventthread</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-EVENTTHREAD -->
 
-
 <!-- Entry for SDL-INIT-EVERYTHING -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-everything'><b>sdl-init-everything</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-everything"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-everything</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-EVERYTHING -->
 
-
 <!-- Entry for SDL-INIT-JOYSTICK -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-joystick'><b>sdl-init-joystick</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-joystick"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-joystick</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-JOYSTICK -->
 
-
 <!-- Entry for SDL-INIT-NOPARACHUTE -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-noparachute'><b>sdl-init-noparachute</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-noparachute"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-noparachute</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-NOPARACHUTE -->
-
 
 <!-- Entry for SDL-INIT-ON-STARTUP -->
 
@@ -5635,44 +5626,39 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-INIT-TIMER -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-timer'><b>sdl-init-timer</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-timer"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-timer</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-TIMER -->
 
-
 <!-- Entry for SDL-INIT-VIDEO -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-init-video'><b>sdl-init-video</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-init-video"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-init-video</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-VIDEO -->
 
-
 <!-- Entry for SDL-IYUV-OVERLAY -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-iyuv-overlay'><b>sdl-iyuv-overlay</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-iyuv-overlay"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-iyuv-overlay</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-IYUV-OVERLAY -->
 
 
@@ -5691,40 +5677,42 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-NO-FRAME -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-no-frame'><b>sdl-no-frame</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; If possible, <code>SDL-NO-FRAME</code> causes SDL to create a window with no title bar or frame decoration. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; <em></em>Note: Per the SDL documentation, this is not stored in <code>FLAGS</code>. </li>
-</ul>
-<p>Fullscreen modes automatically have this flag set.
- </p>
-
-</blockquote>
-
+<a name="sdl-no-frame"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-no-frame</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： 可能な場合、 <span class="constant">SDL-NO-FRAME</span> により、 SDL はタイトルバーやフレーム装飾のないウィンドウを生成する。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： <span class="note">注釈：</span> SDL のドキュメントによると、これは <span class="code">FLAGS</span> に保存されない。</li>
+		</ul>
+		<p>フルスクリーンモードでは、このフラグが自動的に設定される。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-NO-FRAME -->
 
 
 <!-- Entry for SDL-OPENGL -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-opengl'><b>sdl-opengl</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; Create an OpenGL rendering context. You should have previously set OpenGL video attributes with <a href="#sdl-gl-set-attribute">SDL-GL-SET-ATTRIBUTE</a>. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that the surface has an OpenGL rendering context. </li>
-</ul>
-
-</blockquote>
-
+<a name="sdl-opengl"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-opengl</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： OpenGL レンダリングコンテキストを生成する。 OpenGL ビデオ属性に、 <a href="#sdl-gl-set-attribute"><span class="constant">SDL-GL-SET-ATTRIBUTE</span></a> を事前に設定しておく必要がある。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスが OpenGL レンダリングコンテキストを持つことを示す。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for SDL-OPENGL -->
 
 
@@ -5761,22 +5749,23 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-RESIZABLE -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-resizable'><b>sdl-resizable</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a>; Create a resizable window. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that the surface is resizable. </li>
-</ul>
-<p>When the window is resized by the user a :VIDEO-RESIZE-EVENT event is generated and <a href="#window">WINDOW</a> can be called again with the new size.
- </p>
-
-</blockquote>
-
+<a name="sdl-resizable"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-resizable</span>
+	</p>
+	<div class="desc">
+		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： サイズ変更可能なウィンドウを生成する。</li>
+			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがサイズ変更可能であることを示す。</li>
+		</ul>
+		<p>ユーザによりウィンドウがサイズ変更された時、 <span class="code">:VIDEO-RESIZE-EVENT</span> イベントが生成され、新しいサイズと共に関数 <a href="#window"><span class="operator">WINDOW</span></a> が再度呼び出すことができる。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-RESIZABLE -->
 
 
@@ -5867,92 +5856,83 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SDL-SW-SURFACE -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-sw-surface'><b>sdl-sw-surface</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a> and <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When passed as a <code>FLAG</code> to <a href="#window">WINDOW</a> or <a href="#create-surface">CREATE-SURFACE</a>; Create the <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a> in system memory. </li>
-<li>When read from the <code>FLAGS</code> field in <a href="#surface">SURFACE</a> or <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates if the surface is stored in system memory. </li>
-</ul>
-<p>This improves the performance of pixel level access, however you may not be able to take advantage of some types of hardware blitting.
- </p>
-
-</blockquote>
-
+<a name="sdl-sw-surface"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-sw-surface</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> および <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> あるいは関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> への <span class="parameter">FLAG</span> として渡された時 ： システムメモリに <a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を生成する。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> あるいは <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがシステムメモリに格納されているかどうかを示す。</li>
+		</ul>
+		<p>これはピクセルレベルでのアクセスのパフォーマンスを向上させるが、一部の種類のハードウェアブリットの利点は得られないかも知れない。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-SW-SURFACE -->
 
-
 <!-- Entry for SDL-UYVY-OVERLAY -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-uyvy-overlay'><b>sdl-uyvy-overlay</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-uyvy-overlay"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-uyvy-overlay</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-UYVY-OVERLAY -->
 
-
 <!-- Entry for SDL-WM-GRAB-INPUT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='sdl-wm-grab-input'><b>sdl-wm-grab-input</b> <i>mode</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-wm-grab-input"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">sdl-wm-grab-input</span> <span class="parameter">mode</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-WM-GRAB-INPUT -->
 
-
 <!-- Entry for SDL-YUY2-OVERLAY -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-yuy2-overlay'><b>sdl-yuy2-overlay</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-yuy2-overlay"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-yuy2-overlay</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-YUY2-OVERLAY -->
 
-
 <!-- Entry for SDL-YV12-OVERLAY -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-yv12-overlay'><b>sdl-yv12-overlay</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-yv12-overlay"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-yv12-overlay</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-YV12-OVERLAY -->
 
-
 <!-- Entry for SDL-YVYU-OVERLAY -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-yvyu-overlay'><b>sdl-yvyu-overlay</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-yvyu-overlay"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-yvyu-overlay</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-YVYU-OVERLAY -->
 
 
@@ -6514,17 +6494,17 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for SURFACE -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='surface'><b>surface</b></a>
-<blockquote><br>
-
-<p>This object is garbage collected and the <code>SDL_Surface</code> object freed when out of scope. Free using <a href="#free">FREE</a>.
- </p>
-
-</blockquote>
-
+<a name="surface"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">surface</span>
+	</p>
+	<div class="desc">
+		<p>スコープ外の時、このオブジェクトはガーベジコレクションされ、 <span class="type">SDL_Surface</span> オブジェクトは解放される。総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SURFACE -->
 
 
@@ -6795,32 +6775,40 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for WINDOW -->
+<a name="window"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">window</span> <span class="parameter">width height &amp;key bpp flags title-caption icon-caption</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>SDL_SetVideoMode を使用して、ピクセル幅 <span class="parameter">WIDTH</span> および高さ <span class="parameter">HEIGHT</span> の新しい SDL ウィンドウを生成する。
+		</p>
+		<p>ピクセルごとの操作、あるいはアルファチャネルを伴うブリットサーフェスの実行を行うつもりで、かつ高いフレームレートが必要な場合は、（ <span class="parameter">FLAGS</span> に） <span class="constant">SDL-SW-SURFACE</span> を使用する。 <span class="constant">SDL-HW-SURFACE</span> のようなハードウェアサーフェスを使用する時、ビデオメモリとシステムメモリをロックする時に、 SDL はサーフェスをビデオメモリからシステムメモリへコピーし、そしてそれらをロック解除する時にコピーし戻す。これは大きなパフォーマンス低下を引き起こす。（ハードウェアサーフェスを要求しても、ソフトウェアサーフェスを受け取るかも知れない点に注意。多くのプラットフォームは、 <span class="constant">SDL-FULL-SCREEN</span> を使用する時にのみ、ハードウェアサーフェスを提供できる。）　ブリットを行うサーフェスがビデオメモリにも配置できる時、 <span class="constant">SDL-HW-SURFACE</span> が最適である。
+		</p>
+		<p><span class="note">注釈：</span> ウィンドウ化されたサーフェスの生成時、画面上の位置を制御するには、環境変数 <span class="code">SDL_VIDEO_CENTERED=center</span> あるいは <span class="code">SDL_VIDEO_WINDOW_POS=x,y</span> を設定する。これらは <a href="#sdl-put-env">SDL-PUT-ENV</a> を使用して設定できる。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">WIDTH</span> はウィンドウのピクセル幅であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">HEIGHT</span> はウィンドウのピクセルでの高さであり、整数型（ <span class="type">INTEGER</span> ）である。もし <span class="parameter">WIDTH</span> と <span class="parameter">HEIGHT</span> が両方 <span class="code">0</span> である場合、カレントのビデオモード（あるいは、モードが設定されていない場合、デスクトップモード）の幅と高さが使用される。</li>
+			<li><span class="parameter">BPP</span> はピクセルあたりのビット数である。デフォルトは、カレント表示に於けるピクセルあたりのビット数を示す <span class="code">0</span> である。<span class="note">注釈：</span> <span class="code">24</span> の <span class="parameter">BPP</span> は、 3 バイト／ピクセルのパックド形式を使用する。より一般的な 4 バイト／ピクセルモードは、 <span class="code">32</span> の <span class="parameter">BPP</span> を使用する。</li>
+			<li><span class="parameter">FLAGS</span> はビットマスクされた次のいずれか（複数可）の logior である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
+			<li><span class="parameter">TITLE-CAPTION</span> は、ウィンドウのタイトルバーに現れるタイトルであり、文字列型（ <span class="type">STRING</span> ）である。</li>
+			<li><span class="parameter">ICON-CAPTION</span> は、ウィンドウが最小化された時に現れるタイトルであり、文字列型（ <span class="type">STRING</span> ）である。</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>正常終了の場合、新しい <span class="type">DISPLAY-SURFACE</span> を返し、異常終了の場合、 <span class="code">NIL</span> を返す。 SDL_SetVideoMode が満たせる <span class="parameter">flags</span> は全て、 <span class="type">SURFACE</span> のフラグメンバで設定される。返された <span class="type">SURFACE</span> は SDL により解放され、決して呼び出し側により解放されるべきではない。この規則は、 <span class="code">WINDOW</span> への連続した呼び出しを含む。（つまり、サイズ変更あるいは解像度変更時）　全ての存在するサーフェスは、 SDL により自動的に解放される。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(WINDOW 320 240 :TITLE-CAPTION &quot;Random-Rects&quot; :ICON-CAPTION &quot;Random-Rects&quot;
+                 :FLAGS &#039;(SDL-DOUBLEBUF SDL-FULLSCREEN))</pre>
+	</div>
+</div>
 
-<p><br>
-［関数］<br>
-<a class=none name='window'><b>window</b> <i>width height <tt>&amp;key</tt> bpp flags title-caption icon-caption</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates a new SDL window of pixel width <code>WIDTH</code> and height <code>HEIGHT</code> using SDL_SetVideoMode.
- </p>
-<p>Use <code>SDL-SW-SURFACE</code> if you plan on doing per-pixel manipulations, or blit surfaces with alpha channels, and require a high framerate. When you use hardware surfaces like <code>SDL-HW-SURFACE</code>, SDL copies the surfaces from video memory to system memory when you lock them, and back when you unlock them. This can cause a major performance hit. (Be aware that you may request a hardware surface, but receive a software surface. Many platforms can only provide a hardware surface when using <code>SDL-FULL-SCREEN.) </code>SDL-HW-SURFACE` is best used when the surfaces you&#039;ll be blitting can also be stored in video memory.
- </p>
-<p><em>Note:</em> To control the position on the screen when creating a windowed surface, set the environment variables <code>SDL_VIDEO_CENTERED=center</code> or <code>SDL_VIDEO_WINDOW_POS=x,y</code>. These may be set using <a href="#sdl-put-env">SDL-PUT-ENV</a>.
- </p>
-<h5>Parameters</h5>
-<ul><li><code>WIDTH</code> the pixel width of the window, of type <code>INTEGER</code>.</li>
-<li><code>HEIGHT</code> the pixel height of the window, of type <code>INTEGER</code>. If <code>WIDTH</code> and <code>HEIGHT</code> are both <code>0</code>, then the width and height of the current video mode is used (or the desktop mode, if no mode has been set). </li>
-<li><code>BPP</code> the number of bits per pixel. Defaults to <code>0</code> which is the current display bits per pixel. <em>Note:</em> A <code>BPP</code> of <code>24</code> uses the packed representation of 3 bytes/pixel. For the more common 4 bytes/pixel mode, use a <code>BPP</code> of 32. </li>
-<li><code>FLAGS</code> is a bitmasked logior of one or more of the following; <a href="#sdl-sw-surface">SDL-SW-SURFACE</a>, <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>, <a href="#sdl-async-blit">SDL-ASYNC-BLIT</a>, <a href="#sdl-any-format">SDL-ANY-FORMAT</a>, <a href="#sdl-hw-palette">SDL-HW-PALETTE</a>, <a href="#sdl-doublebuf">SDL-DOUBLEBUF</a>, <a href="#sdl-fullscreen">SDL-FULLSCREEN</a>, <a href="#sdl-opengl">SDL-OPENGL</a>, <a href="#sdl-resizable">SDL-RESIZABLE</a> and <a href="#SDL-NO-FRAME">SDL-NO-FRAME</a>. </li>
-<li><code>TITLE-CAPTION</code> is the title that appears in the Window title bar, of type <code>STRING</code>.</li>
-<li><code>ICON-CAPTION</code> is the title that appears when the Window is minimized, of type <code>STRING</code>.</li>
-</ul>
-<h5>Returns</h5>
-<ul><li>Returns a new <code>DISPLAY-SURFACE</code> if successful, <code>NIL</code> if unsuccessful. Whatever flags SDL_SetVideoMode could satisfy are set in the flags member of <code>SURFACE</code>. The <code>SURFACE</code> returned is freed by SDL and should never be freed by the caller. This rule includes consecutive calls to <code>WINDOW</code> (i.e. upon resize or resolution change) - any existing surface will be released automatically by SDL. </li>
-</ul>
-<h5>Example</h5>
-<pre><code>(WINDOW 320 240 :TITLE-CAPTION &quot;Random-Rects&quot; :ICON-CAPTION &quot;Random-Rects&quot;
-                 :FLAGS &#039;(SDL-DOUBLEBUF SDL-FULLSCREEN)) </code></pre>
 
 </blockquote>
 
