@@ -3088,28 +3088,30 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for DRAW-VLINE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-vline'><b>draw-vline</b> <i>x y0 y1 <tt>&amp;key</tt> surface color clipping template</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Draw a vertical line of <a href="#color">COLOR</a> from <code>Y0</code> to <code>Y1</code> through <code>X</code> onto <a href="#surface">SURFACE</a>.
- </p>
-<h5>Parameters</h5>
-<ul><li><code>X</code> is the horizontal <code>INTEGER</code> coordinate that the vertical line must intersect.</li>
-<li><code>Y0</code> and <code>Y1</code> are the vertical start and end points of the line, of <code>INTEGER</code>.</li>
-<li><code>:SURFACE</code> is the target <a href="#surface">SURFACE</a>.</li>
-<li><code>:COLOR</code> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><code>:CLIPPING</code> is <code>NIL</code> The default is <code>NIL</code> as the SDL library will perform the necessary clipping automatically.</li>
-<li><code>:TEMPLATE</code> specifies an optional <a href="#rectangle">RECTANGLE</a> to fill the surface. Will not free <code>TEMPLATE</code>.</li>
-</ul>
-<h5>Packages</h5>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+<a name="draw-vline"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-vline</span> <span class="parameter">x y0 y1 &amp;key surface color clipping template</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface">SURFACE</a> 上に <a href="#color">COLOR</a> の垂直線を、 <span class="code">X</span> を通る <span class="code">Y0</span> から <span class="code">Y1</span> まで描画する。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> は、垂直線が必ず横断する水平方向の整数（ <span class="type">INTEGER</span> ）座標である。</li>
+			<li><span class="parameter">Y0</span> および <span class="parameter">Y1</span> は、線の垂直方向の始点および終点であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="e2">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
+			<li><span class="parameter">TEMPLATE</span> は、オプションで表面を塗りつぶす為の <a href="#rectangle"><span class="type">RECTANGLE</span></a> を指定する。 <span class="parameter">TEMPLATE</span> は解放されない。</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="e1">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-VLINE -->
 
 
