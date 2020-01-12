@@ -4,6 +4,7 @@ body {
 	margin : 0;
 	font-family : tahoma, arial, sans-serif;
 	padding : 50px 100px;
+	line-height : 1.3em;
 	color : black;
 }
 
@@ -90,14 +91,14 @@ pre.none {
 }
 
 .code {
-	background-color : #e0e0e0;
+	background-color : #dddddd;
 	font-family : "HGGothicM";
 }
 
 pre.code {
 	margin : 0 16px;
 	padding : 7px;
-	border : 1px solid #909090;
+	border : 1px solid #888888;
 	line-height : 1.3em;
 }
 
@@ -110,7 +111,7 @@ p.def {
 	margin: 0 0 20px 0;
 	padding : 10px;
 	border : solid 1px #000;
-	background-color : #f0f0f0;
+	background-color : #ffffff;
 	font-family : "HGGothicM";
 }
 
@@ -119,11 +120,12 @@ div.desc {
 }
 
 .title {
+	background-color : #ffffdd;
 	font-weight: bold;
 }
 /* title より低いレベルのタイトル */
 .title2 {
-	background-color : #ffffe0;
+	background-color : #eeffdd;
 }
 
 div.title {
@@ -132,7 +134,7 @@ div.title {
 
 .note {
 	font-weight : bold;
-	color : #800000;
+	color : #880000;
 }
 
 /* 定義しているものの種別（関数、変数など） */
@@ -142,12 +144,12 @@ div.title {
 
 /* 強調１ */
 .e1 {
-	background-color : #fcc;
+	background-color : #ffcccc;
 }
 /* 強調２（翻訳で気づいた内容の追記） */
 .e2 {
-	background-color : #eee;
-	color : #f00;
+	background-color : #eeeeee;
+	color : #ff0000;
 	font-size : smaller;
 }
 /* 強調３ */
@@ -157,7 +159,7 @@ div.title {
 
 /* オペレータ（関数、マクロなど） */
 .operator {
-	color : #068;
+	color : #006688;
 }
 /* 型名 */
 .type {
@@ -169,27 +171,27 @@ div.title {
 }
 /* 結果／戻り値 */
 .result {
-	color : #a0a;
+	color : #aa00aa;
 }
 /* 文字列定数 */
 .string {
-	color : #a04;
+	color : #aa0044;
 }
 /* キーワード */
 .keyword {
-	color : #a0a
+	color : #aa00aa
 }
 /* Lisp コード中のコメント */
 .comment {
-	color : #080;
+	color : #008800;
 }
 /* グローバル変数 */
 .variable {
-	color : #00f;
+	color : #0000ff;
 }
 /* 定数 */
 .constant {
-	color : #660;
+	color : #666600;
 }
 /* ラムダキーワード */
 .lambda-kw {

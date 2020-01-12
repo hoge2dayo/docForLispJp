@@ -219,12 +219,14 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
       <li><a href="#initialized-sub-systems-p"><span class="code">initialized-sub-systems-p</span></a>
       <li><a href="#is-font-face-fixed-width"><span class="code">is-font-face-fixed-width</span></a>
       <li><a href="#is-valid-ptr"><span class="code">is-valid-ptr</span></a>
+      <li><a href="#key-down-p"><span class="code">key-down-p</span></a>
       <li><a href="#key-held-p"><span class="code">key-held-p</span></a>
       <li><a href="#key-held-time"><span class="code">key-held-time</span></a>
       <li><a href="#key-pressed-p"><span class="code">key-pressed-p</span></a>
       <li><a href="#key-repeat-delay"><span class="code">key-repeat-delay</span></a>
       <li><a href="#key-repeat-interval"><span class="code">key-repeat-interval</span></a>
       <li><a href="#key="><span class="code">key=</span></a>
+      <li><a href="#keys-down-p"><span class="code">keys-down-p</span></a>
       <li><a href="#list-modes"><span class="code">list-modes</span></a>
       <li><a href="#list-sub-systems"><span class="code">list-sub-systems</span></a>
       <li><a href="#load-image"><span class="code">load-image</span></a>
@@ -2642,29 +2644,31 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for DRAW-LINE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-line-*'><b>draw-line-*</b> <i>x0 y0 x1 y1 <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Draws a line of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
- </p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X0</span> <span class="code">Y0</span> are the start X/Y coordinates of the line, of <span class="code">INTEGER</span>.</li>
-<li><span class="code">X1</span> <span class="code">Y1</span> are the end X/Y coordinates of the line, of <span class="code">INTEGER</span>.</li>
-<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing. <em>NOTE</em>: Supported only in <span class="code">LISPBUILDER-SDL-GFX</span>, otherwise ignored.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:AA</span> not supported in <em>LISPBUILDER-SDL</em></li>
-</ul>
-
-</blockquote>
-
+<a name="draw-line-*"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-line-*</span> <span class="parameter">x0 y0 x1 y1 <span class="lambda-kw">&amp;key</span> surface color clipping aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="parameter">SURFACE</span></a> へ <a href="#color"><span class="parameter">COLOR</span></a> の線を描画する。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X0</span> <span class="parameter">Y0</span> は線の始点の X/Y 座標であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">X1</span> <span class="parameter">Y1</span> は線の終点の X/Y 座標であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">AA</span> は、線がアンチエイリアシングを用いて描画されるかどうかを決定する。<span class="note">注釈：</span> <span class="code">LISPBUILDER-SDL-GFX</span> でのみ対応しており、それ以外では無視される。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> をデフォルト値である <span class="code">T</span> にすると、形状が <span class="parameter">SURFACE</span> の寸法で切断される。ピクセルがサーフェスの外側に描画されると、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="e1">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="parameter">AA</span> は <span class="e1">LISPBUILDER-SDL</span> では対応されない。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-LINE-* -->
 
 
@@ -4286,47 +4290,87 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- End of entry for IS-VALID-PTR -->
 
 
+<!-- Entry for KEY-DOWN-P -->
+<a name="key-down-p"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-down-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="note">注釈：</span> ステート配列を更新するには SDL_PumpEvents を使用する。<span class="note">注釈：</span> この関数は、全てのイベントが処理された後、現在の状態を返す。そのため、イベントを処理する前にキーあるいはボタンが押されて離された場合、押された状態は決してジェスチャーコールに現れない。<span class="note">注釈：</span> この関数は、シフトが現在押されているかどうかは考慮しない。
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">KEY</span> は、現在押されているかどうかを調べる対象のキーである。</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>現在 <span class="parameter">KEY</span> が押されている場合 <span class="parameter">KEY</span> を、それ以外の場合 <span class="code">NIL</span> を返す。</li>
+		</ul>
+		<p>
+		</p>
+		<div class="title">例</div>
+		<pre class="code">(KEY-DOWN-P :SDL-KEY-F1)</pre>
+	</div>
+</div>
+<!-- End of entry for KEY-DOWN-P -->
+
 <!-- Entry for KEY-HELD-P -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key-held-p'><b>key-held-p</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="key-held-p"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-held-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for KEY-HELD-P -->
 
-
 <!-- Entry for KEY-HELD-TIME -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key-held-time'><b>key-held-time</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="key-held-time"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-held-time</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for KEY-HELD-TIME -->
 
-
 <!-- Entry for KEY-PRESSED-P -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key-pressed-p'><b>key-pressed-p</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="key-pressed-p"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-pressed-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for KEY-PRESSED-P -->
 
+<!-- Entry for KEYS-DOWN-P -->
+<a name="keys-down-p"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">keys-down-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="note">注釈：</span> ステート配列を更新するには SDL_PumpEvents を使用する。<span class="note">注釈：</span> この関数は、全てのイベントが処理された後、現在の状態を返す。そのため、イベントを処理する前にキーあるいはボタンが押されて離された場合、押された状態は決してジェスチャーコールに現れない。<span class="note">注釈：</span> この関数は、シフトが現在押されているかどうかは考慮しない。
+		</p>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>現在押されている全てのキーをリストとして返す。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(KEYS-DOWN-P)</pre>
+	</div>
+</div>
+<!-- End of entry for KEYS-DOWN-P -->
 
 <!-- Entry for KEY-REPEAT-DELAY -->
 
@@ -4797,66 +4841,62 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for PUSH-QUIT-EVENT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='push-quit-event'><b>push-quit-event</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Pushes a new <span class="code">SDL_Event</span> of type <span class="code">:SDL-QUIT-EVENT</span> onto the event queue.
- </p>
-
-</blockquote>
-
+<a name="push-quit-event"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">push-quit-event</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">:SDL-QUIT-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
+		</p>
+	</div>
+</div>
 <!-- End of entry for PUSH-QUIT-EVENT -->
 
-
 <!-- Entry for PUSH-USER-EVENT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='push-user-event'><b>push-user-event</b> <i><span class="lambda-kw">&amp;key</span> code data1 data2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Pushes a new <span class="code">SDL_Event</span> of type <span class="code">:SDL-USER-EVENT</span> onto the event queue.
- </p>
-
-</blockquote>
-
+<a name="push-user-event"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">push-user-event</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> code data1 data2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">:SDL-USER-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
+		</p>
+	</div>
+</div>
 <!-- End of entry for PUSH-USER-EVENT -->
 
-
 <!-- Entry for QUERY-CURSOR -->
-
-<p><br>
-［関数］<br>
-<a class=none name='query-cursor'><b>query-cursor</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Queries the current state of the cursor. Returns <span class="code">T</span> if the cursor is enabled and shown on the display. Returns <span class="code">NIL</span> if the cursor is disabled and hidden.
- </p>
-
-</blockquote>
-
+<a name="query-cursor"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">query-cursor</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>カーソルの現在の状態を問い合わせる。カーソルが有効であり、画面に表示されている場合、 <span class="code">T</span> を返す。カーソルが無効で非表示の場合、 <span class="code">NIL</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for QUERY-CURSOR -->
 
-
 <!-- Entry for QUIT-INPUT-UTIL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='quit-input-util'><b>quit-input-util</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>This is called when you quit your app to free up the key information data
- </p>
-<div class="title">パラメータ</div>
-<div class="title">戻り値</div>
-
-</blockquote>
-
+<a name="quit-input-util"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">quit-input-util</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>アプリ終了時、キー情報データを解放する為に呼び出される。
+		</p>
+		<div class="title">パラメータ</div>
+		<div class="title">戻り値</div>
+	</div>
+</div>
 <!-- End of entry for QUIT-INPUT-UTIL -->
-
 
 <!-- Entry for QUIT-ON-EXIT -->
 <a name="quit-on-exit"></a>
@@ -4924,7 +4964,6 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 </div>
 <!-- End of entry for R -->
 
-
 <!-- Entry for R -->
 <!-- <a name=""></a> -->
 <div class="def">
@@ -4938,17 +4977,17 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <!-- End of entry for R -->
 
 <!-- Entry for RANDOM+1 -->
-
-<p><br>
-［関数］<br>
-<a class=none name='random+1'><b>random+1</b> <i>rnd</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a random number in the range 0 &gt; num &lt;= rnd.
- </p>
-
-</blockquote>
-
+<a name="random+1"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［関数］</span>
+		<span class="operator">random+1</span> <span class="parameter">rnd</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>範囲 0 &lt; num &lt;= <span class="parameter">rnd</span> の乱数を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for RANDOM+1 -->
 
 
@@ -6909,71 +6948,85 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 
 <!-- Entry for WITH-DEFAULT-FONT -->
+<a name="with-default-font"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-default-font</span> <span class="parameter">(font) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <span class="code">WITH-DEFAULT-FONT</span> のスコープ内で、<span class="variable">*DEFAULT-FONT*</span> を <span class="parameter">FONT</span> に設定する。
+		</p>
 
-<p><br>
-［マクロ］<br>
-<a class=none name='with-default-font'><b>with-default-font</b> <i>(font) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Sets <span class="code">*DEFAULT-FONT*</span> to <span class="code">FONT</span> within the scope of <span class="code">WITH-DEFAULT-FONT</span>.
- </p>
-<div class="title">例</div>
-<pre class="code">(WITH-DEFAULT-FONT (new-font)
+		<div class="title">例</div>
+		<pre class="code">(WITH-DEFAULT-FONT (new-font)
     (DRAW-CHARACTER-SHADED-* &quot;Hello World!&quot; 0 0 F-COLOR B-COLOR)) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em> and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
 
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="e1">LISPBUILDER-SDL-GFX</span> および <span class="e1">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for WITH-DEFAULT-FONT -->
 
-
 <!-- Entry for WITH-EVENTS -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-events'><b>with-events</b> <i>(<span class="lambda-kw">&amp;optional</span> type) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p><span class="code">WITH-EVENTS</span> is a convenience macro for managing the main game loop. It processes incoming SDL events and limits the game loop to the specified number of frames per second.
- </p>
-<p>Both the <a href="#sdl-poll-event">SDL-POLL-EVENT</a> and <a href="#sdl-wait-event">SDL-WAIT-EVENT</a> event mechanisms are supported by specifying the <span class="code">TYPE</span> as <span class="code">:POLL</span> or <span class="code">:WAIT</span> respectively.
- </p>
-<p><em>NOTE:</em> <span class="code">WITH-EVENTS</span> must be called in the same thread used to set the video mode.
- </p>
-<div class="title">例</div>
-<pre class="code">(SDL:WITH-EVENTS (:POLL)
+<a name="with-events"></a>
+<div class="def">
+	<p class="def">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-events</span> <span class="parameter">(<span class="lambda-kw">&amp;optional</span> type) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="operator">WITH-EVENTS</span> はメインのゲームループを管理する為の便利なマクロである。それは、やって来る SDL イベントを処理し、ゲームループを指定された秒あたりのフレーム数に制限する。
+		</p>
+		<p><a href="#sdl-poll-event">SDL-POLL-EVENT</a> および <a href="#sdl-wait-event">SDL-WAIT-EVENT</a> 両方のイベントの仕組みは、 <span class="parameter">TYPE</span> をそれぞれ <span class="code">:POLL</span> あるいは <span class="code">:WAIT</span> として指定することにより対応されている。
+		</p>
+		<p><span class="note">注釈：</span> マクロ <span class="operator">WITH-EVENTS</span> は、ビデオモード設定に使用されたスレッドと同じスレッドで呼び出される必要がある。
+		</p>
+		<div class="title">例</div>
+		<pre class="code">(SDL:WITH-EVENTS (:POLL)
   (:QUIT-EVENT () T)
   (:KEY-DOWN-EVENT (:KEY KEY)
       (WHEN (SDL:KEY= KEY :SDL-KEY-ESCAPE)
         (SDL:PUSH-QUIT-EVENT)))
   (:VIDEO-EXPOSE-EVENT () (SDL:UPDATE-DISPLAY)))))) </pre>
-<div class="title">Frame Rate Limiting</div>
-<p>The frame rate is specified using <a href="#frame-rate">FRAME-RATE</a>. For example to set the frame rate to 60 frames per second:
- </p>
-<pre class="code">(SETF (SDL:FRAME-RATE) 60) </pre>
-<div class="title">Event Syntax</div>
-<p>Events are specified using the format <span class="code">(:EVENT-TYPE (&amp;amp;KEYS KEYS))</span>
- </p>
-<ul><li><span class="code">EVENT-TYPE</span> must be one of the following <span class="code">KEY</span>words; <span class="code">:ACTIVE-EVENT, :KEY-DOWN-EVENT, :KEY-UP-EVENT, :MOUSE-MOTION-EVENT, :MOUSE-BUTTON-DOWN-EVENT, :MOUSE-BUTTON-UP-EVENT, :JOY-AXIS-MOTION-EVENT, :JOY-BUTTON-DOWN-EVENT, :JOY-BUTTON-UP-EVENT, :JOY-HAT-MOTION-EVENT, :JOY-BALL-MOTION-EVENT, :VIDEO-RESIZE-EVENT, :VIDEO-EXPOSE-EVENT, :SYS-WM-EVENT, :QUIT-EVENT, :USER-EVENT</span> or <span class="code">:IDLE</span>. </li>
-<li><span class="code">KEYS</span> specify the members of the event to return and are specific to each event type. These are discussed in detail below. </li>
-</ul>
-<p><em>NOTE:</em> <span class="code">:QUIT-EVENT</span> must return <span class="code">T</span> to exit the <span class="code">WITH-EVENT</span> macro.
- </p>
-<p><em>NOTE:</em> <span class="code">:IDLE</span> is ignored when <span class="code">TYPE</span> is <span class="code">:WAIT</span>.
- </p>
-<div class="title">Polling for Events</div>
-<p>When <span class="code">TYPE</span> is <span class="code">:POLL</span>, <span class="code">WITH-EVENTS</span> will continually poll for currently pending events. If no events are available then the game loop is run and the forms in <span class="code">:IDLE</span> are executed.
- </p>
-<div class="title">Waiting for Events</div>
-<p>When <span class="code">TYPE</span> is <span class="code">:WAIT</span>, <span class="code">WITH-EVENTS</span> will sleep indefinitely for the next available event. If no events are available then the game loop is paused.
- </p>
-<div class="title">The :IDLE Event</div>
-<pre class="code"> (:IDLE ()
+
+		<div class="title">フレームレートの制限</div>
+		<p>フレームレートはアクセサ <a href="#frame-rate">FRAME-RATE</a> を使用して指定される。フレームレートを毎秒 60 フレームに設定する例。：
+		</p>
+		<pre class="code">(SETF (SDL:FRAME-RATE) 60) </pre>
+
+		<div class="title">イベントの文法</div>
+		<p>イベントは、 <span class="parameter">(:EVENT-TYPE (&amp;KEYS KEYS))</span> 形式で指定される。
+		</p>
+		<ul>
+			<li><span class="parameter">EVENT-TYPE</span> は、次のいずれかのキーワードである必要がある。： <span class="code">:ACTIVE-EVENT</span> 、<span class="code">:KEY-DOWN-EVENT</span> 、 <span class="code">:KEY-UP-EVENT</span> 、 <span class="code">:MOUSE-MOTION-EVENT</span> 、 <span class="code">:MOUSE-BUTTON-DOWN-EVENT</span> 、 <span class="code">:MOUSE-BUTTON-UP-EVENT</span> 、 <span class="code">:JOY-AXIS-MOTION-EVENT</span> 、 <span class="code">:JOY-BUTTON-DOWN-EVENT</span> 、 <span class="code">:JOY-BUTTON-UP-EVENT</span> 、 <span class="code">:JOY-HAT-MOTION-EVENT</span> 、 <span class="code">:JOY-BALL-MOTION-EVENT</span> 、 <span class="code">:VIDEO-RESIZE-EVENT</span> 、 <span class="code">:VIDEO-EXPOSE-EVENT</span> 、 <span class="code">:SYS-WM-EVENT</span> 、 <span class="code">:QUIT-EVENT</span> 、 <span class="code">:USER-EVENT</span> 、 <span class="code">:IDLE</span> 。</li>
+			<li><span class="parameter">KEYS</span> は、返すイベントのメンバを指定し、各イベント種別固有である。これらの詳細は以下で述べる。</li>
+		</ul>
+		<p><span class="note">注釈：</span> <span class="code">:QUIT-EVENT</span> は、マクロ <span class="code">WITH-EVENT</span> を終了する為に <span class="code">T</span> を返す必要がある。
+		</p>
+		<p><span class="note">注釈：</span> <span class="parameter">TYPE</span> が <span class="code">:WAIT</span> である時、 <span class="code">:IDLE</span> は無視される。
+		</p>
+
+		<div class="title">イベントのポーリング</div>
+		<p><span class="parameter">TYPE</span> が <span class="code">:POLL</span> である時、マクロ <span class="operator">WITH-EVENTS</span> は、現在保留となっているイベントを継続的にポーリングする。利用可能なイベントがない場合、ゲームループが走らされて、 <span class="code">:IDLE</span> にあるフォームが実行される。
+		</p>
+
+		<div class="title">イベントを待つ</div>
+		<p><span class="parameter">TYPE</span> が <span class="code">:WAIT</span> である時、マクロ <span class="code">WITH-EVENTS</span> は、次に利用可能なイベントまで無期限にスリープする。利用可能なイベントがない場合、ゲームループは一時停止する。
+		</p>
+
+		<div class="title"><span class="code">:IDLE</span> イベント</div>
+		<pre class="code"> (:IDLE ()
     &amp;BODY BODY) </pre>
-<p>The <span class="code">:IDLE</span> event is special in that it is not generated by SDL. Rather the forms  in <span class="code">:IDLE</span> are executed once each game loop after event queue is emptied. <span class="code">:IDLE</span> is ignored when the event mechanism specified by <span class="code">TYPE</span> is <span class="code">:WAIT</span>.
- </p>
+		<p><span class="code">:IDLE</span> イベントは、 SDL により生成されるものではないという点で特殊である。むしろ、 <span class="code">:IDLE</span> のフォームは、イベントキューが空になった後、各ゲームループの度に実行される。 <span class="parameter">TYPE</span> により指定されたイベントの仕組みが <span class="code">:WAIT</span> である時、 <span class="code">:IDLE</span> は無視される。
+		</p>
+	</div>
+</div>
+
+<blockquote><br>
+
 <div class="title">Active Event</div>
 <pre class="code">(:ACTIVE-EVENT (:GAIN GAIN :STATE STATE)
    &amp;BODY BODY) </pre>
