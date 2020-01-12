@@ -191,5 +191,7 @@ div.title {
 .constant {
 	color : #660;
 }
-
-
+/* ラムダキーワード */
+.lambda-kw {
+	font-weight : bold;
+}

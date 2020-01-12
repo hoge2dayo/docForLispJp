@@ -1134,7 +1134,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='all-integers?'><b>all-integers?</b> <i><tt>&amp;rest</tt> values</i> =&gt; <i>result</i></a>
+<a class=none name='all-integers?'><b>all-integers?</b> <i><span class="lambda-kw">&amp;rest</span> values</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if all values are <span class="code">INTEGERS</span>.
@@ -1243,7 +1243,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">average-fps</span> <span class="parameter">&amp;optional fpsmanager</span> =&gt; <span class="result">result</span>
+		<span class="operator">average-fps</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>100 フレームのスライディングウィンドウを通じて算出された、イベントループの平均フレームレートを返す。
@@ -1280,7 +1280,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='bit-depth'><b>bit-depth</b> <i><tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='bit-depth'><b>bit-depth</b> <i><span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the number of bytes per pixel, or bpp, of <span class="code">SURFACE</span>.
@@ -1309,7 +1309,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='blit-surface'><b>blit-surface</b> <i>source <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='blit-surface'><b>blit-surface</b> <i>source <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Performs a fast blit of the <span class="code">SOURCE</span> surface to the destination <span class="code">SURFACE</span>. The area defined by the <span class="code">SOURCE</span> cell is blitted to the area defined by the destination clipping rectangle. The blit function should not be called on a locked surface. The results of blitting operations vary greatly depending on whether a surface ALPHA channel is set on the source surface or not. The priorty of how color key and alpha attributes interact with surface blitting is as follows:
@@ -1390,7 +1390,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='cast-all-to-int'><b>cast-all-to-int</b> <i><tt>&amp;rest</tt> values</i> =&gt; <i>result</i></a>
+<a class=none name='cast-all-to-int'><b>cast-all-to-int</b> <i><span class="lambda-kw">&amp;rest</span> values</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Casts the values in <span class="code">REST</span> to <span class="code">FIXNUM</span>s.
@@ -1526,7 +1526,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='check-types'><b>check-types</b> <i>type <tt>&amp;rest</tt> rest</i> =&gt; <i>result</i></a>
+<a class=none name='check-types'><b>check-types</b> <i>type <span class="lambda-kw">&amp;rest</span> rest</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Performs <span class="code">CHECK-TYPE</span> on items in rest.
@@ -1541,7 +1541,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='clear-cell'><b>clear-cell</b> <i><tt>&amp;key</tt> surface index</i> =&gt; <i>result</i></a>
+<a class=none name='clear-cell'><b>clear-cell</b> <i><span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">SURFACE</span>.
@@ -1556,7 +1556,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='clear-clip-rect'><b>clear-clip-rect</b> <i><tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='clear-clip-rect'><b>clear-clip-rect</b> <i><span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Removes the clipping <a href="#rectangle">RECTANGLE</a>.
@@ -1571,7 +1571,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='clear-color-key'><b>clear-color-key</b> <i><tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='clear-color-key'><b>clear-color-key</b> <i><span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Disables the color key.
@@ -1587,7 +1587,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">clear-display</span> <span class="parameter">color &amp;key surface update</span> =&gt; <span class="result">result</span>
+		<span class="operator">clear-display</span> <span class="parameter">color <span class="lambda-kw">&amp;key</span> surface update</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>色 <span class="parameter">COLOR</span> を使用して、表示面を塗りつぶす。 <span class="parameter">SURFACE</span> は、指定されない場合、 <span class="variable">*DEFAULT-DISPLAY*</span> へ束縛される。 <span class="parameter">UPDATE</span> が <span class="code">T</span> である時、画面は更新される。
@@ -1648,7 +1648,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">color</span> <span class="parameter">&amp;key r g b a</span> =&gt; <span class="result">result</span>
+		<span class="operator">color</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> r g b a</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 	<p>指定された <span class="code">R</span> （赤）、 <span class="code">G</span> （緑）、 <span class="code">B</span> （青）成分から、新しい <span class="code">RGB</span> <a href="#color"><span class="type">COLOR</span></a> を返す。指定された <span class="code">R</span> （赤）、 <span class="code">G</span> （緑）、 <span class="code">B</span> （青）、 <span class="code">A</span> （アルファ）成分から、新しい <span class="code">RGBA</span> <a href="#color-a"><span class="type">COLOR-A</span></a> を返す。
@@ -1849,7 +1849,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='convert-surface'><b>convert-surface</b> <i><tt>&amp;key</tt> surface to-surface enable-alpha enable-color-key free inherit type</i> =&gt; <i>result</i></a>
+<a class=none name='convert-surface'><b>convert-surface</b> <i><span class="lambda-kw">&amp;key</span> surface to-surface enable-alpha enable-color-key free inherit type</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Converts <span class="code">:SURFACE</span> and returns a new surface matching the pixel format and color of <span class="code">:TO-SURFACE</span>. Calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting to the display format.
@@ -1872,7 +1872,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='convert-to-display-format'><b>convert-to-display-format</b> <i><tt>&amp;key</tt> surface enable-alpha enable-color-key pixel-alpha free inherit</i> =&gt; <i>result</i></a>
+<a class=none name='convert-to-display-format'><b>convert-to-display-format</b> <i><span class="lambda-kw">&amp;key</span> surface enable-alpha enable-color-key pixel-alpha free inherit</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new surface matching the pixel format and color of the video frame buffer (<span class="code">*display surface*), that is suitable for fast blitting. The new surface will inherit the pixel, alpha and color key components of the source, *unless* </span>:INHERIT<span class="code"> is </span>NIL`.
@@ -1905,7 +1905,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='copy-channel-to-alpha'><b>copy-channel-to-alpha</b> <i>destination source <tt>&amp;key</tt> channel</i> =&gt; <i>result</i></a>
+<a class=none name='copy-channel-to-alpha'><b>copy-channel-to-alpha</b> <i>destination source <span class="lambda-kw">&amp;key</span> channel</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -1934,7 +1934,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='copy-surface'><b>copy-surface</b> <i><tt>&amp;key</tt> cell cell-index surface color-key alpha pixel-alpha rle-accel type free inherit fill color-key-fill pixel-format</i> =&gt; <i>result</i></a>
+<a class=none name='copy-surface'><b>copy-surface</b> <i><span class="lambda-kw">&amp;key</span> cell cell-index surface color-key alpha pixel-alpha rle-accel type free inherit fill color-key-fill pixel-format</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a copy of <span class="code">:SURFACE</span>.
@@ -1974,7 +1974,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='create-path'><b>create-path</b> <i>filename <tt>&amp;optional</tt> path</i> =&gt; <i>result</i></a>
+<a class=none name='create-path'><b>create-path</b> <i>filename <span class="lambda-kw">&amp;optional</span> path</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates a new path from <span class="code">FILENAME</span> and <span class="code">PATH</span>.
@@ -2004,7 +2004,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='create-simple-font-definition'><b>create-simple-font-definition</b> <i>width height char-map color-key filename <tt>&amp;key</tt> pad-x pad-y</i> =&gt; <i>result</i></a>
+<a class=none name='create-simple-font-definition'><b>create-simple-font-definition</b> <i>width height char-map color-key filename <span class="lambda-kw">&amp;key</span> pad-x pad-y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -2018,7 +2018,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='create-surface'><b>create-surface</b> <i>width height <tt>&amp;key</tt> bpp type color-key color-key-at pixel-alpha alpha rle-accel x y</i> =&gt; <i>result</i></a>
+<a class=none name='create-surface'><b>create-surface</b> <i>width height <span class="lambda-kw">&amp;key</span> bpp type color-key color-key-at pixel-alpha alpha rle-accel x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates and returns a new <span class="code">SURFACE</span> with the dimensions <span class="code">WIDTH</span> and <span class="code">HEIGHT</span>.
@@ -2108,7 +2108,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-bezier'><b>draw-bezier</b> <i>vertices <tt>&amp;key</tt> clipping surface color segments style</i> =&gt; <i>result</i></a>
+<a class=none name='draw-bezier'><b>draw-bezier</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a bezier curve of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the Bezier curve is defined by several control points. A control point is a vertex containing an X and Y coordinate pair.
@@ -2141,7 +2141,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-box'><b>draw-box</b> <i>rect <tt>&amp;key</tt> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-box'><b>draw-box</b> <i>rect <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-box-*">DRAW-BOX-*</a>.
@@ -2162,7 +2162,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-box-*'><b>draw-box-*</b> <i>x y w h <tt>&amp;key</tt> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-box-*'><b>draw-box-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a filled rectangle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
@@ -2189,7 +2189,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-circle'><b>draw-circle</b> <i>p1 r <tt>&amp;key</tt> surface color alpha aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-circle'><b>draw-circle</b> <i>p1 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-circle-*">DRAW-CIRCLE-*</a>.
@@ -2211,7 +2211,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-circle-*'><b>draw-circle-*</b> <i>x0 y0 r <tt>&amp;key</tt> surface color alpha aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-circle-*'><b>draw-circle-*</b> <i>x0 y0 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a circle circumference of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a> to draw a filled circle.
@@ -2238,7 +2238,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-curve'><b>draw-curve</b> <i>vertices <tt>&amp;key</tt> clipping surface color segments style</i> =&gt; <i>result</i></a>
+<a class=none name='draw-curve'><b>draw-curve</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a Cattmul-Rom spline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
@@ -2269,7 +2269,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-ellipse'><b>draw-ellipse</b> <i>p1 rx ry <tt>&amp;key</tt> surface color aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-ellipse'><b>draw-ellipse</b> <i>p1 rx ry <span class="lambda-kw">&amp;key</span> surface color aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-ellipse-*">DRAW-ELLIPSE-*</a>.
@@ -2290,7 +2290,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-ellipse-*'><b>draw-ellipse-*</b> <i>x y rx ry <tt>&amp;key</tt> surface color aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-ellipse-*'><b>draw-ellipse-*</b> <i>x y rx ry <span class="lambda-kw">&amp;key</span> surface color aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws an ellipse circumference of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a> to draw a filled ellipse.
@@ -2314,7 +2314,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-circle'><b>draw-filled-circle</b> <i>p1 r <tt>&amp;key</tt> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-circle'><b>draw-filled-circle</b> <i>p1 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a>.
@@ -2335,7 +2335,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-circle-*'><b>draw-filled-circle-*</b> <i>x0 y0 r <tt>&amp;key</tt> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-circle-*'><b>draw-filled-circle-*</b> <i>x0 y0 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a filled circle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
@@ -2361,7 +2361,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-ellipse'><b>draw-filled-ellipse</b> <i>p1 rx ry <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-ellipse'><b>draw-filled-ellipse</b> <i>p1 rx ry <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a>.
@@ -2382,7 +2382,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-ellipse-*'><b>draw-filled-ellipse-*</b> <i>x y rx ry <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-ellipse-*'><b>draw-filled-ellipse-*</b> <i>x y rx ry <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a filled ellipse of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>.
@@ -2406,7 +2406,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-pie'><b>draw-filled-pie</b> <i>p1 rad start end <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-pie'><b>draw-filled-pie</b> <i>p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a>.
@@ -2427,7 +2427,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-pie-*'><b>draw-filled-pie-*</b> <i>x y rad start end <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-pie-*'><b>draw-filled-pie-*</b> <i>x y rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a filled pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
@@ -2453,7 +2453,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-polygon'><b>draw-filled-polygon</b> <i>vertices <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-polygon'><b>draw-filled-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a filled polygon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
@@ -2476,7 +2476,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-filled-trigon'><b>draw-filled-trigon</b> <i>p1 p2 p3 <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-filled-trigon'><b>draw-filled-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a filled trigon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
@@ -2499,7 +2499,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='draw-font'><b>draw-font</b> <i><tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-font'><b>draw-font</b> <i><span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
@@ -2517,7 +2517,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-font'><b>draw-font</b> <i><tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-font'><b>draw-font</b> <i><span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -2531,7 +2531,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='draw-font-at'><b>draw-font-at</b> <i>position <tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-font-at'><b>draw-font-at</b> <i>position <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-font">DRAW-FONT</a>. The cached surface is rendered at <span class="code">POSITION</span> <a href="#point">POINT</a>.
@@ -2549,7 +2549,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>draw-font-at</b> <i>position <tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none><b>draw-font-at</b> <i>position <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -2563,7 +2563,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='draw-font-at-*'><b>draw-font-at-*</b> <i>x y <tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-font-at-*'><b>draw-font-at-*</b> <i>x y <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-font">DRAW-FONT</a>.  The cached surface is rendered at poisition <span class="code">X</span> and <span class="code">Y</span>.
@@ -2581,7 +2581,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>draw-font-at-*</b> <i>x y <tt>&amp;key</tt> font surface</i> =&gt; <i>result</i></a>
+<a class=none><b>draw-font-at-*</b> <i>x y <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -2596,7 +2596,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">draw-hline</span> <span class="parameter">x0 x1 y &amp;key surface color clipping template</span> =&gt; <span class="result">result</span>
+		<span class="operator">draw-hline</span> <span class="parameter">x0 x1 y <span class="lambda-kw">&amp;key</span> surface color clipping template</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p><a href="#surface"><span class="parameter">SURFACE</span></a> 上に <a href="#color"><span class="parameter">COLOR</span></a> の水平線を、 <span class="parameter">Y</span> を通る <span class="parameter">X0</span> から <span class="parameter">X1</span> まで描画する。
@@ -2623,7 +2623,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">draw-line</span> <span class="parameter">p1 p2 &amp;key surface color clipping aa</span> =&gt; <span class="result">result</span>
+		<span class="operator">draw-line</span> <span class="parameter">p1 p2 <span class="lambda-kw">&amp;key</span> surface color clipping aa</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p><a href="#draw-line-*"><span class="operator">DRAW-LINE-*</span></a> 参照。
@@ -2645,7 +2645,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-line-*'><b>draw-line-*</b> <i>x0 y0 x1 y1 <tt>&amp;key</tt> surface color clipping aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-line-*'><b>draw-line-*</b> <i>x0 y0 x1 y1 <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a line of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
@@ -2672,7 +2672,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-pie'><b>draw-pie</b> <i>p1 rad start end <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-pie'><b>draw-pie</b> <i>p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-pie-*">DRAW-PIE-*</a>.
@@ -2693,7 +2693,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-pie-*'><b>draw-pie-*</b> <i>x y rad start end <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-pie-*'><b>draw-pie-*</b> <i>x y rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws a pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a> to draw a filled pie.
@@ -2719,7 +2719,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-pixel'><b>draw-pixel</b> <i>point <tt>&amp;key</tt> clipping surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-pixel'><b>draw-pixel</b> <i>point <span class="lambda-kw">&amp;key</span> clipping surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-pixel-*">DRAW-PIXEL-*</a>.
@@ -2740,7 +2740,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-pixel-*'><b>draw-pixel-*</b> <i>x y <tt>&amp;key</tt> clipping surface color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-pixel-*'><b>draw-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a single pixel of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a> at the specified <span class="code">X</span> and <span class="code">Y</span> coordiates.
@@ -2764,7 +2764,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-polygon'><b>draw-polygon</b> <i>vertices <tt>&amp;key</tt> surface color clipping aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-polygon'><b>draw-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw the circumference of a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using the vertices in <span class="code">POINTS</span>. Use <a href="#draw-filled-polygon-*">DRAW-FILLED-POLYGON-*</a> to draw a filled polygon.
@@ -2790,7 +2790,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-rectangle'><b>draw-rectangle</b> <i>rect <tt>&amp;key</tt> clipping surface color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-rectangle'><b>draw-rectangle</b> <i>rect <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-rectangle-*">DRAW-RECTANGLE-*</a>.
@@ -2811,7 +2811,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-rectangle-*'><b>draw-rectangle-*</b> <i>x y w h <tt>&amp;key</tt> clipping surface color alpha</i> =&gt; <i>result</i></a>
+<a class=none name='draw-rectangle-*'><b>draw-rectangle-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a rectangle outline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
@@ -2837,7 +2837,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-shape'><b>draw-shape</b> <i>vertices <tt>&amp;key</tt> clipping surface color style</i> =&gt; <i>result</i></a>
+<a class=none name='draw-shape'><b>draw-shape</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color style</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using <span class="code">VERTICES</span>.
@@ -2867,7 +2867,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-blended'><b>draw-string-blended</b> <i>string p1 <tt>&amp;key</tt> justify surface font color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-blended'><b>draw-string-blended</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-string-blended-*">DRAW-STRING-BLENDED-*</a>.
@@ -2888,7 +2888,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-blended-*'><b>draw-string-blended-*</b> <i>string x y <tt>&amp;key</tt> justify surface font color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-blended-*'><b>draw-string-blended-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
@@ -2918,7 +2918,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-shaded'><b>draw-string-shaded</b> <i>string p1 fg-color bg-color <tt>&amp;key</tt> justify surface font</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-shaded'><b>draw-string-shaded</b> <i>string p1 fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-string-shaded-*">DRAW-STRING-SHADED-*</a>.
@@ -2939,7 +2939,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-shaded-*'><b>draw-string-shaded-*</b> <i>string x y fg-color bg-color <tt>&amp;key</tt> justify surface font</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-shaded-*'><b>draw-string-shaded-*</b> <i>string x y fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> onto surface <span class="code">SURFACE</span>. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces.
@@ -2969,7 +2969,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-solid'><b>draw-string-solid</b> <i>string p1 <tt>&amp;key</tt> justify surface font color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-solid'><b>draw-string-solid</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#draw-string-solid-*">DRAW-STRING-SOLID-*</a>.
@@ -2990,7 +2990,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-string-solid-*'><b>draw-string-solid-*</b> <i>string x y <tt>&amp;key</tt> justify surface font color</i> =&gt; <i>result</i></a>
+<a class=none name='draw-string-solid-*'><b>draw-string-solid-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
@@ -3020,7 +3020,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-surface'><b>draw-surface</b> <i>src <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-surface'><b>draw-surface</b> <i>src <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#blit-surface">BLIT-SURFACE</a>
@@ -3035,7 +3035,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-surface-at'><b>draw-surface-at</b> <i>src point <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-surface-at'><b>draw-surface-at</b> <i>src point <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws the source surface to the destination surface at position POINT.  See <a href="#blit-surface">BLIT-SURFACE</a>.
@@ -3050,7 +3050,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-surface-at-*'><b>draw-surface-at-*</b> <i>src x y <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='draw-surface-at-*'><b>draw-surface-at-*</b> <i>src x y <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draws the source surface to the destination surface at position X and Y.  See <a href="#blit-surface">BLIT-SURFACE</a>
@@ -3065,7 +3065,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='draw-trigon'><b>draw-trigon</b> <i>p1 p2 p3 <tt>&amp;key</tt> surface color clipping aa</i> =&gt; <i>result</i></a>
+<a class=none name='draw-trigon'><b>draw-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw the outline of a trigon or triangle, of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-trigon-*">DRAW-FILLED-TRIGON-*</a> to draw a filled trigon.
@@ -3092,7 +3092,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">draw-vline</span> <span class="parameter">x y0 y1 &amp;key surface color clipping template</span> =&gt; <span class="result">result</span>
+		<span class="operator">draw-vline</span> <span class="parameter">x y0 y1 <span class="lambda-kw">&amp;key</span> surface color clipping template</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p><a href="#surface">SURFACE</a> 上に <a href="#color">COLOR</a> の垂直線を、 <span class="code">X</span> を通る <span class="code">Y0</span> から <span class="code">Y1</span> まで描画する。
@@ -3119,7 +3119,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='enable-alpha'><b>enable-alpha</b> <i>value <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='enable-alpha'><b>enable-alpha</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Enable surface alpha blending for when <span class="code">T</span>. Disable surface alpha blending when <span class="code">NIL</span>. A <span class="code">SURFACE</span> need not have a pixel alpha component (RGBA) to use surface alpha blending.
@@ -3134,7 +3134,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='enable-color-key'><b>enable-color-key</b> <i>value <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='enable-color-key'><b>enable-color-key</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Enables color keying when <span class="code">T</span>. Disable color keying when <span class="code">NIL</span>
@@ -3179,7 +3179,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='enable-rle-accel'><b>enable-rle-accel</b> <i>value <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='enable-rle-accel'><b>enable-rle-accel</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Enables RLE blit acceleration when <span class="code">T</span>, disables RLE acceleration when <span class="code">NIL</span>. RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color).
@@ -3224,7 +3224,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='fill-surface'><b>fill-surface</b> <i>color <tt>&amp;key</tt> template surface update clipping</i> =&gt; <i>result</i></a>
+<a class=none name='fill-surface'><b>fill-surface</b> <i>color <span class="lambda-kw">&amp;key</span> template surface update clipping</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Fills surface with the specified <span class="code">COLOR</span>.    <span class="code">:TEMPLATE</span> accepts  a <span class="code">RECTANGLE</span> defining the fill bounds.    <span class="code">The surface is updated when </span>:UPDATE`
@@ -3239,7 +3239,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='fill-surface-*'><b>fill-surface-*</b> <i>r g b <tt>&amp;key</tt> a template surface update clipping</i> =&gt; <i>result</i></a>
+<a class=none name='fill-surface-*'><b>fill-surface-*</b> <i>r g b <span class="lambda-kw">&amp;key</span> a template surface update clipping</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Fill the surface with the specified color <span class="code">R</span> <span class="code">G</span> <span class="code">B</span> <span class="code">:A</span> <span class="code">A</span>.  See <a href="#fill-surface">FILL-SURFACE</a>.
@@ -3254,7 +3254,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='flood-fill'><b>flood-fill</b> <i>point <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='flood-fill'><b>flood-fill</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
@@ -3272,7 +3272,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='flood-fill-*'><b>flood-fill-*</b> <i>x y <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='flood-fill-*'><b>flood-fill-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Performs a flood fill of surface <span class="code">SURFACE</span> with color <span class="code">COLOR</span>. The fill starts at the position specified by the <span class="code">X</span> and <span class="code">Y</span> coordinates. Uses a stack based flood fill that does a lot of consing because it uses PUSH/POP as the stack.  This function is fast.
@@ -3292,7 +3292,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='flood-fill-stack'><b>flood-fill-stack</b> <i>point <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='flood-fill-stack'><b>flood-fill-stack</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#flood-fill-stack-*">FLOOD-FILL-STACK-*</a>.
@@ -3310,7 +3310,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='flood-fill-stack-*'><b>flood-fill-stack-*</b> <i>x y <tt>&amp;key</tt> surface color</i> =&gt; <i>result</i></a>
+<a class=none name='flood-fill-stack-*'><b>flood-fill-stack-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
@@ -3408,9 +3408,9 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 [Accessor]<br>
-<a class=none name='frame-rate'><b>frame-rate</b> <i><tt>&amp;optional</tt> fpsmanager</i> =&gt; <i>result</i></a>
+<a class=none name='frame-rate'><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</span> fpsmanager</i> =&gt; <i>result</i></a>
 <br>
-<a class=none><tt>(setf (</tt><b>frame-rate</b> <i><tt>&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</tt></a>
+<a class=none><tt>(setf (</tt><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</span></a>
 <blockquote><br>
 
 <p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
@@ -3526,7 +3526,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-clip-rect'><b>get-clip-rect</b> <i><tt>&amp;key</tt> surface rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='get-clip-rect'><b>get-clip-rect</b> <i><span class="lambda-kw">&amp;key</span> surface rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the clipping <a href="#rectangle">RECTANGLE</a>.
@@ -3541,7 +3541,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-ascent'><b>get-font-ascent</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-ascent'><b>get-font-ascent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the maximum pixel ascent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the top of the font to the baseline. It could be used when drawing an individual glyph relative to a top point, by combining it with the glyph&#039;s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
@@ -3565,7 +3565,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-descent'><b>get-font-descent</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-descent'><b>get-font-descent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the maximum pixel descent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the baseline to the bottom of the font. It could be used when drawing an individual glyph relative to a bottom point, by combining it with the glyph’s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
@@ -3589,7 +3589,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-face-family-name'><b>get-font-face-family-name</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-face-family-name'><b>get-font-face-family-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the current font face family name of font <span class="code">FONT</span> or <span class="code">NIL</span> if the information is unavailable.
@@ -3613,7 +3613,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-face-style-name'><b>get-font-face-style-name</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-face-style-name'><b>get-font-face-style-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the current font face style name of font <span class="code">FONT</span>, or <span class="code">NIL</span> if the information is unavailable.
@@ -3637,7 +3637,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-faces'><b>get-font-faces</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-faces'><b>get-font-faces</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the number of faces &#039;sub-fonts&#039; available in the font <span class="code">FONT</span>. This is a count of the number of specific fonts (based on size and style and other  typographical features perhaps) contained in the font itself. It seems to be a useless  fact to know, since it can’t be applied in any other <span class="code">SDL_TTF</span> functions.
@@ -3661,7 +3661,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-height'><b>get-font-height</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-height'><b>get-font-height</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the maximum pixel height of all glyphs of font <span class="code">FONT</span>. Use this height for rendering text as close together vertically as possible, though adding at least one pixel height to it will space it so they can&#039;t touch. Remember that <span class="code">SDL_TTF</span> doesn&#039;t handle multiline printing so you are responsible for line spacing, see <a href="#get-font-line-skip">GET-FONT-LINE-SKIP</a> as well.
@@ -3685,7 +3685,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-line-skip'><b>get-font-line-skip</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-line-skip'><b>get-font-line-skip</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the recommended pixel height of a rendered line of text of the font <span class="code">FONT</span>. This is usually larger than the <a href="#get-font-height">GET-FONT-HEIGHT</a> of the font.
@@ -3709,7 +3709,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-size'><b>get-font-size</b> <i>text <tt>&amp;key</tt> size font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-size'><b>get-font-size</b> <i>text <span class="lambda-kw">&amp;key</span> size font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Calculates and returns the resulting <span class="code">SIZE</span> of the <span class="code">SDL:SURFACE</span> that is required to render the text <span class="code">TEXT</span>, or <span class="code">NIL</span> on error. No actual rendering is performed, however correct kerning is calculated for the actual width. The height returned is the same as returned using <a href="#get-font-height">GET-FONT-HEIGHT</a>.
@@ -3735,7 +3735,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-font-style'><b>get-font-style</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='get-font-style'><b>get-font-style</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the rendering style of the font <span class="code">FONT</span>. If no style is set then <span class="code">:STYLE-NORMAL</span> is returned, or <span class="code">NIL</span> upon error.
@@ -3759,7 +3759,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-glyph-metric'><b>get-glyph-metric</b> <i>ch <tt>&amp;key</tt> metric font</i> =&gt; <i>result</i></a>
+<a class=none name='get-glyph-metric'><b>get-glyph-metric</b> <i>ch <span class="lambda-kw">&amp;key</span> metric font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns the glyph metrics <span class="code">METRIC</span> for the character <span class="code">CH</span>, or <span class="code">NIL</span> upon error.
@@ -3953,7 +3953,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='get-surface-rect'><b>get-surface-rect</b> <i><tt>&amp;key</tt> surface rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='get-surface-rect'><b>get-surface-rect</b> <i><span class="lambda-kw">&amp;key</span> surface rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -4100,7 +4100,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">init-sdl</span> <span class="parameter">&amp;optional init</span> =&gt; <span class="result">result</span>
+		<span class="operator">init-sdl</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> init</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>オプションパラメータ <span class="parameter">INIT</span> が <span class="code">T</span> 、あるいは関数 <a href="#sdl-init-on-startup"><span class="operator">SDL-INIT-ON-STARTUP</span></a> の戻り値が <span class="code">T</span> である時、 SDL ライブラリを初期化する。
@@ -4114,7 +4114,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">init-sub-systems</span> <span class="parameter">&amp;optional flags</span> =&gt; <span class="result">result</span>
+		<span class="operator">init-sub-systems</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> flags</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p><span class="parameter">FLAGS</span> で指定された SDL サブシステムを初期化する。 <span class="parameter">FLAGS</span> は、 0個以上の次の <span class="operator">logior</span> を含むビットマスク整数である。： <span class="constant">SDL-INIT-EVERYTHING</span> 、 <span class="constant">SDL-INIT-VIDEO</span> 、 <span class="constant">SDL-INIT-CDROM</span> 、 <span class="constant">SDL-INIT-AUDIO</span> 、 <span class="constant">SDL-INIT-TIMER</span> 、 <span class="constant">SDL-INIT-JOYSTICK</span> 、 <span class="constant">SDL-INIT-EVENTTHREAD</span> 、 <span class="constant">SDL-INIT-NOPARACHUTE</span> 。
@@ -4130,7 +4130,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='initialise-default-font'><b>initialise-default-font</b> <i><tt>&amp;optional</tt> font-definition</i> =&gt; <i>result</i></a>
+<a class=none name='initialise-default-font'><b>initialise-default-font</b> <i><span class="lambda-kw">&amp;optional</span> font-definition</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <a href="#sdl-bitmap-font">SDL-BITMAP-FONT</a> initialized from <span class="code">FONT-DEFINITION</span> data, or <span class="code">NIL</span> if the font cannot be created. <span class="code">FONT-DEFINITION</span> is set to <span class="code">*font-8x8*</span> if unspecified. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to the new font to be used as the default for subsequent font rendering or drawing operations.
@@ -4212,7 +4212,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">initialize-on-startup</span> <span class="parameter">&amp;rest flags</span> =&gt; <span class="result">result</span>
+		<span class="operator">initialize-on-startup</span> <span class="parameter"><span class="lambda-kw">&amp;rest</span> flags</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>後続の関数 <a href="#init-sub-systems"><span class="operator">INIT-SUB-SYSTEMS</span></a> への呼出に於いて、初期化される必要がある SDL サブシステムを設定する。
@@ -4251,7 +4251,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='is-font-face-fixed-width'><b>is-font-face-fixed-width</b> <i><tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='is-font-face-fixed-width'><b>is-font-face-fixed-width</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if the font face is of a fixed width, or <span class="code">NIL</span> otherwise. Fixed width fonts are monospace, meaning every character that exists in the font is the same width.
@@ -4376,7 +4376,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='list-modes'><b>list-modes</b> <i>flags <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='list-modes'><b>list-modes</b> <i>flags <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a LIST of vectors sorted largest to smallest that contains the width and height dimensions of the screen that will support the pixel format of the specified surface <span class="code">SURFACE</span> and video flags <span class="code">FLAGS</span>. <span class="code">LIST-MODES</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
@@ -4416,7 +4416,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='load-image'><b>load-image</b> <i>source <tt>&amp;key</tt> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
+<a class=none name='load-image'><b>load-image</b> <i>source <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates and returns a new <span class="code">SURFACE</span> from the image in <span class="code">SOURCE</span>, or returns <span class="code">NIL</span> if <span class="code">SOURCE</span> does not contain a valid image or the image type cannot be determined.
@@ -4462,7 +4462,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source string) <tt>&amp;key</tt> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
+<a class=none><b>load-image</b> <i>(source string) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <span class="code">SURFACE</span> from the file at location <span class="code">FILENAME</span>.
@@ -4477,7 +4477,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source vector) <tt>&amp;key</tt> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
+<a class=none><b>load-image</b> <i>(source vector) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <span class="code">SURFACE</span> from the byte array in <span class="code">SOURCE</span>.
@@ -4492,7 +4492,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source rwops) <tt>&amp;key</tt> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
+<a class=none><b>load-image</b> <i>(source rwops) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <span class="code">SURFACE</span> from the <span class="code">RWOPS</span> in <span class="code">SOURCE</span>.
@@ -4507,7 +4507,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='map-color'><b>map-color</b> <i>color <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='map-color'><b>map-color</b> <i>color <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Maps <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If the surface has a palette (8-bit) the index of the closest matching color in the palette will be returned. If the surface has an alpha component it will be returned as all <span class="code">1</span> bits (fully opaque). If the surface color depth is less than 32-bpp then the unused upper bits of the return value can safely be ignored (e.g., with a 16-bpp format the return value can be assigned to a Uint16, and similarly a Uint8 for an 8-bpp format).
@@ -4522,7 +4522,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>map-color</b> <i>(color color-a) <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none><b>map-color</b> <i>(color color-a) <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -4536,7 +4536,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>map-color</b> <i>(color color) <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none><b>map-color</b> <i>(color color) <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -4550,7 +4550,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='map-color-*'><b>map-color-*</b> <i>r g b a <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='map-color-*'><b>map-color-*</b> <i>r g b a <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Maps the color specified by the <span class="code">R</span>, <span class="code">G</span>, <span class="code">B</span>, and <span class="code">A</span> color components to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If <span class="code">A</span> is not <span class="code">NIL</span> then the color is assumed to contain an alpha component. See <a href="#map-color">MAP-COLOR</a> for more details.
@@ -4565,7 +4565,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>map-color-*</b> <i>(r integer) (g integer) (b integer) a <tt>&amp;optional</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none><b>map-color-*</b> <i>(r integer) (g integer) (b integer) a <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -4665,7 +4665,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='point'><b>point</b> <i><tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none name='point'><b>point</b> <i><span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates a new <span class="code">POINT</span> set to the specified horizontal <span class="code">X</span> and vertical <span class="code">Y</span> coordinate.
@@ -4815,7 +4815,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='push-user-event'><b>push-user-event</b> <i><tt>&amp;key</tt> code data1 data2</i> =&gt; <i>result</i></a>
+<a class=none name='push-user-event'><b>push-user-event</b> <i><span class="lambda-kw">&amp;key</span> code data1 data2</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Pushes a new <span class="code">SDL_Event</span> of type <span class="code">:SDL-USER-EVENT</span> onto the event queue.
@@ -4863,7 +4863,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">quit-on-exit</span> <span class="parameter">&amp;rest flags</span> =&gt; <span class="result">result</span>
+		<span class="operator">quit-on-exit</span> <span class="parameter"><span class="lambda-kw">&amp;rest</span> flags</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>後続の関数 <a href="#quit-sub-systems"><span class="operator">QUIT-SUB-SYSTEMS</span></a> への呼出に於いて、初期化解除される必要がある SDL サブシステムを設定する。
@@ -4887,7 +4887,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">quit-sdl</span> <span class="parameter">&amp;optional quit</span> =&gt; <span class="result">result</span>
+		<span class="operator">quit-sdl</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> quit</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>オプションパラメータ <span class="parameter">QUIT</span> が <span class="code">T</span> 、あるいは関数 <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> によって返される値が <span class="code">T</span> である時に、 SDL ライブラリを初期化解除する。
@@ -4901,7 +4901,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">quit-sub-systems</span> <span class="parameter">&amp;optional flags</span> =&gt; <span class="result">result</span>
+		<span class="operator">quit-sub-systems</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> flags</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>ビットマスク整数 <span class="parameter">FLAGS</span> で指定された SDL サブシステムを初期化解除する。 <span class="parameter">FLAGS</span> は、 0個以上の次の <span class="operator">logior</span> を含む。： <span class="constant">SDL-INIT-EVERYTHING</span> 、 <span class="constant">SDL-INIT-VIDEO</span> 、 <span class="constant">SDL-INIT-CDROM</span> 、 <span class="constant">SDL-INIT-AUDIO</span> 、 <span class="constant">SDL-INIT-TIMER</span> 、 <span class="constant">SDL-INIT-JOYSTICK</span> 、 <span class="constant">SDL-INIT-EVENTTHREAD</span> 、 <span class="constant">SDL-INIT-NOPARACHUTE</span> 。
@@ -4956,7 +4956,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='random-rectangle'><b>random-rectangle</b> <i>bound-w bound-h <tt>&amp;optional</tt> rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='random-rectangle'><b>random-rectangle</b> <i>bound-w bound-h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates and return s a new <span class="code">RECTANGLE</span> of random x, y width and height within the specified bounds of width <span class="code">BOUND-W</span> and height <span class="code">BOUND-H</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
@@ -4971,7 +4971,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='read-pixel'><b>read-pixel</b> <i>point <tt>&amp;key</tt> clipping surface</i> =&gt; <i>result</i></a>
+<a class=none name='read-pixel'><b>read-pixel</b> <i>point <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#read-pixel-*">READ-PIXEL-*</a>.
@@ -4992,7 +4992,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='read-pixel-*'><b>read-pixel-*</b> <i>x y <tt>&amp;key</tt> clipping surface</i> =&gt; <i>result</i></a>
+<a class=none name='read-pixel-*'><b>read-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Read the <a href="#color">COLOR</a> of the pixel at <span class="code">X</span> and <span class="code">Y</span> coordiates from <a href="#surface">SURFACE</a>.
@@ -5031,7 +5031,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rectangle'><b>rectangle</b> <i><tt>&amp;key</tt> x y w h fp</i> =&gt; <i>result</i></a>
+<a class=none name='rectangle'><b>rectangle</b> <i><span class="lambda-kw">&amp;key</span> x y w h fp</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Creates a new <span class="code">RECTANGLE</span> from the specified <span class="code">X</span>, <span class="code">Y</span>, width <span class="code">W</span> and height <span class="code">H</span>. If <span class="code">FP&amp;#039; is </span>NIL<span class="code"> then a foreign SDL_Rect is created. If </span>FP<span class="code"> is a pointer to a foreign SDL_Rect object then </span>FP` is used.
@@ -5091,7 +5091,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rectangle-from-edges'><b>rectangle-from-edges</b> <i>p1 p2 <tt>&amp;optional</tt> rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='rectangle-from-edges'><b>rectangle-from-edges</b> <i>p1 p2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#rectangle-from-edges-*">RECTANGLE-FROM-EDGES-*</a>.
@@ -5108,7 +5108,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rectangle-from-edges-*'><b>rectangle-from-edges-*</b> <i>x1 y1 x2 y2 <tt>&amp;optional</tt> rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='rectangle-from-edges-*'><b>rectangle-from-edges-*</b> <i>x1 y1 x2 y2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <span class="code">RECTANGLE</span> using the bounds specified by the <span class="code">INTEGERS</span> <span class="code">X1</span>, <span class="code">X2</span>, <span class="code">Y1</span> and <span class="code">Y2</span>. The coordinates of the rectangle are X = X1, Y = Y1, WIDTH = (- X2 X1), HEIGHT = (- Y2 Y1)
@@ -5128,7 +5128,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rectangle-from-midpoint-*'><b>rectangle-from-midpoint-*</b> <i>x y w h <tt>&amp;optional</tt> rectangle</i> =&gt; <i>result</i></a>
+<a class=none name='rectangle-from-midpoint-*'><b>rectangle-from-midpoint-*</b> <i>x y w h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a <span class="code">RECTANGLE</span> of width <span class="code">W</span> and height <span class="code">H</span> with the rectangle mid-point at coordinates <span class="code">X</span> and <span class="code">Y</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
@@ -5143,7 +5143,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='render-string-blended'><b>render-string-blended</b> <i>string <tt>&amp;key</tt> font color free cache</i> =&gt; <i>result</i></a>
+<a class=none name='render-string-blended'><b>render-string-blended</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
@@ -5173,7 +5173,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='render-string-shaded'><b>render-string-shaded</b> <i>string fg-color bg-color <tt>&amp;key</tt> font free cache</i> =&gt; <i>result</i></a>
+<a class=none name='render-string-shaded'><b>render-string-shaded</b> <i>string fg-color bg-color <span class="lambda-kw">&amp;key</span> font free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
@@ -5204,7 +5204,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='render-string-solid'><b>render-string-solid</b> <i>string <tt>&amp;key</tt> font color free cache</i> =&gt; <i>result</i></a>
+<a class=none name='render-string-solid'><b>render-string-solid</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
@@ -5290,7 +5290,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rotate-surface'><b>rotate-surface</b> <i>degrees <tt>&amp;key</tt> surface free zoom smooth</i> =&gt; <i>result</i></a>
+<a class=none name='rotate-surface'><b>rotate-surface</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoom smooth</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
@@ -5319,7 +5319,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='rotate-surface-xy'><b>rotate-surface-xy</b> <i>degrees <tt>&amp;key</tt> surface free zoomx zoomy smooth</i> =&gt; <i>result</i></a>
+<a class=none name='rotate-surface-xy'><b>rotate-surface-xy</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoomx zoomy smooth</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
@@ -5942,7 +5942,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='set-cell'><b>set-cell</b> <i>rectangle <tt>&amp;key</tt> surface index</i> =&gt; <i>result</i></a>
+<a class=none name='set-cell'><b>set-cell</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">RECTANGLE</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
@@ -5957,7 +5957,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='set-cell-*'><b>set-cell-*</b> <i>x y w h <tt>&amp;key</tt> surface index</i> =&gt; <i>result</i></a>
+<a class=none name='set-cell-*'><b>set-cell-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to a rectangle bounded by <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
@@ -5972,7 +5972,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='set-clip-rect'><b>set-clip-rect</b> <i>rectangle <tt>&amp;key</tt> surface</i> =&gt; <i>result</i></a>
+<a class=none name='set-clip-rect'><b>set-clip-rect</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#clip-rect">CLIP-RECT</a>.
@@ -6016,7 +6016,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='set-color-*'><b>set-color-*</b> <i>color <tt>&amp;key</tt> r g b a</i> =&gt; <i>result</i></a>
+<a class=none name='set-color-*'><b>set-color-*</b> <i>color <span class="lambda-kw">&amp;key</span> r g b a</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets <span class="code">COLOR</span> to the red <span class="code">R</span>, green <span class="code">G</span>, blue <span class="code">B</span> and alpha <span class="code">A</span> color components.
@@ -6031,7 +6031,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-color-*</b> <i>(color color) <tt>&amp;key</tt> r g b a</i> =&gt; <i>result</i></a>
+<a class=none><b>set-color-*</b> <i>(color color) <span class="lambda-kw">&amp;key</span> r g b a</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -6074,7 +6074,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='set-font-style'><b>set-font-style</b> <i>style <tt>&amp;key</tt> font</i> =&gt; <i>result</i></a>
+<a class=none name='set-font-style'><b>set-font-style</b> <i>style <span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the rendering style <span class="code">STYLE</span> of font <span class="code">FONT</span>. This will flush the internal cache of previously rendered glyphs, even if there is no change in style, so it may be best to check the  current style using <a href="#get-font-style">GET-FONT-STYLE</a> first.
@@ -6170,7 +6170,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='set-point-*'><b>set-point-*</b> <i>obj <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none name='set-point-*'><b>set-point-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object <span class="code">OBJ</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
@@ -6185,7 +6185,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj sdl-surface) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-point-*</b> <i>(obj sdl-surface) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are integers.
@@ -6200,7 +6200,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj rectangle) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-point-*</b> <i>(obj rectangle) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
@@ -6215,7 +6215,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj vector) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-point-*</b> <i>(obj vector) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> to <span class="code">X</span> and <span class="code">Y</span>.
@@ -6290,7 +6290,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='set-position-*'><b>set-position-*</b> <i>obj <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none name='set-position-*'><b>set-position-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>
@@ -6305,7 +6305,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj sdl-surface) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-position-*</b> <i>(obj sdl-surface) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
@@ -6320,7 +6320,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj rectangle) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-position-*</b> <i>(obj rectangle) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
@@ -6335,7 +6335,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj vector) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-position-*</b> <i>(obj vector) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
@@ -6380,7 +6380,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='set-rectangle-*'><b>set-rectangle-*</b> <i>rectangle <tt>&amp;key</tt> x y w h</i> =&gt; <i>result</i></a>
+<a class=none name='set-rectangle-*'><b>set-rectangle-*</b> <i>rectangle <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
@@ -6395,7 +6395,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-rectangle-*</b> <i>(rectangle rectangle) <tt>&amp;key</tt> x y w h</i> =&gt; <i>result</i></a>
+<a class=none><b>set-rectangle-*</b> <i>(rectangle rectangle) <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the coordinates of the rectangle <span class="code">RECTANGLE</span> to the specified <span class="code">X</span>, <span class="code">Y</span> , width <span class="code">W</span> and height <span class="code">HEIGHT</span> coordinates. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span> are <span class="code">KEY</span>word parameters of type <span class="code">INTEGER</span>. Returns the rectangle <span class="code">RECTANGLE</span> as RESULT.
@@ -6440,7 +6440,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［総称関数］<br>
-<a class=none name='set-surface-*'><b>set-surface-*</b> <i>surface <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none name='set-surface-*'><b>set-surface-*</b> <i>surface <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Sets the coordinates of the surface <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
@@ -6455,7 +6455,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［メソッド］<br>
-<a class=none><b>set-surface-*</b> <i>(surface sdl-surface) <tt>&amp;key</tt> x y</i> =&gt; <i>result</i></a>
+<a class=none><b>set-surface-*</b> <i>(surface sdl-surface) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
@@ -6514,7 +6514,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='surface-info'><b>surface-info</b> <i>surface <tt>&amp;optional</tt> info</i> =&gt; <i>result</i></a>
+<a class=none name='surface-info'><b>surface-info</b> <i>surface <span class="lambda-kw">&amp;optional</span> info</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns information about the SDL surface <span class="code">SURFACE</span>.
@@ -6538,7 +6538,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='time-scale'><b>time-scale</b> <i><tt>&amp;optional</tt> fpsmanager</i> =&gt; <i>result</i></a>
+<a class=none name='time-scale'><b>time-scale</b> <i><span class="lambda-kw">&amp;optional</span> fpsmanager</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -6583,7 +6583,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">update-display</span> <span class="parameter">&amp;optional surface</span> =&gt; <span class="result">result</span>
+		<span class="operator">update-display</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p><a href="#*opengl-context*"><span class="variable">*OPENGL-CONTEXT*</span></a> が <span class="code">NIL</span> である時、関数 <span class="operator">UPDATE-DISPLAY</span> は、 <span class="constant">SDL-HW-SURFACE</span> が関数 <a href="#window"><span class="operator">WINDOW</span></a> （の引数 <span class="parameter">flags</span> ）で設定されている場合、 SDL ビデオバッファを切り替えて画面 <span class="parameter">SURFACE</span> を更新する。ダブルバッファリングが有効でない場合、 SDL は画面全体で <a href="#sdl-update-rect">SDL-UPDATE-RECT</a> を実行する。
@@ -6620,7 +6620,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='update-surface'><b>update-surface</b> <i>surface <tt>&amp;optional</tt> template</i> =&gt; <i>result</i></a>
+<a class=none name='update-surface'><b>update-surface</b> <i>surface <span class="lambda-kw">&amp;optional</span> template</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Updates the surface
@@ -6683,7 +6683,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='video-info'><b>video-info</b> <i><tt>&amp;optional</tt> info</i> =&gt; <i>result</i></a>
+<a class=none name='video-info'><b>video-info</b> <i><span class="lambda-kw">&amp;optional</span> info</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns information about the video hardware. <span class="code">GET-VIDEO-INFO</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>. If <span class="code">GET-VIDEO-INFO</span> is called before <a href="#window">WINDOW</a>, the information returned is of the <em>best</em> video mode. If <span class="code">GET-VIDEO-INFO</span> is called after <a href="#window">WINDOW</a>, the information returned is of the <em>current</em> video mode.
@@ -6781,7 +6781,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 <div class="def">
 	<p class="def">
 		<span class="deftype">［関数］</span>
-		<span class="operator">window</span> <span class="parameter">width height &amp;key bpp flags title-caption icon-caption</span> =&gt; <span class="result">result</span>
+		<span class="operator">window</span> <span class="parameter">width height <span class="lambda-kw">&amp;key</span> bpp flags title-caption icon-caption</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
 		<p>SDL_SetVideoMode を使用して、ピクセル幅 <span class="parameter">WIDTH</span> および高さ <span class="parameter">HEIGHT</span> の新しい SDL ウィンドウを生成する。
@@ -6821,7 +6821,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-bezier'><b>with-bezier</b> <i>(<tt>&amp;optional</tt> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-bezier'><b>with-bezier</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a bezier curve of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the Bezier curve is defined by control points. A control point is a vertex containing an X and Y coordinate pair.
@@ -6860,7 +6860,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-color'><b>with-color</b> <i>(var <tt>&amp;optional</tt> color free) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-color'><b>with-color</b> <i>(var <span class="lambda-kw">&amp;optional</span> color free) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>A convience macro that binds <span class="code">*DEFAULT-COLOR*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-COLOR</span>. <span class="code">VAR</span> is set to <span class="code">COLOR</span> when <span class="code">COLOR</span> is not <span class="code">NIL</span>.<span class="code">VAR</span> must be of type <a href="#color">COLOR</a>, or <a href="#color-a">COLOR-A</a>. <span class="code">VAR</span> is freed using <a href="#free">FREE</a> when <span class="code">FREE</span> is <span class="code">T</span>.
@@ -6875,7 +6875,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-curve'><b>with-curve</b> <i>(<tt>&amp;optional</tt> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-curve'><b>with-curve</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a Cattmul-Rom spline of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
@@ -6933,7 +6933,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-events'><b>with-events</b> <i>(<tt>&amp;optional</tt> type) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-events'><b>with-events</b> <i>(<span class="lambda-kw">&amp;optional</span> type) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p><span class="code">WITH-EVENTS</span> is a convenience macro for managing the main game loop. It processes incoming SDL events and limits the game loop to the specified number of frames per second.
@@ -7256,7 +7256,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-locked-surface'><b>with-locked-surface</b> <i>(var <tt>&amp;optional</tt> surface) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-locked-surface'><b>with-locked-surface</b> <i>(var <span class="lambda-kw">&amp;optional</span> surface) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -7270,7 +7270,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-locked-surfaces'><b>with-locked-surfaces</b> <i>bindings <tt>&amp;rest</tt> body</i> =&gt; <i>result</i></a>
+<a class=none name='with-locked-surfaces'><b>with-locked-surfaces</b> <i>bindings <span class="lambda-kw">&amp;rest</span> body</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -7284,7 +7284,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-point'><b>with-point</b> <i>(var <tt>&amp;optional</tt> point) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-point'><b>with-point</b> <i>(var <span class="lambda-kw">&amp;optional</span> point) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>A convenience macro that binds <span class="code">*DEFAULT-POINT*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-POINT</span>. <span class="code">VAR</span> must be of type <span class="code">POINT</span>. If <span class="code">POINT</span> is not <span class="code">NIL</span>, then <span class="code">VAR is set to </span>POINT`.
@@ -7299,7 +7299,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-rectangle'><b>with-rectangle</b> <i>(var <tt>&amp;optional</tt> rectangle free) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-rectangle'><b>with-rectangle</b> <i>(var <span class="lambda-kw">&amp;optional</span> rectangle free) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>A convenience macro that binds <span class="code">*DEFAULT-RECTANGLE*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-RECTANGLE</span>. <span class="code">VAR</span> must be of type <span class="code">RECTANGLE</span>. <span class="code">VAR</span> is set to <span class="code">RECTANGLE</span> when <span class="code">RECTANGLE</span> is not <span class="code">NIL</span>. <span class="code">VAR</span> is freed when <span class="code">FREE</span> is <span class="code">T</span>.
@@ -7337,7 +7337,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-shape'><b>with-shape</b> <i>(<tt>&amp;optional</tt> style) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-shape'><b>with-shape</b> <i>(<span class="lambda-kw">&amp;optional</span> style) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Draw a polygon of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>.
@@ -7373,7 +7373,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-surface'><b>with-surface</b> <i>(var <tt>&amp;optional</tt> surface free) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-surface'><b>with-surface</b> <i>(var <span class="lambda-kw">&amp;optional</span> surface free) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -7387,7 +7387,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-surface-slots'><b>with-surface-slots</b> <i>(var <tt>&amp;optional</tt> surface) declaration* statement*</i> =&gt; <i>result</i></a>
+<a class=none name='with-surface-slots'><b>with-surface-slots</b> <i>(var <span class="lambda-kw">&amp;optional</span> surface) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -7401,7 +7401,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［マクロ］<br>
-<a class=none name='with-surfaces'><b>with-surfaces</b> <i>bindings <tt>&amp;rest</tt> body</i> =&gt; <i>result</i></a>
+<a class=none name='with-surfaces'><b>with-surfaces</b> <i>bindings <span class="lambda-kw">&amp;rest</span> body</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 
@@ -7677,7 +7677,7 @@ href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbu
 
 <p><br>
 ［関数］<br>
-<a class=none name='zoom-surface'><b>zoom-surface</b> <i>zoomx zoomy <tt>&amp;key</tt> surface free smooth</i> =&gt; <i>result</i></a>
+<a class=none name='zoom-surface'><b>zoom-surface</b> <i>zoomx zoomy <span class="lambda-kw">&amp;key</span> surface free smooth</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> scaled to <span class="code">ZOOMX</span> and <span class="code">ZOOMY</span>.
