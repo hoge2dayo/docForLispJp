@@ -9,8 +9,8 @@ body {
 }
 
 h2 {
-	font-size: 140%;
-	border-bottom: 1px solid #449977;
+	font-size : 140%;
+	border-bottom : 1px solid #449977;
 }
 
 h3, h4 {
@@ -97,8 +97,8 @@ pre.none {
 
 pre.code {
 	margin : 0 16px;
-	padding : 7px;
-	border : 1px solid #888888;
+	padding : 5px;
+	border : 1px solid #0000cc;
 	line-height : 1.3em;
 }
 
@@ -108,22 +108,24 @@ div.def {
 }
 
 p.form {
-	margin: 0 0 20px 0;
+	margin : 0 0 20px 0;
 	padding : 10px;
 	border : solid 1px #000;
 	background-color : #ffffff;
 	font-family : "HGGothicM";
 }
 
+/* 説明 */
 div.desc {
-	margin-left: 1em;
+	margin-left : 1em;
 }
 
+/* 項目のタイトル */
 div.title {
 	margin : 4px 0;
 	padding : 3px 1em;
 	background-color : #ffffdd;
-	font-weight: bold;
+	font-weight : bold;
 }
 /* title より低いレベルのタイトル */
 div.title2 {
@@ -140,12 +142,14 @@ div.title2 {
 
 /* 定義しているものの種別（関数、変数など） */
 .deftype {
-	font-weight: bold;
+	font-weight : bold;
 }
 
 /* 強調１ */
 .e1 {
-	background-color : #ffcccc;
+	font-weight : bold;
+/*	background-color : #ffcccc; */
+	color : #cc0000;
 }
 /* 強調２（翻訳で気づいた内容の追記） */
 .e2 {
@@ -169,7 +173,7 @@ div.title2 {
 }
 /* 型名 */
 .type {
-	text-decoration : underline;
+	text-decoration : underline dashed;
 }
 /* パラメータ */
 .parameter {

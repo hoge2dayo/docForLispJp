@@ -4482,15 +4482,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">例</div>
 		<ul>
 			<li>マジックナンバーを使用して <span class="code">BMP</span> 画像をロードする。
-				<p>(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span>)
+				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span>)</span>
 				</p>
 			</li>
 			<li><span class="code">TGA</span> 画像をロードする。
-				<p>(LOAD-IMAGE <span class="string">&quot;image.tga&quot;</span> :IMAGE-TYPE :TGA)
+				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.tga&quot;</span> :IMAGE-TYPE :TGA)</span>
 				</p>
 			</li>
 			<li><span class="code">BMP</span> 画像を <span class="code">TGA</span> としてロードすることを試みる。
-				<p>(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span> :IMAGE-TYPE :TGA :FORCE T)
+				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span> :IMAGE-TYPE :TGA :FORCE T)</span>
 				</p>
 			</li>
 		</ul>
@@ -4498,53 +4498,38 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">パッケージ</div>
 		<ul>
 			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> に於いても対応される。</li>
-			<li>
-Also supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
-			<li><em>LISPBUILDER-SDL</em> only supports <span class="code">BMP</span> images. Any alpha channel present in the source image is ignored. The new <span class="code">SURFACE</span> is created as an <span class="code">RGB</span> surface, not <span class="code">RGBA</span>. </li>
-			<li><em>LISPBUILDER-SDL-IMAGE</em> supports the following image formats, <span class="code">BMP</span>, <span class="code">GIF</span>, <span class="code">JPG</span>, <span class="code">LBM</span>, <span class="code">PCX</span>, <span class="code">PNG</span>, <span class="code">PNM</span>, <span class="code">TIF</span>, <span class="code">XCF</span>, <span class="code">XPM</span>, <span class="code">XV</span>. <span class="code">BMP</span> and <span class="code">TGA</span>. Alpha channels are supported. The new <span class="code">SURFACE</span> is created as <span class="code">RGB</span> or <span class="code">RGBA</span> as appropriate. </li>
-			<li><span class="code">:IMAGE-TYPE</span> and <span class="code">:FORCE</span> are ignored for <em>LISPBUILDER-SDL</em>.</li>
+			<li><span class="module">LISPBUILDER-SDL</span> は <span class="code">BMP</span> 画像のみに対応する。 <span class="parameter">SOURCE</span> 画像に存在するアルファチャネルは無視される。新しい <span class="type">SURFACE</span> は、 <span class="code">RGBA</span> ではなく、 <span class="code">RGB</span> サーフェスとして生成される。</li>
+			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> は、次の画像フォーマットに対応する。 <span class="code">BMP</span> 、 <span class="code">GIF</span> 、 <span class="code">JPG</span> 、 <span class="code">LBM</span> 、 <span class="code">PCX</span> 、 <span class="code">PNG</span> 、 <span class="code">PNM</span> 、 <span class="code">TIF</span> 、 <span class="code">XCF</span> 、 <span class="code">XPM</span> 、 <span class="code">XV</span>. <span class="code">BMP</span> 、 <span class="code">TGA</span> 。アルファチャネルが対応されている。新しい <span class="type">SURFACE</span> は、適宜 <span class="code">RGB</span> あるいは <span class="code">RGBA</span> として生成される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> では、 <span class="code">:IMAGE-TYPE</span> および <span class="code">:FORCE</span> は無視される。</li>
 		</ul>
 	</div>
 </div>
-
-<p><br>
-<br>
-<a class=none name=''><b></b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-</blockquote>
-
 <!-- End of entry for LOAD-IMAGE -->
 
-
 <!-- Entry for LOAD-IMAGE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source string) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new <span class="code">SURFACE</span> from the file at location <span class="code">FILENAME</span>.
- </p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">load-image</span> <span class="parameter">(filename string) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FILENAME</span> の場所にあるファイルから、新しい <span class="type">SURFACE</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for LOAD-IMAGE -->
 
-
 <!-- Entry for LOAD-IMAGE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source vector) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new <span class="code">SURFACE</span> from the byte array in <span class="code">SOURCE</span>.
- </p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">load-image</span> <span class="parameter">(source vector) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SOURCE</span> のバイト配列から、新しい <span class="type">SURFACE</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for LOAD-IMAGE -->
 
 
