@@ -550,7 +550,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)</pre>
 		<p>上記は、<span class="variable">*DEFAULT-SURFACE*</span> を表示面へ設定することにより、短縮化できる。
-		 </p>
+		</p>
 		<pre class="code">(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
   (DRAW-SURFACE SURF-1)
   (DRAW-SURFACE SURF-2)
@@ -1142,7 +1142,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if all values are <span class="code">INTEGERS</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1221,7 +1221,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new color that is different to <span class="code">COLOR</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1286,7 +1286,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the number of bytes per pixel, or bpp, of <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1314,7 +1314,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Performs a fast blit of the <span class="code">SOURCE</span> surface to the destination <span class="code">SURFACE</span>. The area defined by the <span class="code">SOURCE</span> cell is blitted to the area defined by the destination clipping rectangle. The blit function should not be called on a locked surface. The results of blitting operations vary greatly depending on whether a surface ALPHA channel is set on the source surface or not. The priorty of how color key and alpha attributes interact with surface blitting is as follows:
- </p>
+</p>
 <ul><li>source surface with <span class="code">ALPHA</span> + <span class="code">PIXEL-ALPHA</span>: Blit using per-pixel alpha only</li>
 <li>source surface with <span class="code">ALPHA</span> + <span class="code">COLOR-KEY</span>: Blit using the colour key AND the per-surface alpha value</li>
 <li>source surface with <span class="code">ALPHA</span>: Blit using the colour key AND the per-surface alpha value</li>
@@ -1322,7 +1322,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <li>source surface: Blit using opaque rectangular blit</li>
 </ul>
 <p>An ALPHA channel has the following effect on blitting operations:
- </p>
+</p>
 <ul><li><em>RGBA to RGB</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination, using the alpha channel. <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> and the per-surface alpha are ignored. </li>
 <li><em>RGBA to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. The source alpha channel and the per-surface alpha value are ignored. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
 <li><em>RGB to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. The alpha channel of the copied pixels is set to opaque. </li>
@@ -1333,7 +1333,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <li><em>RGB to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
 </ul>
 <p><em>Note</em>: <em>RGBA to RGBA</em> blits (with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a> set) keep the alpha of the destination surface. This means that you cannot compose two arbitrary <em>RGBA</em> surfaces this way and get the result you would expect from &quot;overlaying&quot; them; the destination alpha will work as a mask.
- </p>
+</p>
 
 </blockquote>
 
@@ -1380,7 +1380,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Coerces the value <span class="code">VALUE</span> to the type <span class="code">TYPE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1395,7 +1395,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Casts the values in <span class="code">REST</span> to <span class="code">FIXNUM</span>s.
- </p>
+</p>
 
 </blockquote>
 
@@ -1410,7 +1410,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Casts the value <span class="code">VALUE</span> to a <span class="code">FIXNUM</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1531,7 +1531,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Performs <span class="code">CHECK-TYPE</span> on items in rest.
- </p>
+</p>
 
 </blockquote>
 
@@ -1546,7 +1546,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1561,7 +1561,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Removes the clipping <a href="#rectangle">RECTANGLE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1576,7 +1576,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Disables the color key.
- </p>
+</p>
 
 </blockquote>
 
@@ -1797,7 +1797,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if the <span class="code">RGB</span>&lt;-&gt;<span class="code">RGB</span> or <span class="code">RGBA</span>&lt;-&gt;<span class="code">RGBA</span> color components in <span class="code">COLOR1</span> and <span class="code">COLOR2</span> match. Returns <span class="code">NIL</span> otherwise.
- </p>
+</p>
 
 </blockquote>
 
@@ -1854,15 +1854,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Converts <span class="code">:SURFACE</span> and returns a new surface matching the pixel format and color of <span class="code">:TO-SURFACE</span>. Calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting to the display format.
- </p>
+</p>
 <p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
- </p>
+</p>
 <p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
- </p>
+</p>
 <p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
- </p>
+</p>
 <p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1877,22 +1877,22 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new surface matching the pixel format and color of the video frame buffer (<span class="code">*display surface*), that is suitable for fast blitting. The new surface will inherit the pixel, alpha and color key components of the source, *unless* </span>:INHERIT<span class="code"> is </span>NIL`.
- </p>
+</p>
 <p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
- </p>
+</p>
 <p>Use <span class="code">:PIXEL-ALPHA</span> to enable the pixel alpha component (alpha mask of 0xFF) for the new surface.
- </p>
+</p>
 <p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
- </p>
+</p>
 <p>Differences between <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a>, <a href="#convert-surface">CONVERT-SURFACE</a>, <a href="#copy-surface">COPY-SURFACE</a>, and <a href="#create-surface">CREATE-SURFACE</a>;
- </p>
+</p>
 <ul><li>
 <p><a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> <strong> will always attempt to create a surface in video memory using hardware acceleration if key color and surface alpha are supported. </strong> A pixel alpha component can be specified. ** New surface is filled with old surface.
- </p>
+</p>
 </li>
 <li>
 <p><a href="#convert-surface">CONVERT-SURFACE</a> ** calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting a surface to the display format. <strong> paramatized option to create new surface in video or system memory. </strong> Pixel format and color match that of the source surface. ** New surface is filled with old surface.
- </p>
+</p>
 </li>
 <li><a href="#copy-surface">COPY-SURFACE</a> <strong> paramatized option to create new surface in video or system memory. </strong> copies a portion or all of the source surface to a new destination surface <strong> A pixel alpha component can be specified. </strong> New surface can be filled with the old surface, or the color key or both. </li>
 </ul>
@@ -1924,7 +1924,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a copy of the point <span class="code">POINT</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1939,17 +1939,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a copy of <span class="code">:SURFACE</span>.
- </p>
+</p>
 <p>Use <span class="code">:COLOR-KEY</span> or <span class="code">:ALPHA</span> to set the key color and surface alpha transparency. Hardware colorkey and alpha blit acceleration will be used if supported.
- </p>
+</p>
 <p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
- </p>
+</p>
 <p>The new surface will be filled with the old surface unless <span class="code">:FILL</span> is <span class="code">NIL</span>. The new surface will be filled with the color key of the old surface (if available) unless <span class="code">:COLOR-KEY-FILL</span> is <span class="code">NIL</span>.
- </p>
+</p>
 <p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
- </p>
+</p>
 <p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1964,7 +1964,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>If <span class="code">VAR</span> is not already a list, then returns <span class="code">(LIST VAR)</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1979,7 +1979,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates a new path from <span class="code">FILENAME</span> and <span class="code">PATH</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -1994,7 +1994,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates and returns a new <span class="code">RWOPS</span> object from the file at location <span class="code">FILENAME</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -2023,21 +2023,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates and returns a new <span class="code">SURFACE</span> with the dimensions <span class="code">WIDTH</span> and <span class="code">HEIGHT</span>.
- </p>
+</p>
 <p><span class="code">:COLOR-KEY</span> sets the color key of the surface and enables color-keying.
- </p>
+</p>
 <p><span class="code">:ALPHA</span> sets the surface alpha transparency and enables alpha blending. This allows a pixel color of <span class="code">RGB</span> with the surface <span class="code">A</span>.
- </p>
+</p>
 <p><span class="code">:PIXEL-ALPHA</span> enables a pixel alpha component (alpha mask of 0xFF) on the new surface. This allows a pixel color of <span class="code">RGBA</span>.
- </p>
+</p>
 <p><span class="code">:RLE-ACCEL</span> enables RLE blit acceleration.
- </p>
+</p>
 <p><span class="code">:BPP</span> is the pixel depth of the surface, and my be 8, 16, 24 or 32.
- </p>
+</p>
 <p><span class="code">:TYPE</span> attempts to create the <span class="code">SURFACE</span> in video memory when <span class="code">:HW</span>, and in system memory when <span class="code">:SW</span>
- </p>
+</p>
 <p><span class="code">:X</span> and <span class="code">:Y</span> are the positions of the <span class="code">SURFACE</span> in screen coordinates.
- </p>
+</p>
 
 </blockquote>
 
@@ -2052,7 +2052,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Disables keyboard repeat.
- </p>
+</p>
 
 </blockquote>
 
@@ -2083,7 +2083,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the distance between the <span class="code">POINT</span>s <span class="code">P1</span> and <span class="code">P2</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -2098,7 +2098,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -2113,7 +2113,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a bezier curve of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the Bezier curve is defined by several control points. A control point is a vertex containing an X and Y coordinate pair.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">:VERTICES</span> is a list of control points of <a href="#point">POINT</a>.</li>
 <li><span class="code">:STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
@@ -2146,7 +2146,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-box-*">DRAW-BOX-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
 </ul>
@@ -2167,7 +2167,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a filled rectangle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
 <li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
@@ -2194,7 +2194,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-circle-*">DRAW-CIRCLE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the circle.</li>
 </ul>
@@ -2216,7 +2216,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a circle circumference of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a> to draw a filled circle.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the circle, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">R</span> is the circle r, of type <span class="code">INTEGER</span>.</li>
@@ -2243,7 +2243,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a Cattmul-Rom spline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">VERTICES</span> is a list of waypoints or vetices for the spline, of <a href="#point">POINT</a></li>
 <li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
@@ -2274,7 +2274,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-ellipse-*">DRAW-ELLIPSE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the ellipse.</li>
 </ul>
@@ -2295,7 +2295,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws an ellipse circumference of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a> to draw a filled ellipse.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the ellipse, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">RX</span> and <span class="code">RY</span> specify the ellipse radius, of type <span class="code">INTEGER</span>.</li>
@@ -2319,7 +2319,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates coordinate of the center of the filled circle.</li>
 </ul>
@@ -2340,7 +2340,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a filled circle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X0</span> and <span class="code">Y0</span> specify the center coordinate of the circle, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">R</span> is the circle radius, of type <span class="code">INTEGER</span>.</li>
@@ -2366,7 +2366,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled ellipse.</li>
 </ul>
@@ -2387,7 +2387,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a filled ellipse of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the ellipse, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">RX</span> and <span class="code">RY</span> specify the ellipse radius, of type <span class="code">INTEGER</span>.</li>
@@ -2411,7 +2411,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled pie.</li>
 </ul>
@@ -2432,7 +2432,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a filled pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
@@ -2458,7 +2458,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a filled polygon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">VERTICES</span> is the list of vertices of type <span class="code">SDL:POINT</span>.</li>
 <li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
@@ -2481,7 +2481,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a filled trigon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
 <li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
@@ -2504,7 +2504,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
- </p>
+</p>
 <div class="title">パッケージ</div>
 <ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
 </ul>
@@ -2536,7 +2536,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-font">DRAW-FONT</a>. The cached surface is rendered at <span class="code">POSITION</span> <a href="#point">POINT</a>.
- </p>
+</p>
 <div class="title">パッケージ</div>
 <ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
 </ul>
@@ -2568,7 +2568,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-font">DRAW-FONT</a>.  The cached surface is rendered at poisition <span class="code">X</span> and <span class="code">Y</span>.
- </p>
+</p>
 <div class="title">パッケージ</div>
 <ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
 </ul>
@@ -2679,7 +2679,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-pie-*">DRAW-PIE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the pie.</li>
 </ul>
@@ -2700,7 +2700,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws a pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a> to draw a filled pie.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
@@ -2726,7 +2726,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-pixel-*">DRAW-PIXEL-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
 </ul>
@@ -2747,7 +2747,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a single pixel of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a> at the specified <span class="code">X</span> and <span class="code">Y</span> coordiates.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
@@ -2771,7 +2771,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw the circumference of a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using the vertices in <span class="code">POINTS</span>. Use <a href="#draw-filled-polygon-*">DRAW-FILLED-POLYGON-*</a> to draw a filled polygon.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">:POINTS</span> is the list of vertices for the polygon. <span class="code">POINTS</span> is a list of <span class="code">POINT</span>s.</li>
 <li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
@@ -2797,7 +2797,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-rectangle-*">DRAW-RECTANGLE-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
 </ul>
@@ -2818,7 +2818,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a rectangle outline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
 <li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
@@ -2844,7 +2844,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using <span class="code">VERTICES</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">VERTICES</span> is a list of vertices, of <span class="code">POINT</span></li>
 <li><span class="code">STYLE</span> describes the line style used to draw the polygon and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
@@ -2874,7 +2874,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-string-blended-*">DRAW-STRING-BLENDED-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
 </ul>
@@ -2895,7 +2895,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
@@ -2925,7 +2925,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-string-shaded-*">DRAW-STRING-SHADED-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">Y</span> coordinates to render the text, of type <span class="code">SDL:POINT</span>.</li>
 </ul>
@@ -2946,7 +2946,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> onto surface <span class="code">SURFACE</span>. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces.
- </p>
+</p>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> coordinates, as <span class="code">INTEGERS</span>.</li>
 <li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
@@ -2976,7 +2976,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#draw-string-solid-*">DRAW-STRING-SOLID-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
 </ul>
@@ -2997,7 +2997,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
@@ -3027,7 +3027,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#blit-surface">BLIT-SURFACE</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -3042,7 +3042,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws the source surface to the destination surface at position POINT.  See <a href="#blit-surface">BLIT-SURFACE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3057,7 +3057,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draws the source surface to the destination surface at position X and Y.  See <a href="#blit-surface">BLIT-SURFACE</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -3072,7 +3072,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw the outline of a trigon or triangle, of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-trigon-*">DRAW-FILLED-TRIGON-*</a> to draw a filled trigon.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
 <li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
@@ -3126,7 +3126,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Enable surface alpha blending for when <span class="code">T</span>. Disable surface alpha blending when <span class="code">NIL</span>. A <span class="code">SURFACE</span> need not have a pixel alpha component (RGBA) to use surface alpha blending.
- </p>
+</p>
 
 </blockquote>
 
@@ -3141,7 +3141,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Enables color keying when <span class="code">T</span>. Disable color keying when <span class="code">NIL</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -3156,7 +3156,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Enables the keyboard repeat rate. DELAY specifies how long the key must be pressed before it begins repeating, it then repeats at the speed specified by INTERVAL. Both DELAY and INTERVAL are expressed in milliseconds. Setting DELAY or INTERVAL to NIL will set the default values of SDL-DEFAULT-REPEAT-DELAY and SDL-DEFAULT-REPEAT-INTERVAL respectively.
- </p>
+</p>
 
 </blockquote>
 
@@ -3171,7 +3171,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current keyboard DELAY and INTERVAL repeat rate in milliseconds as (VALUES DELAY INTERVAL).
- </p>
+</p>
 
 </blockquote>
 
@@ -3186,7 +3186,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Enables RLE blit acceleration when <span class="code">T</span>, disables RLE acceleration when <span class="code">NIL</span>. RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color).
- </p>
+</p>
 
 </blockquote>
 
@@ -3201,7 +3201,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Unicode translation is enabled with STATE is T, and disabled when STATE is NIL. To obtain the character codes corresponding to received keyboard events, Unicode translation must first be turned on using this function. The translation incurs a slight overhead for each keyboard event and is therefore disabled by default. For each subsequently received key down event, the unicode member of the SDL_keysym structure will then contain the corresponding character code, or zero for keysyms that do not correspond to any character code. Note that only key press events will be translated, not release events. Returns the previous unicode translation state.
- </p>
+</p>
 
 </blockquote>
 
@@ -3216,7 +3216,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Queries the current state of Unicode keyboard translation. Returns T if enabled, NIL if disabled.
- </p>
+</p>
 
 </blockquote>
 
@@ -3231,7 +3231,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Fills surface with the specified <span class="code">COLOR</span>.    <span class="code">:TEMPLATE</span> accepts  a <span class="code">RECTANGLE</span> defining the fill bounds.    <span class="code">The surface is updated when </span>:UPDATE`
- </p>
+</p>
 
 </blockquote>
 
@@ -3246,7 +3246,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Fill the surface with the specified color <span class="code">R</span> <span class="code">G</span> <span class="code">B</span> <span class="code">:A</span> <span class="code">A</span>.  See <a href="#fill-surface">FILL-SURFACE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3261,7 +3261,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
 </ul>
@@ -3279,7 +3279,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Performs a flood fill of surface <span class="code">SURFACE</span> with color <span class="code">COLOR</span>. The fill starts at the position specified by the <span class="code">X</span> and <span class="code">Y</span> coordinates. Uses a stack based flood fill that does a lot of consing because it uses PUSH/POP as the stack.  This function is fast.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> are <span class="code">INTEGER</span> coordinates.</li>
 <li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL:SDL-SURFACE</span>. Bound to <span class="code">SDL:*DEFAULT-SURFACE*</span> if unspecified.</li>
@@ -3299,7 +3299,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#flood-fill-stack-*">FLOOD-FILL-STACK-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
 </ul>
@@ -3317,11 +3317,11 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
- </p>
+</p>
 <p><span class="code">FLOOD-FILL-STACK-*</span> is maintains an internal array-based stack.
- </p>
+</p>
 <p><em>Note</em>: More of an experiment to see if an array would be faster than a bunch of consing.  The timing of both functions indicates they run at the same speed. With compiler declarations it may have better results.  Another disadvantage to this is it preallocates the stack, chewing up quite a bit of ram.
- </p>
+</p>
 
 </blockquote>
 
@@ -3338,7 +3338,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the foreign pointer in FOREIGN-OBJECT
- </p>
+</p>
 
 </blockquote>
 
@@ -3417,9 +3417,9 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
- </p>
+</p>
 <p>See <a href="#with-events">WITH-EVENTS</a>, and <a href="#average-fps">AVERAGE-FPS</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3533,7 +3533,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the clipping <a href="#rectangle">RECTANGLE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3548,7 +3548,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the maximum pixel ascent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the top of the font to the baseline. It could be used when drawing an individual glyph relative to a top point, by combining it with the glyph&#039;s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3572,7 +3572,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the maximum pixel descent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the baseline to the bottom of the font. It could be used when drawing an individual glyph relative to a bottom point, by combining it with the glyph’s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3596,7 +3596,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current font face family name of font <span class="code">FONT</span> or <span class="code">NIL</span> if the information is unavailable.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3620,7 +3620,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current font face style name of font <span class="code">FONT</span>, or <span class="code">NIL</span> if the information is unavailable.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3644,7 +3644,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the number of faces &#039;sub-fonts&#039; available in the font <span class="code">FONT</span>. This is a count of the number of specific fonts (based on size and style and other  typographical features perhaps) contained in the font itself. It seems to be a useless  fact to know, since it can’t be applied in any other <span class="code">SDL_TTF</span> functions.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3668,7 +3668,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the maximum pixel height of all glyphs of font <span class="code">FONT</span>. Use this height for rendering text as close together vertically as possible, though adding at least one pixel height to it will space it so they can&#039;t touch. Remember that <span class="code">SDL_TTF</span> doesn&#039;t handle multiline printing so you are responsible for line spacing, see <a href="#get-font-line-skip">GET-FONT-LINE-SKIP</a> as well.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3692,7 +3692,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the recommended pixel height of a rendered line of text of the font <span class="code">FONT</span>. This is usually larger than the <a href="#get-font-height">GET-FONT-HEIGHT</a> of the font.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3716,7 +3716,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Calculates and returns the resulting <span class="code">SIZE</span> of the <span class="code">SDL:SURFACE</span> that is required to render the text <span class="code">TEXT</span>, or <span class="code">NIL</span> on error. No actual rendering is performed, however correct kerning is calculated for the actual width. The height returned is the same as returned using <a href="#get-font-height">GET-FONT-HEIGHT</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">TEXT</span> is the string to size, of type <span class="code">STRING</span>.</li>
 <li><span class="code">SIZE</span> must be one of; <span class="code">:W</span> for the text width or <span class="code">:H</span> for the text height.</li>
@@ -3742,7 +3742,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the rendering style of the font <span class="code">FONT</span>. If no style is set then <span class="code">:STYLE-NORMAL</span> is returned, or <span class="code">NIL</span> upon error.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binfs to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -3766,7 +3766,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the glyph metrics <span class="code">METRIC</span> for the character <span class="code">CH</span>, or <span class="code">NIL</span> upon error.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">CH</span> is a UNICODE chararacter specified as an <span class="code">INTEGER</span>.</li>
 <li><span class="code">FONT</span> is a <span class="code">FONT</span> object from which to retrieve the glyph metrics of the character <span class="code">CH</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default. </li>
@@ -3795,7 +3795,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current keypress state of the key KEY. Returns T if the SDL-KEY is pressed, returns NIL if SDL-KEY is not pressed. Note: Use SDL_PumpEvents to update the state array. Note: This function gives you the current state after all events have been processed, so if a key or button has been pressed and released before you process events, then the pressed state will never show up in the getstate calls. Note: This function doesn&#039;t take into account whether shift has been pressed or not. For example: (GET-KEY-STATE :SDL-KEY-F1)
- </p>
+</p>
 
 </blockquote>
 
@@ -3810,7 +3810,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a foreign pointer to the native SDL display window.
- </p>
+</p>
 
 </blockquote>
 
@@ -3825,7 +3825,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of object <span class="code">OBJ</span> as a <span class="code">POINT</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3840,7 +3840,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3855,7 +3855,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of rectangle <span class="code">RECTANGLE</span> as a <span class="code">POINT</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3870,7 +3870,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the point <span class="code">POINT</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3885,7 +3885,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#get-POINT">GET-POINT</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -3900,7 +3900,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#get-point">GET-POINT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3915,7 +3915,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#get-POINT">GET-POINT</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -3930,7 +3930,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the rectangle <span class="code">RECTANGLE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -3945,7 +3945,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the rectangle <span class="code">RECTANGLE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4032,7 +4032,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the height of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4049,7 +4049,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">INTEGER</span> height of the rectangle <span class="code">RECTANGLE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4064,7 +4064,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> when the image type in <span class="code">SOURCE</span> is of <span class="code">IMAGE-TYPE</span>. Returns <span class="code">NIL</span> otherwise. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.  <span class="code">IMAGE-TYPE</span> must be one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>.
- </p>
+</p>
 <div class="title">例</div>
 <pre class="code">(RWOPS-P SOURCE :IMAGE-TYPE :BMP)
 (IMAGE-P &quot;image.bmp&quot; :IMAGE-TYPE :BMP) </pre>
@@ -4085,7 +4085,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the type of image in source <span class="code">SOURCE</span>. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  Returns one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>, if the image type can be determined. Returns <span class="code">NIL</span> if the image cannot be determined (The <em>magic number</em> is not supported or the <em>magic number</em> is not found).  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.
- </p>
+</p>
 <div class="title">例</div>
 <pre class="code">(IMAGE-TYPE-OF SOURCE)
 (IMAGE-TYPE-OF &quot;image.bmp&quot;) </pre>
@@ -4137,7 +4137,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <a href="#sdl-bitmap-font">SDL-BITMAP-FONT</a> initialized from <span class="code">FONT-DEFINITION</span> data, or <span class="code">NIL</span> if the font cannot be created. <span class="code">FONT-DEFINITION</span> is set to <span class="code">*font-8x8*</span> if unspecified. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to the new font to be used as the default for subsequent font rendering or drawing operations.
- </p>
+</p>
 <div class="title">パッケージ</div>
 <ul><li>Aslo supported in <em>LISPBUILDER-SDL-GFX</em></li>
 </ul>
@@ -4155,7 +4155,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <a href="#sdl-bitmap-font">SDL-BITMAP-FONT</a> initialized from <span class="code">FONT-DEFINITION</span> data, or <span class="code">NIL</span> if the font cannot be created. <span class="code">FONT-DEFINITION</span> must be one of the following built-in fonts: <span class="code">*FONT-10X20*</span>, <span class="code">*FONT-5X7*</span>, <span class="code">*FONT-5X8*</span>, <span class="code">*FONT-6X10*</span>, <span class="code">*FONT-6X12*</span>, <span class="code">*FONT-6X13*</span>, <span class="code">*FONT-6X13B*</span>, <span class="code">*FONT-6X13O*</span>, <span class="code">*FONT-6X9*</span>, <span class="code">*FONT-7X13*</span>, <span class="code">*FONT-7X13B*</span>, <span class="code">*FONT-7X13O*</span>, <span class="code">*FONT-7X14*</span>, <span class="code">*FONT-7X14B*</span>, <span class="code">*FONT-8X13*</span>, <span class="code">*FONT-8X13B*</span>, <span class="code">*FONT-8X13O*</span>, <span class="code">*FONT-8X8*</span>, <span class="code">*FONT-9X15*</span>, <span class="code">*FONT-9X15B*</span>, <span class="code">*FONT-9X18*</span> OR <span class="code">*FONT-9X18B*</span>.
- </p>
+</p>
 <div class="title">パッケージ</div>
 <ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
 </ul>
@@ -4201,7 +4201,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Initialises the input util system. This just creates the data structure that key press information is stored in, and maintains a global variable to track initialisation status.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <div class="title">戻り値</div>
 
@@ -4243,7 +4243,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a list of the initialized SDL subsystems.
- </p>
+</p>
 
 </blockquote>
 
@@ -4258,7 +4258,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if the font face is of a fixed width, or <span class="code">NIL</span> otherwise. Fixed width fonts are monospace, meaning every character that exists in the font is the same width.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 </ul>
@@ -4282,7 +4282,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns T if pointer is not NULL and is a valid CFFI pointer to a foreign object.
- </p>
+</p>
 
 </blockquote>
 
@@ -4379,7 +4379,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current key repeat delay, in milliseconds.
- </p>
+</p>
 
 </blockquote>
 
@@ -4394,7 +4394,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the current key repeat interval, in milliseconds.
- </p>
+</p>
 
 </blockquote>
 
@@ -4423,7 +4423,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a LIST of vectors sorted largest to smallest that contains the width and height dimensions of the screen that will support the pixel format of the specified surface <span class="code">SURFACE</span> and video flags <span class="code">FLAGS</span>. <span class="code">LIST-MODES</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FLAGS</span> is a bitmasked logior of one or more of the following; <a href="#sdl-sw-surface">SDL-SW-SURFACE</a>, <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>, <a href="#sdl-async-blit">SDL-ASYNC-BLIT</a>, <a href="#sdl-any-format">SDL-ANY-FORMAT</a>, <a href="#sdl-hw-palette">SDL-HW-PALETTE</a>, <a href="#sdl-doublebuf">SDL-DOUBLEBUF</a>, <a href="#sdl-fullscreen">SDL-FULLSCREEN</a>, <a href="#sdl-opengl">SDL-OPENGL</a>, <a href="#sdl-resizable">SDL-RESIZABLE</a> and <a href="#sdl-no-frame">SDL-NO-FRAME</a>. </li>
 <li><span class="code">SURFACE</span> A surface of type <a href="#sdl-surface]">SDL-SURFACE</a>, or <span class="code">NIL</span>. WHEN <span class="code">NIL</span>, the pixel format will be that returned by <a href="#sdl-get-video-info]">SDL-GET-VIDEO-INFO</a>. </li>
@@ -4541,7 +4541,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <span class="code">SURFACE</span> from the <span class="code">RWOPS</span> in <span class="code">SOURCE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4556,7 +4556,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Maps <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If the surface has a palette (8-bit) the index of the closest matching color in the palette will be returned. If the surface has an alpha component it will be returned as all <span class="code">1</span> bits (fully opaque). If the surface color depth is less than 32-bpp then the unused upper bits of the return value can safely be ignored (e.g., with a 16-bpp format the return value can be assigned to a Uint16, and similarly a Uint8 for an 8-bpp format).
- </p>
+</p>
 
 </blockquote>
 
@@ -4599,7 +4599,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Maps the color specified by the <span class="code">R</span>, <span class="code">G</span>, <span class="code">B</span>, and <span class="code">A</span> color components to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If <span class="code">A</span> is not <span class="code">NIL</span> then the color is assumed to contain an alpha component. See <a href="#map-color">MAP-COLOR</a> for more details.
- </p>
+</p>
 
 </blockquote>
 
@@ -4642,7 +4642,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Packs <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> into a four byte <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4685,7 +4685,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">T</span> if a pixel alpha component (RGBA) is available, or <span class="code">NIL</span> if unavailable (RGB). <em>Note</em>: The pixel alpha component differs from the surface alpha component which is retrieved using <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4714,7 +4714,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates a new <span class="code">POINT</span> set to the specified horizontal <span class="code">X</span> and vertical <span class="code">Y</span> coordinate.
- </p>
+</p>
 
 </blockquote>
 
@@ -4729,7 +4729,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -4744,7 +4744,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span> as a spread.
- </p>
+</p>
 
 </blockquote>
 
@@ -4759,7 +4759,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread.   The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -4774,7 +4774,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> as a spread.
- </p>
+</p>
 
 </blockquote>
 
@@ -4789,7 +4789,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#point-*">POINT-*</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -4804,7 +4804,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#position">POSITION</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -4819,7 +4819,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#point-*">POINT-*</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -4834,7 +4834,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#point-*">POINT-*</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -5000,7 +5000,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates and return s a new <span class="code">RECTANGLE</span> of random x, y width and height within the specified bounds of width <span class="code">BOUND-W</span> and height <span class="code">BOUND-H</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
- </p>
+</p>
 
 </blockquote>
 
@@ -5015,7 +5015,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#read-pixel-*">READ-PIXEL-*</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
 </ul>
@@ -5036,7 +5036,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Read the <a href="#color">COLOR</a> of the pixel at <span class="code">X</span> and <span class="code">Y</span> coordiates from <a href="#surface">SURFACE</a>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
 <li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
@@ -5060,7 +5060,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A <span class="code">RECTANGLE</span> object manages the foreign SDL_Rect object. Free using <a href="#free">FREE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -5075,7 +5075,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Creates a new <span class="code">RECTANGLE</span> from the specified <span class="code">X</span>, <span class="code">Y</span>, width <span class="code">W</span> and height <span class="code">H</span>. If <span class="code">FP&amp;#039; is </span>NIL<span class="code"> then a foreign SDL_Rect is created. If </span>FP<span class="code"> is a pointer to a foreign SDL_Rect object then </span>FP` is used.
- </p>
+</p>
 
 </blockquote>
 
@@ -5090,7 +5090,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -5105,7 +5105,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the fields <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> from <span class="code">SURFACE</span> as a spread.
- </p>
+</p>
 
 </blockquote>
 
@@ -5120,7 +5120,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -5135,7 +5135,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#rectangle-from-edges-*">RECTANGLE-FROM-EDGES-*</a>.
- </p>
+</p>
 <ul><li><span class="code">P1</span> and <span class="code">P2</span> are <span class="code">POINTS</span> that specify the bounds of the <span class="code">RECTANGLE</span>. <span class="code">P1</span> specifies the top left coordinate. <span class="code">P2</span> specifies the lower right coordinate. </li>
 </ul>
 
@@ -5152,7 +5152,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <span class="code">RECTANGLE</span> using the bounds specified by the <span class="code">INTEGERS</span> <span class="code">X1</span>, <span class="code">X2</span>, <span class="code">Y1</span> and <span class="code">Y2</span>. The coordinates of the rectangle are X = X1, Y = Y1, WIDTH = (- X2 X1), HEIGHT = (- Y2 Y1)
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">X1</span>, <span class="code">Y1</span> specify the top left coordinate as <span class="code">INTEGERS</span>.</li>
 <li><span class="code">X2</span>, <span class="code">Y2</span> specify the bottom right coordinate as <span class="code">INTEGERS</span>.</li>
@@ -5172,7 +5172,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a <span class="code">RECTANGLE</span> of width <span class="code">W</span> and height <span class="code">H</span> with the rectangle mid-point at coordinates <span class="code">X</span> and <span class="code">Y</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
- </p>
+</p>
 
 </blockquote>
 
@@ -5187,7 +5187,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
@@ -5217,7 +5217,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified. </li>
@@ -5248,7 +5248,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STRING</span> is the text to render.</li>
 <li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
@@ -5334,7 +5334,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">DEGREES</span> is the rotation in degrees.</li>
 <li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
@@ -5363,7 +5363,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">DEGREES</span> is the rotation in degrees.</li>
 <li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
@@ -5389,7 +5389,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A wrapper around a foreign SDL_RWops object. Free using <a href="#free">FREE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -5404,7 +5404,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Saves the <span class="code">SURFACE</span> as a <span class="code">BMP</span> image to a file at location <span class="code">FILENAME</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -5460,11 +5460,11 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>The <span class="code">SDL-BITMAP-FONT</span> object manages the resources for a bitmap font. Prior to the first call to a <span class="code">RENDER-STRING*</span> function, the cached <a href="#surface">SURFACE</a> is <span class="code">NIL</span>.
- </p>
+</p>
 <p>The cached surface is created by a call to any of the RENDER-STRING* functions. Use <a href="#draw-font">DRAW-FONT</a>, <a href="#draw-font-at">DRAW-FONT-AT</a> or <a href="#draw-font-at-*">DRAW-FONT-AT-*</a> to draw the cached surface.
- </p>
+</p>
 <p>Free using <a href="#free">FREE</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -5990,7 +5990,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">RECTANGLE</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
- </p>
+</p>
 
 </blockquote>
 
@@ -6005,7 +6005,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to a rectangle bounded by <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
- </p>
+</p>
 
 </blockquote>
 
@@ -6020,7 +6020,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#clip-rect">CLIP-RECT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6035,7 +6035,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Copies the <span class="code">RGB/A</span> color components to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6064,7 +6064,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets <span class="code">COLOR</span> to the red <span class="code">R</span>, green <span class="code">G</span>, blue <span class="code">B</span> and alpha <span class="code">A</span> color components.
- </p>
+</p>
 
 </blockquote>
 
@@ -6093,7 +6093,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the font <span class="code">FONT</span> as the default font to be used for subsequent font rendering or drawing operations. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to font. Functions that take a <span class="code">FONT</span> argument use <span class="code">*DEFAULT-FONT*</span> unless otherwise specified. Returns a new <span class="code">FONT</span>, or <span class="code">NIL</span> if unsuccessful.
- </p>
+</p>
 
 </blockquote>
 
@@ -6122,7 +6122,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the rendering style <span class="code">STYLE</span> of font <span class="code">FONT</span>. This will flush the internal cache of previously rendered glyphs, even if there is no change in style, so it may be best to check the  current style using <a href="#get-font-style">GET-FONT-STYLE</a> first.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object.</li>
 <li><span class="code">STYLE</span> is a list of one or more: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span>. NOTE: Combining <span class="code">:STYLE-UNDERLINE</span> with anything  can cause a segfault, other combinations may also do this. </li>
@@ -6158,7 +6158,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6173,7 +6173,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6188,7 +6188,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination rectangle <span class="code">RECTANGLE</span> from the source point <span class="code">POSITION</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6203,7 +6203,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the destination point <span class="code">DST</span> to the coordinates in the source point <span class="code">SRC</span>. Returns the destination point <span class="code">DST</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6218,7 +6218,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object <span class="code">OBJ</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
- </p>
+</p>
 
 </blockquote>
 
@@ -6233,7 +6233,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are integers.
- </p>
+</p>
 
 </blockquote>
 
@@ -6248,7 +6248,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
- </p>
+</p>
 
 </blockquote>
 
@@ -6263,7 +6263,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> to <span class="code">X</span> and <span class="code">Y</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6278,7 +6278,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point">SET-POINT</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -6293,7 +6293,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point">SET-POINT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6308,7 +6308,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> from the point <span class="code">POSITION</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6323,7 +6323,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point">SET-POINT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6338,7 +6338,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -6353,7 +6353,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6368,7 +6368,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
- </p>
+</p>
 
 </blockquote>
 
@@ -6383,7 +6383,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6398,7 +6398,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6413,7 +6413,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6428,7 +6428,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
- </p>
+</p>
 
 </blockquote>
 
@@ -6443,7 +6443,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the coordinates of the rectangle <span class="code">RECTANGLE</span> to the specified <span class="code">X</span>, <span class="code">Y</span> , width <span class="code">W</span> and height <span class="code">HEIGHT</span> coordinates. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span> are <span class="code">KEY</span>word parameters of type <span class="code">INTEGER</span>. Returns the rectangle <span class="code">RECTANGLE</span> as RESULT.
- </p>
+</p>
 
 </blockquote>
 
@@ -6458,7 +6458,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the coordinates of the surface SURFACE to <span class="code">POSITION</span>, where position is of type <span class="code">POINT</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6473,7 +6473,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point">SET-POINT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6488,7 +6488,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the coordinates of the surface <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
- </p>
+</p>
 
 </blockquote>
 
@@ -6503,7 +6503,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#set-point-*">SET-POINT-*</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6518,7 +6518,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Disables the cursor when state is <span class="code">NIL</span>, otherwise enables the cursor.
- </p>
+</p>
 
 </blockquote>
 
@@ -6604,7 +6604,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Converts radians to degrees.
- </p>
+</p>
 
 </blockquote>
 
@@ -6619,7 +6619,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Converts degrees to radians.
- </p>
+</p>
 
 </blockquote>
 
@@ -6653,7 +6653,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>This must be called once for each time period you are updating the application, in order to update keypress information.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">TIME</span> is the time in seconds this update represents</li>
 </ul>
@@ -6672,7 +6672,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Updates the surface
- </p>
+</p>
 
 </blockquote>
 
@@ -6687,7 +6687,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>See <a href="#update-surface">UPDATE-SURFACE</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6702,7 +6702,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the best video dimensions if called before a window is created, using <a href="#window">WINDOW</a>. Returns the current video dimensions if called after a window is created. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>
- </p>
+</p>
 
 </blockquote>
 
@@ -6717,7 +6717,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the driver name of the initialised video driver. The driver name is a <span class="code">STRING</span> containing a one-word identifier like &quot;x11&quot; or &quot;windib&quot;. Returns &#039;NIL&#039; if the video driver is not already initialised with <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
- </p>
+</p>
 <div class="title">例</div>
 <pre class="code">(sdl:with-init ()
   (sdl:video-driver-name)) &gt;&gt; &quot;windib&quot; </pre>
@@ -6735,7 +6735,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns information about the video hardware. <span class="code">GET-VIDEO-INFO</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>. If <span class="code">GET-VIDEO-INFO</span> is called before <a href="#window">WINDOW</a>, the information returned is of the <em>best</em> video mode. If <span class="code">GET-VIDEO-INFO</span> is called after <a href="#window">WINDOW</a>, the information returned is of the <em>current</em> video mode.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">INFO</span> can be one of <span class="code">:HW-AVAILABLE</span>, <span class="code">:WM-AVAILABLE</span>, <span class="code">:BLIT-HW</span>, <span class="code">:BLIT-HW-CC</span>, <span class="code">:BLIT-HW-A</span>, <span class="code">:BLIT-SW</span>, <span class="code">:BLIT-SW-CC</span>, <span class="code">:BLIT-SW-A</span>or <span class="code">:BLIT-FILL</span>. If <span class="code">NIL</span>, returns a list of all supported video flags. </li>
 </ul>
@@ -6755,7 +6755,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the amount of video memory of the graphics hardware. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6800,7 +6800,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the width of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6817,7 +6817,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">INTEGER</span> width of the rectangle <span class="code">RECTANGLE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6873,17 +6873,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a bezier curve of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the Bezier curve is defined by control points. A control point is a vertex containing an X and Y coordinate pair.
- </p>
+</p>
 <p>The number of segments <span class="code">SEGENTS</span> used to draw the Bezier curve defaults to 10. The greater the number of segments, the smoother the Bezier curve.
- </p>
+</p>
 <div class="title">Local Methods</div>
 <p>A vertex may be added using:
- </p>
+</p>
 <ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">POINT</span>, or</li>
 <li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
 </ul>
 <p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scop of <span class="code">WITH-BEZIER</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STYLE</span> is one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. When <span class="code">STYLE</span> is <span class="code">:SOLID</span>, a single continuous line is drawn through the specified waypoints. When <span class="code">STYLE</span> is <span class="code">:DASH</span>, a line is drawn to alternate waypoint pairs. When <span class="code">STYLE</span> is <span class="code">:POINTS</span>, a single point is drawn at each waypoint. </li>
 <li><span class="code">SEGMENTS</span> is the number of segments used to draw the Bezier curve. Default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
@@ -6912,7 +6912,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A convience macro that binds <span class="code">*DEFAULT-COLOR*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-COLOR</span>. <span class="code">VAR</span> is set to <span class="code">COLOR</span> when <span class="code">COLOR</span> is not <span class="code">NIL</span>.<span class="code">VAR</span> must be of type <a href="#color">COLOR</a>, or <a href="#color-a">COLOR-A</a>. <span class="code">VAR</span> is freed using <a href="#free">FREE</a> when <span class="code">FREE</span> is <span class="code">T</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -6927,15 +6927,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a Cattmul-Rom spline of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
- </p>
+</p>
 <div class="title">Local Methods</div>
 <p>A vertex may be added using:
- </p>
+</p>
 <ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
 <li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
 </ul>
 <p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scope of <span class="code">WITH-CURVE</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
 <li><span class="code">SEGMENTS</span> is the number of segments used to draw the Catmull-Rom spline. Default is 20 segments if unspecified. The greater the number of segments, the smoother the spline. </li>
@@ -7366,7 +7366,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A convenience macro that binds <span class="code">*DEFAULT-POINT*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-POINT</span>. <span class="code">VAR</span> must be of type <span class="code">POINT</span>. If <span class="code">POINT</span> is not <span class="code">NIL</span>, then <span class="code">VAR is set to </span>POINT`.
- </p>
+</p>
 
 </blockquote>
 
@@ -7381,7 +7381,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A convenience macro that binds <span class="code">*DEFAULT-RECTANGLE*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-RECTANGLE</span>. <span class="code">VAR</span> must be of type <span class="code">RECTANGLE</span>. <span class="code">VAR</span> is set to <span class="code">RECTANGLE</span> when <span class="code">RECTANGLE</span> is not <span class="code">NIL</span>. <span class="code">VAR</span> is freed when <span class="code">FREE</span> is <span class="code">T</span>.
- </p>
+</p>
 <div class="title">例</div>
 <pre class="code">(WITH-RECTANGLE (a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
     ...) </pre>
@@ -7399,7 +7399,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>A convenience macro that binds multiple rectangles as per <a href="#with-rectangle">WITH-RECTANGLE</a>.
- </p>
+</p>
 <div class="title">例</div>
 <pre class="code">(WITH-RECTANGLES ((a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
                   ((b-rect (RECTANGLE :x 0 :y 100 :w 100 :h 100))
@@ -7419,15 +7419,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Draw a polygon of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>.
- </p>
+</p>
 <div class="title">Local Methods</div>
 <p>A vertex may be added using:
- </p>
+</p>
 <ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
 <li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
 </ul>
 <p>ADD-VERTEX and ADD-VERTEX-* are valid only within the scop of WITH-SHAPE.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">STYLE</span> describes the line style used to draw the shape and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
 </ul>
@@ -7492,7 +7492,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns true <span class="code">T</span>, if the distance between the <span class="code">POINT</span>s <span class="code">P1</span> <span class="code">P2</span> is &lt;= the distance <span class="code">DISTANCE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7507,7 +7507,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns true <span class="code">T</span>, if the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span> is &lt;= the distance <span class="code">DISTANCE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7556,7 +7556,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> position coordinate of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7573,7 +7573,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> position coordinate of the rectangle <span class="code">RECTANGLE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7590,7 +7590,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">X</span> coordindate of the point <span class="code">POINT</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7623,7 +7623,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Sets the WIDTH of the rectangle <span class="code">RECTANGLE</span> to <span class="code">(- X2 X)</span>
- </p>
+</p>
 
 </blockquote>
 
@@ -7672,7 +7672,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">Y</span> position coordinate of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7689,7 +7689,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">Y</span> position coordinate of the rectangle <span class="code">RECTANGLE</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7706,7 +7706,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns the <span class="code">Y</span> coordindate of the point <span class="code">POINT</span> as an <span class="code">INTEGER</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7739,7 +7739,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns <span class="code">(+ Y HEIGHT)</span> of the rectangle <span class="code">RECTANGLE</span>.
- </p>
+</p>
 
 </blockquote>
 
@@ -7754,7 +7754,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <blockquote><br>
 
 <p>Returns a new <a href="#surface">SURFACE</a> scaled to <span class="code">ZOOMX</span> and <span class="code">ZOOMY</span>.
- </p>
+</p>
 <div class="title">パラメータ</div>
 <ul><li><span class="code">:ZOOMX</span> and <span class="code">ZOOMY</span> are the scaling factors. A negative scaling factor will flip the corresponding axis. <em>Note</em>: Flipping is only supported with anti-aliasing turned off. </li>
 <li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
