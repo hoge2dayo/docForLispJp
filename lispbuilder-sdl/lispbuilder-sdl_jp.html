@@ -420,9 +420,9 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="variable">*default-color*</span>
 	</p>
 	<div class="desc">
-		<p>キーワードパラメータで <span class="type">COLOR</span> を受け入れる関数は <span class="type">COLOR</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-COLOR*</span> に束縛する可能性が高い。
+		<p>キーワードパラメータで <span class="type">COLOR</span> を受け入れる関数は <span class="parameter">COLOR</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-COLOR*</span> に束縛する可能性が高い。
 </p>
-		<p><span class="type">COLOR</span> は後述のマクロ <a href="#with-color"><span class="operator">WITH-COLOR</span></a> により、 <span class="variable">*DEFAULT-COLOR*</span> に束縛される。
+		<p><span class="parameter">COLOR</span> は後述のマクロ <a href="#with-color"><span class="operator">WITH-COLOR</span></a> により、 <span class="variable">*DEFAULT-COLOR*</span> に束縛される。
 </p>
 		<div class="title">例</div>
 		<pre class="code">
@@ -462,9 +462,9 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="variable">*default-font*</span>
 	</p>
 	<div class="desc">
-		<p>キーワードパラメータで <span class="type">FONT</span> を受け入れる関数は <span class="type">FONT</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-FONT*</span> に束縛する可能性が高い。
+		<p>キーワードパラメータで <span class="type">FONT</span> を受け入れる関数は <span class="parameter">FONT</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-FONT*</span> に束縛する可能性が高い。
 		</p>
-		<p>マクロ <a href="#with-default-font"><span class="operator">WITH-DEFAULT-FONT</span></a> および <a href="#with-font"><span class="operator">WITH-FONT</span></a> 、 <a href="#initialise-default-font"><span class="operator">INITIALISE-DEFAULT-FONT</span></a> により、フォントは <span class="variable">*DEFAULT-FONT*</span> に束縛される。
+		<p>マクロ <a href="#with-default-font"><span class="operator">WITH-DEFAULT-FONT</span></a> および <a href="#with-font"><span class="operator">WITH-FONT</span></a> 、 <a href="#initialise-default-font"><span class="operator">INITIALISE-DEFAULT-FONT</span></a> により、<span class="parameter">FONT</span> は <span class="variable">*DEFAULT-FONT*</span> に束縛される。
 		</p>
 		<div class="title">例</div>
 		<pre class="code">(draw-string-solid-* &quot;draw string centered&quot; 100 100
@@ -532,7 +532,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for *DEFAULT-SIMPLE-FONT* -->
 
-
 <!-- Entry for *DEFAULT-SURFACE* -->
 <a name="*default-surface*"></a>
 <div class="def">
@@ -541,52 +540,55 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="variable">*default-surface*</span>
 	</p>
 	<div class="desc">
-		<p>Functions that accept the <span class="code">KEY</span>word parameter <span class="code">:SURFACE</span> will most likely bind to the symbol <span class="code">*DEFAULT-SURFACE*</span> by default if <span class="code">SURFACE</span> is not specified. 
+		<p>キーワードパラメータで <span class="type">SURFACE</span> を受け入れる関数は、 <span class="parameter">SURFACE</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-SURFACE*</span> に束縛する可能性が高い。
 		</p>
-		<p>A surface is bound to <span class="code">*DEFAULT-SURFACE*</span> by the following macros: <a href="#with-surface">WITH-SURFACE</a>, and <a href="#with-surfaces">WITH-SURFACES</a>.
- </p>
+		<p>次のマクロにより、<span class="parameter">SURFACE</span> は <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。： マクロ <a href="#with-surface">WITH-SURFACE</a> およびマクロ <a href="#with-surfaces">WITH-SURFACES</a> 。
+		</p>
+
 		<div class="title">例</div>
 		<pre class="code">(DRAW-SURFACE SURF-1 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)</pre>
-		<p>The above can be shortened using by setting the <span class="code">*DEFAULT-SURFACE*</span> to the display surface.
+		<p>上記は、<span class="variable">*DEFAULT-SURFACE*</span> を表示面へ設定することにより、短縮化できる。
 		 </p>
 		<pre class="code">(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
   (DRAW-SURFACE SURF-1)
   (DRAW-SURFACE SURF-2)
   (DRAW-SURFACE SURF-2))</pre>
+
+		<p class="e2">キーワードパラメータ <span class="parameter">SURFACE</span> のデフォルト値が <span class="variable">*DEFAULT-DISPLAY*</span> であるので、マクロ <span class="operator">with-surface</span> に <span class="variable">*DEFAULT-DISPLAY*</span> を指定する上記例は無意味。
+		</p>
 	</div>
 </div>
 <!-- End of entry for *DEFAULT-SURFACE* -->
 
 
 <!-- Entry for *EXTERNAL-INIT-ON-STARTUP* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*external-init-on-startup*'><b>*external-init-on-startup*</b></a>
-<blockquote><br>
-
-<p>The list of functions that are called from <a href="#init-sdl">INIT-SDL</a>.
- </p>
-
-</blockquote>
-
+<a name="*external-init-on-startup*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*external-init-on-startup*</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#init-sdl">INIT-SDL</a> から呼び出される関数のリスト。
+		</p>
+	</div>
+</div>
 <!-- End of entry for *EXTERNAL-INIT-ON-STARTUP* -->
 
-
 <!-- Entry for *EXTERNAL-QUIT-ON-EXIT* -->
-
-<p><br>
-［スペシャル変数］<br>
-<a class=none name='*external-quit-on-exit*'><b>*external-quit-on-exit*</b></a>
-<blockquote><br>
-
-<p>The list of functions that are called from <a href="#quit-sdl">QUIT-SDL</a>.
- </p>
-
-</blockquote>
-
+<a name="*external-quit-on-exit*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［スペシャル変数］</span>
+		<span class="variable">*external-quit-on-exit*</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#quit-sdl">QUIT-SDL</a> から呼び出される関数のリスト。
+		</p>
+	</div>
+</div>
 <!-- End of entry for *EXTERNAL-QUIT-ON-EXIT* -->
 
 
@@ -4454,45 +4456,60 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for LIST-SUB-SYSTEMS -->
 
 <!-- Entry for LOAD-IMAGE -->
+<a name="load-image"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">load-image</span> <span class="parameter">source <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SOURCE</span> の画像から新しい <span class="type">SURFACE</span> を生成して返す。あるいは、 <span class="parameter">SOURCE</span> が有効な画像を含まない場合、あるいは画像種別が判別できない場合、 <span class="code">NIL</span> を返す。
+		</p>
+		<p><span class="e1">マジックナンバー</span>が存在する場合、画像種別の判別に使用される。マジックナンバーが利用できない（ <span class="code">TGA</span> のような画像フォーマットは、<span class="e1">マジックナンバー</span>を含まない。）時に画像をロードするには、 <span class="code">:IMAGE-TYPE</span> を使用して画像種別を指定する。 <span class="code">TGA</span> のような、全てのマジック不可の画像フォーマットは、 <span class="parameter">IMAGE-TYPE</span> を使用して指定される必要がある。
+		</p>
+
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">SOURCE</span> は画像である。</li>
+			<li><span class="parameter">COLOR-KEY</span> はカラーキーを設定し、カラーキーをオンにする。</li>
+			<li><span class="parameter">&#039;COLOR-KEY-AT&#039;</span> は、 <span class="type">POINT</span> x/y にあるピクセルの色をカラーキーとして使用し、カラーキーをオンにする。</li>
+			<li><span class="parameter">ALPHA</span> はサーフェスの透明度を設定し、アルファブレンディングをオンにする。 0 ～ 255 の範囲である必要があり、 255 は不透明であり、 0 は透明である。</li>
+			<li><span class="parameter">IMAGE-TYPE</span> は画像形式を指定する。 <span class="code">:BMP</span> あるいは <span class="code">:GIF</span> 、 <span class="code">:JPG</span> 、 <span class="code">:LBM</span> 、 <span class="code">:PCX</span> 、 <span class="code">:PNG</span> 、 <span class="code">:PNM</span> 、 <span class="code">:TGA</span> 、 <span class="code">:TIF</span> 、 <span class="code">:XCF</span> 、 <span class="code">:XPM</span> 、 <span class="code">:XV</span> 。 <span class="code">NIL</span> である場合、画像形式は画像内に存在する<span class="e1">マジックナンバー</span>を使用して決定される。<span class="e1">マジックナンバー</span>が利用可能であり、 <span class="parameter">IMAGE-TYPE</span> と一致しない場合、 <span class="parameter">IMAGE-TYPE</span> は無視される。</li>
+			<li><span class="parameter">FORCE</span> が <span class="code">T</span> である時、画像内に存在する<span class="e1">マジックナンバー</span>を無視し、画像（形式）を <span class="code">:IMAGE-TYPE</span> としてロードする。 <span class="code">TGA</span> 形式の画像は、 <span class="code">:FORCE T</span> を使用してロードされる必要がある。</li>
+			<li><span class="parameter">FREE-RWOPS</span> は、 <span class="parameter">SOURCE</span> 内のパラメータとして渡された RWOPS を解放する。デフォルトは <span class="code">T</span> である。</li>
+		</ul>
+
+		<div class="title">例</div>
+		<ul>
+			<li>マジックナンバーを使用して <span class="code">BMP</span> 画像をロードする。
+				<p>(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span>)
+				</p>
+			</li>
+			<li><span class="code">TGA</span> 画像をロードする。
+				<p>(LOAD-IMAGE <span class="string">&quot;image.tga&quot;</span> :IMAGE-TYPE :TGA)
+				</p>
+			</li>
+			<li><span class="code">BMP</span> 画像を <span class="code">TGA</span> としてロードすることを試みる。
+				<p>(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span> :IMAGE-TYPE :TGA :FORCE T)
+				</p>
+			</li>
+		</ul>
+
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="e1">LISPBUILDER-SDL-IMAGE</span> に於いても対応される。</li>
+			<li><em>LISPBUILDER-SDL</em> only supports <span class="code">BMP</span> images. Any alpha channel present in the source image is ignored. The new <span class="code">SURFACE</span> is created as an <span class="code">RGB</span> surface, not <span class="code">RGBA</span>. </li>
+			<li><em>LISPBUILDER-SDL-IMAGE</em> supports the following image formats, <span class="code">BMP</span>, <span class="code">GIF</span>, <span class="code">JPG</span>, <span class="code">LBM</span>, <span class="code">PCX</span>, <span class="code">PNG</span>, <span class="code">PNM</span>, <span class="code">TIF</span>, <span class="code">XCF</span>, <span class="code">XPM</span>, <span class="code">XV</span>. <span class="code">BMP</span> and <span class="code">TGA</span>. Alpha channels are supported. The new <span class="code">SURFACE</span> is created as <span class="code">RGB</span> or <span class="code">RGBA</span> as appropriate. </li>
+			<li><span class="code">:IMAGE-TYPE</span> and <span class="code">:FORCE</span> are ignored for <em>LISPBUILDER-SDL</em>.</li>
+		</ul>
+	</div>
+</div>
 
 <p><br>
-［総称関数］<br>
-<a class=none name='load-image'><b>load-image</b> <i>source <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
+<br>
+<a class=none name=''><b></b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates and returns a new <span class="code">SURFACE</span> from the image in <span class="code">SOURCE</span>, or returns <span class="code">NIL</span> if <span class="code">SOURCE</span> does not contain a valid image or the image type cannot be determined.
- </p>
-<p>The <em>magic number</em> if present is be used to determine the image type. To load an image when the <em>magic number</em> is unavailable (image formats such as <span class="code">TGA</span> do not contain a <em>magic number</em>), specify the image type using <span class="code">:IMAGE-TYPE</span>.  All non-magicable image formats, such as <span class="code">TGA</span>, must be specified using <span class="code">IMAGE-TYPE</span>. To load a TGA image use <span class="code">:IMAGE-TYPE :TGA</span>
- </p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">SOURCE</span> is an image.</li>
-<li><span class="code">COLOR-KEY</span> sets the color key, and turns on color keying.</li>
-<li>&#039;COLOR-KEY-AT&#039; uses the pixel color at <span class="code">POINT</span> x/y as the color key, and turns on color keying.</li>
-<li><span class="code">ALPHA</span> sets the transparency level for the surface, and turns on alpha blending. Must be in the range 0-255, where 255 is opaque and 0 is transparent.</li>
-<li><span class="code">IMAGE-TYPE</span> specifies the image type. May be <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TGA</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>.  The image type is determined using the <em>magic number</em> when present in the image if <span class="code">NIL</span>.  If the <em>magic number</em> is available and does not match <span class="code">IMAGE-TYPE</span>, then <span class="code">IMAGE-TYPE</span> is ignored. </li>
-<li><span class="code">FORCE</span> when <span class="code">T</span> will ignore any <em>magic number</em> present in the image and load an image as <span class="code">:IMAGE-TYPE</span>.  Images of type <span class="code">TGA</span> must be loaded using <span class="code">:FORCE T</span>. </li>
-<li><span class="code">FREE-RWOPS</span> will free a RWOPS passed as a parameter in <span class="code">SOURCE</span>. Default is <span class="code">T</span></li>
-</ul>
-<div class="title">例</div>
-<ul><li>To load a <span class="code">BMP</span> image using the <em>magic number</em>
-<p>(LOAD-IMAGE &quot;image.bmp&quot;)
- </p>
-</li>
-<li>To load a <span class="code">TGA</span> image
-<p>(LOAD-IMAGE &quot;image.tga&quot; :IMAGE-TYPE :TGA)
- </p>
-</li>
-<li>Try to load a <span class="code">BMP</span> image as <span class="code">TGA</span>
-<p>(LOAD-IMAGE &quot;image.bmp&quot; :IMAGE-TYPE :BMP :FORCE T)
- </p>
-</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
-<li><em>LISPBUILDER-SDL</em> only supports <span class="code">BMP</span> images. Any alpha channel present in the source image is ignored. The new <span class="code">SURFACE</span> is created as an <span class="code">RGB</span> surface, not <span class="code">RGBA</span>. </li>
-<li><em>LISPBUILDER-SDL-IMAGE</em> supports the following image formats, <span class="code">BMP</span>, <span class="code">GIF</span>, <span class="code">JPG</span>, <span class="code">LBM</span>, <span class="code">PCX</span>, <span class="code">PNG</span>, <span class="code">PNM</span>, <span class="code">TIF</span>, <span class="code">XCF</span>, <span class="code">XPM</span>, <span class="code">XV</span>. <span class="code">BMP</span> and <span class="code">TGA</span>. Alpha channels are supported. The new <span class="code">SURFACE</span> is created as <span class="code">RGB</span> or <span class="code">RGBA</span> as appropriate. </li>
-<li><span class="code">:IMAGE-TYPE</span> and <span class="code">:FORCE</span> are ignored for <em>LISPBUILDER-SDL</em>.</li>
-</ul>
 
 </blockquote>
 
@@ -5520,19 +5537,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for SDL-HW-ACCEL -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-hw-accel'><b>sdl-hw-accel</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a> and <a href="#display-surface">DISPLAY-SURFACE</a>.
- </p>
-<ul><li>When read from the <span class="code">FLAGS</span> field in <a href="#surface">SURFACE</a> and <a href="#display-surface">DISPLAY-SURFACE</a>; Indicates that surface blitting will use hardware acceloration. </li>
-</ul>
-
-</blockquote>
-
+<a name="sdl-hw-accel"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-hw-accel</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> および <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> および <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスブリットがハードウェアアクセラレーションを使用することを示す。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for SDL-HW-ACCEL -->
 
 
@@ -5649,19 +5667,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for SDL-INIT-NOPARACHUTE -->
 
 <!-- Entry for SDL-INIT-ON-STARTUP -->
-
-<p><br>
-［関数］<br>
-<a class=none name='sdl-init-on-startup'><b>sdl-init-on-startup</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns <span class="code">T</span> if the SDL library must be initialised in <a href="#init-sdl">INIT-SDL</a>, or <a href="#with-init">WITH-INIT</a>. Returns <span class="code">NIL</span> otherwise.
- </p>
-
-</blockquote>
-
+<a name="sdl-init-on-startup"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">sdl-init-on-startup</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>SDL ライブラリが、関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> 内あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> 内で初期化される必要がある場合、 <span class="code">T</span> を返す。それ以外の場合、 <span class="code">NIL</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-INIT-ON-STARTUP -->
-
 
 <!-- Entry for SDL-INIT-TIMER -->
 <a name="sdl-init-timer"></a>
@@ -5699,20 +5716,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for SDL-IYUV-OVERLAY -->
 
-
 <!-- Entry for SDL-JOYSTICK-NAME -->
-
-<p><br>
-［関数］<br>
-<a class=none name='sdl-joystick-name'><b>sdl-joystick-name</b> <i>device-index</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="sdl-joystick-name"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">sdl-joystick-name</span> <span class="parameter">device-index</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SDL-JOYSTICK-NAME -->
-
 
 <!-- Entry for SDL-NO-FRAME -->
 <a name="sdl-no-frame"></a>
@@ -5755,36 +5769,35 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for SDL-PRE-ALLOC -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-pre-alloc'><b>sdl-pre-alloc</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a>.
- </p>
-<ul><li>When read from the <span class="code">FLAGS</span> field in <a href="#surface">SURFACE</a>; Indicates that surface uses preallocated memory. </li>
-</ul>
-
-</blockquote>
-
+<a name="sdl-pre-alloc"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="variable">sdl-pre-alloc</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスが事前に割り当てられたメモリを使用することを示す。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for SDL-PRE-ALLOC -->
 
-
 <!-- Entry for SDL-QUIT-ON-EXIT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='sdl-quit-on-exit'><b>sdl-quit-on-exit</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns <span class="code">T</span> if the SDL library must be uninitialised in <a href="#quit-sdl">QUIT-SDL</a>, or <a href="#with-init">WITH-INIT</a>. Returns <span class="code">NIL</span> otherwise.
- </p>
-
-</blockquote>
-
+<a name="sdl-quit-on-exit"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">sdl-quit-on-exit</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>SDL ライブラリが関数 <a href="#quit-sdl"><span class="operator">QUIT-SDL</span></a> 内あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> 内で初期化解除される必要がある場合、 <span class="code">T</span> を返す。それ以外の場合、 <span class="code">NIL</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-QUIT-ON-EXIT -->
-
 
 <!-- Entry for SDL-RESIZABLE -->
 <a name="sdl-resizable"></a>
@@ -5808,88 +5821,96 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for SDL-RLE-ACCEL -->
+<a name="sdl-rle-accel"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-rle-accel</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> へ <span class="code">FLAG</span> として渡された時 ： <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> および <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> を伴う描画の時、サーフェスは RLE アクセラレーションを使用して描画される。サーフェスは、最初に関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> あるいは関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> が呼び出された時、で、実際に RLE アクセラレーション用にエンコードされる。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： カラーキーブリットが RLE でアクセラレーションされることを示す。</li>
+		</ul>
+		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color">MAP-COLOR</a> はしばしば、許容値を取得するのに有用である。
+		</p>
 
-<p><br>
-［定数］<br>
-<a class=none name='sdl-rle-accel'><b>sdl-rle-accel</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a>
- </p>
-<ul><li>When passed as a <span class="code">FLAG</span> to <a href="#set-color-key">SET-COLOR-KEY</a>; The surface will be drawn using RLE acceleration when drawn with <a href="#blit-surface">BLIT-SURFACE</a>, and <a href="#draw-surface">DRAW-SURFACE</a>. The surface will actually be encoded for RLE acceleration the first time <a href="#blit-surface">BLIT-SURFACE</a>, <a href="#draw-surface">DRAW-SURFACE</a> or <a href="#convert-surface">CONVERT-SURFACE</a>  is called on the surface. </li>
-<li>When read from the <span class="code">FLAGS</span> field in <a href="#surface">SURFACE</a>; Indicates that colorkey blitting is accelerated with RLE. </li>
-</ul>
-<p>RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color). The key must be of the same pixel format as the surface, <a href="#map-color">MAP-COLOR</a> is often useful for obtaining an acceptable value.
- </p>
-
-</blockquote>
-
+		<p class="e2">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-RLE-ACCEL -->
 
-
 <!-- Entry for SDL-RLE-ACCEL-OK -->
-
-<p><br>
-［定数］<br>
-<a class=none name='sdl-rle-accel-ok'><b>sdl-rle-accel-ok</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a>.
- </p>
-
-</blockquote>
-
+<a name="sdl-rle-accel-ok"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-rle-accel-ok</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-RLE-ACCEL-OK -->
 
-
 <!-- Entry for SDL-SRC-ALPHA -->
+<a name="sdl-src-alpha"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="variable">sdl-src-alpha</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> および関数 <a href="#set-alpha"><span class="operator">SET-ALPHA</span></a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのアルファブレンディングをオンにする。 <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> も指定され、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、可能であればサーフェスはビデオメモリに配置される。画面がハードウェアのサーフェスであり、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、 <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには、関数 <a href="#set-alpha">SET-ALPHA</a> を使用する。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスブリットがアルファブレンディングを使用することを示す。</li>
+		</ul>
 
-<p><br>
-［定数］<br>
-<a class=none name='sdl-src-alpha'><b>sdl-src-alpha</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a>.
- </p>
-<ul><li>When passed as a <span class="code">FLAG</span> to <a href="#create-surface">CREATE-SURFACE</a> and <a href="#set-alpha">SET-ALPHA</a>; Turns on alpha-blending for blits from this surface. If <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> is also specified and alpha-blending blits are hardware-accelerated, then the surface will be placed in video memory if possible. If the screen is a hardware surface and alpha-blending blits are hardware-accelerated then the <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>  flag will be set. Use <a href="#set-alpha">SET-ALPHA</a> to set or clear this flag after surface creation. </li>
-<li>When read from the <span class="code">FLAGS</span> field in <a href="#surface">SURFACE</a>; Indicates that surface blitting uses alpha blending. </li>
-</ul>
-
-</blockquote>
-
+		<p class="e2">関数 <span class="operator">SET-ALPHA</span> は廃止されている。
+	</div>
+</div>
 <!-- End of entry for SDL-SRC-ALPHA -->
 
-
 <!-- Entry for SDL-SRC-COLOR-KEY -->
+<a name="sdl-src-color-key"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［定数］</span>
+		<span class="constant">sdl-src-color-key</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
+		</p>
+		<ul>
+			<li>関数 <a href="#create-surface"><span class="operation">CREATE-SURFACE</span></a> および <a href="#set-color-key">SET-COLOR-KEY</a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのカラーキーをオンにする。 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> も指定されて、カラーキーブリットがハードウェアアクセラレーションされる場合、 SDL はサーフェスをビデオメモリへの配置しようとする。画面がハードウェアサーフェスであり、カラーキーブリットがハードウェアアクセラレーションされている場合、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには <a href="#set-color-key">SET-COLOR-KEY</a> を使用する。</li>
+			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがカラーキーブリットを使用することを示す。</li>
+		</ul>
 
-<p><br>
-［定数］<br>
-<a class=none name='sdl-src-color-key'><b>sdl-src-color-key</b></a>
-<blockquote><br>
-
-<p>Applies to <a href="#surface">SURFACE</a>.
- </p>
-<ul><li>When passed as a <span class="code">FLAG</span> to <a href="#create-surface">CREATE-SURFACE</a> and <a href="#set-color-key">SET-COLOR-KEY</a>; Turns on color keying for blits from this surface. If <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> is also specified and color keyed blits are hardware-accelerated, then SDL will attempt to place the surface in video memory. If the screen is a hardware surface and color keyed blits are hardware-accelerated then the <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> flag will be set. Use <a href="#set-color-key">SET-COLOR-KEY</a> to set or clear this flag after surface creation. </li>
-<li>When read from the <span class="code">FLAGS</span> field in <a href="#surface">SURFACE</a>; Indicates that the surface uses colorkey blitting. </li>
-</ul>
-
-</blockquote>
-
+		<p class="e2">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-SRC-COLOR-KEY -->
 
 
 <!-- Entry for SDL-SURFACE -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='sdl-surface'><b>sdl-surface</b></a>
-<blockquote><br>
-
-<p>A wrapper for the foreign SDL_Surface object.
- </p>
-
-</blockquote>
-
+<a name="sdl-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">sdl-surface</span>
+	</p>
+	<div class="desc">
+		<p>外部 SDL_Surface オブジェクト用のラッパーである。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SDL-SURFACE -->
 
 
@@ -6547,26 +6568,30 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for SURFACE-INFO -->
+<a name="surface-info"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">surface-info</span> <span class="parameter">surface <span class="lambda-kw">&amp;optional</span> info</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>SDL サーフェス <span class="code">SURFACE</span> に関する情報を返す。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='surface-info'><b>surface-info</b> <i>surface <span class="lambda-kw">&amp;optional</span> info</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">SURFACE</span> は、 <a href="#sdl-surface"><span class="type">SDL-SURFACE</span></a> 型の SDL サーフェスである。</li>
+			<li><span class="parameter">INFO</span> は次の内の１つである必要がある。： <span class="code">NIL</span> 、 <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-hw-accel"><span class="constant">SDL-HW-ACCEL</span></a> 、 <a href="#sdl-src-color-key"><span class="constant">SDL-SRC-COLOR-KEY</span></a> 、 <a href="#sdl-rle-accel"><span class="constant">SDL-RLE-ACCEL</span></a> 、 <a href="#sdl-src-alpha"><span class="constant">SDL-SRC-ALPHA</span></a> 、 <a href="#sdl-pre-alloc"><span class="constant">SDL-PRE-ALLOC</span></a> 。</li>
+		</ul>
 
-<p>Returns information about the SDL surface <span class="code">SURFACE</span>.
- </p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">SURFACE</span> is an SDL surface of type <a href="#sdl-surface">SDL-SURFACE</a>.</li>
-<li><span class="code">INFO</span> must be one of <span class="code">NIL</span>, <a href="#sdl-sw-surface">SDL-SW-SURFACE</a>, <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>, <a href="#sdl-async-blit">SDL-ASYNC-BLIT</a>, <a href="#sdl-any-format">SDL-ANY-FORMAT</a>, <a href="#sdl-hw-palette">SDL-HW-PALETTE</a>, <a href="#sdl-doublebuf">SDL-DOUBLEBUF</a>, <a href="#sdl-fullscreen">SDL-FULLSCREEN</a>, <a href="#sdl-opengl">SDL-OPENGL</a>, <a href="#sdl-resizable">SDL-RESIZABLE</a> <a href="#sdl-hw-accel">SDL-HW-ACCEL</a>, <a href="#sdl-src-color-key">SDL-SRC-COLOR-KEY</a>, <a href="#sdl-rle-accel">SDL-RLE-ACCEL</a>, <a href="#sdl-src-alpha">SDL-SRC-ALPHA</a>  or <a href="#sdl-pre-alloc">SDL-PRE-ALLOC</a>. </li>
-</ul>
-<div class="title">戻り値</div>
-<p><span class="code">INFO</span> when <span class="code">NIL</span> will return a list of all enabled surface flags. Otherwise will return <span class="code">INFO</span> as <span class="code">T</span> or <span class="code">NIL</span> if supported by the surface.
- </p>
-<div class="title">例</div>
-<pre class="code">(SURFACE-INFO A-SURFACE &#039;(SDL-HW-SURFACE SDL-HW-PALETTE SDL-HW-ACCELL)) </pre>
+		<div class="title">戻り値</div>
+		<p><span class="parameter">INFO</span> が <span class="code">NIL</span> の時、全ての有効なサーフェスフラグのリストを返す。それ以外の場合、サーフェスにより対応されている場合、 <span class="parameter">INFO</span> （に関する情報）を <span class="code">T</span> あるいは <span class="code">NIL</span> として返す。
+		</p>
 
-</blockquote>
-
+		<div class="title">例</div>
+		<pre class="code">(SURFACE-INFO A-SURFACE &#039;(SDL-HW-SURFACE SDL-HW-PALETTE SDL-HW-ACCELL)) </pre>
+	</div>
+</div>
 <!-- End of entry for SURFACE-INFO -->
 
 
