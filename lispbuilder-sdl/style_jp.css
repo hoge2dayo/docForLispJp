@@ -119,19 +119,20 @@ div.desc {
 	margin-left: 1em;
 }
 
-.title {
+div.title {
+	margin : 4px 0;
+	padding : 3px 1em;
 	background-color : #ffffdd;
 	font-weight: bold;
 }
 /* title より低いレベルのタイトル */
-.title2 {
-	background-color : #eeffdd;
+div.title2 {
+	margin : 3px 0;
+	padding : 3px 1em;
+	background-color : #ffddbb;
 }
 
-div.title {
-	margin : 10px 0px;
-}
-
+/* 注釈 */
 .note {
 	font-weight : bold;
 	color : #880000;
@@ -155,6 +156,11 @@ div.title {
 /* 強調３ */
 .e3 {
 	font-weight : bold;
+}
+
+/* モジュール名 */
+.module {
+	background-color : #ddddff;
 }
 
 /* オペレータ（関数、マクロなど） */
