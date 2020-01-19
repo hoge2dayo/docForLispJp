@@ -540,7 +540,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>キーワードパラメータで <span class="type">SURFACE</span> を受け入れる関数は、 <span class="parameter">SURFACE</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-SURFACE*</span> に束縛する可能性が高い。
 		</p>
-		<p>次のマクロにより、<span class="parameter">SURFACE</span> は <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。： マクロ <a href="#with-surface">WITH-SURFACE</a> およびマクロ <a href="#with-surfaces">WITH-SURFACES</a> 。
+		<p>次のマクロにより、<span class="parameter">SURFACE</span> は <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。： マクロ <a href="#with-surface"><span class="operator">WITH-SURFACE</span></a> およびマクロ <a href="#with-surfaces"><span class="operator">WITH-SURFACES</span></a> 。
 		</p>
 
 		<div class="title">例</div>
@@ -569,7 +569,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="variable">*external-init-on-startup*</span>
 	</p>
 	<div class="desc">
-		<p>関数 <a href="#init-sdl">INIT-SDL</a> から呼び出される関数のリスト。
+		<p>関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> から呼び出される関数のリスト。
 		</p>
 	</div>
 </div>
@@ -583,7 +583,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="variable">*external-quit-on-exit*</span>
 	</p>
 	<div class="desc">
-		<p>関数 <a href="#quit-sdl">QUIT-SDL</a> から呼び出される関数のリスト。
+		<p>関数 <a href="#quit-sdl"><span class="operator">QUIT-SDL</span></a> から呼び出される関数のリスト。
 		</p>
 	</div>
 </div>
@@ -2137,222 +2137,251 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-BOX -->
+<a name="draw-box"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-box</span> <span class="parameter">rect <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-box-*"><span class="operator">DRAW-BOX-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-box'><b>draw-box</b> <i>rect <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">RECT</span> は <a href="#rectangle"><span class="type">RECTANGLE</span></a> である。</li>
+		</ul>
 
-<p>See <a href="#draw-box-*">DRAW-BOX-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-BOX -->
 
-
 <!-- Entry for DRAW-BOX-* -->
+<a name="draw-box-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-box-*</span> <span class="parameter">x y w h <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> で塗りつぶされた矩形を、 <a href="#surface"><span class="type">SURFACE</span></a> へ描画する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-box-*'><b>draw-box-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> clipping surface color stroke-color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、矩形左上の角の整数（ <span class="type">INTEGER</span> ）座標である。</li>
+			<li><span class="parameter">W</span> および <span class="parameter">H</span> は、矩形の幅および高さであり、整数（ <span class="type">INTEGER</span> ）型である。</li>
+			<li><span class="parameter">SURFACE</span> は、対象 <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> の線の色である。</li>
+			<li><span class="parameter">STROKE-COLOR</span> が <span class="code">NIL</span> でない時、矩形の周囲に <span class="parameter">COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
+			<li><span class="parameter">ALPHA</span> が <span class="code">0</span> から <span class="code">255</span> 迄である時、矩形を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、矩形はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="e2">（？）</span>　デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリが自動的に必要なクリッピングを実行する。</li>
+		</ul>
 
-<p>Draws a filled rectangle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
-<li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:STROKE-COLOR</span> when not <span class="code">NIL</span> will draw a <span class="code">1</span> pixel line of color <span class="code">COLOR</span> around the perimiter of the box.</li>
-<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
-<li><span class="code">:CLIPPING</span> is <span class="code">NIL</span> The default is <span class="code">NIL</span> as the SDL library will perform the necessary clipping automatically.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-BOX-* -->
 
-
 <!-- Entry for DRAW-CIRCLE -->
+<a name="draw-circle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-circle</span> <span class="parameter">p1 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-circle-*"><span class="operator">DRAW-CIRCLE-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-circle'><b>draw-circle</b> <i>p1 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> は、円の中心の <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-circle-*">DRAW-CIRCLE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the circle.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> に於いて、 <span class="parameter">AA</span> は無視される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-CIRCLE -->
 
-
 <!-- Entry for DRAW-CIRCLE-* -->
+<a name="draw-circle-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-circle-*</span> <span class="parameter">x0 y0 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の円周を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。塗りつぶされた円を描画するには、関数 <a href="#draw-filled-circle-*"><span class="operator">DRAW-FILLED-CIRCLE-*</span></a> を使用する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-circle-*'><b>draw-circle-*</b> <i>x0 y0 r <span class="lambda-kw">&amp;key</span> surface color alpha aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、円の中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">R</span> は整数型（ <span class="type">INTEGER</span> ）の半径である。</li>
+			<li><span class="parameter">AA</span> は、線がアンチエイリアスを使用して描画されるか決定する。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">ALPHA</span> が <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+		</ul>
 
-<p>Draws a circle circumference of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a> to draw a filled circle.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the circle, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">R</span> is the circle r, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> に於いて、 <span class="parameter">AA</span> は無視される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-CIRCLE-* -->
 
-
 <!-- Entry for DRAW-CURVE -->
+<a name="draw-curve"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-curve</span> <span class="parameter">vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の Cattmul-Rom （キャットムル・ロム）スプライン曲線を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。曲線の形状は、通過点により定義される。通過点は、 X 座標と Y 座標の組を含む頂点である。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-curve'><b>draw-curve</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">VERTICES</span> は、スプライン曲線用の <a href="#point"><span class="type">POINT</span></a> である通過点あるいは頂点で構成されるリストである。</li>
+			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、 <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> のいずれかである。指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。通過点の間を交互に線を描画するには、 <span class="code">:DASH</span> を使用する。各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
+			<li><span class="parameter">SEGMENTS</span> は、 Cattmul-Rom （キャットムル・ロム）スプライン曲線の描画に使用されるセグメント数である。指定されない場合、デフォルトは 20 セグメントである。セグメント数が多いほど、スプライン曲線は滑らかになる。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> をデフォルト値の <span class="code">T</span> のままにする時、図形は <span class="parameter">SURFACE</span> の寸法でクリッピングされる。 SDL は、ピクセルがサーフェスの外側に描画される場合、コアダンプする。低速だが、 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにするのが安全である。</li>
+		</ul>
 
-<p>Draw a Cattmul-Rom spline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">VERTICES</span> is a list of waypoints or vetices for the spline, of <a href="#point">POINT</a></li>
-<li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Catmull-Rom spline. Default is 20 segments if unspecified. The greater the number of segments, the smoother the spline. </li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">例</div>
-<pre class="code">(DRAW-CURVE (LIST (SDL:POINT :X 60  :Y 40)
+		<div class="title">例</div>
+		<pre class="code">(DRAW-CURVE (LIST (SDL:POINT :X 60  :Y 40)
     	  (SDL:POINT :X 160 :Y 10)
 	  (SDL:POINT :X 170 :Y 150)
 	  (SDL:POINT :X 60  :Y 150))) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
 
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-CURVE -->
 
-
 <!-- Entry for DRAW-ELLIPSE -->
+<a name="draw-ellipse"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-ellipse</span> <span class="parameter">p1 rx ry <span class="lambda-kw">&amp;key</span> surface color aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-ellipse-*"><span class="operator">DRAW-ELLIPSE-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-ellipse'><b>draw-ellipse</b> <i>p1 rx ry <span class="lambda-kw">&amp;key</span> surface color aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> は、楕円の中心である <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-ellipse-*">DRAW-ELLIPSE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the ellipse.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-ELLIPSE -->
 
-
 <!-- Entry for DRAW-ELLIPSE-* -->
+<a name="draw-ellipse-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-ellipse-*</span> <span class="parameter">x y rx ry <span class="lambda-kw">&amp;key</span> surface color aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の楕円円周を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。塗りつぶされた楕円を描画するには、関数 <a href="#draw-filled-ellipse-*"><span class="operator">DRAW-FILLED-ELLIPSE-*</span></a> を使用する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-ellipse-*'><b>draw-ellipse-*</b> <i>x y rx ry <span class="lambda-kw">&amp;key</span> surface color aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、楕円の中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">RX</span> および <span class="parameter">RY</span> は、楕円の半径を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルの色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+		</ul>
 
-<p>Draws an ellipse circumference of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a> to draw a filled ellipse.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the ellipse, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">RX</span> and <span class="code">RY</span> specify the ellipse radius, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-ELLIPSE-* -->
 
-
 <!-- Entry for DRAW-FILLED-CIRCLE -->
+<a name="draw-filled-circle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-circle</span> <span class="parameter">p1 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-filled-circle-*"><span class="operator">DRAW-FILLED-CIRCLE-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-circle'><b>draw-filled-circle</b> <i>p1 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> は、塗りつぶされた円の中心の <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-filled-circle-*">DRAW-FILLED-CIRCLE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates coordinate of the center of the filled circle.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-CIRCLE -->
 
-
 <!-- Entry for DRAW-FILLED-CIRCLE-* -->
+<a name="draw-filled-circle-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-circle-*</span> <span class="parameter">x0 y0 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の塗りつぶされた円を <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-circle-*'><b>draw-filled-circle-*</b> <i>x0 y0 r <span class="lambda-kw">&amp;key</span> surface color stroke-color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X0</span> および <span class="parameter">Y0</span> は、円の中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">R</span> は、円の半径であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は円を塗りつぶす色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">STROKE-COLOR</span> は <span class="code">NIL</span> でない時、円の周囲に <span class="parameter">STROKE-COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
+			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="e2">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+		</ul>
 
-<p>Draws a filled circle of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X0</span> and <span class="code">Y0</span> specify the center coordinate of the circle, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">R</span> is the circle radius, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:STROKE-COLOR</span> when not <span class="code">NIL</span> will draw a <span class="code">1</span> pixel line of color <span class="code">COLOR</span> around the perimiter of the box.</li>
-<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-CIRCLE-* -->
 
 
@@ -2504,7 +2533,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
 </p>
 <div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 </ul>
 
 </blockquote>
@@ -2513,82 +2543,77 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-FONT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-font'><b>draw-font</b> <i><span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="draw-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-font</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT -->
 
-
 <!-- Entry for DRAW-FONT-AT -->
+<a name="draw-font-at"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">draw-font-at</span> <span class="parameter">position <span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> 参照。キャッシュされたサーフェスは、 <span class="parameter">POSITION</span> <span class="type">POINT</span> にレンダリングされる。
+		</p>
 
-<p><br>
-［総称関数］<br>
-<a class=none name='draw-font-at'><b>draw-font-at</b> <i>position <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>See <a href="#draw-font">DRAW-FONT</a>. The cached surface is rendered at <span class="code">POSITION</span> <a href="#point">POINT</a>.
-</p>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT-AT -->
 
-
 <!-- Entry for DRAW-FONT-AT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>draw-font-at</b> <i>position <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">draw-font-at</span> <span class="parameter">position <span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT-AT -->
-
 
 <!-- Entry for DRAW-FONT-AT-* -->
+<a name="draw-font-at-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">draw-font-at-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> 参照。キャッシュされたサーフェスは、 <span class="parameter">X</span> および <span class="parameter">Y</span> の位置にレンダリングされる。
+		</p>
 
-<p><br>
-［総称関数］<br>
-<a class=none name='draw-font-at-*'><b>draw-font-at-*</b> <i>x y <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>See <a href="#draw-font">DRAW-FONT</a>.  The cached surface is rendered at poisition <span class="code">X</span> and <span class="code">Y</span>.
-</p>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT-AT-* -->
 
 
 <!-- Entry for DRAW-FONT-AT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>draw-font-at-*</b> <i>x y <span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">draw-font-at-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT-AT-* -->
-
 
 <!-- Entry for DRAW-HLINE -->
 <a name="draw-hline"></a>
@@ -3411,7 +3436,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 [Accessor]<br>
 <a class=none name='frame-rate'><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</span> fpsmanager</i> =&gt; <i>result</i></a>
 <br>
-<a class=none><tt>(setf (</tt><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</span></a>
+<a class=none><tt>(setf (</tt><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</tt></span></a>
 <blockquote><br>
 
 <p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
@@ -4126,56 +4151,54 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for INIT-SUB-SYSTEMS -->
 
-
 <!-- Entry for INITIALISE-DEFAULT-FONT -->
+<a name="initialise-default-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">initialise-default-font</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> font-definition</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FONT-DEFINITION</span> データから初期化された新しい <a href="#sdl-bitmap-font"><span class="type">SDL-BITMAP-FONT</span></a> を返す。フォントが生成できない場合、 <span class="code">NIL</span> を返す。 <span class="parameter">FONT-DEFINITION</span> は、指定されない場合、 <span class="variable">*font-8x8*</span> に設定される。シンボル <span class="variable">*DEFAULT-FONT*</span> を、後続のフォントレンダリングあるいは描画処理の為に、デフォルトとして使用される新しいフォントに束縛する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='initialise-default-font'><b>initialise-default-font</b> <i><span class="lambda-kw">&amp;optional</span> font-definition</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new <a href="#sdl-bitmap-font">SDL-BITMAP-FONT</a> initialized from <span class="code">FONT-DEFINITION</span> data, or <span class="code">NIL</span> if the font cannot be created. <span class="code">FONT-DEFINITION</span> is set to <span class="code">*font-8x8*</span> if unspecified. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to the new font to be used as the default for subsequent font rendering or drawing operations.
-</p>
-<div class="title">パッケージ</div>
-<ul><li>Aslo supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for INITIALISE-DEFAULT-FONT -->
 
-
 <!-- Entry for INITIALISE-FONT -->
+<a name="initialise-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">initialise-font</span> <span class="parameter">font-definition</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FONT-DEFINITION</span> データから初期化された新しい <a href="#sdl-bitmap-font"><span class="type">SDL-BITMAP-FONT</span></a> を返す。フォントが生成できない場合、 <span class="code">NIL</span> を返す。 <span class="parameter">FONT-DEFINITION</span> は、次の組込みフォントのいずれかである必要がある。 ： <span class="variable">*FONT-10X20*</span> 、 <span class="variable">*FONT-5X7*</span> 、 <span class="variable">*FONT-5X8*</span> 、 <span class="variable">*FONT-6X10*</span> 、 <span class="variable">*FONT-6X12*</span> 、 <span class="variable">*FONT-6X13*</span> 、 <span class="variable">*FONT-6X13B*</span> 、 <span class="variable">*FONT-6X13O*</span> 、 <span class="variable">*FONT-6X9*</span> 、 <span class="variable">*FONT-7X13*</span> 、 <span class="variable">*FONT-7X13B*</span> 、 <span class="variable">*FONT-7X13O*</span> 、 <span class="variable">*FONT-7X14*</span> 、 <span class="variable">*FONT-7X14B*</span> 、 <span class="variable">*FONT-8X13*</span> 、 <span class="variable">*FONT-8X13B*</span> 、 <span class="variable">*FONT-8X13O*</span> 、 <span class="variable">*FONT-8X8*</span> 、 <span class="variable">*FONT-9X15*</span> 、 <span class="variable">*FONT-9X15B*</span> 、 <span class="variable">*FONT-9X18*</span> 、 <span class="variable">*FONT-9X18B*</span> 。
+		</p>
 
-<p><br>
-［総称関数］<br>
-<a class=none name='initialise-font'><b>initialise-font</b> <i>font-definition</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new <a href="#sdl-bitmap-font">SDL-BITMAP-FONT</a> initialized from <span class="code">FONT-DEFINITION</span> data, or <span class="code">NIL</span> if the font cannot be created. <span class="code">FONT-DEFINITION</span> must be one of the following built-in fonts: <span class="code">*FONT-10X20*</span>, <span class="code">*FONT-5X7*</span>, <span class="code">*FONT-5X8*</span>, <span class="code">*FONT-6X10*</span>, <span class="code">*FONT-6X12*</span>, <span class="code">*FONT-6X13*</span>, <span class="code">*FONT-6X13B*</span>, <span class="code">*FONT-6X13O*</span>, <span class="code">*FONT-6X9*</span>, <span class="code">*FONT-7X13*</span>, <span class="code">*FONT-7X13B*</span>, <span class="code">*FONT-7X13O*</span>, <span class="code">*FONT-7X14*</span>, <span class="code">*FONT-7X14B*</span>, <span class="code">*FONT-8X13*</span>, <span class="code">*FONT-8X13B*</span>, <span class="code">*FONT-8X13O*</span>, <span class="code">*FONT-8X8*</span>, <span class="code">*FONT-9X15*</span>, <span class="code">*FONT-9X15B*</span>, <span class="code">*FONT-9X18*</span> OR <span class="code">*FONT-9X18B*</span>.
-</p>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for INITIALISE-FONT -->
 
-
 <!-- Entry for INITIALISE-FONT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>initialise-font</b> <i>(font-definition <span class="type">simple-font-definition</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">initialise-font</span> <span class="parameter">(font-definition <span class="type">simple-font-definition</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for INITIALISE-FONT -->
-
 
 <!-- Entry for INITIALISE-FONT -->
 <div class="def">
@@ -4423,7 +4446,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="parameter">FLAGS</span> は、次の内一つ以上のビットマスクされた logior である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
+			<li><span class="parameter">FLAGS</span> は、次の内一つ以上のビットマスクされた <span class="operator">logior</span> である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
 			<li><span class="parameter">SURFACE</span> は <a href="#sdl-surface"><span class="type">SDL-SURFACE</span></a> 型のサーフェスあるいは <span class="code">NIL</span> である。 <span class="code">NIL</span> の時、ピクセルフォーマットは、 <a href="#sdl-get-video-info">SDL-GET-VIDEO-INFO</a> により返されるものになる。</li>
 		</ul>
 
@@ -4846,7 +4869,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">push-quit-event</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><span class="code">:SDL-QUIT-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
+		<p><span class="type">:SDL-QUIT-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
 		</p>
 	</div>
 </div>
@@ -4860,7 +4883,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">push-user-event</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> code data1 data2</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><span class="code">:SDL-USER-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
+		<p><span class="type">:SDL-USER-EVENT</span> 型の新たな <span class="code">SDL_Event</span> を、イベントキューにプッシュする。
 		</p>
 	</div>
 </div>
@@ -5419,7 +5442,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> へ適用する。
 		</p>
 		<ul>
-			<li>関数 <a href="#window">WINDOW</a> へ <span class="code">FLAG</span> として渡された時 ： 要求されたピクセル深度が利用できない場合に、 SDL はあらゆるピクセル深度の <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を返す。</li>
+			<li>関数 <a href="#window"><span class="operator">WINDOW</span></a> へ <span class="code">FLAG</span> として渡された時 ： 要求されたピクセル深度が利用できない場合に、 SDL はあらゆるピクセル深度の <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を返す。</li>
 			<li><a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスが <span class="constant">SDL-ANY-FORMAT</span> で生成されたことを示す。</li>
 		</ul>
 		<p>通常、要求されたピクセルあたりのビット数（ bpp ）の <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> が利用できない場合、 SDL はシャドウサーフェスでエミュレートする。 <span class="constant">SDL-ANY-FORMAT</span> を渡すことはこれを防ぎ、ピクセル深度に拘わらず、 SDL のサーフェス <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> を使用する。
@@ -5815,7 +5838,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
 		</p>
 		<ul>
-			<li>関数 <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> へ <span class="code">FLAG</span> として渡された時 ： <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> および <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> を伴う描画の時、サーフェスは RLE アクセラレーションを使用して描画される。サーフェスは、最初に関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> あるいは関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> が呼び出された時、で、実際に RLE アクセラレーション用にエンコードされる。</li>
+			<li>関数 <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> へ <span class="code">FLAG</span> として渡された時 ： 関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> および関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> を伴う描画の時、サーフェスは RLE アクセラレーションを使用して描画される。サーフェスは、最初に関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> あるいは関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> が呼び出された時、で、実際に RLE アクセラレーション用にエンコードされる。</li>
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： カラーキーブリットが RLE でアクセラレーションされることを示す。</li>
 		</ul>
 		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color">MAP-COLOR</a> はしばしば、許容値を取得するのに有用である。
@@ -5852,7 +5875,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
 		</p>
 		<ul>
-			<li>関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> および関数 <a href="#set-alpha"><span class="operator">SET-ALPHA</span></a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのアルファブレンディングをオンにする。 <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> も指定され、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、可能であればサーフェスはビデオメモリに配置される。画面がハードウェアのサーフェスであり、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、 <a href="#sdl-hw-surface">SDL-HW-SURFACE</a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには、関数 <a href="#set-alpha">SET-ALPHA</a> を使用する。</li>
+			<li>関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> および関数 <a href="#set-alpha"><span class="operator">SET-ALPHA</span></a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのアルファブレンディングをオンにする。 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> も指定され、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、可能であればサーフェスはビデオメモリに配置される。画面がハードウェアのサーフェスであり、アルファブレンディングブリットがハードウェアアクセラレーションされる場合、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには、関数 <a href="#set-alpha"><span class="operator">SET-ALPHA</span></a> を使用する。</li>
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスブリットがアルファブレンディングを使用することを示す。</li>
 		</ul>
 
@@ -5872,7 +5895,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p><a href="#surface"><span class="type">SURFACE</span></a> へ適用する。
 		</p>
 		<ul>
-			<li>関数 <a href="#create-surface"><span class="operation">CREATE-SURFACE</span></a> および <a href="#set-color-key">SET-COLOR-KEY</a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのカラーキーをオンにする。 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> も指定されて、カラーキーブリットがハードウェアアクセラレーションされる場合、 SDL はサーフェスをビデオメモリへの配置しようとする。画面がハードウェアサーフェスであり、カラーキーブリットがハードウェアアクセラレーションされている場合、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには <a href="#set-color-key">SET-COLOR-KEY</a> を使用する。</li>
+			<li>関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> および <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> へ <span class="code">FLAG</span> として渡された時 ： このサーフェスからのブリットのカラーキーをオンにする。 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> も指定されて、カラーキーブリットがハードウェアアクセラレーションされる場合、 SDL はサーフェスをビデオメモリへの配置しようとする。画面がハードウェアサーフェスであり、カラーキーブリットがハードウェアアクセラレーションされている場合、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> フラグが設定される。サーフェス生成後、このフラグのセットあるいはクリアするには関数 <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> を使用する。</li>
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがカラーキーブリットを使用することを示す。</li>
 		</ul>
 
@@ -6840,13 +6863,13 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li><span class="parameter">WIDTH</span> はウィンドウのピクセル幅であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
 			<li><span class="parameter">HEIGHT</span> はウィンドウのピクセルでの高さであり、整数型（ <span class="type">INTEGER</span> ）である。もし <span class="parameter">WIDTH</span> と <span class="parameter">HEIGHT</span> が両方 <span class="code">0</span> である場合、カレントのビデオモード（あるいは、モードが設定されていない場合、デスクトップモード）の幅と高さが使用される。</li>
 			<li><span class="parameter">BPP</span> はピクセルあたりのビット数である。デフォルトは、カレント表示に於けるピクセルあたりのビット数を示す <span class="code">0</span> である。<span class="note">注釈：</span> <span class="code">24</span> の <span class="parameter">BPP</span> は、 3 バイト／ピクセルのパックド形式を使用する。より一般的な 4 バイト／ピクセルモードは、 <span class="code">32</span> の <span class="parameter">BPP</span> を使用する。</li>
-			<li><span class="parameter">FLAGS</span> はビットマスクされた次のいずれか（複数可）の logior である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
+			<li><span class="parameter">FLAGS</span> はビットマスクされた次のいずれか（複数可）の <span class="operator">logior</span> である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
 			<li><span class="parameter">TITLE-CAPTION</span> は、ウィンドウのタイトルバーに現れるタイトルであり、文字列型（ <span class="type">STRING</span> ）である。</li>
 			<li><span class="parameter">ICON-CAPTION</span> は、ウィンドウが最小化された時に現れるタイトルであり、文字列型（ <span class="type">STRING</span> ）である。</li>
 		</ul>
 		<div class="title">戻り値</div>
 		<ul>
-			<li>正常終了の場合、新しい <span class="type">DISPLAY-SURFACE</span> を返し、異常終了の場合、 <span class="code">NIL</span> を返す。 SDL_SetVideoMode が満たせる <span class="parameter">flags</span> は全て、 <span class="type">SURFACE</span> のフラグメンバで設定される。返された <span class="type">SURFACE</span> は SDL により解放され、決して呼び出し側により解放されるべきではない。この規則は、 <span class="code">WINDOW</span> への連続した呼び出しを含む。（つまり、サイズ変更あるいは解像度変更時）　全ての存在するサーフェスは、 SDL により自動的に解放される。</li>
+			<li>正常終了の場合、新しい <span class="type">DISPLAY-SURFACE</span> を返し、異常終了の場合、 <span class="code">NIL</span> を返す。 SDL_SetVideoMode が満たせる <span class="parameter">flags</span> は全て、 <span class="type">SURFACE</span> のフラグメンバで設定される。返された <span class="type">SURFACE</span> は SDL により解放され、決して呼び出し側により解放されるべきではない。この規則は、関数 <span class="operator">WINDOW</span> への連続した呼び出しを含む。（つまり、サイズ変更あるいは解像度変更時）　全ての存在するサーフェスは、 SDL により自動的に解放される。</li>
 		</ul>
 		<div class="title">例</div>
 		<pre class="code">(WINDOW 320 240 :TITLE-CAPTION &quot;Random-Rects&quot; :ICON-CAPTION &quot;Random-Rects&quot;
@@ -6970,7 +6993,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="e1">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -6984,7 +7007,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">with-events</span> <span class="parameter">(<span class="lambda-kw">&amp;optional</span> type) declaration* statement*</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><span class="operator">WITH-EVENTS</span> はメインのゲームループを管理する為の便利なマクロである。それは、やって来る SDL イベントを処理し、ゲームループを指定された秒あたりのフレーム数に制限する。
+		<p>マクロ <span class="operator">WITH-EVENTS</span> はメインのゲームループを管理する為の便利なマクロである。それは、やって来る SDL イベントを処理し、ゲームループを指定された秒あたりのフレーム数に制限する。
 		</p>
 		<p><a href="#sdl-poll-event">SDL-POLL-EVENT</a> および <a href="#sdl-wait-event">SDL-WAIT-EVENT</a> 両方のイベントの仕組みは、 <span class="parameter">TYPE</span> をそれぞれ <span class="code">:POLL</span> あるいは <span class="code">:WAIT</span> として指定することにより対応されている。
 		</p>
@@ -6999,7 +7022,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
   (:VIDEO-EXPOSE-EVENT () (SDL:UPDATE-DISPLAY)))))) </pre>
 
 		<div class="title">フレームレートの制限</div>
-		<p>フレームレートはアクセサ <a href="#frame-rate">FRAME-RATE</a> を使用して指定される。フレームレートを毎秒 60 フレームに設定する例。：
+		<p>フレームレートはアクセサ <a href="#frame-rate"><span class="operator">FRAME-RATE</span></a> を使用して指定される。フレームレートを毎秒 60 フレームに設定する例。：
 		</p>
 		<pre class="code">(SETF (SDL:FRAME-RATE) 60) </pre>
 
@@ -7010,7 +7033,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li><span class="parameter">EVENT-TYPE</span> は、次のいずれかのキーワードである必要がある。： <span class="code">:ACTIVE-EVENT</span> 、<span class="code">:KEY-DOWN-EVENT</span> 、 <span class="code">:KEY-UP-EVENT</span> 、 <span class="code">:MOUSE-MOTION-EVENT</span> 、 <span class="code">:MOUSE-BUTTON-DOWN-EVENT</span> 、 <span class="code">:MOUSE-BUTTON-UP-EVENT</span> 、 <span class="code">:JOY-AXIS-MOTION-EVENT</span> 、 <span class="code">:JOY-BUTTON-DOWN-EVENT</span> 、 <span class="code">:JOY-BUTTON-UP-EVENT</span> 、 <span class="code">:JOY-HAT-MOTION-EVENT</span> 、 <span class="code">:JOY-BALL-MOTION-EVENT</span> 、 <span class="code">:VIDEO-RESIZE-EVENT</span> 、 <span class="code">:VIDEO-EXPOSE-EVENT</span> 、 <span class="code">:SYS-WM-EVENT</span> 、 <span class="code">:QUIT-EVENT</span> 、 <span class="code">:USER-EVENT</span> 、 <span class="code">:IDLE</span> 。</li>
 			<li><span class="parameter">KEYS</span> は、返すイベントのメンバを指定し、各イベント種別固有である。これらの詳細は以下で述べる。</li>
 		</ul>
-		<p><span class="note">注釈：</span> <span class="code">:QUIT-EVENT</span> は、マクロ <span class="code">WITH-EVENT</span> を終了する為に <span class="code">T</span> を返す必要がある。
+		<p><span class="note">注釈：</span> <span class="code">:QUIT-EVENT</span> は、マクロ <span class="operator">WITH-EVENT</span> を終了する為に <span class="code">T</span> を返す必要がある。
 		</p>
 		<p><span class="note">注釈：</span> <span class="parameter">TYPE</span> が <span class="code">:WAIT</span> である時、 <span class="code">:IDLE</span> は無視される。
 		</p>
@@ -7020,7 +7043,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</p>
 
 		<div class="title">イベントを待つ</div>
-		<p><span class="parameter">TYPE</span> が <span class="code">:WAIT</span> である時、マクロ <span class="code">WITH-EVENTS</span> は、次に利用可能なイベントまで無期限にスリープする。利用可能なイベントがない場合、ゲームループは一時停止する。
+		<p><span class="parameter">TYPE</span> が <span class="code">:WAIT</span> である時、マクロ <span class="operator">WITH-EVENTS</span> は、次に利用可能なイベントまで無期限にスリープする。利用可能なイベントがない場合、ゲームループは一時停止する。
 		</p>
 
 		<div class="title"><span class="code">:IDLE</span> イベント</div>
@@ -7046,17 +7069,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
    &amp;BODY BODY) </pre>
 		<p>キーボードイベントは、一般にキーが放された時あるいはキーが押された時に発生する。イベントを生成したキーに関する情報は、 <span class="parameter">KEY</span> および <span class="parameter">MOD</span> に保存される。
 		</p>
-		<p>キー <span class="code">SDL-CAPS-LOCK</span> および <span class="code">SDL-NUM-LOCK</span> は特殊な例であり、最初に押下された時に <span class="code">SDL-KEY-DOWN</span> を報告し、放されて再度押下した時に <span class="code">SDL-RELEASED</span> を報告する。したがって、これらのキーの KEYUP および KEYDOWN イベントは、キー自体ではなく Caps Lock および Num Lock の LED 状態に似ている。これらの特殊な例は、 Sun ワークステーションとの互換性の為に必要である。
+		<p>キー <span class="code">:SDL-KEY-CAPSLOCK</span> および <span class="code">:SDL-KEY-NUMLOCK</span> は特殊な例であり、最初に押下された時に <span class="code">SDL-KEY-DOWN</span> を報告し、放されて再度押下した時に <span class="constant">SDL-RELEASED</span> を報告する。したがって、これらのキーの KEYUP および KEYDOWN イベントは、キー自体ではなく Caps Lock および Num Lock の LED 状態に似ている。これらの特殊な例は、 Sun ワークステーションとの互換性の為に必要である。
 		</p>
 		<p><span class="e1">注釈：</span> <a href="#sdl-enable-key-repeat">SDL-ENABLE-KEY-REPEAT</a> を使用してキーリピートが有効である場合、 <span class="code">SDL-KEY-DOWN</span> イベントの繰り返しが発生する。
 		</p>
 		<ul>
-			<li>キーが押された場合、あるいは放された場合、 <span class="parameter">STATE</span> はそれぞれ  <span class="code">SDL-PRESSED</span> あるいは <span class="code">SDL-RELEASED</span> である。</li>
+			<li>キーが押された場合、あるいは放された場合、 <span class="parameter">STATE</span> はそれぞれ  <span class="constant">SDL-PRESSED</span> あるいは <span class="constant">SDL-RELEASED</span> である。</li>
 			<li><span class="parameter">SCANCODE</span> は、キーボードにより返されるハードウェア依存のスキャンコードである。</li>
-			<li><span class="parameter">KEY</span> は、イベントが生成したキーの SDL 定義値である。キーの SDL 定義値は通常、次の形式をとる。： 数字キーの場合、 <span class="code">:SDL-KEY-0</span> から <span class="code">:SDL-KEY-9</span> 。範囲 a-z のアルファベットキーの場合、 <span class="code">SDL-KEY-a</span> から <span class="code">SDL-KEY-z</span> 。その他は一般的に綴られており、例えば、 <span class="code">SDL-KEY-PAGEDOWN</span> 、 <span class="code">SDL-KEY-F1</span> 、 <span class="code">SDL-KEY-NUMLOCK</span> である。</li>
+			<li><span class="parameter">KEY</span> は、イベントが生成したキーの SDL 定義値である。キーの SDL 定義値は通常、次の形式をとる。： 数字キーの場合、 <span class="code">:SDL-KEY-0</span> から <span class="code">:SDL-KEY-9</span> 。範囲 a-z のアルファベットキーの場合、 <span class="code">:SDL-KEY-a</span> から <span class="code">:SDL-KEY-z</span> 。その他は一般的に綴られており、例えば、 <span class="code">:SDL-KEY-PAGEDOWN</span> 、 <span class="code">:SDL-KEY-F1</span> 、 <span class="code">:SDL-KEY-NUMLOCK</span> である。</li>
 			<li><span class="parameter">MOD</span> は、 SDL_GetModState で説明されているキーボード修飾子の現在の状態である。次の一つ以上。 <span class="code">:SDL-KEY-MOD-NONE</span> 、 <span class="code">:SDL-KEY-MOD-LSHIFT</span> 、 <span class="code">:SDL-KEY-MOD-RSHIFT</span> 、 <span class="code">:SDL-KEY-MOD-LCTRL</span> 、 <span class="code">:SDL-KEY-MOD-RCTRL</span> 、 <span class="code">:SDL-KEY-MOD-LALT</span> 、 <span class="code">:SDL-KEY-MOD-RALT</span> 、 <span class="code">:SDL-KEY-MOD-LMETA</span> 、 <span class="code">:SDL-KEY-MOD-RMETA</span> 、 <span class="code">:SDL-KEY-MOD-NUM</span> 、 <span class="code">:SDL-KEY-MOD-CAPS</span> 、 <span class="code">:SDL-KEY-MOD-MODE</span> 、 <span class="code">:SDL-KEY-MOD-RESERVED</span> 。</li>
 			<li><span class="parameter">UNICODE</span> は変換された文字である。 unicode フィールドは、 UNICODE 変換が SDL_EnableUNICODE で有効である時にのみ使用される。 unicode が非 0 である場合、これはキー押下に対応する UNICODE 文字である。文字の上位 9 ビットが 0 である場合、これは同等の ASCII 文字に写像される。</li>
 		</ul>
+
+		<p class="e2">※ <span class="code">SDL-KEY-DOWN</span> とある箇所は本当か？　<span class="code">:SDL-KEY-DOWN</span> はカーソルキーの「↓」を示す値である。
+		</p>
 		<p class="e2">※キーを示すシンボルは、<span class="code">keysym.lisp</span> で定義されている。
 		</p>
 
@@ -7065,7 +7091,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
    &amp;BODY BODY) </pre>
 		<p>イベント <span class="code">MOUSE-MOTION-EVENT</span> は、マウスがアプリケーションウィンドウ内で動いた時、あるいは <a href="#SDL-WARP-MOUSE">SDL-WARP-MOUSE</a> が呼び出された時に発生する。絶対座標 <span class="parameter">X</span> および <span class="parameter">Y</span> 並びに相対座標 <span class="parameter">X-REL</span> および <span class="parameter">Y-REL</span> の両方が、現在のボタンの状態 <span class="parameter">STATE</span> と共に報告される。ボタンの状態は、 <a href="#sdl-button">SDL-BUTTON</a> を使用して変換できる。 <a href="#sdl-get-mouse-state">SDL-GET-MOUSE-STATE</a> 参照。
 		</p>
-		<p><a href="#sdl-show-cursor">SDL-SHOW-CURSOR</a> の使用でカーソルが隠されている場合、および <a href="#sdl-wm-grab-input">SDL-WM-GRAB-INPUT</a> の使用で入力を掴まれている場合、カーソルが画面の端に達した場合でさえ、マウスは相対モーションイベントを発生する。これは現在、 Windows および Linux/Unix 類でのみ実装されている。
+		<p><a href="#sdl-show-cursor">SDL-SHOW-CURSOR</a> の使用でカーソルが隠されている場合、および関数 <a href="#sdl-wm-grab-input"><span class="operator">SDL-WM-GRAB-INPUT</span></a> の使用で入力を掴まれている場合、カーソルが画面の端に達した場合でさえ、マウスは相対モーションイベントを発生する。これは現在、 Windows および Linux/Unix 類でのみ実装されている。
 		</p>
 		<ul>
 			<li><span class="parameter">STATE</span> は現在のボタンの状態である。</li>
@@ -7085,8 +7111,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p>マウスホイールイベントは、ボタン 4 （上）、ボタン 5 （下）として報告される。二つのイベントが生成される。つまり <span class="code">SDL-MOUSE-BUTTON-DOWN</span> イベントと続く <span class="code">SDL-MOUSE-BUTTON-UP</span> イベントである。
 		</p>
 		<ul>
-			<li><span class="parameter">BUTTON</span> は次の内の１つである。 <span class="parameter">SDL-BUTTON-LEFT</span> 、 <span class="parameter">SDL-BUTTON-MIDDLE</span> 、 <span class="parameter">SDL-BUTTON-RIGHT</span> 、 <span class="parameter">SDL-BUTTON-WHEELUP</span> 、 <span class="parameter">SDL-BUTTON-WHEELDOWN</span> 。</li>
-			<li><span class="parameter">STATE</span> はボタンの状態であり、<span class="parameter">SDL-PRESSED</span> あるいは <span class="parameter">SDL-RELEASED</span> である。</li>
+			<li><span class="parameter">BUTTON</span> は次の内の１つである。 <span class="constant">SDL-BUTTON-LEFT</span> 、 <span class="constant">SDL-BUTTON-MIDDLE</span> 、 <span class="constant">SDL-BUTTON-RIGHT</span> 、 <span class="constant">SDL-BUTTON-WHEELUP</span> 、 <span class="constant">SDL-BUTTON-WHEELDOWN</span> 。</li>
+			<li><span class="parameter">STATE</span> はボタンの状態であり、<span class="constant">SDL-PRESSED</span> あるいは <span class="constant">SDL-RELEASED</span> である。</li>
 			<li><span class="parameter">X</span> は、押下／解放した時のマウスの <span class="code">X</span> 座標である。</li>
 			<li><span class="parameter">Y</span> は、押下／解放した時のマウスの <span class="code">Y</span> 座標である。</li>
 		</ul>
@@ -7112,7 +7138,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<ul>
 			<li><span class="parameter">WHICH</span> は、イベントを報告したジョイスティックのインデックスである。</li>
 			<li><span class="parameter">BUTTON</span> は、イベントを引き起こした押下されたボタンである。</li>
-			<li><span class="parameter">STATE</span> は現在のボタンの状態であり、 <span class="code">SDL-PRESSED</span> あるいは <span class="code">SDL-RELEASED</span> のいずれかである。</li>
+			<li><span class="parameter">STATE</span> は現在のボタンの状態であり、 <span class="constant">SDL-PRESSED</span> あるいは <span class="constant">SDL-RELEASED</span> のいずれかである。</li>
 		</ul>
 
 		<div class="title">ジョイスティックハットモーションイベント</div>
@@ -7123,7 +7149,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<ul>
 			<li><span class="parameter">WHICH</span> は、イベントを報告したジョイスティックのインデックスである。</li>
 			<li><span class="parameter">HAT</span> は、イベントを生成したハットのインデックスである。</li>
-			<li><span class="parameter">VALUE</span> は、ハットの現在位置であり、次の値のビット単位での OR 結合である。 <span class="code">SDL-HAT-CENTERED</span> 、 <span class="code">SDL-HAT-UP</span> 、 <span class="code">SDL-HAT-RIGHT</span> 、 <span class="code">SDL-HAT-DOWN</span> 、 <span class="code">SDL-HAT-LEFT</span> 、 <span class="code">SDL-HAT-RIGHT-UP</span> 、 <span class="code">SDL-HAT-RIGHT-DOWN</span> 、 <span class="code">SDL-HAT-LEFT-UP</span> 、 <span class="code">SDL-HAT-LEFT-DOWN</span> 。</li>
+			<li><span class="parameter">VALUE</span> は、ハットの現在位置であり、次の値のビット単位での OR 結合である。 <span class="constant">SDL-HAT-CENTERED</span> 、 <span class="constant">SDL-HAT-UP</span> 、 <span class="constant">SDL-HAT-RIGHT</span> 、 <span class="constant">SDL-HAT-DOWN</span> 、 <span class="constant">SDL-HAT-LEFT</span> 、 <span class="constant">SDL-HAT-RIGHT-UP</span> 、 <span class="constant">SDL-HAT-RIGHT-DOWN</span> 、 <span class="constant">SDL-HAT-LEFT-UP</span> 、 <span class="constant">SDL-HAT-LEFT-DOWN</span> 。</li>
 		</ul>
 
 		<div class="title">ジョイスティックボールモーションイベント</div>
@@ -7264,7 +7290,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">with-init</span> <span class="parameter">flags declaration* statement*</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>マクロ <span class="operator">WITH-INIT</span> は、 <span class="code">BODY</span> でフォームを実行する前に SDL ライブラリと SDL サブシステムの初期化を試みる便利なマクロである。 <span class="operator">WITH-INIT</span> 終了の際、 SDL ライブラリと SDL サブシステムを初期化解除する。
+		<p>マクロ <span class="operator">WITH-INIT</span> は、 <span class="code">BODY</span> でフォームを実行する前に SDL ライブラリと SDL サブシステムの初期化を試みる便利なマクロである。マクロ <span class="operator">WITH-INIT</span> 終了の際、 SDL ライブラリと SDL サブシステムを初期化解除する。
 		</p>
 		<p>lispbuilder-sdl 初期化ルーチンは、Lisp 開発環境が外部ライブラリを１回ロードする一方で、ライブラリを複数回初期化および初期化解除する事実により、やや複雑である。Ｃ／Ｃ＋＋開発環境は、オープンして各実行後にライブラリをクローズし、不完全あるいは不具合ある初期化解除関数によりハングされた全てのリソースを解放する。そのため、ライブラリが再初期化される前にリソースが適切に供給されない時、Ｃのライブラリは Lisp 環境に於いて頻繁にコアダンプする。
 		</p>
@@ -7315,7 +7341,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 (pushnew &#039;quit-ttf sdl:*external-quit-on-exit*)</pre>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="parameter">FLAGS</span> は次のいずれか（複数可）にできる。：<span class="constant">SDL-INIT-EVERYTHING</span> 、 <span class="constant">SDL-INIT-VIDEO</span> 、 <span class="constant">SDL-INIT-CDROM</span> 、 <span class="constant">SDL-INIT-AUDIO</span> 、 <span class="constant">SDL-INIT-TIMER</span> 、 <span class="constant">SDL-INIT-JOYSTICK</span> 、 <span class="constant">SDL-INIT-EVENTTHREAD</span> 、 <span class="constant">SDL-INIT-NOPARACHUTE</span> 。<span class="note">注釈</span>： <span class="operator">WITH-INIT</span> により <span class="parameter">FLAGS</span> が設定される時、続く関数 <a href="#initialize-on-startup"><span class="operator">INITIALIZE-ON-STARTUP</span></a> および関数 <a href="#quit-on-exit"><span class="operator">QUIT-ON-EXIT</span></a> への呼出は無視される。 <span class="operator">WITH-INIT</span> は <span class="parameter">FLAGS</span> で指定されたサブシステムのみ初期化／初期化解除する。</li>
+			<li><span class="parameter">FLAGS</span> は次のいずれか（複数可）にできる。：<span class="constant">SDL-INIT-EVERYTHING</span> 、 <span class="constant">SDL-INIT-VIDEO</span> 、 <span class="constant">SDL-INIT-CDROM</span> 、 <span class="constant">SDL-INIT-AUDIO</span> 、 <span class="constant">SDL-INIT-TIMER</span> 、 <span class="constant">SDL-INIT-JOYSTICK</span> 、 <span class="constant">SDL-INIT-EVENTTHREAD</span> 、 <span class="constant">SDL-INIT-NOPARACHUTE</span> 。<span class="note">注釈</span>： マクロ <span class="operator">WITH-INIT</span> により <span class="parameter">FLAGS</span> が設定される時、続く関数 <a href="#initialize-on-startup"><span class="operator">INITIALIZE-ON-STARTUP</span></a> および関数 <a href="#quit-on-exit"><span class="operator">QUIT-ON-EXIT</span></a> への呼出は無視される。マクロ <span class="operator">WITH-INIT</span> は <span class="parameter">FLAGS</span> で指定されたサブシステムのみ初期化／初期化解除する。</li>
 		</ul>
 		<div class="title">例</div>
 		<pre class="code">(with-init (SDL-INIT-VIDEO SDL-INIT-CDROM SDL-INIT-AUDIO)
