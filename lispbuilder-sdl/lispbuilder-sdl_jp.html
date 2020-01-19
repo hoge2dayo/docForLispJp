@@ -29,8 +29,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator"></span> <span class="parameter"></span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<div class="title"></div>
-		<pre class="code"></pre>
 	</div>
 </div>
 -->
@@ -4180,35 +4178,33 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for INITIALISE-FONT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>initialise-font</b> <i>(font-definition bitmap-font-definition)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">initialise-font</span> <span class="parameter">(font-definition bitmap-font-definition)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for INITIALISE-FONT -->
 
-
 <!-- Entry for INITIALISE-INPUT-UTIL -->
+<a name="initialise-input-util"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">initialise-input-util</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>入力ユーティリティシステムを初期化する。これは単に、キー押下情報が格納されるデータ構造体を生成するだけであり、初期化状態追跡の為にグローバル変数を保持する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='initialise-input-util'><b>initialise-input-util</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
 
-<p>Initialises the input util system. This just creates the data structure that key press information is stored in, and maintains a global variable to track initialisation status.
-</p>
-<div class="title">パラメータ</div>
-<div class="title">戻り値</div>
-
-</blockquote>
-
+		<div class="title">戻り値</div>
+	</div>
+</div>
 <!-- End of entry for INITIALISE-INPUT-UTIL -->
-
 
 <!-- Entry for INITIALIZE-ON-STARTUP -->
 <a name="initialize-on-startup"></a>
@@ -4236,58 +4232,61 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for INITIALIZED-SUB-SYSTEMS-P -->
-
-<p><br>
-［関数］<br>
-<a class=none name='initialized-sub-systems-p'><b>initialized-sub-systems-p</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a list of the initialized SDL subsystems.
-</p>
-
-</blockquote>
-
+<a name="initialized-sub-systems-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">initialized-sub-systems-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>初期化された SDL サブシステムのリストを返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for INITIALIZED-SUB-SYSTEMS-P -->
 
-
 <!-- Entry for IS-FONT-FACE-FIXED-WIDTH -->
+<a name="is-font-face-fixed-width"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">is-font-face-fixed-width</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォントフェイスが固定幅である場合、 <span class="code">T</span> を返し、それ以外の場合、 <span class="code">NIL</span> を返す。固定幅フォントは等幅であり、フォント中に存在する全ての文字が同じ幅であることを意味する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='is-font-face-fixed-width'><b>is-font-face-fixed-width</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで、 <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
+		</ul>
 
-<p>Returns <span class="code">T</span> if the font face is of a fixed width, or <span class="code">NIL</span> otherwise. Fixed width fonts are monospace, meaning every character that exists in the font is the same width.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Retuns <span class="code">T</span> if <span class="code">FONT</span> is of fixed width, and <span class="code">NIL</span> otherwise.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li><span class="parameter">FONT</span> が固定幅である場合、 <span class="code">T</span> を返し、それ以外の場合、 <span class="code">NIL</span> を返す。</li>
+		</ul>
 
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for IS-FONT-FACE-FIXED-WIDTH -->
 
-
 <!-- Entry for IS-VALID-PTR -->
-
-<p><br>
-［関数］<br>
-<a class=none name='is-valid-ptr'><b>is-valid-ptr</b> <i>pointer</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns T if pointer is not NULL and is a valid CFFI pointer to a foreign object.
-</p>
-
-</blockquote>
-
+<a name="is-valid-ptr"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">is-valid-ptr</span> <span class="parameter">pointer</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">pointer</span> が NULL でなく、かつ外部オブジェクトへの有効な CFFI ポインタである場合、<span class="code">T</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for IS-VALID-PTR -->
-
 
 <!-- Entry for KEY-DOWN-P -->
 <a name="key-down-p"></a>
@@ -4372,72 +4371,72 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for KEYS-DOWN-P -->
 
 <!-- Entry for KEY-REPEAT-DELAY -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key-repeat-delay'><b>key-repeat-delay</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns the current key repeat delay, in milliseconds.
-</p>
-
-</blockquote>
-
+<a name="key-repeat-delay"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-repeat-delay</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>現在のキーリピート遅延を、ミリ秒単位で返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for KEY-REPEAT-DELAY -->
 
-
 <!-- Entry for KEY-REPEAT-INTERVAL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key-repeat-interval'><b>key-repeat-interval</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns the current key repeat interval, in milliseconds.
-</p>
-
-</blockquote>
-
+<a name="key-repeat-interval"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key-repeat-interval</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>現在のキーリピート間隔を、ミリ秒単位で返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for KEY-REPEAT-INTERVAL -->
 
-
 <!-- Entry for KEY= -->
-
-<p><br>
-［関数］<br>
-<a class=none name='key='><b>key=</b> <i>key1 key2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="key="></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">key=</span> <span class="parameter">key1 key2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for KEY= -->
 
-
 <!-- Entry for LIST-MODES -->
+<a name="list-modes"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">list-modes</span> <span class="parameter">flags <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>指定されたサーフェス <span class="parameter">SURFACE</span> およびビデオフラグ <span class="parameter">FLAGS</span> のピクセルフォーマットに対応する画面の幅と高さを含み、最大から最小にソートされたベクタのリストを返す。関数 <span class="operator">LIST-MODES</span> は、関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> を使用して SDL が初期化された後で、呼び出される必要がある。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='list-modes'><b>list-modes</b> <i>flags <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">FLAGS</span> は、次の内一つ以上のビットマスクされた logior である。： <a href="#sdl-sw-surface"><span class="constant">SDL-SW-SURFACE</span></a> 、 <a href="#sdl-hw-surface"><span class="constant">SDL-HW-SURFACE</span></a> 、 <a href="#sdl-async-blit"><span class="constant">SDL-ASYNC-BLIT</span></a> 、 <a href="#sdl-any-format"><span class="constant">SDL-ANY-FORMAT</span></a> 、 <a href="#sdl-hw-palette"><span class="constant">SDL-HW-PALETTE</span></a> 、 <a href="#sdl-doublebuf"><span class="constant">SDL-DOUBLEBUF</span></a> 、 <a href="#sdl-fullscreen"><span class="constant">SDL-FULLSCREEN</span></a> 、 <a href="#sdl-opengl"><span class="constant">SDL-OPENGL</span></a> 、 <a href="#sdl-resizable"><span class="constant">SDL-RESIZABLE</span></a> 、 <a href="#sdl-no-frame"><span class="constant">SDL-NO-FRAME</span></a> 。</li>
+			<li><span class="parameter">SURFACE</span> は <a href="#sdl-surface"><span class="type">SDL-SURFACE</span></a> 型のサーフェスあるいは <span class="code">NIL</span> である。 <span class="code">NIL</span> の時、ピクセルフォーマットは、 <a href="#sdl-get-video-info">SDL-GET-VIDEO-INFO</a> により返されるものになる。</li>
+		</ul>
 
-<p>Returns a LIST of vectors sorted largest to smallest that contains the width and height dimensions of the screen that will support the pixel format of the specified surface <span class="code">SURFACE</span> and video flags <span class="code">FLAGS</span>. <span class="code">LIST-MODES</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FLAGS</span> is a bitmasked logior of one or more of the following; <a href="#sdl-sw-surface">SDL-SW-SURFACE</a>, <a href="#sdl-hw-surface">SDL-HW-SURFACE</a>, <a href="#sdl-async-blit">SDL-ASYNC-BLIT</a>, <a href="#sdl-any-format">SDL-ANY-FORMAT</a>, <a href="#sdl-hw-palette">SDL-HW-PALETTE</a>, <a href="#sdl-doublebuf">SDL-DOUBLEBUF</a>, <a href="#sdl-fullscreen">SDL-FULLSCREEN</a>, <a href="#sdl-opengl">SDL-OPENGL</a>, <a href="#sdl-resizable">SDL-RESIZABLE</a> and <a href="#sdl-no-frame">SDL-NO-FRAME</a>. </li>
-<li><span class="code">SURFACE</span> A surface of type <a href="#sdl-surface]">SDL-SURFACE</a>, or <span class="code">NIL</span>. WHEN <span class="code">NIL</span>, the pixel format will be that returned by <a href="#sdl-get-video-info]">SDL-GET-VIDEO-INFO</a>. </li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns a list of <span class="code">VECTOR</span>s of display dimensions, sorted largest to smallest, that will support the pixel format of surface <span class="code">SURFACE</span>; for example <span class="code">(#(1024 768) #(640 480) #(512 384) #(320 240))</span>. Returns <span class="code">NIL</span> if there are no dimensions available for a particular pixel format. Returns <span class="code">T</span> if any dimension will support the pixel format and video flags. </li>
-</ul>
-<div class="title">例</div>
-<pre class="code">(LIST-MODES &#039;(SDL-HW-SURFACE SDL-FULLSCREEN)) </pre>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>サーフェス <span class="parameter">SURFACE</span> のピクセルフォーマットに対応する、最大から最小にソートされた画面寸法のベクタのリストを返す。例 ： <span class="code">(#(1024 768) #(640 480) #(512 384) #(320 240))</span> 。特定のピクセルフォーマットで利用できる寸法がない場合、 <span class="code">NIL</span> を返す。全ての寸法が（指定の）ピクセルフォーマットおよびビデオフラグに対応する場合、 <span class="code">T</span> を返す。</li>
+		</ul>
 
-</blockquote>
-
+		<div class="title">例</div>
+		<pre class="code">(LIST-MODES &#039;(SDL-HW-SURFACE SDL-FULLSCREEN)) </pre>
+	</div>
+</div>
 <!-- End of entry for LIST-MODES -->
-
 
 <!-- Entry for LIST-SUB-SYSTEMS -->
 <a name="list-sub-systems"></a>
@@ -4532,19 +4531,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for LOAD-IMAGE -->
 
-
 <!-- Entry for LOAD-IMAGE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>load-image</b> <i>(source rwops) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new <span class="code">SURFACE</span> from the <span class="code">RWOPS</span> in <span class="code">SOURCE</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">load-image</span> <span class="parameter">(source rwops) <span class="lambda-kw">&amp;key</span> color-key alpha image-type force free-rwops color-key-at</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SOURCE</span> の <span class="code">RWOPS</span> から、新しい <span class="type">SURFACE</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for LOAD-IMAGE -->
 
 
