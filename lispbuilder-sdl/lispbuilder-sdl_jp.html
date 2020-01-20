@@ -554,7 +554,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
   (DRAW-SURFACE SURF-2)
   (DRAW-SURFACE SURF-2))</pre>
 
-		<p class="e2">キーワードパラメータ <span class="parameter">SURFACE</span> のデフォルト値が <span class="variable">*DEFAULT-DISPLAY*</span> であるので、マクロ <span class="operator">with-surface</span> に <span class="variable">*DEFAULT-DISPLAY*</span> を指定する上記例は無意味。
+		<p class="note-by-editor">キーワードパラメータ <span class="parameter">SURFACE</span> のデフォルト値が <span class="variable">*DEFAULT-DISPLAY*</span> であるので、マクロ <span class="operator">with-surface</span> に <span class="variable">*DEFAULT-DISPLAY*</span> を指定する上記例は無意味。
 		</p>
 	</div>
 </div>
@@ -1328,7 +1328,7 @@ An ALPHA channel has the following effect on blitting operations:
 		</p>
 
 		<ul>
-			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e3">RGBA から RGB</span> ： ソースは、アルファチャネルを使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> およびサーフェスごとのアルファは無視される。</li>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e2">RGBA から RGB</span> ： ソースは、アルファチャネルを使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> およびサーフェスごとのアルファは無視される。</li>
 			<li><em>RGBA to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. The source alpha channel and the per-surface alpha value are ignored. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
 			<li><em>RGB to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. The alpha channel of the copied pixels is set to opaque. </li>
 			<li><em>RGB to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source and the alpha value of the copied pixels is set to opaque. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
@@ -2195,7 +2195,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">COLOR</span> は、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> の線の色である。</li>
 			<li><span class="parameter">STROKE-COLOR</span> が <span class="code">NIL</span> でない時、矩形の周囲に <span class="parameter">COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
 			<li><span class="parameter">ALPHA</span> が <span class="code">0</span> から <span class="code">255</span> 迄である時、矩形を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、矩形はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
-			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="e2">（？）</span>　デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリが自動的に必要なクリッピングを実行する。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span>　デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリが自動的に必要なクリッピングを実行する。</li>
 		</ul>
 
 		<div class="title">パッケージ</div>
@@ -2389,7 +2389,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
 			<li><span class="parameter">COLOR</span> は円を塗りつぶす色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 			<li><span class="parameter">STROKE-COLOR</span> は <span class="code">NIL</span> でない時、円の周囲に <span class="parameter">STROKE-COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
-			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="e2">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note-by-editor">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
 		</ul>
 
 		<div class="title">パッケージ</div>
@@ -2647,7 +2647,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">Y</span> は、水平線が必ず横断する垂直方向の整数（ <span class="type">INTEGER</span> ）座標である。</li>
 			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
 			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
-			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="e2">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
 			<li><span class="parameter">TEMPLATE</span> は、オプションで表面を塗りつぶす為の <a href="#rectangle"><span class="type">RECTANGLE</span></a> を指定する。 <span class="parameter">TEMPLATE</span> は解放されない。</li>
 		</ul>
 		<div class="title">パッケージ</div>
@@ -3143,7 +3143,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">Y0</span> および <span class="parameter">Y1</span> は、線の垂直方向の始点および終点であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
 			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
 			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
-			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="e2">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
 			<li><span class="parameter">TEMPLATE</span> は、オプションで表面を塗りつぶす為の <a href="#rectangle"><span class="type">RECTANGLE</span></a> を指定する。 <span class="parameter">TEMPLATE</span> は解放されない。</li>
 		</ul>
 		<div class="title">パッケージ</div>
@@ -5858,7 +5858,7 @@ An ALPHA channel has the following effect on blitting operations:
 		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color">MAP-COLOR</a> はしばしば、許容値を取得するのに有用である。
 		</p>
 
-		<p class="e2">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		<p class="note-by-editor">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
 		</p>
 	</div>
 </div>
@@ -5893,7 +5893,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスブリットがアルファブレンディングを使用することを示す。</li>
 		</ul>
 
-		<p class="e2">関数 <span class="operator">SET-ALPHA</span> は廃止されている。
+		<p class="note-by-editor">関数 <span class="operator">SET-ALPHA</span> は廃止されている。
 	</div>
 </div>
 <!-- End of entry for SDL-SRC-ALPHA -->
@@ -5913,7 +5913,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがカラーキーブリットを使用することを示す。</li>
 		</ul>
 
-		<p class="e2">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		<p class="note-by-editor">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
 		</p>
 	</div>
 </div>
@@ -7090,9 +7090,9 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">UNICODE</span> は変換された文字である。 unicode フィールドは、 UNICODE 変換が SDL_EnableUNICODE で有効である時にのみ使用される。 unicode が非 0 である場合、これはキー押下に対応する UNICODE 文字である。文字の上位 9 ビットが 0 である場合、これは同等の ASCII 文字に写像される。</li>
 		</ul>
 
-		<p class="e2">※ <span class="code">SDL-KEY-DOWN</span> とある箇所は本当か？　<span class="code">:SDL-KEY-DOWN</span> はカーソルキーの「↓」を示す値である。
+		<p class="note-by-editor">※ <span class="code">SDL-KEY-DOWN</span> とある箇所は本当か？　<span class="code">:SDL-KEY-DOWN</span> はカーソルキーの「↓」を示す値である。
 		</p>
-		<p class="e2">※キーを示すシンボルは、<span class="code">keysym.lisp</span> で定義されている。
+		<p class="note-by-editor">※キーを示すシンボルは、<span class="code">keysym.lisp</span> で定義されている。
 		</p>
 
 		<div class="title">マウスモーションイベント</div>
@@ -7153,7 +7153,7 @@ An ALPHA channel has the following effect on blitting operations:
 		<div class="title">ジョイスティックハットモーションイベント</div>
 		<pre class="code">   (:JOY-HAT-MOTION-EVENT (:WHICH WHICH :HAT HAT :VALUE VALUE)
      &amp;BODY BODY) </pre>
-		<p><span class="code">JOY-HAT-MOTION-EVENT</span> イベントは、ユーザがジョイスティックのハット<span class="e2">（おそらく十字ボタンのこと）</span>を動かす度に発生する。
+		<p><span class="code">JOY-HAT-MOTION-EVENT</span> イベントは、ユーザがジョイスティックのハット<span class="note-by-editor">（おそらく十字ボタンのこと）</span>を動かす度に発生する。
 		</p>
 		<ul>
 			<li><span class="parameter">WHICH</span> は、イベントを報告したジョイスティックのインデックスである。</li>

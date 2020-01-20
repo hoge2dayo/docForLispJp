@@ -141,6 +141,12 @@ div.title2 {
 	font-weight : bold;
 	color : #880000;
 }
+/* 注釈（気づいた内容の追記） */
+.note-by-editor {
+	background-color : #eeeeee;
+	color : #ff0000;
+	font-size : smaller;
+}
 
 /* 定義しているものの種別（関数、変数など） */
 .deftype {
@@ -150,17 +156,10 @@ div.title2 {
 /* 強調１ */
 .e1 {
 	font-weight : bold;
-/*	background-color : #ffcccc; */
 	color : #cc0000;
 }
-/* 強調２（翻訳で気づいた内容の追記） */
+/* 強調２ */
 .e2 {
-	background-color : #eeeeee;
-	color : #ff0000;
-	font-size : smaller;
-}
-/* 強調３ */
-.e3 {
 	font-weight : bold;
 }
 
