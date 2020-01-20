@@ -1305,33 +1305,49 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for BLIT-SURFACE -->
+<a name="blit-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">blit-surface</span> <span class="parameter">source <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SOURCE</span> サーフェスの、デスティネーション <span class="parameter">SURFACE</span> への高速ブリットを実行する。 <span class="parameter">SOURCE</span> セルにより定義される領域は、デスティネーションクリッピング矩形により定義される領域へブリットされる。ブリット関数は、ロックされたサーフェス上では呼び出されるべきではない。ブリット操作の結果は、ソースのサーフェスにサーフェスアルファチャネルが設定されているかにより、大きく異なる。カラーキーとアルファ属性が、サーフェスと相互作用する方法の優先順位は、次の通りである。：
+		</p>
+
+		<ul>
+			<li><span class="code">ALPHA</span> ＋ <span class="code">PIXEL-ALPHA</span> を持つソースサーフェス ： ピクセルごとのアルファのみ使用するブリット。</li>
+			<li><span class="code">ALPHA</span> ＋ <span class="code">COLOR-KEY</span> を持つソースサーフェス ： カラーキーおよびサーフェスごとのアルファ値を使用するブリット。</li>
+			<li><span class="code">ALPHA</span> を持つソースサーフェス ： カラーキーおよびサーフェスごとのアルファ値を使用するブリット。</li>
+			<li><span class="code">COLOR-KEY</span> を持つソースサーフェス ： カラーキーを使用したブリット。</li>
+			<li>ソースサーフェス ： 不透明な矩形ブリットを使用するブリット。</li>
+		</ul>
+
+		<p>アルファチャネルは、ブリット操作で次の効果を持つ。：
+An ALPHA channel has the following effect on blitting operations:
+		</p>
+
+		<ul>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e3">RGBA から RGB</span> ： ソースは、アルファチャネルを使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> およびサーフェスごとのアルファは無視される。</li>
+			<li><em>RGBA to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. The source alpha channel and the per-surface alpha value are ignored. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+			<li><em>RGB to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. The alpha channel of the copied pixels is set to opaque. </li>
+			<li><em>RGB to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source and the alpha value of the copied pixels is set to opaque. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+			<li><em>RGBA to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the source alpha channel. The alpha channel in the destination surface is left untouched. <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is ignored. </li>
+			<li><em>RGBA to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGBA data is copied to the destination surface. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+			<li><em>RGB to RGB</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+			<li><em>RGB to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+		</ul>
+
+		<p><em>Note</em>: <em>RGBA to RGBA</em> blits (with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a> set) keep the alpha of the destination surface. This means that you cannot compose two arbitrary <em>RGBA</em> surfaces this way and get the result you would expect from &quot;overlaying&quot; them; the destination alpha will work as a mask.
+		</p>
+	</div>
+</div>
 
 <p><br>
-［関数］<br>
-<a class=none name='blit-surface'><b>blit-surface</b> <i>source <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
+<br>
+<a class=none name=''><b></b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Performs a fast blit of the <span class="code">SOURCE</span> surface to the destination <span class="code">SURFACE</span>. The area defined by the <span class="code">SOURCE</span> cell is blitted to the area defined by the destination clipping rectangle. The blit function should not be called on a locked surface. The results of blitting operations vary greatly depending on whether a surface ALPHA channel is set on the source surface or not. The priorty of how color key and alpha attributes interact with surface blitting is as follows:
-</p>
-<ul><li>source surface with <span class="code">ALPHA</span> + <span class="code">PIXEL-ALPHA</span>: Blit using per-pixel alpha only</li>
-<li>source surface with <span class="code">ALPHA</span> + <span class="code">COLOR-KEY</span>: Blit using the colour key AND the per-surface alpha value</li>
-<li>source surface with <span class="code">ALPHA</span>: Blit using the colour key AND the per-surface alpha value</li>
-<li>source surface with <span class="code">COLOR-KEY</span>: Blit using the colour key</li>
-<li>source surface: Blit using opaque rectangular blit</li>
-</ul>
-<p>An ALPHA channel has the following effect on blitting operations:
-</p>
-<ul><li><em>RGBA to RGB</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination, using the alpha channel. <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> and the per-surface alpha are ignored. </li>
-<li><em>RGBA to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. The source alpha channel and the per-surface alpha value are ignored. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-<li><em>RGB to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. The alpha channel of the copied pixels is set to opaque. </li>
-<li><em>RGB to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source and the alpha value of the copied pixels is set to opaque. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-<li><em>RGBA to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the source alpha channel. The alpha channel in the destination surface is left untouched. <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is ignored. </li>
-<li><em>RGBA to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGBA data is copied to the destination surface. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-<li><em>RGB to RGB</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-<li><em>RGB to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-</ul>
-<p><em>Note</em>: <em>RGBA to RGBA</em> blits (with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a> set) keep the alpha of the destination surface. This means that you cannot compose two arbitrary <em>RGBA</em> surfaces this way and get the result you would expect from &quot;overlaying&quot; them; the destination alpha will work as a mask.
-</p>
 
 </blockquote>
 
@@ -3043,47 +3059,45 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-surface'><b>draw-surface</b> <i>src <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>See <a href="#blit-surface">BLIT-SURFACE</a>
-</p>
-
-</blockquote>
-
+<a name="draw-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-surface</span> <span class="parameter">src <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> 参照。
+		</p>
+	</div>
+</div>
 <!-- End of entry for DRAW-SURFACE -->
 
-
 <!-- Entry for DRAW-SURFACE-AT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-surface-at'><b>draw-surface-at</b> <i>src point <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Draws the source surface to the destination surface at position POINT.  See <a href="#blit-surface">BLIT-SURFACE</a>.
-</p>
-
-</blockquote>
-
+<a name="draw-surface-at"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-surface-at</span> <span class="parameter">src point <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ソースサーフェス（ <span class="parameter">src</span> ）を、デスティネーションサーフェス（ <span class="parameter">surface</span> ）の位置 <span class="parameter">POINT</span> へ描画する。関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> 参照。
+		</p>
+	</div>
+</div>
 <!-- End of entry for DRAW-SURFACE-AT -->
 
-
 <!-- Entry for DRAW-SURFACE-AT-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-surface-at-*'><b>draw-surface-at-*</b> <i>src x y <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Draws the source surface to the destination surface at position X and Y.  See <a href="#blit-surface">BLIT-SURFACE</a>
-</p>
-
-</blockquote>
-
+<a name="draw-surface-at-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-surface-at-*</span> <span class="parameter">src x y <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ソースサーフェス（ <span class="parameter">src</span> ）を、デスティネーションサーフェス（ <span class="parameter">surface</span> ）の位置 <span class="parameter">X</span> および <span class="parameter">Y</span> へ描画する。関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> 参照。
+		</p>
+	</div>
+</div>
 <!-- End of entry for DRAW-SURFACE-AT-* -->
 
 
@@ -6531,33 +6545,30 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for SHOW-CURSOR -->
-
-<p><br>
-［関数］<br>
-<a class=none name='show-cursor'><b>show-cursor</b> <i>state</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Disables the cursor when state is <span class="code">NIL</span>, otherwise enables the cursor.
-</p>
-
-</blockquote>
-
+<a name="show-cursor"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">show-cursor</span> <span class="parameter">state</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">state</span> が <span class="code">NIL</span> である時、カーソルを無効にし、それ以外の時、カーソルを有効にする。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SHOW-CURSOR -->
 
-
 <!-- Entry for SIMPLE-FONT-DEFINITION -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='simple-font-definition'><b>simple-font-definition</b></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="simple-font-definition"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">simple-font-definition</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SIMPLE-FONT-DEFINITION -->
-
 
 <!-- Entry for SURFACE -->
 <a name="surface"></a>
@@ -6603,46 +6614,44 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for TIME-SCALE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='time-scale'><b>time-scale</b> <i><span class="lambda-kw">&amp;optional</span> fpsmanager</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="time-scale"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">time-scale</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for TIME-SCALE -->
 
-
 <!-- Entry for TO-DEGREE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='to-degree'><b>to-degree</b> <i>radian</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Converts radians to degrees.
-</p>
-
-</blockquote>
-
+<a name="to-degree"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">to-degree</span> <span class="parameter">radian</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ラジアンを度に変換する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for TO-DEGREE -->
 
 
 <!-- Entry for TO-RADIAN -->
-
-<p><br>
-［関数］<br>
-<a class=none name='to-radian'><b>to-radian</b> <i>degree</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Converts degrees to radians.
-</p>
-
-</blockquote>
-
+<a name="to-radian"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">to-radian</span> <span class="parameter">degree</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>度をラジアンに変換する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for TO-RADIAN -->
 
 
