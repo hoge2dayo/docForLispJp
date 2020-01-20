@@ -554,7 +554,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
   (DRAW-SURFACE SURF-2)
   (DRAW-SURFACE SURF-2))</pre>
 
-		<p class="note-by-editor">キーワードパラメータ <span class="parameter">SURFACE</span> のデフォルト値が <span class="variable">*DEFAULT-DISPLAY*</span> であるので、マクロ <span class="operator">with-surface</span> に <span class="variable">*DEFAULT-DISPLAY*</span> を指定する上記例は無意味。
+		<p class="note-by-editor">※キーワードパラメータ <span class="parameter">SURFACE</span> のデフォルト値が <span class="variable">*DEFAULT-DISPLAY*</span> であるので、マクロ <span class="operator">with-surface</span> に <span class="variable">*DEFAULT-DISPLAY*</span> を指定する上記例は無意味。
 		</p>
 	</div>
 </div>
@@ -1180,34 +1180,27 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for ALPHA-ENABLED-P -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='alpha-enabled-p'><b>alpha-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>alpha-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="alpha-enabled-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">alpha-enabled-p</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">alpha-enabled-p</span> <span class="parameter">surface</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for ALPHA-ENABLED-P -->
 
-
 <!-- Entry for ALPHA-ENABLED-P -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>alpha-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>alpha-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">alpha-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">alpha-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for ALPHA-ENABLED-P -->
 
 
@@ -1323,34 +1316,37 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li>ソースサーフェス ： 不透明な矩形ブリットを使用するブリット。</li>
 		</ul>
 
-		<p>アルファチャネルは、ブリット操作で次の効果を持つ。：
-An ALPHA channel has the following effect on blitting operations:
+		<p>アルファチャネルは、ブリット操作に次の影響を及ぼす。：
 		</p>
 
+		<div class="title">RGBA から RGB</div>
 		<ul>
 			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e2">RGBA から RGB</span> ： ソースは、アルファチャネルを使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> およびサーフェスごとのアルファは無視される。</li>
-			<li><em>RGBA to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. The source alpha channel and the per-surface alpha value are ignored. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-			<li><em>RGB to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. The alpha channel of the copied pixels is set to opaque. </li>
-			<li><em>RGB to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source and the alpha value of the copied pixels is set to opaque. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-			<li><em>RGBA to RGBA</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the source alpha channel. The alpha channel in the destination surface is left untouched. <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is ignored. </li>
-			<li><em>RGBA to RGBA</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGBA data is copied to the destination surface. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-			<li><em>RGB to RGB</em> with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The source is alpha-blended with the destination using the per-surface alpha value. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
-			<li><em>RGB to RGB</em> without <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>: The RGB data is copied from the source. If <a href="#color-key-enabled-p">COLOR-KEY-ENABLED-P</a> is set, only the pixels not matching the colorkey value are copied. </li>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴わない <span class="e2">RGBA から RGB</span> ： RGB データはソースからコピーされる。ソースのアルファチャネルおよびサーフェスごとのアルファ値は無視される。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。</li>
 		</ul>
 
-		<p><em>Note</em>: <em>RGBA to RGBA</em> blits (with <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a> set) keep the alpha of the destination surface. This means that you cannot compose two arbitrary <em>RGBA</em> surfaces this way and get the result you would expect from &quot;overlaying&quot; them; the destination alpha will work as a mask.
+		<div class="title">RGB から RGBA</div>
+		<ul>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e2">RGB から RGBA</span> ： ソースは、サーフェスごとのアルファ値を使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。コピーされたピクセルのアルファチャネルは、不透明に設定される。</li>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴わない <span class="e2">RGB から RGBA</span> ： RGB データはソースからコピーされ、コピーされたピクセルのアルファ値は、不透明に設定される。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。</li>
+		</ul>
+
+		<div class="title">RGBA から RGBA</div>
+		<ul>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e2">RGBA から RGBA</span> ： ソースは、ソースアルファチャネルを使用して、デスティネーションとアルファブレンドされる。デスティネーションサーフェスのアルファチャネルは変更されない。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> は無視される。</li>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴わない <span class="e2">RGBA から RGBA</span> ： RGBA データはデスティネーションサーフェスへコピーされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。</li>
+		</ul>
+
+		<div class="title">RGB から RGB</div>
+		<ul>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴う <span class="e2">RGB から RGB</span> ： ソースは、サーフェスごとのアルファ値を使用して、デスティネーションとアルファブレンドされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。</li>
+			<li>アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を伴わない <span class="e2">RGB から RGB</span> ： RGB データはソースからコピーされる。アクセサ <a href="#color-key-enabled-p"><span class="operator">COLOR-KEY-ENABLED-P</span></a> が設定されている場合、カラーキー値と一致しないピクセルのみがコピーされる。</li>
+		</ul>
+
+		<p><span class="note">注釈：</span> <span class="e2">RGBA から RGBA</span> （アクセサ <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> の設定を伴う）ブリットは、デスティネーションサーフェスのアルファを維持する。これは、この方法では２つの任意の <span class="e2">RGBA</span> サーフェスを組み合わせることができず、それらを「オーバーレイ」するような期待の結果を得られないことを意味する。デスティネーションのアルファは、マスクとして機能する。
 		</p>
 	</div>
 </div>
-
-<p><br>
-<br>
-<a class=none name=''><b></b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-</blockquote>
-
 <!-- End of entry for BLIT-SURFACE -->
 
 
@@ -1772,34 +1768,26 @@ An ALPHA channel has the following effect on blitting operations:
 
 
 <!-- Entry for COLOR-KEY-ENABLED-P -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='color-key-enabled-p'><b>color-key-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>color-key-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="color-key-enabled-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">color-key-enabled-p</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">color-key-enabled-p</span> <span class="parameter">surface</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR-KEY-ENABLED-P -->
 
-
 <!-- Entry for COLOR-KEY-ENABLED-P -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>color-key-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>color-key-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">color-key-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">color-key-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR-KEY-ENABLED-P -->
 
 
@@ -2389,7 +2377,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
 			<li><span class="parameter">COLOR</span> は円を塗りつぶす色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 			<li><span class="parameter">STROKE-COLOR</span> は <span class="code">NIL</span> でない時、円の周囲に <span class="parameter">STROKE-COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
-			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note-by-editor">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、円を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、円はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
 		</ul>
 
 		<div class="title">パッケージ</div>
@@ -5858,7 +5846,7 @@ An ALPHA channel has the following effect on blitting operations:
 		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color">MAP-COLOR</a> はしばしば、許容値を取得するのに有用である。
 		</p>
 
-		<p class="note-by-editor">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		<p class="note-by-editor">※関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
 		</p>
 	</div>
 </div>
@@ -5893,7 +5881,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスブリットがアルファブレンディングを使用することを示す。</li>
 		</ul>
 
-		<p class="note-by-editor">関数 <span class="operator">SET-ALPHA</span> は廃止されている。
+		<p class="note-by-editor">※関数 <span class="operator">SET-ALPHA</span> は廃止されている。
 	</div>
 </div>
 <!-- End of entry for SDL-SRC-ALPHA -->
@@ -5913,7 +5901,7 @@ An ALPHA channel has the following effect on blitting operations:
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： サーフェスがカラーキーブリットを使用することを示す。</li>
 		</ul>
 
-		<p class="note-by-editor">関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
+		<p class="note-by-editor">※関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
 		</p>
 	</div>
 </div>
@@ -7153,7 +7141,7 @@ An ALPHA channel has the following effect on blitting operations:
 		<div class="title">ジョイスティックハットモーションイベント</div>
 		<pre class="code">   (:JOY-HAT-MOTION-EVENT (:WHICH WHICH :HAT HAT :VALUE VALUE)
      &amp;BODY BODY) </pre>
-		<p><span class="code">JOY-HAT-MOTION-EVENT</span> イベントは、ユーザがジョイスティックのハット<span class="note-by-editor">（おそらく十字ボタンのこと）</span>を動かす度に発生する。
+		<p><span class="code">JOY-HAT-MOTION-EVENT</span> イベントは、ユーザがジョイスティックのハット<span class="note-by-editor">（※おそらく十字ボタンのこと）</span>を動かす度に発生する。
 		</p>
 		<ul>
 			<li><span class="parameter">WHICH</span> は、イベントを報告したジョイスティックのインデックスである。</li>
