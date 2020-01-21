@@ -1133,17 +1133,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for ALL-INTEGERS? -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='all-integers?'><b>all-integers?</b> <i><span class="lambda-kw">&amp;rest</span> values</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns <span class="code">T</span> if all values are <span class="code">INTEGERS</span>.
-</p>
-
-</blockquote>
-
+<a name="all-integers?"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">all-integers?</span> <span class="parameter"><span class="lambda-kw">&amp;rest</span> values</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>全ての値が整数型（ <span class="type">INTEGER</span> ）である場合、 <span class="code">T</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for ALL-INTEGERS? -->
 
 
@@ -1205,17 +1205,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for ANY-COLOR-BUT-THIS -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='any-color-but-this'><b>any-color-but-this</b> <i>color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns a new color that is different to <span class="code">COLOR</span>.
-</p>
-
-</blockquote>
-
+<a name="any-color-but-this"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">any-color-but-this</span> <span class="parameter">color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">COLOR</span> とは異なる新しい color を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for ANY-COLOR-BUT-THIS -->
 
 
@@ -2390,47 +2390,55 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-FILLED-ELLIPSE -->
+<a name="draw-filled-ellipse"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-ellipse</span> <span class="parameter">p1 rx ry <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-filled-ellipse-*"><span class="operator">DRAW-FILLED-ELLIPSE-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-ellipse'><b>draw-filled-ellipse</b> <i>p1 rx ry <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> は、塗りつぶされる楕円の中心の <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-filled-ellipse-*">DRAW-FILLED-ELLIPSE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled ellipse.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-ELLIPSE -->
 
 
 <!-- Entry for DRAW-FILLED-ELLIPSE-* -->
+<a name="draw-filled-ellipse-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-ellipse-*</span> <span class="parameter">x y rx ry <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の塗りつぶされた楕円を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-ellipse-*'><b>draw-filled-ellipse-*</b> <i>x y rx ry <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、楕円の中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">RX</span> および <span class="parameter">RY</span> は楕円の半径を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルの色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+		</ul>
 
-<p>Draws a filled ellipse of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the ellipse, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">RX</span> and <span class="code">RY</span> specify the ellipse radius, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-ELLIPSE-* -->
 
 
@@ -2699,70 +2707,80 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-PIE -->
+<a name="draw-pie"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-pie</span> <span class="parameter">p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-pie-*"><span class="operator">DRAW-PIE-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-pie'><b>draw-pie</b> <i>p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">P1</span> は、パイの中心の <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-pie-*">DRAW-PIE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the pie.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-PIE -->
 
-
 <!-- Entry for DRAW-PIE-* -->
+<a name="draw-pie-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-pie-*</span> <span class="parameter">x y rad start end <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> のパイを <a href="#surface"><span class="type">SURFACE</span></a> に描画する。塗りつぶされたパイを描画するには、関数 <a href="#draw-filled-pie-*"><span class="operator">DRAW-FILLED-PIE-*</span></a> を使用する。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-pie-*'><b>draw-pie-*</b> <i>x y rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、パイの中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">RAD</span> はパイの半径であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">START</span> はパイの開始であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">END</span> はパイの終了であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルの色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+		</ul>
 
-<p>Draws a pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a> to draw a filled pie.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">START</span> is the pie start, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">END</span> is the pie end, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-PIE-* -->
 
-
 <!-- Entry for DRAW-PIXEL -->
+<a name="draw-pixel"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-pixel</span> <span class="parameter">point <span class="lambda-kw">&amp;key</span> clipping surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-pixel-*"><span class="operator">DRAW-PIXEL-*</span></a> 参照。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='draw-pixel'><b>draw-pixel</b> <i>point <span class="lambda-kw">&amp;key</span> clipping surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">POINT</span> はピクセルの <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
+		</ul>
 
-<p>See <a href="#draw-pixel-*">DRAW-PIXEL-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for DRAW-PIXEL -->
 
 
@@ -7379,93 +7397,99 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for WITH-POINT -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-point'><b>with-point</b> <i>(var <span class="lambda-kw">&amp;optional</span> point) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>A convenience macro that binds <span class="code">*DEFAULT-POINT*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-POINT</span>. <span class="code">VAR</span> must be of type <span class="code">POINT</span>. If <span class="code">POINT</span> is not <span class="code">NIL</span>, then <span class="code">VAR is set to </span>POINT`.
-</p>
-
-</blockquote>
-
+<a name="with-point"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-point</span> <span class="parameter">(var <span class="lambda-kw">&amp;optional</span> point) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <span class="operator">WITH-POINT</span> のスコープ内で、 <span class="variable">*DEFAULT-POINT*</span> を <span class="parameter">VAR</span> に束縛する便利なマクロである。 <span class="parameter">VAR</span> は <span class="type">POINT</span> 型である必要がある。 <span class="parameter">POINT</span> が <span class="code">NIL</span> でない場合、 <span class="parameter">VAR</span> は <span class="parameter">POINT</span> に設定される。
+		</p>
+	</div>
+</div>
 <!-- End of entry for WITH-POINT -->
 
-
 <!-- Entry for WITH-RECTANGLE -->
+<a name="with-rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-rectangle</span> <span class="parameter">(var <span class="lambda-kw">&amp;optional</span> rectangle free) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <span class="operator">WITH-RECTANGLE</span> のスコープ内で、 <span class="variable">*DEFAULT-RECTANGLE*</span> を <span class="parameter">VAR</span> に束縛する便利なマクロである。 <span class="parameter">VAR</span> は <span class="type">RECTANGLE</span> 型である必要がある。 <span class="parameter">RECTANGLE</span> が <span class="code">NIL</span> でない時、 <span class="parameter">VAR</span> は <span class="parameter">RECTANGLE</span> に設定される。 <span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">VAR</span> は解放される。
+		</p>
 
-<p><br>
-［マクロ］<br>
-<a class=none name='with-rectangle'><b>with-rectangle</b> <i>(var <span class="lambda-kw">&amp;optional</span> rectangle free) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>A convenience macro that binds <span class="code">*DEFAULT-RECTANGLE*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-RECTANGLE</span>. <span class="code">VAR</span> must be of type <span class="code">RECTANGLE</span>. <span class="code">VAR</span> is set to <span class="code">RECTANGLE</span> when <span class="code">RECTANGLE</span> is not <span class="code">NIL</span>. <span class="code">VAR</span> is freed when <span class="code">FREE</span> is <span class="code">T</span>.
-</p>
-<div class="title">例</div>
-<pre class="code">(WITH-RECTANGLE (a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
+		<div class="title">例</div>
+		<pre class="code">(WITH-RECTANGLE (a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
     ...) </pre>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WITH-RECTANGLE -->
 
-
 <!-- Entry for WITH-RECTANGLES -->
+<a name="with-rectangles"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-rectangles</span> <span class="parameter">bindings declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <a href="#with-rectangle"><span class="operator">WITH-RECTANGLE</span></a> のように、複数の rectangle を束縛する便利なマクロである。
+		</p>
 
-<p><br>
-［マクロ］<br>
-<a class=none name='with-rectangles'><b>with-rectangles</b> <i>bindings declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>A convenience macro that binds multiple rectangles as per <a href="#with-rectangle">WITH-RECTANGLE</a>.
-</p>
-<div class="title">例</div>
-<pre class="code">(WITH-RECTANGLES ((a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
+		<div class="title">例</div>
+		<pre class="code">(WITH-RECTANGLES ((a-rect (RECTANGLE :x 0 :y 0 :w 100 :h 100))
                   ((b-rect (RECTANGLE :x 0 :y 100 :w 100 :h 100))
                   ((c-rect (RECTANGLE :x 0 :y 200 :w 100 :h 100)))
     ...) </pre>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WITH-RECTANGLES -->
 
-
 <!-- Entry for WITH-SHAPE -->
+<a name="with-shape"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-shape</span> <span class="parameter">(<span class="lambda-kw">&amp;optional</span> style) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="variable">*DEFAULT-COLOR*</span> のポリゴンを <span class="variable">*DEFAULT-SURFACE*</span> に描画する。
+		</p>
 
-<p><br>
-［マクロ］<br>
-<a class=none name='with-shape'><b>with-shape</b> <i>(<span class="lambda-kw">&amp;optional</span> style) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">ローカルメソッド</div>
+		<p>頂点は次を使用して追加できる。：
+		</p>
+		<ul>
+			<li><span class="type">SDL:POINT</span> を受け入れる <span class="operator">ADD-VERTEX</span> 、あるいは</li>
+			<li>x/y 展開したバージョンである <span class="operator">ADD-VERTEX-*</span></li>
+		</ul>
 
-<p>Draw a polygon of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>.
-</p>
-<div class="title">Local Methods</div>
-<p>A vertex may be added using:
-</p>
-<ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
-<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
-</ul>
-<p>ADD-VERTEX and ADD-VERTEX-* are valid only within the scop of WITH-SHAPE.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STYLE</span> describes the line style used to draw the shape and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-</ul>
-<div class="title">例</div>
-<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
+		<p><span class="operator">ADD-VERTEX</span> および <span class="operator">ADD-VERTEX-*</span> は、マクロ <span class="operator">WITH-SHAPE</span> スコープ内でのみ有効である。
+		</p>
+
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">STYLE</span> は、図形の描画に使用される線のスタイルを記述し、次のいずれかである。： <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。通過点の間に交互に線を描画するには、 <span class="code">:DASH</span> を使用する。各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
+		</ul>
+
+		<div class="title">例</div>
+		<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
    (WITH-SHAPE (:POINTS)
      (ADD-VERTEX-* 60  40)
      (ADD-VERTEX-* 160 10)
      (ADD-VERTEX-* 170 150)
      (ADD-VERTEX-* 60  150))) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
 
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for WITH-SHAPE -->
-
 
 <!-- Entry for WITH-SURFACE -->
 <a name="with-surface"></a>
@@ -7503,304 +7527,248 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for WITH-SURFACES -->
 
-
 <!-- Entry for WITHIN-RANGE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='within-range'><b>within-range</b> <i>p1 p2 distance</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns true <span class="code">T</span>, if the distance between the <span class="code">POINT</span>s <span class="code">P1</span> <span class="code">P2</span> is &lt;= the distance <span class="code">DISTANCE</span>.
-</p>
-
-</blockquote>
-
+<a name="within-range"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">within-range</span> <span class="parameter">p1 p2 distance</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">POINT</span> <span class="parameter">P1</span> <span class="parameter">P2</span> 間の距離 &lt;= 距離 <span class="parameter">DISTANCE</span> である場合、真の <span class="code">T</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for WITHIN-RANGE -->
 
-
 <!-- Entry for WITHIN-RANGE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='within-range-*'><b>within-range-*</b> <i>x1 y1 x2 y2 distance</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns true <span class="code">T</span>, if the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span> is &lt;= the distance <span class="code">DISTANCE</span>.
-</p>
-
-</blockquote>
-
+<a name="within-range-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">within-range-*</span> <span class="parameter">x1 y1 x2 y2 distance</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>座標 <span class="parameter">X1</span>, <span class="parameter">Y1</span> および座標 <span class="parameter">X2</span>, <span class="parameter">Y2</span> 間の距離 &lt;= 距離 <span class="parameter">DISTANCE</span> である場合、真の <span class="code">T</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for WITHIN-RANGE-* -->
 
-
 <!-- Entry for X -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='x'><b>x</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="x"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">x</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for X -->
 
-
 <!-- Entry for X -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>x</b> <i>(obj <span class="type">font</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x</b> <i>(obj <span class="type">font</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">x</span> <span class="parameter">(obj <span class="type">font</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x</span> <span class="parameter">(obj <span class="type">font</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for X -->
 
-
 <!-- Entry for X -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>x</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x</b> <i>(obj <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">X</span> position coordinate of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">x</span> <span class="parameter">(obj <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x</span> <span class="parameter">(obj <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p><span class="type">SURFACE</span> の <span class="code">X</span> 座標位置を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for X -->
 
-
 <!-- Entry for X -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>x</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">X</span> position coordinate of the rectangle <span class="code">RECTANGLE</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">x</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="type">RECTANGLE</span> の <span class="code">X</span> 座標位置を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for X -->
 
-
 <!-- Entry for X -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>x</b> <i>(obj <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x</b> <i>(obj <span class="type">vector</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">X</span> coordindate of the point <span class="code">POINT</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">x</span> <span class="parameter">(obj <span class="type">vector</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x</span> <span class="parameter">(obj <span class="type">vector</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>点 <span class="type">POINT</span> の <span class="code">X</span> 座標を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for X -->
-
 
 <!-- Entry for X2 -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='x2'><b>x2</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x2</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="x2"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">x2</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x2</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for X2 -->
 
-
 <!-- Entry for X2 -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>x2</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>x2</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Sets the WIDTH of the rectangle <span class="code">RECTANGLE</span> to <span class="code">(- X2 X)</span>
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">x2</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">x2</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="type">RECTANGLE</span> の幅を <span class="code">(- X2 X)</span> に設定する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for X2 -->
 
 
 <!-- Entry for Y -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='y'><b>y</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="y"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">y</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for Y -->
-
 
 <!-- Entry for Y -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>y</b> <i>(obj <span class="type">font</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y</b> <i>(obj <span class="type">font</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">y</span> <span class="parameter">(obj <span class="type">font</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y</span> <span class="parameter">(obj <span class="type">font</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for Y -->
-
 
 <!-- Entry for Y -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>y</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y</b> <i>(obj <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">Y</span> position coordinate of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">y</span> <span class="parameter">(obj <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y</span> <span class="parameter">(obj <span class="type">sdl-surface</span>))</span> <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p><span class="type">SURFACE</span> の <span class="code">Y</span> 座標位置を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for Y -->
-
 
 <!-- Entry for Y -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>y</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">Y</span> position coordinate of the rectangle <span class="code">RECTANGLE</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">y</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="type">RECTANGLE</span> の <span class="code">Y</span> 座標位置を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for Y -->
-
 
 <!-- Entry for Y -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>y</b> <i>(obj <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y</b> <i>(obj <span class="type">vector</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns the <span class="code">Y</span> coordindate of the point <span class="code">POINT</span> as an <span class="code">INTEGER</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">y</span> <span class="parameter">(obj <span class="type">vector</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y</span> <span class="parameter">(obj <span class="type">vector</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>点 <span class="type">POINT</span> の <span class="code">Y</span> 座標を、 <span class="type">INTEGER</span> として返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for Y -->
-
 
 <!-- Entry for Y2 -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='y2'><b>y2</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y2</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="y2"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">y2</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y2</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for Y2 -->
-
 
 <!-- Entry for Y2 -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>y2</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>y2</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-<p>Returns <span class="code">(+ Y HEIGHT)</span> of the rectangle <span class="code">RECTANGLE</span>.
-</p>
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">y2</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">y2</span> <span class="parameter">(obj <span class="type">rectangle</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="type">RECTANGLE</span> の <span class="code">(+ Y HEIGHT)</span> を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for Y2 -->
-
 
 <!-- Entry for ZOOM-SURFACE -->
+<a name="zoom-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">zoom-surface</span> <span class="parameter">zoomx zoomy <span class="lambda-kw">&amp;key</span> surface free smooth</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">ZOOMX</span> および <span class="parameter">ZOOMY</span> に伸縮された新しい <a href="#surface"><span class="type">SURFACE</span></a> を返す。
+		</p>
 
-<p><br>
-［関数］<br>
-<a class=none name='zoom-surface'><b>zoom-surface</b> <i>zoomx zoomy <span class="lambda-kw">&amp;key</span> surface free smooth</i> =&gt; <i>result</i></a>
-<blockquote><br>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">ZOOMX</span> および <span class="parameter">ZOOMY</span> は伸縮係数である。負の伸縮係数は、対応する軸を反転する。<span class="note">注釈</span>： 反転は、アンチエイリアスがオフの場合にのみ対応される。</li>
+			<li><span class="parameter">SURFACE</span> は、 <a href="#surface"><span class="type">SURFACE</span></a> を回転させるサーフェスである。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> の時、 <span class="parameter">SURFACE</span> を解放する。</li>
+			<li><span class="parameter">SMOOTH</span> が <span class="code">T</span> の時、新しいサーフェスにアンチエイリアスを行なう。</li>
+		</ul>
 
-<p>Returns a new <a href="#surface">SURFACE</a> scaled to <span class="code">ZOOMX</span> and <span class="code">ZOOMY</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">:ZOOMX</span> and <span class="code">ZOOMY</span> are the scaling factors. A negative scaling factor will flip the corresponding axis. <em>Note</em>: Flipping is only supported with anti-aliasing turned off. </li>
-<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
-<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
-</ul>
-
-</blockquote>
-
+		<div class="title">パッケージ</div>
+		<ul>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> は <span class="parameter">FREE</span> を無視する。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for ZOOM-SURFACE -->
 
 
-<br>
-&nbsp;<br>
-<h3><a class=none name="ack">Acknowledgements</a></h3>
+<h3><a class=none name="ack">謝辞</a></h3>
 
-<p>
-This documentation was prepared with <a href="http://weitz.de/documentation-template/">DOCUMENTATION-TEMPLATE</a>.
+<p>このドキュメントは、 <a href="http://weitz.de/documentation-template/">DOCUMENTATION-TEMPLATE</a> で作成されました。
 </p>
-<p>
-$Header: /usr/local/cvsrep/documentation-template/output.lisp,v 1.14 2008/05/29 08:23:37 edi Exp $
-<p><a href="http://weitz.de/index.html">BACK TO MY HOMEPAGE</a>
+
+<p>$Header: /usr/local/cvsrep/documentation-template/output.lisp,v 1.14 2008/05/29 08:23:37 edi Exp $
+</p>
+
+<p><a href="http://weitz.de/index.html">ホームページへ戻る。</a>
+</p>
 
 </body>
 </html>
