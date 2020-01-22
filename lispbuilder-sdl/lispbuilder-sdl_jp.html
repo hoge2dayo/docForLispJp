@@ -1502,8 +1502,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='clear-cell'><b>clear-cell</b> <i><span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">SURFACE</span>.
-</p>
+		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">SURFACE</span>.
+		</p>
 
 </blockquote>
 
@@ -1517,8 +1517,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='clear-clip-rect'><b>clear-clip-rect</b> <i><span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Removes the clipping <a href="#rectangle">RECTANGLE</a>.
-</p>
+		<p>Removes the clipping <a href="#rectangle">RECTANGLE</a>.
+		</p>
 
 </blockquote>
 
@@ -1532,8 +1532,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='clear-color-key'><b>clear-color-key</b> <i><span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Disables the color key.
-</p>
+		<p>Disables the color key.
+		</p>
 
 </blockquote>
 
@@ -1745,8 +1745,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='color='><b>color=</b> <i>color1 color2</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns <span class="code">T</span> if the <span class="code">RGB</span>&lt;-&gt;<span class="code">RGB</span> or <span class="code">RGBA</span>&lt;-&gt;<span class="code">RGBA</span> color components in <span class="code">COLOR1</span> and <span class="code">COLOR2</span> match. Returns <span class="code">NIL</span> otherwise.
-</p>
+		<p>Returns <span class="code">T</span> if the <span class="code">RGB</span>&lt;-&gt;<span class="code">RGB</span> or <span class="code">RGBA</span>&lt;-&gt;<span class="code">RGBA</span> color components in <span class="code">COLOR1</span> and <span class="code">COLOR2</span> match. Returns <span class="code">NIL</span> otherwise.
+		</p>
 
 </blockquote>
 
@@ -1802,16 +1802,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='convert-surface'><b>convert-surface</b> <i><span class="lambda-kw">&amp;key</span> surface to-surface enable-alpha enable-color-key free inherit type</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Converts <span class="code">:SURFACE</span> and returns a new surface matching the pixel format and color of <span class="code">:TO-SURFACE</span>. Calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting to the display format.
-</p>
-<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
-</p>
-<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
-</p>
-<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
-</p>
-<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
-</p>
+		<p>Converts <span class="code">:SURFACE</span> and returns a new surface matching the pixel format and color of <span class="code">:TO-SURFACE</span>. Calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting to the display format.
+		</p>
+		<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
+		</p>
+		<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
+		</p>
+		<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
+		</p>
+		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		</p>
 
 </blockquote>
 
@@ -1825,26 +1825,27 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='convert-to-display-format'><b>convert-to-display-format</b> <i><span class="lambda-kw">&amp;key</span> surface enable-alpha enable-color-key pixel-alpha free inherit</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a new surface matching the pixel format and color of the video frame buffer (<span class="code">*display surface*), that is suitable for fast blitting. The new surface will inherit the pixel, alpha and color key components of the source, *unless* </span>:INHERIT<span class="code"> is </span>NIL`.
-</p>
-<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
-</p>
-<p>Use <span class="code">:PIXEL-ALPHA</span> to enable the pixel alpha component (alpha mask of 0xFF) for the new surface.
-</p>
-<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
-</p>
-<p>Differences between <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a>, <a href="#convert-surface">CONVERT-SURFACE</a>, <a href="#copy-surface">COPY-SURFACE</a>, and <a href="#create-surface">CREATE-SURFACE</a>;
-</p>
-<ul><li>
-<p><a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> <strong> will always attempt to create a surface in video memory using hardware acceleration if key color and surface alpha are supported. </strong> A pixel alpha component can be specified. ** New surface is filled with old surface.
-</p>
+		<p>Returns a new surface matching the pixel format and color of the video frame buffer (<span class="code">*display surface*), that is suitable for fast blitting. The new surface will inherit the pixel, alpha and color key components of the source, *unless* </span>:INHERIT<span class="code"> is </span>NIL`.
+		</p>
+		<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
+		</p>
+		<p>Use <span class="code">:PIXEL-ALPHA</span> to enable the pixel alpha component (alpha mask of 0xFF) for the new surface.
+		</p>
+		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		</p>
+		<p>Differences between <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a>, <a href="#convert-surface">CONVERT-SURFACE</a>, <a href="#copy-surface">COPY-SURFACE</a>, and <a href="#create-surface">CREATE-SURFACE</a>;
+		</p>
+		<ul>
+			<li>
+		<p><a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> <strong> will always attempt to create a surface in video memory using hardware acceleration if key color and surface alpha are supported. </strong> A pixel alpha component can be specified. ** New surface is filled with old surface.
+		</p>
 </li>
-<li>
-<p><a href="#convert-surface">CONVERT-SURFACE</a> ** calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting a surface to the display format. <strong> paramatized option to create new surface in video or system memory. </strong> Pixel format and color match that of the source surface. ** New surface is filled with old surface.
-</p>
+			<li>
+		<p><a href="#convert-surface">CONVERT-SURFACE</a> ** calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting a surface to the display format. <strong> paramatized option to create new surface in video or system memory. </strong> Pixel format and color match that of the source surface. ** New surface is filled with old surface.
+		</p>
 </li>
-<li><a href="#copy-surface">COPY-SURFACE</a> <strong> paramatized option to create new surface in video or system memory. </strong> copies a portion or all of the source surface to a new destination surface <strong> A pixel alpha component can be specified. </strong> New surface can be filled with the old surface, or the color key or both. </li>
-</ul>
+			<li><a href="#copy-surface">COPY-SURFACE</a> <strong> paramatized option to create new surface in video or system memory. </strong> copies a portion or all of the source surface to a new destination surface <strong> A pixel alpha component can be specified. </strong> New surface can be filled with the old surface, or the color key or both. </li>
+		</ul>
 
 </blockquote>
 
@@ -1872,8 +1873,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='copy-point'><b>copy-point</b> <i>point</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a copy of the point <span class="code">POINT</span>.
-</p>
+		<p>Returns a copy of the point <span class="code">POINT</span>.
+		</p>
 
 </blockquote>
 
@@ -1887,18 +1888,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='copy-surface'><b>copy-surface</b> <i><span class="lambda-kw">&amp;key</span> cell cell-index surface color-key alpha pixel-alpha rle-accel type free inherit fill color-key-fill pixel-format</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a copy of <span class="code">:SURFACE</span>.
-</p>
-<p>Use <span class="code">:COLOR-KEY</span> or <span class="code">:ALPHA</span> to set the key color and surface alpha transparency. Hardware colorkey and alpha blit acceleration will be used if supported.
-</p>
-<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
-</p>
-<p>The new surface will be filled with the old surface unless <span class="code">:FILL</span> is <span class="code">NIL</span>. The new surface will be filled with the color key of the old surface (if available) unless <span class="code">:COLOR-KEY-FILL</span> is <span class="code">NIL</span>.
-</p>
-<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
-</p>
-<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
-</p>
+		<p>Returns a copy of <span class="code">:SURFACE</span>.
+		</p>
+		<p>Use <span class="code">:COLOR-KEY</span> or <span class="code">:ALPHA</span> to set the key color and surface alpha transparency. Hardware colorkey and alpha blit acceleration will be used if supported.
+		</p>
+		<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
+		</p>
+		<p>The new surface will be filled with the old surface unless <span class="code">:FILL</span> is <span class="code">NIL</span>. The new surface will be filled with the color key of the old surface (if available) unless <span class="code">:COLOR-KEY-FILL</span> is <span class="code">NIL</span>.
+		</p>
+		<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
+		</p>
+		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		</p>
 
 </blockquote>
 
@@ -1912,8 +1913,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='create-list-if-not'><b>create-list-if-not</b> <i>var</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>If <span class="code">VAR</span> is not already a list, then returns <span class="code">(LIST VAR)</span>.
-</p>
+		<p>If <span class="code">VAR</span> is not already a list, then returns <span class="code">(LIST VAR)</span>.
+		</p>
 
 </blockquote>
 
@@ -1927,8 +1928,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='create-path'><b>create-path</b> <i>filename <span class="lambda-kw">&amp;optional</span> path</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates a new path from <span class="code">FILENAME</span> and <span class="code">PATH</span>.
-</p>
+		<p>Creates a new path from <span class="code">FILENAME</span> and <span class="code">PATH</span>.
+		</p>
 
 </blockquote>
 
@@ -1942,8 +1943,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='create-rwops-from-file'><b>create-rwops-from-file</b> <i>filename</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates and returns a new <span class="code">RWOPS</span> object from the file at location <span class="code">FILENAME</span>.
-</p>
+		<p>Creates and returns a new <span class="code">RWOPS</span> object from the file at location <span class="code">FILENAME</span>.
+		</p>
 
 </blockquote>
 
@@ -1971,22 +1972,22 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='create-surface'><b>create-surface</b> <i>width height <span class="lambda-kw">&amp;key</span> bpp type color-key color-key-at pixel-alpha alpha rle-accel x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates and returns a new <span class="code">SURFACE</span> with the dimensions <span class="code">WIDTH</span> and <span class="code">HEIGHT</span>.
-</p>
-<p><span class="code">:COLOR-KEY</span> sets the color key of the surface and enables color-keying.
-</p>
-<p><span class="code">:ALPHA</span> sets the surface alpha transparency and enables alpha blending. This allows a pixel color of <span class="code">RGB</span> with the surface <span class="code">A</span>.
-</p>
-<p><span class="code">:PIXEL-ALPHA</span> enables a pixel alpha component (alpha mask of 0xFF) on the new surface. This allows a pixel color of <span class="code">RGBA</span>.
-</p>
-<p><span class="code">:RLE-ACCEL</span> enables RLE blit acceleration.
-</p>
-<p><span class="code">:BPP</span> is the pixel depth of the surface, and my be 8, 16, 24 or 32.
-</p>
-<p><span class="code">:TYPE</span> attempts to create the <span class="code">SURFACE</span> in video memory when <span class="code">:HW</span>, and in system memory when <span class="code">:SW</span>
-</p>
-<p><span class="code">:X</span> and <span class="code">:Y</span> are the positions of the <span class="code">SURFACE</span> in screen coordinates.
-</p>
+		<p>Creates and returns a new <span class="code">SURFACE</span> with the dimensions <span class="code">WIDTH</span> and <span class="code">HEIGHT</span>.
+		</p>
+		<p><span class="code">:COLOR-KEY</span> sets the color key of the surface and enables color-keying.
+		</p>
+		<p><span class="code">:ALPHA</span> sets the surface alpha transparency and enables alpha blending. This allows a pixel color of <span class="code">RGB</span> with the surface <span class="code">A</span>.
+		</p>
+		<p><span class="code">:PIXEL-ALPHA</span> enables a pixel alpha component (alpha mask of 0xFF) on the new surface. This allows a pixel color of <span class="code">RGBA</span>.
+		</p>
+		<p><span class="code">:RLE-ACCEL</span> enables RLE blit acceleration.
+		</p>
+		<p><span class="code">:BPP</span> is the pixel depth of the surface, and my be 8, 16, 24 or 32.
+		</p>
+		<p><span class="code">:TYPE</span> attempts to create the <span class="code">SURFACE</span> in video memory when <span class="code">:HW</span>, and in system memory when <span class="code">:SW</span>
+		</p>
+		<p><span class="code">:X</span> and <span class="code">:Y</span> are the positions of the <span class="code">SURFACE</span> in screen coordinates.
+		</p>
 
 </blockquote>
 
@@ -2000,8 +2001,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='disable-key-repeat'><b>disable-key-repeat</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Disables keyboard repeat.
-</p>
+		<p>Disables keyboard repeat.
+		</p>
 
 </blockquote>
 
@@ -2031,8 +2032,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='distance'><b>distance</b> <i>p1 p2</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the distance between the <span class="code">POINT</span>s <span class="code">P1</span> and <span class="code">P2</span>.
-</p>
+		<p>Returns the distance between the <span class="code">POINT</span>s <span class="code">P1</span> and <span class="code">P2</span>.
+		</p>
 
 </blockquote>
 
@@ -2046,8 +2047,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='distance-*'><b>distance-*</b> <i>x1 y1 x2 y2</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span>.
-</p>
+		<p>Returns the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span>.
+		</p>
 
 </blockquote>
 
@@ -2061,26 +2062,28 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-bezier'><b>draw-bezier</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a bezier curve of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the Bezier curve is defined by several control points. A control point is a vertex containing an X and Y coordinate pair.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">:VERTICES</span> is a list of control points of <a href="#point">POINT</a>.</li>
-<li><span class="code">:STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-<li><span class="code">:SEGMENTS</span> is the number of line segments used to draw the curve. The default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">例</div>
+		<p>Draw a bezier curve of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the Bezier curve is defined by several control points. A control point is a vertex containing an X and Y coordinate pair.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">:VERTICES</span> is a list of control points of <a href="#point">POINT</a>.</li>
+			<li><span class="code">:STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
+			<li><span class="code">:SEGMENTS</span> is the number of line segments used to draw the curve. The default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-BEZIER (LIST (SDL:POINT :X 60  :Y 40)
                      (SDL:POINT :X 160 :Y 10)
                      (SDL:POINT :X 170 :Y 150)
                      (SDL:POINT :X 60 :Y 150))
                :style :SOLID) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:STYLE</span> is ignored in <span class="code">LISPBUILDER-SDL-GFX</span>.</li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="code">:STYLE</span> is ignored in <span class="code">LISPBUILDER-SDL-GFX</span>.</li>
+		</ul>
 
 </blockquote>
 
@@ -2396,14 +2399,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-filled-pie'><b>draw-filled-pie</b> <i>p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled pie.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>See <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled pie.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2417,19 +2422,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-filled-pie-*'><b>draw-filled-pie-*</b> <i>x y rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draws a filled pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">START</span> is the pie start, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">END</span> is the pie end, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Draws a filled pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">START</span> is the pie start, of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">END</span> is the pie end, of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2443,16 +2450,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-filled-polygon'><b>draw-filled-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a filled polygon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">VERTICES</span> is the list of vertices of type <span class="code">SDL:POINT</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Draw a filled polygon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">VERTICES</span> is the list of vertices of type <span class="code">SDL:POINT</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2466,16 +2475,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-filled-trigon'><b>draw-filled-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a filled trigon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Draw a filled trigon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2489,12 +2500,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-font'><b>draw-font</b> <i><span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
-</p>
-<div class="title">パッケージ</div>
-<ul>
+		<p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
+		</p>
+		<div class="title">パッケージ</div>
+		<ul>
 			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
-</ul>
+		</ul>
 
 </blockquote>
 
@@ -2738,17 +2749,19 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-pixel-*'><b>draw-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a single pixel of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a> at the specified <span class="code">X</span> and <span class="code">Y</span> coordiates.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Draw a single pixel of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a> at the specified <span class="code">X</span> and <span class="code">Y</span> coordiates.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2762,19 +2775,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-polygon'><b>draw-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw the circumference of a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using the vertices in <span class="code">POINTS</span>. Use <a href="#draw-filled-polygon-*">DRAW-FILLED-POLYGON-*</a> to draw a filled polygon.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">:POINTS</span> is the list of vertices for the polygon. <span class="code">POINTS</span> is a list of <span class="code">POINT</span>s.</li>
-<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
-</ul>
+		<p>Draw the circumference of a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using the vertices in <span class="code">POINTS</span>. Use <a href="#draw-filled-polygon-*">DRAW-FILLED-POLYGON-*</a> to draw a filled polygon.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">:POINTS</span> is the list of vertices for the polygon. <span class="code">POINTS</span> is a list of <span class="code">POINT</span>s.</li>
+			<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2788,14 +2803,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-rectangle'><b>draw-rectangle</b> <i>rect <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#draw-rectangle-*">DRAW-RECTANGLE-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>See <a href="#draw-rectangle-*">DRAW-RECTANGLE-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2809,19 +2826,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-rectangle-*'><b>draw-rectangle-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a rectangle outline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
-<li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
-<li><span class="code">:CLIPPING</span> is <span class="code">NIL</span> The default is <span class="code">NIL</span> as the SDL library will perform the necessary clipping automatically.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Draw a rectangle outline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
+			<li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
+			<li><span class="code">:CLIPPING</span> is <span class="code">NIL</span> The default is <span class="code">NIL</span> as the SDL library will perform the necessary clipping automatically.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2835,23 +2854,25 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-shape'><b>draw-shape</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color style</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using <span class="code">VERTICES</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">VERTICES</span> is a list of vertices, of <span class="code">POINT</span></li>
-<li><span class="code">STYLE</span> describes the line style used to draw the polygon and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">例</div>
+		<p>Draw a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using <span class="code">VERTICES</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">VERTICES</span> is a list of vertices, of <span class="code">POINT</span></li>
+			<li><span class="code">STYLE</span> describes the line style used to draw the polygon and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-SHAPE (LIST (SDL:POINT :X 60  :Y 40)
 	    (SDL:POINT :X 160 :Y 10)
 	    (SDL:POINT :X 170 :Y 150)
 	    (SDL:POINT :X 60  :Y 150))) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2865,14 +2886,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-blended'><b>draw-string-blended</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#draw-string-blended-*">DRAW-STRING-BLENDED-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>See <a href="#draw-string-blended-*">DRAW-STRING-BLENDED-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2886,23 +2909,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-blended-*'><b>draw-string-blended-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
-<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
-<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the surface <span class="code">SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
+			<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
+			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
+			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2916,14 +2942,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-shaded'><b>draw-string-shaded</b> <i>string p1 fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#draw-string-shaded-*">DRAW-STRING-SHADED-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">Y</span> coordinates to render the text, of type <span class="code">SDL:POINT</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>See <a href="#draw-string-shaded-*">DRAW-STRING-SHADED-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">Y</span> coordinates to render the text, of type <span class="code">SDL:POINT</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2937,23 +2965,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-shaded-*'><b>draw-string-shaded-*</b> <i>string x y fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> onto surface <span class="code">SURFACE</span>. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces.
-</p>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> coordinates, as <span class="code">INTEGERS</span>.</li>
-<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
-<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface <span class="code">SURFACE</span>, of type <span class="code">COLOR</span></li>
-<li><span class="code">FONT</span> is the font face used to render the text. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the surface <span class="code">SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> onto surface <span class="code">SURFACE</span>. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces.
+		</p>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> coordinates, as <span class="code">INTEGERS</span>.</li>
+			<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
+			<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface <span class="code">SURFACE</span>, of type <span class="code">COLOR</span></li>
+			<li><span class="code">FONT</span> is the font face used to render the text. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
+			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SHADED-* &quot;Hello World!&quot; 0 0 F-COLOR B-COLOR :SURFACE A-SURFACE) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2967,14 +2998,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-solid'><b>draw-string-solid</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#draw-string-solid-*">DRAW-STRING-SOLID-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>See <a href="#draw-string-solid-*">DRAW-STRING-SOLID-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -2988,23 +3021,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-string-solid-*'><b>draw-string-solid-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
-<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
-<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the surface <span class="code">SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
+			<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
+			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
+			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3061,19 +3097,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='draw-trigon'><b>draw-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw the outline of a trigon or triangle, of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-trigon-*">DRAW-FILLED-TRIGON-*</a> to draw a filled trigon.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
-<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
-</ul>
+		<p>Draw the outline of a trigon or triangle, of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-trigon-*">DRAW-FILLED-TRIGON-*</a> to draw a filled trigon.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
+			<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3115,8 +3153,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-alpha'><b>enable-alpha</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Enable surface alpha blending for when <span class="code">T</span>. Disable surface alpha blending when <span class="code">NIL</span>. A <span class="code">SURFACE</span> need not have a pixel alpha component (RGBA) to use surface alpha blending.
-</p>
+		<p>Enable surface alpha blending for when <span class="code">T</span>. Disable surface alpha blending when <span class="code">NIL</span>. A <span class="code">SURFACE</span> need not have a pixel alpha component (RGBA) to use surface alpha blending.
+		</p>
 
 </blockquote>
 
@@ -3130,8 +3168,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-color-key'><b>enable-color-key</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Enables color keying when <span class="code">T</span>. Disable color keying when <span class="code">NIL</span>
-</p>
+		<p>Enables color keying when <span class="code">T</span>. Disable color keying when <span class="code">NIL</span>
+		</p>
 
 </blockquote>
 
@@ -3145,8 +3183,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-key-repeat'><b>enable-key-repeat</b> <i>delay interval</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Enables the keyboard repeat rate. DELAY specifies how long the key must be pressed before it begins repeating, it then repeats at the speed specified by INTERVAL. Both DELAY and INTERVAL are expressed in milliseconds. Setting DELAY or INTERVAL to NIL will set the default values of SDL-DEFAULT-REPEAT-DELAY and SDL-DEFAULT-REPEAT-INTERVAL respectively.
-</p>
+		<p>Enables the keyboard repeat rate. DELAY specifies how long the key must be pressed before it begins repeating, it then repeats at the speed specified by INTERVAL. Both DELAY and INTERVAL are expressed in milliseconds. Setting DELAY or INTERVAL to NIL will set the default values of SDL-DEFAULT-REPEAT-DELAY and SDL-DEFAULT-REPEAT-INTERVAL respectively.
+		</p>
 
 </blockquote>
 
@@ -3160,8 +3198,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-key-repeat-p'><b>enable-key-repeat-p</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the current keyboard DELAY and INTERVAL repeat rate in milliseconds as (VALUES DELAY INTERVAL).
-</p>
+		<p>Returns the current keyboard DELAY and INTERVAL repeat rate in milliseconds as (VALUES DELAY INTERVAL).
+		</p>
 
 </blockquote>
 
@@ -3175,8 +3213,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-rle-accel'><b>enable-rle-accel</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Enables RLE blit acceleration when <span class="code">T</span>, disables RLE acceleration when <span class="code">NIL</span>. RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color).
-</p>
+		<p>Enables RLE blit acceleration when <span class="code">T</span>, disables RLE acceleration when <span class="code">NIL</span>. RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color).
+		</p>
 
 </blockquote>
 
@@ -3190,8 +3228,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-unicode'><b>enable-unicode</b> <i>state</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Unicode translation is enabled with STATE is T, and disabled when STATE is NIL. To obtain the character codes corresponding to received keyboard events, Unicode translation must first be turned on using this function. The translation incurs a slight overhead for each keyboard event and is therefore disabled by default. For each subsequently received key down event, the unicode member of the SDL_keysym structure will then contain the corresponding character code, or zero for keysyms that do not correspond to any character code. Note that only key press events will be translated, not release events. Returns the previous unicode translation state.
-</p>
+		<p>Unicode translation is enabled with STATE is T, and disabled when STATE is NIL. To obtain the character codes corresponding to received keyboard events, Unicode translation must first be turned on using this function. The translation incurs a slight overhead for each keyboard event and is therefore disabled by default. For each subsequently received key down event, the unicode member of the SDL_keysym structure will then contain the corresponding character code, or zero for keysyms that do not correspond to any character code. Note that only key press events will be translated, not release events. Returns the previous unicode translation state.
+		</p>
 
 </blockquote>
 
@@ -3205,8 +3243,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='enable-unicode-p'><b>enable-unicode-p</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Queries the current state of Unicode keyboard translation. Returns T if enabled, NIL if disabled.
-</p>
+		<p>Queries the current state of Unicode keyboard translation. Returns T if enabled, NIL if disabled.
+		</p>
 
 </blockquote>
 
@@ -3220,8 +3258,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='fill-surface'><b>fill-surface</b> <i>color <span class="lambda-kw">&amp;key</span> template surface update clipping</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Fills surface with the specified <span class="code">COLOR</span>.    <span class="code">:TEMPLATE</span> accepts  a <span class="code">RECTANGLE</span> defining the fill bounds.    <span class="code">The surface is updated when </span>:UPDATE`
-</p>
+		<p>Fills surface with the specified <span class="code">COLOR</span>.    <span class="code">:TEMPLATE</span> accepts  a <span class="code">RECTANGLE</span> defining the fill bounds.    <span class="code">The surface is updated when </span>:UPDATE`
+		</p>
 
 </blockquote>
 
@@ -3235,8 +3273,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='fill-surface-*'><b>fill-surface-*</b> <i>r g b <span class="lambda-kw">&amp;key</span> a template surface update clipping</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Fill the surface with the specified color <span class="code">R</span> <span class="code">G</span> <span class="code">B</span> <span class="code">:A</span> <span class="code">A</span>.  See <a href="#fill-surface">FILL-SURFACE</a>.
-</p>
+		<p>Fill the surface with the specified color <span class="code">R</span> <span class="code">G</span> <span class="code">B</span> <span class="code">:A</span> <span class="code">A</span>.  See <a href="#fill-surface">FILL-SURFACE</a>.
+		</p>
 
 </blockquote>
 
@@ -3250,11 +3288,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='flood-fill'><b>flood-fill</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
-</ul>
+		<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
+		</ul>
 
 </blockquote>
 
@@ -3268,13 +3307,14 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='flood-fill-*'><b>flood-fill-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Performs a flood fill of surface <span class="code">SURFACE</span> with color <span class="code">COLOR</span>. The fill starts at the position specified by the <span class="code">X</span> and <span class="code">Y</span> coordinates. Uses a stack based flood fill that does a lot of consing because it uses PUSH/POP as the stack.  This function is fast.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> are <span class="code">INTEGER</span> coordinates.</li>
-<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL:SDL-SURFACE</span>. Bound to <span class="code">SDL:*DEFAULT-SURFACE*</span> if unspecified.</li>
-<li><span class="code">COLOR</span> is the fill color, of type <span class="code">SDL:COLOR</span> or <span class="code">SDL:COLOR-A</span>. Bound to <span class="code">SDL:*DEFAULT-COLOR*</span> if unspecified.</li>
-</ul>
+		<p>Performs a flood fill of surface <span class="code">SURFACE</span> with color <span class="code">COLOR</span>. The fill starts at the position specified by the <span class="code">X</span> and <span class="code">Y</span> coordinates. Uses a stack based flood fill that does a lot of consing because it uses PUSH/POP as the stack.  This function is fast.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X</span> and <span class="code">Y</span> are <span class="code">INTEGER</span> coordinates.</li>
+			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL:SDL-SURFACE</span>. Bound to <span class="code">SDL:*DEFAULT-SURFACE*</span> if unspecified.</li>
+			<li><span class="code">COLOR</span> is the fill color, of type <span class="code">SDL:COLOR</span> or <span class="code">SDL:COLOR-A</span>. Bound to <span class="code">SDL:*DEFAULT-COLOR*</span> if unspecified.</li>
+		</ul>
 
 </blockquote>
 
@@ -3288,11 +3328,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='flood-fill-stack'><b>flood-fill-stack</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#flood-fill-stack-*">FLOOD-FILL-STACK-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
-</ul>
+		<p>See <a href="#flood-fill-stack-*">FLOOD-FILL-STACK-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
+		</ul>
 
 </blockquote>
 
@@ -3306,12 +3347,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='flood-fill-stack-*'><b>flood-fill-stack-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
-</p>
-<p><span class="code">FLOOD-FILL-STACK-*</span> is maintains an internal array-based stack.
-</p>
-<p><em>Note</em>: More of an experiment to see if an array would be faster than a bunch of consing.  The timing of both functions indicates they run at the same speed. With compiler declarations it may have better results.  Another disadvantage to this is it preallocates the stack, chewing up quite a bit of ram.
-</p>
+		<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
+		</p>
+		<p><span class="code">FLOOD-FILL-STACK-*</span> is maintains an internal array-based stack.
+		</p>
+		<p><em>Note</em>: More of an experiment to see if an array would be faster than a bunch of consing.  The timing of both functions indicates they run at the same speed. With compiler declarations it may have better results.  Another disadvantage to this is it preallocates the stack, chewing up quite a bit of ram.
+		</p>
 
 </blockquote>
 
@@ -3327,8 +3368,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><tt>(setf (</tt><b>fp</b> <i>rectangle-array</i><tt>)</tt> <i>value</i><tt>)</tt></a>
 <blockquote><br>
 
-<p>Returns the foreign pointer in FOREIGN-OBJECT
-</p>
+		<p>Returns the foreign pointer in FOREIGN-OBJECT
+		</p>
 
 </blockquote>
 
@@ -3406,10 +3447,10 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><tt>(setf (</tt><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</tt></span></a>
 <blockquote><br>
 
-<p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
-</p>
-<p>See <a href="#with-events">WITH-EVENTS</a>, and <a href="#average-fps">AVERAGE-FPS</a>.
-</p>
+		<p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
+		</p>
+		<p>See <a href="#with-events">WITH-EVENTS</a>, and <a href="#average-fps">AVERAGE-FPS</a>.
+		</p>
 
 </blockquote>
 
@@ -3522,8 +3563,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-clip-rect'><b>get-clip-rect</b> <i><span class="lambda-kw">&amp;key</span> surface rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the clipping <a href="#rectangle">RECTANGLE</a>.
-</p>
+		<p>Returns the clipping <a href="#rectangle">RECTANGLE</a>.
+		</p>
 
 </blockquote>
 
@@ -3537,17 +3578,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-ascent'><b>get-font-ascent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the maximum pixel ascent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the top of the font to the baseline. It could be used when drawing an individual glyph relative to a top point, by combining it with the glyph&#039;s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the ascent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the maximum pixel ascent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the top of the font to the baseline. It could be used when drawing an individual glyph relative to a top point, by combining it with the glyph&#039;s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the ascent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3561,17 +3605,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-descent'><b>get-font-descent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the maximum pixel descent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the baseline to the bottom of the font. It could be used when drawing an individual glyph relative to a bottom point, by combining it with the glyph’s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the descent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the maximum pixel descent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the baseline to the bottom of the font. It could be used when drawing an individual glyph relative to a bottom point, by combining it with the glyph’s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the descent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3585,17 +3632,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-face-family-name'><b>get-font-face-family-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the current font face family name of font <span class="code">FONT</span> or <span class="code">NIL</span> if the information is unavailable.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the name of the <span class="code">FONT</span> face family name as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the current font face family name of font <span class="code">FONT</span> or <span class="code">NIL</span> if the information is unavailable.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the name of the <span class="code">FONT</span> face family name as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3609,17 +3659,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-face-style-name'><b>get-font-face-style-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the current font face style name of font <span class="code">FONT</span>, or <span class="code">NIL</span> if the information is unavailable.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the name of the <span class="code">FONT</span> face style as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the current font face style name of font <span class="code">FONT</span>, or <span class="code">NIL</span> if the information is unavailable.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the name of the <span class="code">FONT</span> face style as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3633,17 +3686,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-faces'><b>get-font-faces</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the number of faces &#039;sub-fonts&#039; available in the font <span class="code">FONT</span>. This is a count of the number of specific fonts (based on size and style and other  typographical features perhaps) contained in the font itself. It seems to be a useless  fact to know, since it can’t be applied in any other <span class="code">SDL_TTF</span> functions.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the number of faces in the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the number of faces &#039;sub-fonts&#039; available in the font <span class="code">FONT</span>. This is a count of the number of specific fonts (based on size and style and other  typographical features perhaps) contained in the font itself. It seems to be a useless  fact to know, since it can’t be applied in any other <span class="code">SDL_TTF</span> functions.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the number of faces in the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3657,17 +3713,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-height'><b>get-font-height</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the maximum pixel height of all glyphs of font <span class="code">FONT</span>. Use this height for rendering text as close together vertically as possible, though adding at least one pixel height to it will space it so they can&#039;t touch. Remember that <span class="code">SDL_TTF</span> doesn&#039;t handle multiline printing so you are responsible for line spacing, see <a href="#get-font-line-skip">GET-FONT-LINE-SKIP</a> as well.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Retuns the height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the maximum pixel height of all glyphs of font <span class="code">FONT</span>. Use this height for rendering text as close together vertically as possible, though adding at least one pixel height to it will space it so they can&#039;t touch. Remember that <span class="code">SDL_TTF</span> doesn&#039;t handle multiline printing so you are responsible for line spacing, see <a href="#get-font-line-skip">GET-FONT-LINE-SKIP</a> as well.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Retuns the height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3681,17 +3740,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-line-skip'><b>get-font-line-skip</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the recommended pixel height of a rendered line of text of the font <span class="code">FONT</span>. This is usually larger than the <a href="#get-font-height">GET-FONT-HEIGHT</a> of the font.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the pixel height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the recommended pixel height of a rendered line of text of the font <span class="code">FONT</span>. This is usually larger than the <a href="#get-font-height">GET-FONT-HEIGHT</a> of the font.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the pixel height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3705,19 +3767,22 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-size'><b>get-font-size</b> <i>text <span class="lambda-kw">&amp;key</span> size font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Calculates and returns the resulting <span class="code">SIZE</span> of the <span class="code">SDL:SURFACE</span> that is required to render the text <span class="code">TEXT</span>, or <span class="code">NIL</span> on error. No actual rendering is performed, however correct kerning is calculated for the actual width. The height returned is the same as returned using <a href="#get-font-height">GET-FONT-HEIGHT</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">TEXT</span> is the string to size, of type <span class="code">STRING</span>.</li>
-<li><span class="code">SIZE</span> must be one of; <span class="code">:W</span> for the text width or <span class="code">:H</span> for the text height.</li>
-<li><span class="code">FONT</span> is the font used to calculate the size of the <span class="code">TEXT</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the width or height of the specified <span class="code">SDL:SURFACE</span>, or <span class="code">NIL</span> upon error.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Calculates and returns the resulting <span class="code">SIZE</span> of the <span class="code">SDL:SURFACE</span> that is required to render the text <span class="code">TEXT</span>, or <span class="code">NIL</span> on error. No actual rendering is performed, however correct kerning is calculated for the actual width. The height returned is the same as returned using <a href="#get-font-height">GET-FONT-HEIGHT</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">TEXT</span> is the string to size, of type <span class="code">STRING</span>.</li>
+			<li><span class="code">SIZE</span> must be one of; <span class="code">:W</span> for the text width or <span class="code">:H</span> for the text height.</li>
+			<li><span class="code">FONT</span> is the font used to calculate the size of the <span class="code">TEXT</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the width or height of the specified <span class="code">SDL:SURFACE</span>, or <span class="code">NIL</span> upon error.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3731,17 +3796,20 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-font-style'><b>get-font-style</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the rendering style of the font <span class="code">FONT</span>. If no style is set then <span class="code">:STYLE-NORMAL</span> is returned, or <span class="code">NIL</span> upon error.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binfs to <span class="code">*DEFAULT-FONT*</span> by default.</li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Retuns the font style as one or more of: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span></li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Returns the rendering style of the font <span class="code">FONT</span>. If no style is set then <span class="code">:STYLE-NORMAL</span> is returned, or <span class="code">NIL</span> upon error.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binfs to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Retuns the font style as one or more of: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span></li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3755,22 +3823,25 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-glyph-metric'><b>get-glyph-metric</b> <i>ch <span class="lambda-kw">&amp;key</span> metric font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the glyph metrics <span class="code">METRIC</span> for the character <span class="code">CH</span>, or <span class="code">NIL</span> upon error.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">CH</span> is a UNICODE chararacter specified as an <span class="code">INTEGER</span>.</li>
-<li><span class="code">FONT</span> is a <span class="code">FONT</span> object from which to retrieve the glyph metrics of the character <span class="code">CH</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default. </li>
-<li><span class="code">METRIC</span> is a <span class="code">KEY</span>word argument and may be one of; <span class="code">:MINX</span>, for the minimum <span class="code">X</span> offset.<br />
+		<p>Returns the glyph metrics <span class="code">METRIC</span> for the character <span class="code">CH</span>, or <span class="code">NIL</span> upon error.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">CH</span> is a UNICODE chararacter specified as an <span class="code">INTEGER</span>.</li>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object from which to retrieve the glyph metrics of the character <span class="code">CH</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default. </li>
+			<li><span class="code">METRIC</span> is a <span class="code">KEY</span>word argument and may be one of; <span class="code">:MINX</span>, for the minimum <span class="code">X</span> offset.<br />
 <span class="code">:MAXX</span>, for the maximum <span class="code">X</span> offset. <span class="code">:MINY</span>, for the minimum <span class="code">Y</span> offset. <span class="code">:MAXY</span>, for the maximum <span class="code">Y</span> offset. <span class="code">:ADVANCE</span>, for the advance offset. </li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns the glyph metric as an <span class="code">INTEGER</span>.</li>
-</ul>
-<div class="title">例</div>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns the glyph metric as an <span class="code">INTEGER</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(GET-GLYPH-METRIC UNICODE-CHAR :METRIC :MINX :FONT *DEFAULT-FONT*) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -3784,8 +3855,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-key-state'><b>get-key-state</b> <i>key</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the current keypress state of the key KEY. Returns T if the SDL-KEY is pressed, returns NIL if SDL-KEY is not pressed. Note: Use SDL_PumpEvents to update the state array. Note: This function gives you the current state after all events have been processed, so if a key or button has been pressed and released before you process events, then the pressed state will never show up in the getstate calls. Note: This function doesn&#039;t take into account whether shift has been pressed or not. For example: (GET-KEY-STATE :SDL-KEY-F1)
-</p>
+		<p>Returns the current keypress state of the key KEY. Returns T if the SDL-KEY is pressed, returns NIL if SDL-KEY is not pressed. Note: Use SDL_PumpEvents to update the state array. Note: This function gives you the current state after all events have been processed, so if a key or button has been pressed and released before you process events, then the pressed state will never show up in the getstate calls. Note: This function doesn&#039;t take into account whether shift has been pressed or not. For example: (GET-KEY-STATE :SDL-KEY-F1)
+		</p>
 
 </blockquote>
 
@@ -3799,8 +3870,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-native-window'><b>get-native-window</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a foreign pointer to the native SDL display window.
-</p>
+		<p>Returns a foreign pointer to the native SDL display window.
+		</p>
 
 </blockquote>
 
@@ -3814,8 +3885,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-point'><b>get-point</b> <i>object</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of object <span class="code">OBJ</span> as a <span class="code">POINT</span>.
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of object <span class="code">OBJ</span> as a <span class="code">POINT</span>.
+		</p>
 
 </blockquote>
 
@@ -3829,8 +3900,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-point</b> <i>(object <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
-</p>
+		<p>Returns the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
+		</p>
 
 </blockquote>
 
@@ -3844,8 +3915,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-point</b> <i>(object <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of rectangle <span class="code">RECTANGLE</span> as a <span class="code">POINT</span>.
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of rectangle <span class="code">RECTANGLE</span> as a <span class="code">POINT</span>.
+		</p>
 
 </blockquote>
 
@@ -3859,8 +3930,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-point</b> <i>(object <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the point <span class="code">POINT</span>.
-</p>
+		<p>Returns the point <span class="code">POINT</span>.
+		</p>
 
 </blockquote>
 
@@ -3874,8 +3945,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-position'><b>get-position</b> <i>object</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#get-POINT">GET-POINT</a>
-</p>
+		<p>See <a href="#get-POINT">GET-POINT</a>
+		</p>
 
 </blockquote>
 
@@ -3889,8 +3960,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-position</b> <i>(object <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#get-point">GET-POINT</a>.
-</p>
+		<p>See <a href="#get-point">GET-POINT</a>.
+		</p>
 
 </blockquote>
 
@@ -3904,8 +3975,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-position</b> <i>(object <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#get-POINT">GET-POINT</a>
-</p>
+		<p>See <a href="#get-POINT">GET-POINT</a>
+		</p>
 
 </blockquote>
 
@@ -3919,8 +3990,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='get-rectangle'><b>get-rectangle</b> <i>obj</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the rectangle <span class="code">RECTANGLE</span>.
-</p>
+		<p>Returns the rectangle <span class="code">RECTANGLE</span>.
+		</p>
 
 </blockquote>
 
@@ -3934,8 +4005,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>get-rectangle</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the rectangle <span class="code">RECTANGLE</span>.
-</p>
+		<p>Returns the rectangle <span class="code">RECTANGLE</span>.
+		</p>
 
 </blockquote>
 
@@ -4021,8 +4092,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>height</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the height of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
-</p>
+		<p>Returns the height of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
+		</p>
 
 </blockquote>
 
@@ -4038,8 +4109,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><tt>(setf (</tt><b>height</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">INTEGER</span> height of the rectangle <span class="code">RECTANGLE</span>.
-</p>
+		<p>Returns the <span class="code">INTEGER</span> height of the rectangle <span class="code">RECTANGLE</span>.
+		</p>
 
 </blockquote>
 
@@ -4053,14 +4124,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='image-p'><b>image-p</b> <i>source image-type</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns <span class="code">T</span> when the image type in <span class="code">SOURCE</span> is of <span class="code">IMAGE-TYPE</span>. Returns <span class="code">NIL</span> otherwise. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.  <span class="code">IMAGE-TYPE</span> must be one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>.
-</p>
-<div class="title">例</div>
+		<p>Returns <span class="code">T</span> when the image type in <span class="code">SOURCE</span> is of <span class="code">IMAGE-TYPE</span>. Returns <span class="code">NIL</span> otherwise. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.  <span class="code">IMAGE-TYPE</span> must be one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>.
+		</p>
+		<div class="title">例</div>
 <pre class="code">(RWOPS-P SOURCE :IMAGE-TYPE :BMP)
 (IMAGE-P &quot;image.bmp&quot; :IMAGE-TYPE :BMP) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
+		</ul>
 
 </blockquote>
 
@@ -4074,14 +4146,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='image-type-of'><b>image-type-of</b> <i>source</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the type of image in source <span class="code">SOURCE</span>. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  Returns one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>, if the image type can be determined. Returns <span class="code">NIL</span> if the image cannot be determined (The <em>magic number</em> is not supported or the <em>magic number</em> is not found).  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.
-</p>
-<div class="title">例</div>
+		<p>Returns the type of image in source <span class="code">SOURCE</span>. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  Returns one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>, if the image type can be determined. Returns <span class="code">NIL</span> if the image cannot be determined (The <em>magic number</em> is not supported or the <em>magic number</em> is not found).  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.
+		</p>
+		<div class="title">例</div>
 <pre class="code">(IMAGE-TYPE-OF SOURCE)
 (IMAGE-TYPE-OF &quot;image.bmp&quot;) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
+		</ul>
 
 </blockquote>
 
@@ -4542,8 +4615,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='map-color'><b>map-color</b> <i>color <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Maps <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If the surface has a palette (8-bit) the index of the closest matching color in the palette will be returned. If the surface has an alpha component it will be returned as all <span class="code">1</span> bits (fully opaque). If the surface color depth is less than 32-bpp then the unused upper bits of the return value can safely be ignored (e.g., with a 16-bpp format the return value can be assigned to a Uint16, and similarly a Uint8 for an 8-bpp format).
-</p>
+		<p>Maps <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If the surface has a palette (8-bit) the index of the closest matching color in the palette will be returned. If the surface has an alpha component it will be returned as all <span class="code">1</span> bits (fully opaque). If the surface color depth is less than 32-bpp then the unused upper bits of the return value can safely be ignored (e.g., with a 16-bpp format the return value can be assigned to a Uint16, and similarly a Uint8 for an 8-bpp format).
+		</p>
 
 </blockquote>
 
@@ -4585,8 +4658,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='map-color-*'><b>map-color-*</b> <i>r g b a <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Maps the color specified by the <span class="code">R</span>, <span class="code">G</span>, <span class="code">B</span>, and <span class="code">A</span> color components to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If <span class="code">A</span> is not <span class="code">NIL</span> then the color is assumed to contain an alpha component. See <a href="#map-color">MAP-COLOR</a> for more details.
-</p>
+		<p>Maps the color specified by the <span class="code">R</span>, <span class="code">G</span>, <span class="code">B</span>, and <span class="code">A</span> color components to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If <span class="code">A</span> is not <span class="code">NIL</span> then the color is assumed to contain an alpha component. See <a href="#map-color">MAP-COLOR</a> for more details.
+		</p>
 
 </blockquote>
 
@@ -4628,8 +4701,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='pack-color'><b>pack-color</b> <i>color</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Packs <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> into a four byte <span class="code">INTEGER</span>.
-</p>
+		<p>Packs <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> into a four byte <span class="code">INTEGER</span>.
+		</p>
 
 </blockquote>
 
@@ -4671,8 +4744,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='pixel-alpha-enabled-p'><b>pixel-alpha-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns <span class="code">T</span> if a pixel alpha component (RGBA) is available, or <span class="code">NIL</span> if unavailable (RGB). <em>Note</em>: The pixel alpha component differs from the surface alpha component which is retrieved using <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>.
-</p>
+		<p>Returns <span class="code">T</span> if a pixel alpha component (RGBA) is available, or <span class="code">NIL</span> if unavailable (RGB). <em>Note</em>: The pixel alpha component differs from the surface alpha component which is retrieved using <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>.
+		</p>
 
 </blockquote>
 
@@ -4700,8 +4773,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='point'><b>point</b> <i><span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates a new <span class="code">POINT</span> set to the specified horizontal <span class="code">X</span> and vertical <span class="code">Y</span> coordinate.
-</p>
+		<p>Creates a new <span class="code">POINT</span> set to the specified horizontal <span class="code">X</span> and vertical <span class="code">Y</span> coordinate.
+		</p>
 
 </blockquote>
 
@@ -4715,8 +4788,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='point-*'><b>point-*</b> <i>point</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
+		</p>
 
 </blockquote>
 
@@ -4730,8 +4803,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>point-*</b> <i>(point <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span> as a spread.
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span> as a spread.
+		</p>
 
 </blockquote>
 
@@ -4745,8 +4818,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>point-*</b> <i>(point <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread.   The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread.   The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
+		</p>
 
 </blockquote>
 
@@ -4760,8 +4833,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>point-*</b> <i>(point <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> as a spread.
-</p>
+		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> as a spread.
+		</p>
 
 </blockquote>
 
@@ -4775,8 +4848,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='position-*'><b>position-*</b> <i>obj</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#point-*">POINT-*</a>
-</p>
+		<p>See <a href="#point-*">POINT-*</a>
+		</p>
 
 </blockquote>
 
@@ -4790,8 +4863,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>position-*</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#position">POSITION</a>.
-</p>
+		<p>See <a href="#position">POSITION</a>.
+		</p>
 
 </blockquote>
 
@@ -4805,8 +4878,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>position-*</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#point-*">POINT-*</a>
-</p>
+		<p>See <a href="#point-*">POINT-*</a>
+		</p>
 
 </blockquote>
 
@@ -4820,8 +4893,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>position-*</b> <i>(obj <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#point-*">POINT-*</a>.
-</p>
+		<p>See <a href="#point-*">POINT-*</a>.
+		</p>
 
 </blockquote>
 
@@ -4986,8 +5059,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='random-rectangle'><b>random-rectangle</b> <i>bound-w bound-h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates and return s a new <span class="code">RECTANGLE</span> of random x, y width and height within the specified bounds of width <span class="code">BOUND-W</span> and height <span class="code">BOUND-H</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
-</p>
+		<p>Creates and return s a new <span class="code">RECTANGLE</span> of random x, y width and height within the specified bounds of width <span class="code">BOUND-W</span> and height <span class="code">BOUND-H</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
+		</p>
 
 </blockquote>
 
@@ -5001,14 +5074,16 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='read-pixel'><b>read-pixel</b> <i>point <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#read-pixel-*">READ-PIXEL-*</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>See <a href="#read-pixel-*">READ-PIXEL-*</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -5022,17 +5097,19 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='read-pixel-*'><b>read-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Read the <a href="#color">COLOR</a> of the pixel at <span class="code">X</span> and <span class="code">Y</span> coordiates from <a href="#surface">SURFACE</a>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
-<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<p>Read the <a href="#color">COLOR</a> of the pixel at <span class="code">X</span> and <span class="code">Y</span> coordiates from <a href="#surface">SURFACE</a>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
+			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -5046,8 +5123,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle'><b>rectangle</b></a>
 <blockquote><br>
 
-<p>A <span class="code">RECTANGLE</span> object manages the foreign SDL_Rect object. Free using <a href="#free">FREE</a>.
-</p>
+		<p>A <span class="code">RECTANGLE</span> object manages the foreign SDL_Rect object. Free using <a href="#free">FREE</a>.
+		</p>
 
 </blockquote>
 
@@ -5061,8 +5138,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle'><b>rectangle</b> <i><span class="lambda-kw">&amp;key</span> x y w h fp</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Creates a new <span class="code">RECTANGLE</span> from the specified <span class="code">X</span>, <span class="code">Y</span>, width <span class="code">W</span> and height <span class="code">H</span>. If <span class="code">FP&amp;#039; is </span>NIL<span class="code"> then a foreign SDL_Rect is created. If </span>FP<span class="code"> is a pointer to a foreign SDL_Rect object then </span>FP` is used.
-</p>
+		<p>Creates a new <span class="code">RECTANGLE</span> from the specified <span class="code">X</span>, <span class="code">Y</span>, width <span class="code">W</span> and height <span class="code">H</span>. If <span class="code">FP&amp;#039; is </span>NIL<span class="code"> then a foreign SDL_Rect is created. If </span>FP<span class="code"> is a pointer to a foreign SDL_Rect object then </span>FP` is used.
+		</p>
 
 </blockquote>
 
@@ -5076,8 +5153,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle-*'><b>rectangle-*</b> <i>obj</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
-</p>
+		<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
+		</p>
 
 </blockquote>
 
@@ -5091,8 +5168,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>rectangle-*</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the fields <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> from <span class="code">SURFACE</span> as a spread.
-</p>
+		<p>Returns the fields <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> from <span class="code">SURFACE</span> as a spread.
+		</p>
 
 </blockquote>
 
@@ -5106,8 +5183,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>rectangle-*</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
-</p>
+		<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
+		</p>
 
 </blockquote>
 
@@ -5121,10 +5198,11 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle-from-edges'><b>rectangle-from-edges</b> <i>p1 p2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#rectangle-from-edges-*">RECTANGLE-FROM-EDGES-*</a>.
-</p>
-<ul><li><span class="code">P1</span> and <span class="code">P2</span> are <span class="code">POINTS</span> that specify the bounds of the <span class="code">RECTANGLE</span>. <span class="code">P1</span> specifies the top left coordinate. <span class="code">P2</span> specifies the lower right coordinate. </li>
-</ul>
+		<p>See <a href="#rectangle-from-edges-*">RECTANGLE-FROM-EDGES-*</a>.
+		</p>
+		<ul>
+			<li><span class="code">P1</span> and <span class="code">P2</span> are <span class="code">POINTS</span> that specify the bounds of the <span class="code">RECTANGLE</span>. <span class="code">P1</span> specifies the top left coordinate. <span class="code">P2</span> specifies the lower right coordinate. </li>
+		</ul>
 
 </blockquote>
 
@@ -5138,13 +5216,14 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle-from-edges-*'><b>rectangle-from-edges-*</b> <i>x1 y1 x2 y2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a new <span class="code">RECTANGLE</span> using the bounds specified by the <span class="code">INTEGERS</span> <span class="code">X1</span>, <span class="code">X2</span>, <span class="code">Y1</span> and <span class="code">Y2</span>. The coordinates of the rectangle are X = X1, Y = Y1, WIDTH = (- X2 X1), HEIGHT = (- Y2 Y1)
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">X1</span>, <span class="code">Y1</span> specify the top left coordinate as <span class="code">INTEGERS</span>.</li>
-<li><span class="code">X2</span>, <span class="code">Y2</span> specify the bottom right coordinate as <span class="code">INTEGERS</span>.</li>
-<li><span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates. </li>
-</ul>
+		<p>Returns a new <span class="code">RECTANGLE</span> using the bounds specified by the <span class="code">INTEGERS</span> <span class="code">X1</span>, <span class="code">X2</span>, <span class="code">Y1</span> and <span class="code">Y2</span>. The coordinates of the rectangle are X = X1, Y = Y1, WIDTH = (- X2 X1), HEIGHT = (- Y2 Y1)
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">X1</span>, <span class="code">Y1</span> specify the top left coordinate as <span class="code">INTEGERS</span>.</li>
+			<li><span class="code">X2</span>, <span class="code">Y2</span> specify the bottom right coordinate as <span class="code">INTEGERS</span>.</li>
+			<li><span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates. </li>
+		</ul>
 
 </blockquote>
 
@@ -5158,8 +5237,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rectangle-from-midpoint-*'><b>rectangle-from-midpoint-*</b> <i>x y w h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a <span class="code">RECTANGLE</span> of width <span class="code">W</span> and height <span class="code">H</span> with the rectangle mid-point at coordinates <span class="code">X</span> and <span class="code">Y</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
-</p>
+		<p>Returns a <span class="code">RECTANGLE</span> of width <span class="code">W</span> and height <span class="code">H</span> with the rectangle mid-point at coordinates <span class="code">X</span> and <span class="code">Y</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
+		</p>
 
 </blockquote>
 
@@ -5173,23 +5252,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='render-string-blended'><b>render-string-blended</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
-<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
+			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
+			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -5203,24 +5285,27 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='render-string-shaded'><b>render-string-shaded</b> <i>string fg-color bg-color <span class="lambda-kw">&amp;key</span> font free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified. </li>
-<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
-<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface, of type <span class="code">COLOR</span></li>
-<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisiting cached surface in <span class="code">FONT</span>.</li>
-<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified. </li>
+			<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
+			<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface, of type <span class="code">COLOR</span></li>
+			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisiting cached surface in <span class="code">FONT</span>.</li>
+			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(RENDER-STRING-SHADED &quot;Hello World!&quot; F-COLOR B-COLOR) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -5234,23 +5319,26 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='render-string-solid'><b>render-string-solid</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STRING</span> is the text to render.</li>
-<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
-<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
-</ul>
-<div class="title">戻り値</div>
-<ul><li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
-</ul>
-<div class="title">例</div>
+		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STRING</span> is the text to render.</li>
+			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
+			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
+			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+		</ul>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -5320,22 +5408,24 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rotate-surface'><b>rotate-surface</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoom smooth</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">DEGREES</span> is the rotation in degrees.</li>
-<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
-<li><span class="code">:ZOOM</span> is the scaling factor.</li>
-<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><em>LISPBUILDER-SDL</em> supports rotations of only <span class="code">0</span>, <span class="code">90</span>, <span class="code">180</span>, or <span class="code">270</span> degrees. <em>LISPBUILDER-SDL-GFX</em> supports any rotation. </li>
-<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:SMOOTH</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:SMOOTH</span>.</li>
-<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:ZOOM</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:ZOOM</span>.</li>
-<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
-</ul>
+		<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">DEGREES</span> is the rotation in degrees.</li>
+			<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
+			<li><span class="code">:ZOOM</span> is the scaling factor.</li>
+			<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><em>LISPBUILDER-SDL</em> supports rotations of only <span class="code">0</span>, <span class="code">90</span>, <span class="code">180</span>, or <span class="code">270</span> degrees. <em>LISPBUILDER-SDL-GFX</em> supports any rotation. </li>
+			<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:SMOOTH</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:SMOOTH</span>.</li>
+			<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:ZOOM</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:ZOOM</span>.</li>
+			<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
+		</ul>
 
 </blockquote>
 
@@ -5349,19 +5439,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rotate-surface-xy'><b>rotate-surface-xy</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoomx zoomy smooth</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">DEGREES</span> is the rotation in degrees.</li>
-<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
-<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
-<li><span class="code">:ZOOMX</span> and <span class="code">ZOOMY</span> are the the scaling factors. A negative scaling factor will flip the corresponding axis. <em>Note</em>: Flipping is only supported with anti-aliasing turned off. </li>
-<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
-</ul>
+		<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">DEGREES</span> is the rotation in degrees.</li>
+			<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
+			<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
+			<li><span class="code">:ZOOMX</span> and <span class="code">ZOOMY</span> are the the scaling factors. A negative scaling factor will flip the corresponding axis. <em>Note</em>: Flipping is only supported with anti-aliasing turned off. </li>
+			<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
+		</ul>
 
 </blockquote>
 
@@ -5375,8 +5467,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='rwops'><b>rwops</b></a>
 <blockquote><br>
 
-<p>A wrapper around a foreign SDL_RWops object. Free using <a href="#free">FREE</a>.
-</p>
+		<p>A wrapper around a foreign SDL_RWops object. Free using <a href="#free">FREE</a>.
+		</p>
 
 </blockquote>
 
@@ -5390,8 +5482,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='save-image'><b>save-image</b> <i>surface filename</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Saves the <span class="code">SURFACE</span> as a <span class="code">BMP</span> image to a file at location <span class="code">FILENAME</span>.
-</p>
+		<p>Saves the <span class="code">SURFACE</span> as a <span class="code">BMP</span> image to a file at location <span class="code">FILENAME</span>.
+		</p>
 
 </blockquote>
 
@@ -5446,12 +5538,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='sdl-bitmap-font'><b>sdl-bitmap-font</b></a>
 <blockquote><br>
 
-<p>The <span class="code">SDL-BITMAP-FONT</span> object manages the resources for a bitmap font. Prior to the first call to a <span class="code">RENDER-STRING*</span> function, the cached <a href="#surface">SURFACE</a> is <span class="code">NIL</span>.
-</p>
-<p>The cached surface is created by a call to any of the RENDER-STRING* functions. Use <a href="#draw-font">DRAW-FONT</a>, <a href="#draw-font-at">DRAW-FONT-AT</a> or <a href="#draw-font-at-*">DRAW-FONT-AT-*</a> to draw the cached surface.
-</p>
-<p>Free using <a href="#free">FREE</a>
-</p>
+		<p>The <span class="code">SDL-BITMAP-FONT</span> object manages the resources for a bitmap font. Prior to the first call to a <span class="code">RENDER-STRING*</span> function, the cached <a href="#surface">SURFACE</a> is <span class="code">NIL</span>.
+		</p>
+		<p>The cached surface is created by a call to any of the RENDER-STRING* functions. Use <a href="#draw-font">DRAW-FONT</a>, <a href="#draw-font-at">DRAW-FONT-AT</a> or <a href="#draw-font-at-*">DRAW-FONT-AT-*</a> to draw the cached surface.
+		</p>
+		<p>Free using <a href="#free">FREE</a>
+		</p>
 
 </blockquote>
 
@@ -5976,8 +6068,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-cell'><b>set-cell</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">RECTANGLE</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
-</p>
+		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">RECTANGLE</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
+		</p>
 
 </blockquote>
 
@@ -5991,8 +6083,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-cell-*'><b>set-cell-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to a rectangle bounded by <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
-</p>
+		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to a rectangle bounded by <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
+		</p>
 
 </blockquote>
 
@@ -6006,8 +6098,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-clip-rect'><b>set-clip-rect</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#clip-rect">CLIP-RECT</a>.
-</p>
+		<p>See <a href="#clip-rect">CLIP-RECT</a>.
+		</p>
 
 </blockquote>
 
@@ -6021,8 +6113,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-color'><b>set-color</b> <i>dst src</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Copies the <span class="code">RGB/A</span> color components to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
-</p>
+		<p>Copies the <span class="code">RGB/A</span> color components to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
+		</p>
 
 </blockquote>
 
@@ -6050,8 +6142,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-color-*'><b>set-color-*</b> <i>color <span class="lambda-kw">&amp;key</span> r g b a</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets <span class="code">COLOR</span> to the red <span class="code">R</span>, green <span class="code">G</span>, blue <span class="code">B</span> and alpha <span class="code">A</span> color components.
-</p>
+		<p>Sets <span class="code">COLOR</span> to the red <span class="code">R</span>, green <span class="code">G</span>, blue <span class="code">B</span> and alpha <span class="code">A</span> color components.
+		</p>
 
 </blockquote>
 
@@ -6079,8 +6171,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-default-font'><b>set-default-font</b> <i>font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the font <span class="code">FONT</span> as the default font to be used for subsequent font rendering or drawing operations. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to font. Functions that take a <span class="code">FONT</span> argument use <span class="code">*DEFAULT-FONT*</span> unless otherwise specified. Returns a new <span class="code">FONT</span>, or <span class="code">NIL</span> if unsuccessful.
-</p>
+		<p>Sets the font <span class="code">FONT</span> as the default font to be used for subsequent font rendering or drawing operations. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to font. Functions that take a <span class="code">FONT</span> argument use <span class="code">*DEFAULT-FONT*</span> unless otherwise specified. Returns a new <span class="code">FONT</span>, or <span class="code">NIL</span> if unsuccessful.
+		</p>
 
 </blockquote>
 
@@ -6108,15 +6200,17 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-font-style'><b>set-font-style</b> <i>style <span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the rendering style <span class="code">STYLE</span> of font <span class="code">FONT</span>. This will flush the internal cache of previously rendered glyphs, even if there is no change in style, so it may be best to check the  current style using <a href="#get-font-style">GET-FONT-STYLE</a> first.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">FONT</span> is a <span class="code">FONT</span> object.</li>
-<li><span class="code">STYLE</span> is a list of one or more: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span>. NOTE: Combining <span class="code">:STYLE-UNDERLINE</span> with anything  can cause a segfault, other combinations may also do this. </li>
-</ul>
-<div class="title">パッケージ</div>
-<ul><li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
-</ul>
+		<p>Sets the rendering style <span class="code">STYLE</span> of font <span class="code">FONT</span>. This will flush the internal cache of previously rendered glyphs, even if there is no change in style, so it may be best to check the  current style using <a href="#get-font-style">GET-FONT-STYLE</a> first.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object.</li>
+			<li><span class="code">STYLE</span> is a list of one or more: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span>. NOTE: Combining <span class="code">:STYLE-UNDERLINE</span> with anything  can cause a segfault, other combinations may also do this. </li>
+		</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+		</ul>
 
 </blockquote>
 
@@ -6144,8 +6238,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-point'><b>set-point</b> <i>dst src</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
-</p>
+		<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
+		</p>
 
 </blockquote>
 
@@ -6159,8 +6253,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point</b> <i>(dst <span class="type">sdl-surface</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
-</p>
+		<p>Sets the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
+		</p>
 
 </blockquote>
 
@@ -6174,8 +6268,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination rectangle <span class="code">RECTANGLE</span> from the source point <span class="code">POSITION</span>.
-</p>
+		<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination rectangle <span class="code">RECTANGLE</span> from the source point <span class="code">POSITION</span>.
+		</p>
 
 </blockquote>
 
@@ -6189,8 +6283,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point</b> <i>(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the destination point <span class="code">DST</span> to the coordinates in the source point <span class="code">SRC</span>. Returns the destination point <span class="code">DST</span>.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the destination point <span class="code">DST</span> to the coordinates in the source point <span class="code">SRC</span>. Returns the destination point <span class="code">DST</span>.
+		</p>
 
 </blockquote>
 
@@ -6204,8 +6298,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-point-*'><b>set-point-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object <span class="code">OBJ</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object <span class="code">OBJ</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+		</p>
 
 </blockquote>
 
@@ -6219,8 +6313,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point-*</b> <i>(obj <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are integers.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are integers.
+		</p>
 
 </blockquote>
 
@@ -6234,8 +6328,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point-*</b> <i>(obj <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+		</p>
 
 </blockquote>
 
@@ -6249,8 +6343,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-point-*</b> <i>(obj <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> to <span class="code">X</span> and <span class="code">Y</span>.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> to <span class="code">X</span> and <span class="code">Y</span>.
+		</p>
 
 </blockquote>
 
@@ -6264,8 +6358,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-position'><b>set-position</b> <i>dst src</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point">SET-POINT</a>
-</p>
+		<p>See <a href="#set-point">SET-POINT</a>
+		</p>
 
 </blockquote>
 
@@ -6279,8 +6373,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position</b> <i>(dst <span class="type">sdl-surface</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point">SET-POINT</a>.
-</p>
+		<p>See <a href="#set-point">SET-POINT</a>.
+		</p>
 
 </blockquote>
 
@@ -6294,8 +6388,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> from the point <span class="code">POSITION</span>.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> from the point <span class="code">POSITION</span>.
+		</p>
 
 </blockquote>
 
@@ -6309,8 +6403,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position</b> <i>(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point">SET-POINT</a>.
-</p>
+		<p>See <a href="#set-point">SET-POINT</a>.
+		</p>
 
 </blockquote>
 
@@ -6324,8 +6418,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-position-*'><b>set-position-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point-*">SET-POINT-*</a>
-</p>
+		<p>See <a href="#set-point-*">SET-POINT-*</a>
+		</p>
 
 </blockquote>
 
@@ -6339,8 +6433,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position-*</b> <i>(obj <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point-*">SET-POINT-*</a>.
-</p>
+		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+		</p>
 
 </blockquote>
 
@@ -6354,8 +6448,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position-*</b> <i>(obj <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
-</p>
+		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+		</p>
 
 </blockquote>
 
@@ -6369,8 +6463,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-position-*</b> <i>(obj <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point-*">SET-POINT-*</a>.
-</p>
+		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+		</p>
 
 </blockquote>
 
@@ -6384,8 +6478,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-rectangle'><b>set-rectangle</b> <i>dst src</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
-</p>
+		<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
+		</p>
 
 </blockquote>
 
@@ -6399,8 +6493,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-rectangle</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
-</p>
+		<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
+		</p>
 
 </blockquote>
 
@@ -6414,8 +6508,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-rectangle-*'><b>set-rectangle-*</b> <i>rectangle <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
-</p>
+		<p>Sets the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
+		</p>
 
 </blockquote>
 
@@ -6429,8 +6523,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-rectangle-*</b> <i>(rectangle <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the coordinates of the rectangle <span class="code">RECTANGLE</span> to the specified <span class="code">X</span>, <span class="code">Y</span> , width <span class="code">W</span> and height <span class="code">HEIGHT</span> coordinates. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span> are <span class="code">KEY</span>word parameters of type <span class="code">INTEGER</span>. Returns the rectangle <span class="code">RECTANGLE</span> as RESULT.
-</p>
+		<p>Sets the coordinates of the rectangle <span class="code">RECTANGLE</span> to the specified <span class="code">X</span>, <span class="code">Y</span> , width <span class="code">W</span> and height <span class="code">HEIGHT</span> coordinates. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span> are <span class="code">KEY</span>word parameters of type <span class="code">INTEGER</span>. Returns the rectangle <span class="code">RECTANGLE</span> as RESULT.
+		</p>
 
 </blockquote>
 
@@ -6444,8 +6538,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-surface'><b>set-surface</b> <i>surface position</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the coordinates of the surface SURFACE to <span class="code">POSITION</span>, where position is of type <span class="code">POINT</span>.
-</p>
+		<p>Sets the coordinates of the surface SURFACE to <span class="code">POSITION</span>, where position is of type <span class="code">POINT</span>.
+		</p>
 
 </blockquote>
 
@@ -6459,8 +6553,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-surface</b> <i>(surface <span class="type">sdl-surface</span>) (position <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point">SET-POINT</a>.
-</p>
+		<p>See <a href="#set-point">SET-POINT</a>.
+		</p>
 
 </blockquote>
 
@@ -6474,8 +6568,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='set-surface-*'><b>set-surface-*</b> <i>surface <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Sets the coordinates of the surface <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
-</p>
+		<p>Sets the coordinates of the surface <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
+		</p>
 
 </blockquote>
 
@@ -6489,8 +6583,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>set-surface-*</b> <i>(surface <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#set-point-*">SET-POINT-*</a>.
-</p>
+		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+		</p>
 
 </blockquote>
 
@@ -6634,12 +6728,13 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='update-input-util'><b>update-input-util</b> <i>time</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>This must be called once for each time period you are updating the application, in order to update keypress information.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">TIME</span> is the time in seconds this update represents</li>
-</ul>
-<div class="title">戻り値</div>
+		<p>This must be called once for each time period you are updating the application, in order to update keypress information.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">TIME</span> is the time in seconds this update represents</li>
+		</ul>
+		<div class="title">戻り値</div>
 
 </blockquote>
 
@@ -6653,8 +6748,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='update-surface'><b>update-surface</b> <i>surface <span class="lambda-kw">&amp;optional</span> template</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Updates the surface
-</p>
+		<p>Updates the surface
+		</p>
 
 </blockquote>
 
@@ -6668,8 +6763,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='update-surface-*'><b>update-surface-*</b> <i>surface x y w h</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>See <a href="#update-surface">UPDATE-SURFACE</a>.
-</p>
+		<p>See <a href="#update-surface">UPDATE-SURFACE</a>.
+		</p>
 
 </blockquote>
 
@@ -6683,8 +6778,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='video-dimensions'><b>video-dimensions</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the best video dimensions if called before a window is created, using <a href="#window">WINDOW</a>. Returns the current video dimensions if called after a window is created. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>
-</p>
+		<p>Returns the best video dimensions if called before a window is created, using <a href="#window">WINDOW</a>. Returns the current video dimensions if called after a window is created. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>
+		</p>
 
 </blockquote>
 
@@ -6698,9 +6793,9 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='video-driver-name'><b>video-driver-name</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the driver name of the initialised video driver. The driver name is a <span class="code">STRING</span> containing a one-word identifier like &quot;x11&quot; or &quot;windib&quot;. Returns &#039;NIL&#039; if the video driver is not already initialised with <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
-</p>
-<div class="title">例</div>
+		<p>Returns the driver name of the initialised video driver. The driver name is a <span class="code">STRING</span> containing a one-word identifier like &quot;x11&quot; or &quot;windib&quot;. Returns &#039;NIL&#039; if the video driver is not already initialised with <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
+		</p>
+		<div class="title">例</div>
 <pre class="code">(sdl:with-init ()
   (sdl:video-driver-name)) &gt;&gt; &quot;windib&quot; </pre>
 
@@ -6716,12 +6811,13 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='video-info'><b>video-info</b> <i><span class="lambda-kw">&amp;optional</span> info</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns information about the video hardware. <span class="code">GET-VIDEO-INFO</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>. If <span class="code">GET-VIDEO-INFO</span> is called before <a href="#window">WINDOW</a>, the information returned is of the <em>best</em> video mode. If <span class="code">GET-VIDEO-INFO</span> is called after <a href="#window">WINDOW</a>, the information returned is of the <em>current</em> video mode.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">INFO</span> can be one of <span class="code">:HW-AVAILABLE</span>, <span class="code">:WM-AVAILABLE</span>, <span class="code">:BLIT-HW</span>, <span class="code">:BLIT-HW-CC</span>, <span class="code">:BLIT-HW-A</span>, <span class="code">:BLIT-SW</span>, <span class="code">:BLIT-SW-CC</span>, <span class="code">:BLIT-SW-A</span>or <span class="code">:BLIT-FILL</span>. If <span class="code">NIL</span>, returns a list of all supported video flags. </li>
-</ul>
-<div class="title">例</div>
+		<p>Returns information about the video hardware. <span class="code">GET-VIDEO-INFO</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>. If <span class="code">GET-VIDEO-INFO</span> is called before <a href="#window">WINDOW</a>, the information returned is of the <em>best</em> video mode. If <span class="code">GET-VIDEO-INFO</span> is called after <a href="#window">WINDOW</a>, the information returned is of the <em>current</em> video mode.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">INFO</span> can be one of <span class="code">:HW-AVAILABLE</span>, <span class="code">:WM-AVAILABLE</span>, <span class="code">:BLIT-HW</span>, <span class="code">:BLIT-HW-CC</span>, <span class="code">:BLIT-HW-A</span>, <span class="code">:BLIT-SW</span>, <span class="code">:BLIT-SW-CC</span>, <span class="code">:BLIT-SW-A</span>or <span class="code">:BLIT-FILL</span>. If <span class="code">NIL</span>, returns a list of all supported video flags. </li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(video-info :HW-AVAILABLE) </pre>
 
 </blockquote>
@@ -6736,8 +6832,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='video-memory'><b>video-memory</b> <i></i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the amount of video memory of the graphics hardware. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
-</p>
+		<p>Returns the amount of video memory of the graphics hardware. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
+		</p>
 
 </blockquote>
 
@@ -6781,8 +6877,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><b>width</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Returns the width of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
-</p>
+		<p>Returns the width of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
+		</p>
 
 </blockquote>
 
@@ -6798,8 +6894,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none><tt>(setf (</tt><b>width</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
 <blockquote><br>
 
-<p>Returns the <span class="code">INTEGER</span> width of the rectangle <span class="code">RECTANGLE</span>.
-</p>
+		<p>Returns the <span class="code">INTEGER</span> width of the rectangle <span class="code">RECTANGLE</span>.
+		</p>
 
 </blockquote>
 
@@ -6854,32 +6950,35 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='with-bezier'><b>with-bezier</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a bezier curve of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the Bezier curve is defined by control points. A control point is a vertex containing an X and Y coordinate pair.
-</p>
-<p>The number of segments <span class="code">SEGENTS</span> used to draw the Bezier curve defaults to 10. The greater the number of segments, the smoother the Bezier curve.
-</p>
-<div class="title">Local Methods</div>
-<p>A vertex may be added using:
-</p>
-<ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">POINT</span>, or</li>
-<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
-</ul>
-<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scop of <span class="code">WITH-BEZIER</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STYLE</span> is one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. When <span class="code">STYLE</span> is <span class="code">:SOLID</span>, a single continuous line is drawn through the specified waypoints. When <span class="code">STYLE</span> is <span class="code">:DASH</span>, a line is drawn to alternate waypoint pairs. When <span class="code">STYLE</span> is <span class="code">:POINTS</span>, a single point is drawn at each waypoint. </li>
-<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Bezier curve. Default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
-</ul>
-<div class="title">例</div>
+		<p>Draw a bezier curve of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the Bezier curve is defined by control points. A control point is a vertex containing an X and Y coordinate pair.
+		</p>
+		<p>The number of segments <span class="code">SEGENTS</span> used to draw the Bezier curve defaults to 10. The greater the number of segments, the smoother the Bezier curve.
+		</p>
+		<div class="title">Local Methods</div>
+		<p>A vertex may be added using:
+		</p>
+		<ul>
+			<li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">POINT</span>, or</li>
+			<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
+		</ul>
+		<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scop of <span class="code">WITH-BEZIER</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STYLE</span> is one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. When <span class="code">STYLE</span> is <span class="code">:SOLID</span>, a single continuous line is drawn through the specified waypoints. When <span class="code">STYLE</span> is <span class="code">:DASH</span>, a line is drawn to alternate waypoint pairs. When <span class="code">STYLE</span> is <span class="code">:POINTS</span>, a single point is drawn at each waypoint. </li>
+			<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Bezier curve. Default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
    (WITH-BEZIER ()
      (ADD-VERTEX-* 60  40)
      (ADD-VERTEX-* 160 10)
      (ADD-VERTEX-* 170 150)
      (ADD-VERTEX-* 60  150))) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
@@ -6893,8 +6992,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='with-color'><b>with-color</b> <i>(var <span class="lambda-kw">&amp;optional</span> color free) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>A convience macro that binds <span class="code">*DEFAULT-COLOR*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-COLOR</span>. <span class="code">VAR</span> is set to <span class="code">COLOR</span> when <span class="code">COLOR</span> is not <span class="code">NIL</span>.<span class="code">VAR</span> must be of type <a href="#color">COLOR</a>, or <a href="#color-a">COLOR-A</a>. <span class="code">VAR</span> is freed using <a href="#free">FREE</a> when <span class="code">FREE</span> is <span class="code">T</span>.
-</p>
+		<p>A convience macro that binds <span class="code">*DEFAULT-COLOR*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-COLOR</span>. <span class="code">VAR</span> is set to <span class="code">COLOR</span> when <span class="code">COLOR</span> is not <span class="code">NIL</span>.<span class="code">VAR</span> must be of type <a href="#color">COLOR</a>, or <a href="#color-a">COLOR-A</a>. <span class="code">VAR</span> is freed using <a href="#free">FREE</a> when <span class="code">FREE</span> is <span class="code">T</span>.
+		</p>
 
 </blockquote>
 
@@ -6908,30 +7007,33 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <a class=none name='with-curve'><b>with-curve</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
 <blockquote><br>
 
-<p>Draw a Cattmul-Rom spline of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
-</p>
-<div class="title">Local Methods</div>
-<p>A vertex may be added using:
-</p>
-<ul><li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
-<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
-</ul>
-<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scope of <span class="code">WITH-CURVE</span>.
-</p>
-<div class="title">パラメータ</div>
-<ul><li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Catmull-Rom spline. Default is 20 segments if unspecified. The greater the number of segments, the smoother the spline. </li>
-</ul>
-<div class="title">例</div>
+		<p>Draw a Cattmul-Rom spline of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
+		</p>
+		<div class="title">Local Methods</div>
+		<p>A vertex may be added using:
+		</p>
+		<ul>
+			<li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
+			<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
+		</ul>
+		<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scope of <span class="code">WITH-CURVE</span>.
+		</p>
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
+			<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Catmull-Rom spline. Default is 20 segments if unspecified. The greater the number of segments, the smoother the spline. </li>
+		</ul>
+		<div class="title">例</div>
 <pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
    (WITH-CURVE (:SOLID 30)
      (ADD-VERTEX-* 60  40)
      (ADD-VERTEX-* 160 10)
      (ADD-VERTEX-* 170 150)
      (ADD-VERTEX-* 60  150))) </pre>
-<div class="title">パッケージ</div>
-<ul><li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-</ul>
+		<div class="title">パッケージ</div>
+		<ul>
+			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+		</ul>
 
 </blockquote>
 
