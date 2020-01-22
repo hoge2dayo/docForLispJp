@@ -20,21 +20,9 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <span class="e1">ダウンロードショートカット：</span> <a href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbuilder-sdl.tar.gz</a>.
 </div>
 
-<!-- 翻訳作業用テンプレート -->
-<!--
-<a name=""></a>
-<div class="def">
-	<p class="form">
-		<span class="deftype"></span>
-		<span class="operator"></span> <span class="parameter"></span> =&gt; <span class="result">result</span>
-	</p>
-	<div class="desc">
-	</div>
-</div>
--->
 
-<br>&nbsp;<br>
-<h3><a class=none name="contents">Contents</a></h3>
+<a class=none name="contents"></a>
+<h3>索引</h3>
 <ol>
   <li><a href="#download">ダウンロード</a>
   <li><a href="#dictionary">LISPBUILDER-SDL 用語辞典</a>
@@ -357,17 +345,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
       <li><a href="#y2"><span class="code">y2</span></a>
       <li><a href="#zoom-surface"><span class="code">zoom-surface</span></a>
     </ol>
-  <li><a href="#ack">Acknowledgements</a>
+  <li><a href="#ack">謝辞</a>
 </ol>
 
-<br>&nbsp;<br>
-<h3><a class=none name="download">ダウンロード</a></h3>
+
+<a class=none name="download"></a>
+<h3>ダウンロード</h3>
 
 <p>LISPBUILDER-SDL とこのドキュメントは、 <a href="http://weitz.de/files/lispbuilder-sdl.tar.gz">http://weitz.de/files/lispbuilder-sdl.tar.gz</a> からダウンロード可能である。
 カレントバージョンは、 0.1.0 である。
 </p>
 
-<br>&nbsp;<br>
+
 <a name="dictionary"></a>
 <h3>LISPBUILDER-SDL 用語辞典</h3>
 
@@ -419,16 +408,19 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	</p>
 	<div class="desc">
 		<p>キーワードパラメータで <span class="type">COLOR</span> を受け入れる関数は <span class="parameter">COLOR</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-COLOR*</span> に束縛する可能性が高い。
-</p>
+		</p>
 		<p><span class="parameter">COLOR</span> は後述のマクロ <a href="#with-color"><span class="operator">WITH-COLOR</span></a> により、 <span class="variable">*DEFAULT-COLOR*</span> に束縛される。
-</p>
+		</p>
+
 		<div class="title">例</div>
 		<pre class="code">
-(DRAW-BOX A-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>)
-(DRAW-BOX B-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>)
-(DRAW-BOX C-BOX <span class="keyword">:SURFACE</span> <span class="variable">SDL:*DEFAULT-DISPLAY*</span> <span class="keyword">:COLOR</span> <span class="variable">SDL:*BLACK*</span>) </pre>
+(DRAW-BOX A-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>)
+(DRAW-BOX B-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>)
+(DRAW-BOX C-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>) </pre>
+
 		<p>上記は、 <span class="variable">*DEFAULT-COLOR*</span> を <span class="variable">*BLACK*</span> へ設定することにより、短縮化できる。
-</p>
+		</p>
+
 		<pre class="code">(WITH-SURFACE (DISP <span class="variable">SDL:*DEFAULT-DISPLAY*</span>)
   (WITH-COLOR (COL <span class="variable">SDL:*BLACK*</span>)
     (DRAW-BOX A-BOX)
@@ -1131,7 +1123,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for A -->
 
-
 <!-- Entry for ALL-INTEGERS? -->
 <a name="all-integers?"></a>
 <div class="def">
@@ -1146,38 +1137,29 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for ALL-INTEGERS? -->
 
-
 <!-- Entry for ALPHA -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='alpha'><b>alpha</b> <i>surface</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>alpha</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="alpha"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">alpha</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">alpha</span> <span class="parameter">surface</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for ALPHA -->
 
-
 <!-- Entry for ALPHA -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>alpha</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>alpha</b> <i>(surface <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">alpha</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">alpha</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for ALPHA -->
-
 
 <!-- Entry for ALPHA-ENABLED-P -->
 <a name="alpha-enabled-p"></a>
@@ -1268,19 +1250,18 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for B -->
 
-
 <!-- Entry for BIT-DEPTH -->
-
-<p><br>
-［関数］<br>
-<a class=none name='bit-depth'><b>bit-depth</b> <i><span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Returns the number of bytes per pixel, or bpp, of <span class="code">SURFACE</span>.
-</p>
-
-</blockquote>
-
+<a name="bit-depth"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">bit-depth</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> のピクセルあたりのバイト数（ bpp ）を返す。
+		</p>
+	</div>
+</div>
 <!-- End of entry for BIT-DEPTH -->
 
 
@@ -1351,139 +1332,117 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for CACHED-SURFACE -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='cached-surface'><b>cached-surface</b> <i>font</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>cached-surface</b> <i>font</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="cached-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">cached-surface</span> <span class="parameter">font</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">cached-surface</span> <span class="parameter">font</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CACHED-SURFACE -->
-
 
 <!-- Entry for CACHED-SURFACE -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>cached-surface</b> <i>(font <span class="type">font</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>cached-surface</b> <i>(font <span class="type">font</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">cached-surface</span> <span class="parameter">(font <span class="type">font</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">cached-surface</span> <span class="parameter">(font <span class="type">font</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CACHED-SURFACE -->
 
-
 <!-- Entry for CAST -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='cast'><b>cast</b> <i>type value</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Coerces the value <span class="code">VALUE</span> to the type <span class="code">TYPE</span>.
-</p>
-
-</blockquote>
-
+<a name="cast"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">cast</span> <span class="parameter">type value</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>値 <span class="parameter">VALUE</span> を <span class="parameter">TYPE</span> 型へ型変換（ coerce ）する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for CAST -->
 
-
 <!-- Entry for CAST-ALL-TO-INT -->
+<a name="cast-all-to-int"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">cast-all-to-int</span> <span class="parameter"><span class="lambda-kw">&amp;rest</span> values</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="lambda-kw">REST</span> パラメータの値を <span class="type">FIXNUM</span> へ型変換（ <a href="#cast-to-int"><span class="operator">cast</span></a> ）する。
+		</p>
 
-<p><br>
-［マクロ］<br>
-<a class=none name='cast-all-to-int'><b>cast-all-to-int</b> <i><span class="lambda-kw">&amp;rest</span> values</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Casts the values in <span class="code">REST</span> to <span class="code">FIXNUM</span>s.
-</p>
-
-</blockquote>
-
+		<p class="note-by-editor">※値は多値で返される
+		</p>
+	</div>
+</div>
 <!-- End of entry for CAST-ALL-TO-INT -->
 
-
 <!-- Entry for CAST-TO-INT -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='cast-to-int'><b>cast-to-int</b> <i>value</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-<p>Casts the value <span class="code">VALUE</span> to a <span class="code">FIXNUM</span>.
-</p>
-
-</blockquote>
-
+<a name="cast-to-int"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">cast-to-int</span> <span class="parameter">value</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>値 <span class="parameter">VALUE</span> を <span class="type">FIXNUM</span> へ型変換（ <a href="#cast-to-int"><span class="operator">cast</span></a> ）する。
+		</p>
+	</div>
+</div>
 <!-- End of entry for CAST-TO-INT -->
 
-
 <!-- Entry for CATMULL-ROM-SPLINE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='catmull-rom-spline'><b>catmull-rom-spline</b> <i>val v0 v1 v2 v3</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="catmull-rom-spline"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">catmull-rom-spline</span> <span class="parameter">val v0 v1 v2 v3</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CATMULL-ROM-SPLINE -->
 
-
 <!-- Entry for CHAR-HEIGHT -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='char-height'><b>char-height</b> <i>bitmap-font-definition</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>char-height</b> <i>bitmap-font-definition</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="char-height"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">char-height</span> <span class="parameter">bitmap-font-definition</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">char-height</span> <span class="parameter">bitmap-font-definition</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CHAR-HEIGHT -->
 
-
 <!-- Entry for CHAR-HEIGHT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>char-height</b> <i>(bitmap-font-definition <span class="type">bitmap-font</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">char-height</span> <span class="parameter">(bitmap-font-definition <span class="type">bitmap-font</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CHAR-HEIGHT -->
 
-
 <!-- Entry for CHAR-HEIGHT -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>char-height</b> <i>(bitmap-font-definition <span class="type">bitmap-font-definition</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>char-height</b> <i>(bitmap-font-definition <span class="type">bitmap-font-definition</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">char-height</span> <span class="parameter">(bitmap-font-definition <span class="type">bitmap-font-definition</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">char-height</span> <span class="parameter">(bitmap-font-definition <span class="type">bitmap-font-definition</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CHAR-HEIGHT -->
 
 
@@ -7745,8 +7704,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<ul>
 			<li><span class="parameter">ZOOMX</span> および <span class="parameter">ZOOMY</span> は伸縮係数である。負の伸縮係数は、対応する軸を反転する。<span class="note">注釈</span>： 反転は、アンチエイリアスがオフの場合にのみ対応される。</li>
 			<li><span class="parameter">SURFACE</span> は、 <a href="#surface"><span class="type">SURFACE</span></a> を回転させるサーフェスである。</li>
-			<li><span class="parameter">FREE</span> が <span class="code">T</span> の時、 <span class="parameter">SURFACE</span> を解放する。</li>
-			<li><span class="parameter">SMOOTH</span> が <span class="code">T</span> の時、新しいサーフェスにアンチエイリアスを行なう。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">SURFACE</span> を解放する。</li>
+			<li><span class="parameter">SMOOTH</span> が <span class="code">T</span> である時、新しいサーフェスにアンチエイリアスを行なう。</li>
 		</ul>
 
 		<div class="title">パッケージ</div>
@@ -7759,9 +7718,13 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for ZOOM-SURFACE -->
 
 
-<h3><a class=none name="ack">謝辞</a></h3>
+<a class=none name="ack"></a>
+<h3>謝辞</h3>
 
 <p>このドキュメントは、 <a href="http://weitz.de/documentation-template/">DOCUMENTATION-TEMPLATE</a> で作成されました。
+</p>
+
+<p class="note-by-editor">※日本語版では DOCUMENTATION-TEMPLATE は使用せず、手作業での作成である。
 </p>
 
 <p>$Header: /usr/local/cvsrep/documentation-template/output.lisp,v 1.14 2008/05/29 08:23:37 edi Exp $
