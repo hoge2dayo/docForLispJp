@@ -1494,51 +1494,47 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for CHECK-TYPES -->
 
-
 <!-- Entry for CLEAR-CELL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='clear-cell'><b>clear-cell</b> <i><span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">SURFACE</span>.
+<a name="clear-cell"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">clear-cell</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface index</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">INDEX</span> に於ける <span class="code">CELL</span> を <span class="parameter">SURFACE</span> の境界に設定する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CLEAR-CELL -->
 
-
 <!-- Entry for CLEAR-CLIP-RECT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='clear-clip-rect'><b>clear-clip-rect</b> <i><span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Removes the clipping <a href="#rectangle">RECTANGLE</a>.
+<a name="clear-clip-rect"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">clear-clip-rect</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>クリッピング <a href="#rectangle"><span class="type">RECTANGLE</span></a> を削除する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CLEAR-CLIP-RECT -->
 
-
 <!-- Entry for CLEAR-COLOR-KEY -->
-
-<p><br>
-［関数］<br>
-<a class=none name='clear-color-key'><b>clear-color-key</b> <i><span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Disables the color key.
+<a name="clear-color-key"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">clear-color-key</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>カラーキーを無効にする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CLEAR-COLOR-KEY -->
-
 
 <!-- Entry for CLEAR-DISPLAY -->
 <a name="clear-display"></a>
@@ -1554,38 +1550,28 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for CLEAR-DISPLAY -->
 
-
 <!-- Entry for CLIP-RECT -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='clip-rect'><b>clip-rect</b> <i>surface</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>clip-rect</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="clip-rect"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">clip-rect</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">clip-rect</span> <span class="parameter">surface</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CLIP-RECT -->
 
-
 <!-- Entry for CLIP-RECT -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>clip-rect</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>clip-rect</b> <i>(surface <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">clip-rect</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">clip-rect</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CLIP-RECT -->
-
 
 <!-- Entry for COLOR -->
 <a name="color"></a>
@@ -1665,54 +1651,39 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for COLOR-A -->
 
-
 <!-- Entry for COLOR-KEY -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='color-key'><b>color-key</b> <i>simple-font-definition</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>color-key</b> <i>simple-font-definition</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="color-key"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">color-key</span> <span class="parameter">simple-font-definition</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">color-key</span> <span class="parameter">simple-font-definition</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR-KEY -->
 
-
 <!-- Entry for COLOR-KEY -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>color-key</b> <i>(simple-font-definition <span class="type">simple-font-definition</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>color-key</b> <i>(simple-font-definition <span class="type">simple-font-definition</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">color-key</span> <span class="parameter">(simple-font-definition <span class="type">simple-font-definition</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">color-key</span> <span class="parameter">(simple-font-definition <span class="type">simple-font-definition</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR-KEY -->
 
-
 <!-- Entry for COLOR-KEY -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>color-key</b> <i>(simple-font-definition <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>color-key</b> <i>(simple-font-definition <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">color-key</span> <span class="parameter">(simple-font-definition <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">color-key</span> <span class="parameter">(simple-font-definition <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR-KEY -->
-
 
 <!-- Entry for COLOR-KEY-ENABLED-P -->
 <a name="color-key-enabled-p"></a>
@@ -1737,277 +1708,247 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for COLOR-KEY-ENABLED-P -->
 
-
 <!-- Entry for COLOR= -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='color='><b>color=</b> <i>color1 color2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns <span class="code">T</span> if the <span class="code">RGB</span>&lt;-&gt;<span class="code">RGB</span> or <span class="code">RGBA</span>&lt;-&gt;<span class="code">RGBA</span> color components in <span class="code">COLOR1</span> and <span class="code">COLOR2</span> match. Returns <span class="code">NIL</span> otherwise.
+<a name="color="></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">color=</span> <span class="parameter">color1 color2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">COLOR1</span> および <span class="parameter">COLOR2</span> に於いて、 <span class="code">RGB</span>&lt;-&gt;<span class="code">RGB</span> あるいは <span class="code">RGBA</span>&lt;-&gt;<span class="code">RGBA</span> 色成分が一致する場合、 <span class="code">T</span> を返す。それ以外の場合、 <span class="code">NIL</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for COLOR= -->
-
 
 <!-- Entry for COLOR= -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>color=</b> <i>(color1 <span class="type">color-a</span>) (color2 <span class="type">color-a</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">color=</span> <span class="parameter">(color1 <span class="type">color-a</span>) (color2 <span class="type">color-a</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR= -->
-
 
 <!-- Entry for COLOR= -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>color=</b> <i>(color1 <span class="type">color</span>) (color2 <span class="type">color</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">color=</span> <span class="parameter">(color1 <span class="type">color</span>) (color2 <span class="type">color</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR= -->
-
 
 <!-- Entry for COLOR= -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>color=</b> <i>color1 color2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">color=</span> <span class="parameter">color1 color2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COLOR= -->
-
 
 <!-- Entry for CONVERT-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='convert-surface'><b>convert-surface</b> <i><span class="lambda-kw">&amp;key</span> surface to-surface enable-alpha enable-color-key free inherit type</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Converts <span class="code">:SURFACE</span> and returns a new surface matching the pixel format and color of <span class="code">:TO-SURFACE</span>. Calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting to the display format.
+<a name="convert-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">convert-surface</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface to-surface enable-alpha enable-color-key free inherit type</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> を変換し、 <span class="parameter">TO-SURFACE</span> のピクセルフォーマットおよび色に一致する新しいサーフェスを返す。画面フォーマットへ変換する場合、関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> を呼び出す。
 		</p>
-		<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
+		<p>ハードウェアのカラーキーあるいはアルファブリットアクセラレーションの利点を得る為に、 <span class="parameter">:ENABLE-COLOR-KEY</span> あるいは <span class="parameter">:ENABLE-ALPHA</span> を使用する。サーフェスが一旦生成された後でこれらのフラグを有効にしても、最初にサーフェスがビデオメモリで生成されていなかった場合、利用可能なハードウェアアクセラレーションを必ずしも使用する訳ではない。
 		</p>
-		<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
+		<p><span class="parameter">TYPE</span> が <span class="code">:SW</span> である時、システムメモリに新しいサーフェスを生成する。 <span class="parameter">TYPE</span> が <span class="code">:HW</span> である時、ビデオメモリに新しいサーフェスを生成しようとし、そうでない場合、カラーキーとアルファの組み合わせがハードウェアアクセラレーションを許さない場合、サーフェスはシステムメモリに生成される。
 		</p>
-		<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
+		<p>新しいサーフェスは、 <span class="parameter">INHERIT</span> が <span class="code">NIL</span> <span class="e1">でない限り</span>、ソースのピクセルおよびアルファ、カラーキー要素を継承する。
 		</p>
-		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		<p>ソース <span class="parameter">SURFACE</span> を削除するには、 <span class="parameter">FREE</span> を使用する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CONVERT-SURFACE -->
 
-
 <!-- Entry for CONVERT-TO-DISPLAY-FORMAT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='convert-to-display-format'><b>convert-to-display-format</b> <i><span class="lambda-kw">&amp;key</span> surface enable-alpha enable-color-key pixel-alpha free inherit</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a new surface matching the pixel format and color of the video frame buffer (<span class="code">*display surface*), that is suitable for fast blitting. The new surface will inherit the pixel, alpha and color key components of the source, *unless* </span>:INHERIT<span class="code"> is </span>NIL`.
+<a name="convert-to-display-format"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">convert-to-display-format</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface enable-alpha enable-color-key pixel-alpha free inherit</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ビデオフレームバッファ（ <span class="variable">*display surface*</span> ）のピクセルフォーマットおよび色に一致する新しいサーフェスを返す。これは高速ブリットに適している。新しいサーフェスは、 <span class="parameter">INHERIT</span> が <span class="code">NIL</span> <span class="e1">でない限り</span>、ソースのピクセルおよびアルファ、カラーキーを継承する。
 		</p>
-		<p>Use <span class="code">:ENABLE-COLOR-KEY</span> or <span class="code">:ENABLE-ALPHA</span> to take advantage of hardware colorkey or alpha blit acceleration. Enabling these flags once a surface is created will not necessarily utilize available harware acceleration if the surface was not initally created in video memory.
+		<p>ハードウェアのカラーキーあるいはアルファブリットアクセラレーションの利点を得る為には、 <span class="parameter">ENABLE-COLOR-KEY</span> あるいは <span class="parameter">ENABLE-ALPHA</span> を使用する。サーフェスが一旦生成された後でこれらのフラグを有効にしても、最初にサーフェスがビデオメモリで生成されていなかった場合、利用可能なハードウェアアクセラレーションを必ずしも使用する訳ではない。
 		</p>
-		<p>Use <span class="code">:PIXEL-ALPHA</span> to enable the pixel alpha component (alpha mask of 0xFF) for the new surface.
+		<p>新しいサーフェスでピクセルアルファ成分（ 0xFF のアルファマスク）を有効にするには、 <span class="parameter">PIXEL-ALPHA</span> を使用する。
 		</p>
-		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		<p>ソースの <span class="parameter">SURFACE</span> を削除するには、 <span class="parameter">FREE</span> を使用する。
 		</p>
-		<p>Differences between <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a>, <a href="#convert-surface">CONVERT-SURFACE</a>, <a href="#copy-surface">COPY-SURFACE</a>, and <a href="#create-surface">CREATE-SURFACE</a>;
+		<p>関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> 、関数 <a href="#copy-surface"><span class="operator">COPY-SURFACE</span></a> 、関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> の違い。：
 		</p>
 		<ul>
-			<li>
-		<p><a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> <strong> will always attempt to create a surface in video memory using hardware acceleration if key color and surface alpha are supported. </strong> A pixel alpha component can be specified. ** New surface is filled with old surface.
-		</p>
-</li>
-			<li>
-		<p><a href="#convert-surface">CONVERT-SURFACE</a> ** calls <a href="#convert-to-display-format">CONVERT-TO-DISPLAY-FORMAT</a> if converting a surface to the display format. <strong> paramatized option to create new surface in video or system memory. </strong> Pixel format and color match that of the source surface. ** New surface is filled with old surface.
-		</p>
-</li>
-			<li><a href="#copy-surface">COPY-SURFACE</a> <strong> paramatized option to create new surface in video or system memory. </strong> copies a portion or all of the source surface to a new destination surface <strong> A pixel alpha component can be specified. </strong> New surface can be filled with the old surface, or the color key or both. </li>
+			<li><p>関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> は<span class="e1">常に、キーカラー<span class="note-by-editor">（※カラーキーの誤りか？）</span>およびサーフェスのアルファに対応されている場合、ハードウェアアクセラレーションを使用して、ビデオメモリにサーフェスを生成しようとする</span>。ピクセルアルファ成分を指定できる。＊＊ 新しいサーフェスは、古いサーフェスで塗りつぶされる。
+		</p></li>
+			<li><p>関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> ＊＊ は、サーフェスを画面フォーマットへ変換する場合、関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> を呼び出す。<span class="e1">パラメータ化されたオプションにより、新しいサーフェスをビデオメモリあるいはシステムメモリに生成する。</span>ピクセルフォーマットおよび色は、ソースサーフェスのものと一致する。＊＊ 新しいサーフェスは、古いサーフェスで塗りつぶされる。
+		</p></li>
+			<li>関数 <a href="#copy-surface"><span class="operator">COPY-SURFACE</span></a> は、<span class="e1">パラメータ化されたオプションにより、新しいサーフェスをビデオメモリあるいはシステムメモリに生成する。</span>ソースサーフェスの一部あるいは全部を、新しいデスティネーションサーフェスへコピーする。<span class="e1">ピクセルアルファ成分を指定できる。</span>新しいサーフェスは、古いサーフェスあるいはカラーキーあるいは両方で塗りつぶすことができる。</li>
 		</ul>
 
-</blockquote>
-
+		<p class="note-by-editor">※関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> の説明がない。
+		</p>
+	</div>
+</div>
 <!-- End of entry for CONVERT-TO-DISPLAY-FORMAT -->
 
-
 <!-- Entry for COPY-CHANNEL-TO-ALPHA -->
-
-<p><br>
-［関数］<br>
-<a class=none name='copy-channel-to-alpha'><b>copy-channel-to-alpha</b> <i>destination source <span class="lambda-kw">&amp;key</span> channel</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="copy-channel-to-alpha"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">copy-channel-to-alpha</span> <span class="parameter">destination source <span class="lambda-kw">&amp;key</span> channel</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for COPY-CHANNEL-TO-ALPHA -->
 
-
 <!-- Entry for COPY-POINT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='copy-point'><b>copy-point</b> <i>point</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a copy of the point <span class="code">POINT</span>.
+<a name="copy-point"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">copy-point</span> <span class="parameter">point</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>point <span class="parameter">POINT</span> のコピーを返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for COPY-POINT -->
 
 
 <!-- Entry for COPY-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='copy-surface'><b>copy-surface</b> <i><span class="lambda-kw">&amp;key</span> cell cell-index surface color-key alpha pixel-alpha rle-accel type free inherit fill color-key-fill pixel-format</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a copy of <span class="code">:SURFACE</span>.
+<a name="copy-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">copy-surface</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> cell cell-index surface color-key alpha pixel-alpha rle-accel type free inherit fill color-key-fill pixel-format</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">:SURFACE</span> のコピーを返す。
 		</p>
-		<p>Use <span class="code">:COLOR-KEY</span> or <span class="code">:ALPHA</span> to set the key color and surface alpha transparency. Hardware colorkey and alpha blit acceleration will be used if supported.
+		<p>キーカラーおよびサーフェスのアルファ透明度を設定するには、 <span class="parameter">:COLOR-KEY</span> あるいは <span class="parameter">:ALPHA</span> を使用する。対応されている場合、ハードウェアカラーキーおよびアルファブリットアクセラレーションが使用される。
 		</p>
-		<p>Will create the new surface in system menory when <span class="code">TYPE</span> is <span class="code">:SW</span>. Will attempt to create the new surface in video menory when <span class="code">TYPE</span> is <span class="code">:HW</span>, otherwise the surface is created in system memory if the combination of color key and alpha do not allow hardware acceleration.
+		<p><span class="parameter">TYPE</span> が <span class="code">:SW</span> である時、システムメモリに新しいサーフェスを生成する。 <span class="parameter">TYPE</span> が <span class="code">:HW</span> である時、ビデオメモリに新しいサーフェスを生成しようとする。それ以外の場合、カラーキーおよびアルファの組み合わせがハードウェアアクセラレーションを許さない場合、システムメモリに新しいサーフェスを生成する。
 		</p>
-		<p>The new surface will be filled with the old surface unless <span class="code">:FILL</span> is <span class="code">NIL</span>. The new surface will be filled with the color key of the old surface (if available) unless <span class="code">:COLOR-KEY-FILL</span> is <span class="code">NIL</span>.
+		<p><span class="parameter">FILL</span> が <span class="code">NIL</span> でない限り、新しいサーフェスは古いサーフェスで塗りつぶされる。<span class="parameter">COLOR-KEY-FILL</span> が <span class="code">NIL</span> でない限り、新しいサーフェスは古いサーフェスのカラーキーで塗りつぶされる。（利用可能な場合）
 		</p>
-		<p>The new surface will inherit the pixel, alpha and color key components of the source, <em>unless</em> <span class="code">:INHERIT</span> is <span class="code">NIL</span>.
+		<p><span class="parameter">INHERIT</span> が <span class="code">NIL</span> <span class="e1">でない限り</span>、新しいサーフェスは、ソースのピクセルおよびアルファ、カラーキー成分を継承する。
 		</p>
-		<p>Use <span class="code">:FREE</span> to delete the source <span class="code">SURFACE</span>.
+		<p>ソース <span class="type">SURFACE</span> を削除するには、 <span class="parameter">FREE</span> を使用する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for COPY-SURFACE -->
 
-
 <!-- Entry for CREATE-LIST-IF-NOT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='create-list-if-not'><b>create-list-if-not</b> <i>var</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>If <span class="code">VAR</span> is not already a list, then returns <span class="code">(LIST VAR)</span>.
+<a name="create-list-if-not"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">create-list-if-not</span> <span class="parameter">var</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">VAR</span> がまだリストでない場合、 <span class="code">(LIST <span class="parameter">VAR</span>)</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CREATE-LIST-IF-NOT -->
 
-
 <!-- Entry for CREATE-PATH -->
-
-<p><br>
-［関数］<br>
-<a class=none name='create-path'><b>create-path</b> <i>filename <span class="lambda-kw">&amp;optional</span> path</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates a new path from <span class="code">FILENAME</span> and <span class="code">PATH</span>.
+<a name="create-path"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">create-path</span> <span class="parameter">filename <span class="lambda-kw">&amp;optional</span> path</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FILENAME</span> および <span class="parameter">PATH</span> から、新しいパスを生成する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CREATE-PATH -->
 
-
 <!-- Entry for CREATE-RWOPS-FROM-FILE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='create-rwops-from-file'><b>create-rwops-from-file</b> <i>filename</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates and returns a new <span class="code">RWOPS</span> object from the file at location <span class="code">FILENAME</span>.
+<a name="create-rwops-from-file"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">create-rwops-from-file</span> <span class="parameter">filename</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">FILENAME</span> の位置にあるファイルから、新しい <span class="code">RWOPS</span> オブジェクトを生成して返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for CREATE-RWOPS-FROM-FILE -->
 
-
 <!-- Entry for CREATE-SIMPLE-FONT-DEFINITION -->
-
-<p><br>
-［関数］<br>
-<a class=none name='create-simple-font-definition'><b>create-simple-font-definition</b> <i>width height char-map color-key filename <span class="lambda-kw">&amp;key</span> pad-x pad-y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="create-simple-font-definition"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">create-simple-font-definition</span> <span class="parameter">width height char-map color-key filename <span class="lambda-kw">&amp;key</span> pad-x pad-y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for CREATE-SIMPLE-FONT-DEFINITION -->
 
-
 <!-- Entry for CREATE-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='create-surface'><b>create-surface</b> <i>width height <span class="lambda-kw">&amp;key</span> bpp type color-key color-key-at pixel-alpha alpha rle-accel x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates and returns a new <span class="code">SURFACE</span> with the dimensions <span class="code">WIDTH</span> and <span class="code">HEIGHT</span>.
-		</p>
-		<p><span class="code">:COLOR-KEY</span> sets the color key of the surface and enables color-keying.
-		</p>
-		<p><span class="code">:ALPHA</span> sets the surface alpha transparency and enables alpha blending. This allows a pixel color of <span class="code">RGB</span> with the surface <span class="code">A</span>.
-		</p>
-		<p><span class="code">:PIXEL-ALPHA</span> enables a pixel alpha component (alpha mask of 0xFF) on the new surface. This allows a pixel color of <span class="code">RGBA</span>.
-		</p>
-		<p><span class="code">:RLE-ACCEL</span> enables RLE blit acceleration.
-		</p>
-		<p><span class="code">:BPP</span> is the pixel depth of the surface, and my be 8, 16, 24 or 32.
-		</p>
-		<p><span class="code">:TYPE</span> attempts to create the <span class="code">SURFACE</span> in video memory when <span class="code">:HW</span>, and in system memory when <span class="code">:SW</span>
-		</p>
-		<p><span class="code">:X</span> and <span class="code">:Y</span> are the positions of the <span class="code">SURFACE</span> in screen coordinates.
-		</p>
-
-</blockquote>
-
+<a name="create-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">create-surface</span> <span class="parameter">width height <span class="lambda-kw">&amp;key</span> bpp type color-key color-key-at pixel-alpha alpha rle-accel x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<ul>
+			<li>寸法が <span class="parameter">WIDTH</span> および <span class="parameter">HEIGHT</span> である新しい <span class="type">SURFACE</span> を生成して返す。</li>
+			<li><span class="parameter">COLOR-KEY</span> はサーフェスのカラーキーを設定し、カラーキーを有効にする。</li>
+			<li><span class="parameter">ALPHA</span> はサーフェスのアルファ透明度を設定し、アルファブレンディングを有効にする。これにより、サーフェス <span class="code">A</span> で <span class="code">RGB</span> のピクセルカラーを使用できる。</li>
+			<li><span class="parameter">PIXEL-ALPHA</span> は、新しいサーフェスでピクセルアルファ成分（ 0xFF のアルファマスク）を有効にする。これにより、 <span class="code">RGBA</span> のピクセルカラーを使用できる。</li>
+			<li><span class="parameter">RLE-ACCEL</span> は、 RLE ブリットアクセラレーションを有効にする。</li>
+			<li><span class="parameter">BPP</span> は、サーフェスのピクセル深度であり、 8 あるいは 16 、 24 、 32 になる。</li>
+			<li><span class="parameter">TYPE</span> が <span class="code">:HW</span> である時ビデオメモリに、 <span class="code">:SW</span> である時システムメモリに <span class="type">SURFACE</span> を生成しようとする。</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、画面座標に於ける <span class="type">SURFACE</span> の位置である。</li>
+		</ul>
+	</div>
+</div>
 <!-- End of entry for CREATE-SURFACE -->
 
-
 <!-- Entry for DISABLE-KEY-REPEAT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='disable-key-repeat'><b>disable-key-repeat</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Disables keyboard repeat.
+<a name="disable-key-repeat"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">disable-key-repeat</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>キーボードリピートを無効にする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DISABLE-KEY-REPEAT -->
-
 
 <!-- Entry for DISPLAY-SURFACE -->
 <a name="display-surface"></a>
@@ -2024,71 +1965,67 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for DISPLAY-SURFACE -->
 
-
 <!-- Entry for DISTANCE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='distance'><b>distance</b> <i>p1 p2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the distance between the <span class="code">POINT</span>s <span class="code">P1</span> and <span class="code">P2</span>.
+<a name="distance"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">distance</span> <span class="parameter">p1 p2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">POINT</span> <span class="parameter">P1</span> と <span class="parameter">P2</span> の間の距離を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DISTANCE -->
 
-
 <!-- Entry for DISTANCE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='distance-*'><b>distance-*</b> <i>x1 y1 x2 y2</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the distance between the coordinates <span class="code">X1</span>, <span class="code">Y1</span> and <span class="code">X2</span>, <span class="code">Y2</span>.
+<a name="distance-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">distance-*</span> <span class="parameter">x1 y1 x2 y2</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>座標 <span class="parameter">X1</span> 、 <span class="parameter">Y1</span> と <span class="code">X2</span> 、 <span class="code">Y2</span> の間の距離を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DISTANCE-* -->
 
-
 <!-- Entry for DRAW-BEZIER -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-bezier'><b>draw-bezier</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a bezier curve of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. The shape of the Bezier curve is defined by several control points. A control point is a vertex containing an X and Y coordinate pair.
+<a name="draw-bezier"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-bezier</span> <span class="parameter">vertices <span class="lambda-kw">&amp;key</span> clipping surface color segments style</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> のベジエ曲線を <a href="#surface"><span class="type">SURFACE</span></a> に描画する。ベジエ曲線の形状は、いくつかの制御点により定義される。制御点は、 X および Y 座標の組を含む頂点である。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">:VERTICES</span> is a list of control points of <a href="#point">POINT</a>.</li>
-			<li><span class="code">:STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-			<li><span class="code">:SEGMENTS</span> is the number of line segments used to draw the curve. The default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">VERTICES</span> は、 <a href="#point"><span class="type">POINT</span></a> の制御点のリストである。</li>
+			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、次のいずれかにできる。： <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。 <span class="code">:SOLID</span> を使用すると、指定された通過点を通る単一の連続線を描画する。 <span class="code">:DASH</span> を使用すると、通過点の組の間を交互に線を描画する。 <span class="code">:POINTS</span> を使用すると、各通過点に単一ピクセルを描画する。</li>
+			<li><span class="parameter">SEGMENTS</span> は、曲線の描画に使用される線のセグメント数である。指定されない場合、デフォルトで 20 セグメントである。セグメント数が多いほど、曲線は滑らかである。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> がデフォルト値 <span class="code">T</span> のままである時、図形は <span class="type">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。低速だが、 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにするのが安全である。</li>
 		</ul>
 		<div class="title">例</div>
 <pre class="code">(DRAW-BEZIER (LIST (SDL:POINT :X 60  :Y 40)
-                     (SDL:POINT :X 160 :Y 10)
-                     (SDL:POINT :X 170 :Y 150)
-                     (SDL:POINT :X 60 :Y 150))
-               :style :SOLID) </pre>
+                   (SDL:POINT :X 160 :Y 10)
+                   (SDL:POINT :X 170 :Y 150)
+                   (SDL:POINT :X 60 :Y 150))
+             :style :SOLID) </pre>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-			<li><span class="code">:STYLE</span> is ignored in <span class="code">LISPBUILDER-SDL-GFX</span>.</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて、 <span class="parameter">STYLE</span> は無視される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-BEZIER -->
-
 
 <!-- Entry for DRAW-BOX -->
 <a name="draw-box"></a>
@@ -2213,7 +2150,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">パラメータ</div>
 		<ul>
 			<li><span class="parameter">VERTICES</span> は、スプライン曲線用の <a href="#point"><span class="type">POINT</span></a> である通過点あるいは頂点で構成されるリストである。</li>
-			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、 <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> のいずれかである。指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。通過点の間を交互に線を描画するには、 <span class="code">:DASH</span> を使用する。各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
+			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、次のいずれかにできる。：  <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。<span class="code">:SOLID</span> を使用すると、指定された通過点を通る単一の連続線を描画する。 <span class="code">:DASH</span> を使用すると、通過点の組の間を交互に線を描画する。 <span class="code">:POINTS</span> を使用すると、各通過点に単一ピクセルを描画する。</li>
 			<li><span class="parameter">SEGMENTS</span> は、 Cattmul-Rom （キャットムル・ロム）スプライン曲線の描画に使用されるセグメント数である。指定されない場合、デフォルトは 20 セグメントである。セグメント数が多いほど、スプライン曲線は滑らかになる。</li>
 			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
 			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
@@ -2393,124 +2330,129 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for DRAW-FILLED-PIE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-pie'><b>draw-filled-pie</b> <i>p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#draw-filled-pie-*">DRAW-FILLED-PIE-*</a>.
+<a name="draw-filled-pie"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-pie</span> <span class="parameter">p1 rad start end <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-filled-pie-*"><span class="operator">DRAW-FILLED-PIE-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span> is the <a href="#point">POINT</a> coordinates at the center of the filled pie.</li>
+			<li><span class="parameter">P1</span> は、塗りつぶされるパイの中心の <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-PIE -->
 
 
 <!-- Entry for DRAW-FILLED-PIE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-pie-*'><b>draw-filled-pie-*</b> <i>x y rad start end <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draws a filled pie of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+<a name="draw-filled-pie-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-pie-*</span> <span class="parameter">x y rad start end <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の塗りつぶされたパイを、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X</span> and <span class="code">Y</span> specify the center coordinate of the pie, of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">RAD</span> is the pie radius, of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">START</span> is the pie start, of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">END</span> is the pie end, of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、パイの中心座標を指定し、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">RAD</span> はパイの半径であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">START</span> はパイの開始であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">END</span> はパイの終了であり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-PIE-* -->
 
-
 <!-- Entry for DRAW-FILLED-POLYGON -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-polygon'><b>draw-filled-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a filled polygon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+<a name="draw-filled-polygon"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-polygon</span> <span class="parameter">vertices <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の塗りつぶされたポリゴンを、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">VERTICES</span> is the list of vertices of type <span class="code">SDL:POINT</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="parameter">VERTICES</span> は、 <span class="type">SDL:POINT</span> 型の頂点のリストである。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="type">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-POLYGON -->
 
-
 <!-- Entry for DRAW-FILLED-TRIGON -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-filled-trigon'><b>draw-filled-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a filled trigon of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a>
+<a name="draw-filled-trigon"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-filled-trigon</span> <span class="parameter">p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の塗りつぶされた三角形を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
+			<li><span class="parameter">P1</span> および <span class="parameter">P2</span> 、 <span class="parameter">P3</span> は三角形の頂点を指定し、 <span class="code"><span class="type">SDL:POINT</span></span> 型である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="type">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-FILLED-TRIGON -->
 
-
 <!-- Entry for DRAW-FONT -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='draw-font'><b>draw-font</b> <i><span class="lambda-kw">&amp;key</span> font surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Blit the cached <a href="#surface">SURFACE</a> in <a href="#FONT">font</a> to the destination <span class="code">SURFACE</span>. The cached surface is created during a previous call to any of the DRAW-STRING* functions.
+<a name="draw-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">draw-font</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#FONT"><span class="type">font</span></a> 内でキャッシュされた <a href="#surface"><span class="type">SURFACE</span></a> を、デスティネーション <span class="type">SURFACE</span> へブリットする。キャッシュされたサーフェスは、関数 <span class="operator">DRAW-STRING*</span> のいずれかへの前回の呼び出しの間に生成される。
 		</p>
+
 		<div class="title">パッケージ</div>
 		<ul>
 			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-FONT -->
-
 
 <!-- Entry for DRAW-FONT -->
 <a name="draw-font"></a>
@@ -2620,7 +2562,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">draw-line</span> <span class="parameter">p1 p2 <span class="lambda-kw">&amp;key</span> surface color clipping aa</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><a href="#draw-line-*"><span class="operator">DRAW-LINE-*</span></a> 参照。
+		<p>関数 <a href="#draw-line-*"><span class="operator">DRAW-LINE-*</span></a> 参照。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
@@ -2741,309 +2683,321 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for DRAW-PIXEL -->
 
-
 <!-- Entry for DRAW-PIXEL-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-pixel-*'><b>draw-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a single pixel of <a href="#color">COLOR</a> to the <a href="#surface">SURFACE</a> at the specified <span class="code">X</span> and <span class="code">Y</span> coordiates.
+<a name="draw-pixel-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-pixel-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> clipping surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の単一ピクセルを、 <a href="#surface"><span class="type">SURFACE</span></a> の指定された <span class="parameter">X</span> <span class="parameter">Y</span> 座標に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> はピクセルの座標を指定し、それらは整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> がデフォルト値  <span class="code">T</span> のままである時、ピクセルは <span class="parameter">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-PIXEL-* -->
 
-
 <!-- Entry for DRAW-POLYGON -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-polygon'><b>draw-polygon</b> <i>vertices <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw the circumference of a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using the vertices in <span class="code">POINTS</span>. Use <a href="#draw-filled-polygon-*">DRAW-FILLED-POLYGON-*</a> to draw a filled polygon.
+<a name="draw-polygon"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-polygon</span> <span class="parameter">vertices <span class="lambda-kw">&amp;key</span> surface color clipping aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">VERTICES</span> の頂点を使用して、<a href="#color"><span class="type">COLOR</span></a> のポリゴンの外周を <a href="#surface"><span class="type">SURFACE</span></a> に描画する。塗りつぶされたポリゴンを描画するには、関数 <a href="#draw-filled-polygon-*"><span class="operator">DRAW-FILLED-POLYGON-*</span></a> を使用する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">:POINTS</span> is the list of vertices for the polygon. <span class="code">POINTS</span> is a list of <span class="code">POINT</span>s.</li>
-			<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">VERTICES</span> はポリゴンの頂点のリストである。 <span class="parameter">VERTICES</span> は、 <span class="type">POINT</span> のリストである。</li>
+			<li><span class="parameter">AA</span> は、線がアンチエイリアスを使用して描画されるかどうかを決定する。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> をデフォルト値 <span class="code">T</span> のままにする時、ピクセルは <span class="type">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-			<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> に於いて、 <span class="parameter">AA</span> は無視される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-POLYGON -->
 
-
 <!-- Entry for DRAW-RECTANGLE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-rectangle'><b>draw-rectangle</b> <i>rect <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#draw-rectangle-*">DRAW-RECTANGLE-*</a>.
+<a name="draw-rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-rectangle</span> <span class="parameter">rect <span class="lambda-kw">&amp;key</span> clipping surface color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-rectangle-*"><span class="operator">DRAW-RECTANGLE-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">RECT</span> is <a href="#rectangle">RECTANGLE</a>.</li>
+			<li><span class="parameter">RECT</span> は <a href="#rectangle"><span class="type">RECTANGLE</span></a> である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-RECTANGLE -->
 
-
 <!-- Entry for DRAW-RECTANGLE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-rectangle-*'><b>draw-rectangle-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> clipping surface color alpha</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a rectangle outline of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>.
+<a name="draw-rectangle-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-rectangle-*</span> <span class="parameter">x y w h <span class="lambda-kw">&amp;key</span> clipping surface color alpha</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の矩形の輪郭を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">INTEGER</span> coordinates of the top-left corner of the rectangle.</li>
-			<li><span class="code">W</span> and <span class="code">H</span> are the width and height of the rectangle, of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:ALPHA</span> when between <span class="code">0</span> and <span class="code">255</span> is used as the alpha transparency value when blitting the rectangle onto <span class="code">SURFACE</span>. <em>Note:</em> An intermediate surface is created, the rectangle is drawn onto this intermediate surface and then this surface is blitted to <span class="code">SURFACE</span>. </li>
-			<li><span class="code">:CLIPPING</span> is <span class="code">NIL</span> The default is <span class="code">NIL</span> as the SDL library will perform the necessary clipping automatically.</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、矩形左上の角の整数（ <span class="type">INTEGER</span> ）座標である。</li>
+			<li><span class="parameter">W</span> および <span class="parameter">H</span> は、矩形の幅および高さであり、整数型（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">ALPHA</span> は、 <span class="code">0</span> から <span class="code">255</span> 迄である時、矩形を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、矩形はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリは自動的に必要なクリッピングを実行する。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-RECTANGLE-* -->
 
-
 <!-- Entry for DRAW-SHAPE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-shape'><b>draw-shape</b> <i>vertices <span class="lambda-kw">&amp;key</span> clipping surface color style</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a polygon of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a> using <span class="code">VERTICES</span>.
+<a name="draw-shape"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-shape</span> <span class="parameter">vertices <span class="lambda-kw">&amp;key</span> clipping surface color style</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">VERTICES</span> を使用して、<a href="#color"><span class="type">COLOR</span></a> のポリゴンを <a href="#surface"><span class="type">SURFACE</span></a> に描画する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">VERTICES</span> is a list of vertices, of <span class="code">POINT</span></li>
-			<li><span class="code">STYLE</span> describes the line style used to draw the polygon and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the line color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the shape is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">VERTICES</span> は頂点のリストであり、 <span class="type">POINT</span> 型である。</li>
+			<li><span class="parameter">STYLE</span> は、ポリゴン描画に使用される線のスタイルを記述し、次のいずれかにできる。： <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。<span class="code">:SOLID</span> を使用すると、指定された通過点を通じて、単一の連続線を描画する。 <span class="code">:DASH</span> を使用すると、通過点の組の間を交互に線を描画する。 <span class="code">:POINTS</span> を使用すると、各通過点に単一ピクセルを描画する。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> をデフォルト値 <span class="code">T</span> のままにする時、図形は <span class="type">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
 		</ul>
+
 		<div class="title">例</div>
 <pre class="code">(DRAW-SHAPE (LIST (SDL:POINT :X 60  :Y 40)
 	    (SDL:POINT :X 160 :Y 10)
 	    (SDL:POINT :X 170 :Y 150)
 	    (SDL:POINT :X 60  :Y 150))) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-SHAPE -->
 
-
 <!-- Entry for DRAW-STRING-BLENDED -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-blended'><b>draw-string-blended</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#draw-string-blended-*">DRAW-STRING-BLENDED-*</a>.
+<a name="draw-string-blended"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-blended</span> <span class="parameter">string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-string-blended-*"><span class="operator">DRAW-STRING-BLENDED-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
+			<li><span class="parameter">P1</span> は、テキストをレンダリングする為の <span class="code">X</span> および <span class="code">Y</span> 座標であり、 <span class="type">POINT</span> 型である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-BLENDED -->
 
-
 <!-- Entry for DRAW-STRING-BLENDED-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-blended-*'><b>draw-string-blended-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
+<a name="draw-string-blended-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-blended-*</span> <span class="parameter">string x y <span class="lambda-kw">&amp;key</span> justify surface font color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>カラー <span class="parameter">COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、サーフェス <span class="parameter">SURFACE</span> 上の位置 <span class="parameter">X</span> <span class="parameter">Y</span> に、テキスト <span class="parameter">STRING</span> を描画する。テキストは <span class="parameter">SURFACE</span> にキー入力される。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
-			<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
-			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+			<li><span class="parameter">STRING</span> はレンダリングするテキストである。</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、  <span class="code">X</span> および <span class="code">Y</span> 座標位置であり、整数（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">FONT</span> は、文字列のリンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">SURFACE</span> は対象のサーフェスであり、 <span class="type">SDL-SURFACE</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。</li>
+			<li><span class="parameter">COLOR</span> 色はテキストの色であり、 <span class="type">COLOR</span> 型である。</li>
 		</ul>
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+			<li>サーフェス <span class="parameter">SURFACE</span> を返す。</li>
 		</ul>
 		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-BLENDED-* -->
 
-
 <!-- Entry for DRAW-STRING-SHADED -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-shaded'><b>draw-string-shaded</b> <i>string p1 fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#draw-string-shaded-*">DRAW-STRING-SHADED-*</a>.
+<a name="draw-string-shaded"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-shaded</span> <span class="parameter">string p1 fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-string-shaded-*"><span class="operator">DRAW-STRING-SHADED-*</span></a> 参照。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">Y</span> coordinates to render the text, of type <span class="code">SDL:POINT</span>.</li>
+			<li><span class="parameter">P1</span> は、テキストをレンダリングする為の <span class="code">X</span> および <span class="code">Y</span> 座標であり、 <span class="type">SDL:POINT</span> 型である。</li>
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-SHADED -->
 
-
 <!-- Entry for DRAW-STRING-SHADED-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-shaded-*'><b>draw-string-shaded-*</b> <i>string x y fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> onto surface <span class="code">SURFACE</span>. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces.
+<a name="draw-string-shaded-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-shaded-*</span> <span class="parameter">string x y fg-color bg-color <span class="lambda-kw">&amp;key</span> justify surface font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>テキストカラー  <span class="parameter">FG-COLOR</span> および背景色 <span class="parameter">BG-COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、サーフェス <span class="parameter">SURFACE</span> の位置 <span class="parameter">X</span> <span class="parameter">Y</span> にテキスト <span class="parameter">STRING</span> を に描画する。
 		</p>
+
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> coordinates, as <span class="code">INTEGERS</span>.</li>
-			<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
-			<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface <span class="code">SURFACE</span>, of type <span class="code">COLOR</span></li>
-			<li><span class="code">FONT</span> is the font face used to render the text. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
+			<li><span class="parameter">STRING</span> はレンダリングするテキストである。</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は <span class="code">X</span> <span class="code">Y</span> 座標であり、整数（ <span class="code">INTEGER</span> ）である。</li>
+			<li>カラー <span class="parameter">FG-COLOR</span> はテキストカラーであり、 <span class="type">COLOR</span> 型である。</li>
+			<li>カラー <span class="parameter">BG-COLOR</span> は、サーフェス <span class="parameter">SURFACE</span> の塗りつぶしに使用される背景色であり、 <span class="type">COLOR</span> 型である。</li>
+			<li><span class="parameter">FONT</span> は、テキストのレンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、  <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">SURFACE</span> は対象のサーフェスであり、 <span class="type">SDL-SURFACE</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+			<li>サーフェス <span class="parameter">SURFACE</span> を返す。</li>
 		</ul>
+
 		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SHADED-* &quot;Hello World!&quot; 0 0 F-COLOR B-COLOR :SURFACE A-SURFACE) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-SHADED-* -->
 
-
 <!-- Entry for DRAW-STRING-SOLID -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-solid'><b>draw-string-solid</b> <i>string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#draw-string-solid-*">DRAW-STRING-SOLID-*</a>.
+<a name="draw-string-solid"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-solid</span> <span class="parameter">string p1 <span class="lambda-kw">&amp;key</span> justify surface font color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#draw-string-solid-*"><span class="operator">DRAW-STRING-SOLID-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span> is the <span class="code">X</span> and <span class="code">X</span> coordinates to render the text, of type <span class="code">POINT</span>.</li>
+			<li><span class="parameter">P1</span> は、テキストをレンダリングする為の <span class="code">X</span> および <span class="code">Y</span> 座標であり、 <span class="type">POINT</span> 型である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-SOLID -->
 
-
 <!-- Entry for DRAW-STRING-SOLID-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-string-solid-*'><b>draw-string-solid-*</b> <i>string x y <span class="lambda-kw">&amp;key</span> justify surface font color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw text <span class="code">STRING</span> at location <span class="code">X</span> <span class="code">Y</span> using font <span class="code">FONT</span> with color <span class="code">COLOR</span> onto surface <span class="code">SURFACE</span>. The text is keyed onto <span class="code">SURFACE</span>.
+<a name="draw-string-solid-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-string-solid-*</span> <span class="parameter">string x y <span class="lambda-kw">&amp;key</span> justify surface font color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>カラー <span class="parameter">COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、テキスト <span class="parameter">STRING</span> をサーフェス <span class="parameter">SURFACE</span> の位置 <span class="code">X</span> <span class="code">Y</span> に描画する。テキストは <span class="parameter">SURFACE</span> にキー入力される。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">X</span> and <span class="code">Y</span> are the <span class="code">X</span> and <span class="code">Y</span> position coordinates, as <span class="code">INTEGERS</span>.</li>
-			<li><span class="code">FONT</span> is the font face used to render the string. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL-SURFACE</span>. Bound to <span class="code">*DEFAULT-SURFACE*</span> if unspecified.</li>
-			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
+			<li><span class="parameter">STRING</span> はレンダリングするテキストである。</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は、 <span class="code">X</span> <span class="code">Y</span> 座標位置であり、整数（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">FONT</span> は、文字列のレンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、  <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">SURFACE</span> は対象のサーフェスであり、 <span class="type">SDL-SURFACE</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-SURFACE*</span> に束縛される。</li>
+			<li>カラー <span class="parameter">COLOR</span> はテキストカラーであり、 <span class="type">COLOR</span> 型である。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the surface <span class="code">SURFACE</span>.</li>
+			<li>サーフェス <span class="parameter">SURFACE</span> 返す。</li>
 		</ul>
+
 		<div class="title">例</div>
 <pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-STRING-SOLID-* -->
 
 
@@ -7119,7 +7073,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">アクティブイベント</div>
 		<pre class="code">(:ACTIVE-EVENT (:GAIN GAIN :STATE STATE)
    &amp;BODY BODY) </pre>
-		<p>マウスがウィンドウ領域から出たり入ったりする時、 <span class="code">SDL-APP-MOUSE-FOCUS</span> 型アクティベーションイベントが生成される。マウスがウィンドウに入った場合、 <span class="parameter">GAIN</span> は <span class="code">1</span> になり、それ以外の場合、 <span class="parameter">GAIN</span> は <span class="code">0</span> になる。アプリケーションがキーボードフォーカスを失ったり得たりする時（通常別のアプリケーションがアクティブになった時）、 <span class="code">SDL-APP-INPUT-FOCUS</span> 型のアクティベーションイベントが発生する。最後に、アプリケーションが最小化／アイコン化される（ <span class="parameter">GAIN</span> は <span class="code">0</span> ）、あるいは元のサイズに戻された時、いずれも <span class="code">SDL-APP-ACTIVE</span> 型のイベントが発生する。単一のイベントは <span class="parameter">STATE</span> に複数の値を設定できる。<span class="e1">注釈：</span> このイベントは、アプリケーションウィンドウが最初に生成された時には発生しない。
+		<p>マウスがウィンドウ領域から出たり入ったりする時、 <span class="code">SDL-APP-MOUSE-FOCUS</span> 型アクティベーションイベントが生成される。マウスがウィンドウに入った場合、 <span class="parameter">GAIN</span> は <span class="code">1</span> になり、それ以外の場合、 <span class="parameter">GAIN</span> は <span class="code">0</span> になる。アプリケーションがキーボードフォーカスを失ったり得たりする時（通常別のアプリケーションがアクティブになった時）、 <span class="code">SDL-APP-INPUT-FOCUS</span> 型のアクティベーションイベントが発生する。最後に、アプリケーションが最小化／アイコン化される（ <span class="parameter">GAIN</span> は <span class="code">0</span> ）、あるいは元のサイズに戻された時、いずれも <span class="code">SDL-APP-ACTIVE</span> 型のイベントが発生する。単一のイベントは <span class="parameter">STATE</span> に複数の値を設定できる。<span class="note">注釈：</span> このイベントは、アプリケーションウィンドウが最初に生成された時には発生しない。
 		</p>
 		<ul>
 			<li><span class="parameter">GAIN</span> は、イベントが損失の場合は <span class="code">0</span> 、利得の場合は <span class="code">1</span> である。</li>
@@ -7135,7 +7089,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</p>
 		<p>キー <span class="code">:SDL-KEY-CAPSLOCK</span> および <span class="code">:SDL-KEY-NUMLOCK</span> は特殊な例であり、最初に押下された時に <span class="code">SDL-KEY-DOWN</span> を報告し、放されて再度押下した時に <span class="constant">SDL-RELEASED</span> を報告する。したがって、これらのキーの KEYUP および KEYDOWN イベントは、キー自体ではなく Caps Lock および Num Lock の LED 状態に似ている。これらの特殊な例は、 Sun ワークステーションとの互換性の為に必要である。
 		</p>
-		<p><span class="e1">注釈：</span> <a href="#sdl-enable-key-repeat">SDL-ENABLE-KEY-REPEAT</a> を使用してキーリピートが有効である場合、 <span class="code">SDL-KEY-DOWN</span> イベントの繰り返しが発生する。
+		<p><span class="note">注釈：</span> <a href="#sdl-enable-key-repeat">SDL-ENABLE-KEY-REPEAT</a> を使用してキーリピートが有効である場合、 <span class="code">SDL-KEY-DOWN</span> イベントの繰り返しが発生する。
 		</p>
 		<ul>
 			<li>キーが押された場合、あるいは放された場合、 <span class="parameter">STATE</span> はそれぞれ  <span class="constant">SDL-PRESSED</span> あるいは <span class="constant">SDL-RELEASED</span> である。</li>
@@ -7231,7 +7185,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">終了イベント</div>
 		<pre class="code">(:QUIT-EVENT ()
    &amp;BODY BODY) </pre>
-		<p><span class="code">QUIT-EVENT</span> が取り除かれる、あるいは無視される場合、ユーザがウィンドウを閉じることは不可能である。 <span class="code">QUIT-EVENT</span> が受け入れられ、 <span class="code">T</span> を返す場合、アプリケーションウィンドウは閉じられる。<span class="e1">注釈：</span> アプリケーションがもはや不可視であっても、画面更新は成功を報告し続ける。 <span class="code">QUIT-EVENT</span> が受け入れられ、 <span class="code">NIL</span> を返す場合、アプリケーションウィンドウは閉じられない。 <span class="code">QUIT-EVENT</span> イベントが保留中の場合、 <a href="#sdl_quit-requested">SDL_QUIT-REQUESTED</a> は非 0 を返す。
+		<p><span class="code">QUIT-EVENT</span> が取り除かれる、あるいは無視される場合、ユーザがウィンドウを閉じることは不可能である。 <span class="code">QUIT-EVENT</span> が受け入れられ、 <span class="code">T</span> を返す場合、アプリケーションウィンドウは閉じられる。<span class="note">注釈：</span> アプリケーションがもはや不可視であっても、画面更新は成功を報告し続ける。 <span class="code">QUIT-EVENT</span> が受け入れられ、 <span class="code">NIL</span> を返す場合、アプリケーションウィンドウは閉じられない。 <span class="code">QUIT-EVENT</span> イベントが保留中の場合、 <a href="#sdl_quit-requested">SDL_QUIT-REQUESTED</a> は非 0 を返す。
 		</p>
 
 		<div class="title">SDL ウィンドウサイズ変更イベント</div>
