@@ -2003,6 +2003,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p><a href="#color"><span class="type">COLOR</span></a> のベジエ曲線を <a href="#surface"><span class="type">SURFACE</span></a> に描画する。ベジエ曲線の形状は、いくつかの制御点により定義される。制御点は、 X および Y 座標の組を含む頂点である。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
 			<li><span class="parameter">VERTICES</span> は、 <a href="#point"><span class="type">POINT</span></a> の制御点のリストである。</li>
@@ -2012,12 +2013,14 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li><span class="parameter">COLOR</span> は線の色であり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
 			<li><span class="parameter">CLIPPING</span> がデフォルト値 <span class="code">T</span> のままである時、図形は <span class="type">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。低速だが、 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにするのが安全である。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(DRAW-BEZIER (LIST (SDL:POINT :X 60  :Y 40)
+		<pre class="code">(DRAW-BEZIER (LIST (SDL:POINT :X 60  :Y 40)
                    (SDL:POINT :X 160 :Y 10)
                    (SDL:POINT :X 170 :Y 150)
                    (SDL:POINT :X 60 :Y 150))
              :style :SOLID) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
 			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
@@ -2813,7 +2816,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</ul>
 
 		<div class="title">例</div>
-<pre class="code">(DRAW-SHAPE (LIST (SDL:POINT :X 60  :Y 40)
+		<pre class="code">(DRAW-SHAPE (LIST (SDL:POINT :X 60  :Y 40)
 	    (SDL:POINT :X 160 :Y 10)
 	    (SDL:POINT :X 170 :Y 150)
 	    (SDL:POINT :X 60  :Y 150))) </pre>
@@ -2873,7 +2876,8 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li>サーフェス <span class="parameter">SURFACE</span> を返す。</li>
 		</ul>
 		<div class="title">例</div>
-<pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
+		<pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
 			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
@@ -2930,7 +2934,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</ul>
 
 		<div class="title">例</div>
-<pre class="code">(DRAW-STRING-SHADED-* &quot;Hello World!&quot; 0 0 F-COLOR B-COLOR :SURFACE A-SURFACE) </pre>
+		<pre class="code">(DRAW-STRING-SHADED-* &quot;Hello World!&quot; 0 0 F-COLOR B-COLOR :SURFACE A-SURFACE) </pre>
 
 		<div class="title">パッケージ</div>
 		<ul>
@@ -2990,7 +2994,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</ul>
 
 		<div class="title">例</div>
-<pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
+		<pre class="code">(DRAW-STRING-SOLID-* &quot;Hello World!&quot; 0 0 :SURFACE A-SURFACE :COLOR A-COLOR) </pre>
 
 		<div class="title">パッケージ</div>
 		<ul>
@@ -3043,34 +3047,32 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for DRAW-SURFACE-AT-* -->
 
-
 <!-- Entry for DRAW-TRIGON -->
-
-<p><br>
-［関数］<br>
-<a class=none name='draw-trigon'><b>draw-trigon</b> <i>p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color clipping aa</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw the outline of a trigon or triangle, of <a href="#color">COLOR</a> to <a href="#surface">SURFACE</a>. Use <a href="#draw-filled-trigon-*">DRAW-FILLED-TRIGON-*</a> to draw a filled trigon.
+<a name="draw-trigon"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">draw-trigon</span> <span class="parameter">p1 p2 p3 <span class="lambda-kw">&amp;key</span> surface color clipping aa</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> の三角形の輪郭を、 <a href="#surface"><span class="type">SURFACE</span></a> に描画する。塗りつぶされた三角形を描画するには、関数 <a href="#draw-filled-trigon"><span class="operator">DRAW-FILLED-TRIGON</span></a> を使用する。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">P1</span>, <span class="code">P2</span> and <span class="code">P3</span> specify the vertices of the trigon, of type <span class="code">SDL:POINT</span>.</li>
-			<li><span class="code">:AA</span> determines if the line is to be drawn using antialiasing.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">P1</span> および <span class="parameter">P2</span> 、 <span class="parameter">P3</span> は、三角形の頂点を指定し、 <span class="type">SDL:POINT</span> 型である。</li>
+			<li><span class="parameter">AA</span> は、線がアンチエイリアスを使用して描画されるかどうかを決定する。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> がデフォルト値 <span class="code">T</span> のままである時、ピクセルは <span class="parameter">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される場合、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-			<li><span class="code">:AA</span> ignored in <em>LISPBUILDER-SDL</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> に於いて、 <span class="parameter">AA</span> は無視される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for DRAW-TRIGON -->
-
 
 <!-- Entry for DRAW-VLINE -->
 <a name="draw-vline"></a>
@@ -3080,7 +3082,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">draw-vline</span> <span class="parameter">x y0 y1 <span class="lambda-kw">&amp;key</span> surface color clipping template</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><a href="#surface">SURFACE</a> 上に <a href="#color">COLOR</a> の垂直線を、 <span class="code">X</span> を通る <span class="code">Y0</span> から <span class="code">Y1</span> まで描画する。
+		<p><a href="#surface"><span class="type">SURFACE</span></a> 上に <a href="#color"><span class="type">COLOR</span></a> の垂直線を、 <span class="code">X</span> を通る <span class="code">Y0</span> から <span class="code">Y1</span> まで描画する。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
@@ -3099,158 +3101,148 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for DRAW-VLINE -->
 
-
 <!-- Entry for ENABLE-ALPHA -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-alpha'><b>enable-alpha</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Enable surface alpha blending for when <span class="code">T</span>. Disable surface alpha blending when <span class="code">NIL</span>. A <span class="code">SURFACE</span> need not have a pixel alpha component (RGBA) to use surface alpha blending.
+<a name="enable-alpha"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-alpha</span> <span class="parameter">value <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">T</span> の時、サーフェスのアルファブレンディングを有効にする。 <span class="code">NIL</span> の時、サーフェスのアルファブレンディングを無効にする。<span class="parameter">SURFACE</span>  は、サーフェスのアルファブレンディングを使用する為に、 ピクセルアルファ成分（ RGBA ）を持つ必要はない。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-ALPHA -->
 
-
 <!-- Entry for ENABLE-COLOR-KEY -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-color-key'><b>enable-color-key</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Enables color keying when <span class="code">T</span>. Disable color keying when <span class="code">NIL</span>
+<a name="enable-color-key"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-color-key</span> <span class="parameter">value <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">T</span> の時、カラーキーを有効にする。 <span class="code">NIL</span> の時、カラーキーを無効にする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-COLOR-KEY -->
 
-
 <!-- Entry for ENABLE-KEY-REPEAT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-key-repeat'><b>enable-key-repeat</b> <i>delay interval</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Enables the keyboard repeat rate. DELAY specifies how long the key must be pressed before it begins repeating, it then repeats at the speed specified by INTERVAL. Both DELAY and INTERVAL are expressed in milliseconds. Setting DELAY or INTERVAL to NIL will set the default values of SDL-DEFAULT-REPEAT-DELAY and SDL-DEFAULT-REPEAT-INTERVAL respectively.
+<a name="enable-key-repeat"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-key-repeat</span> <span class="parameter">delay interval</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>キーボードのリピート率を有効にする。 <span class="parameter">DELAY</span> は、リピート開始前にキーが押される必要がある時間を指定し、それから <span class="parameter">INTERVAL</span> により指定された速度でリピートする。 <span class="parameter">DELAY</span> および <span class="parameter">INTERVAL</span> の両方は、ミリ秒単位で表現される。 <span class="parameter">DELAY</span> あるいは <span class="parameter">INTERVAL</span> を <span class="code">NIL</span> に設定することで、それぞれ <span class="constant">SDL-DEFAULT-REPEAT-DELAY</span> および <span class="constant">SDL-DEFAULT-REPEAT-INTERVAL</span> のデフォルト値が設定される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-KEY-REPEAT -->
 
-
 <!-- Entry for ENABLE-KEY-REPEAT-P -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-key-repeat-p'><b>enable-key-repeat-p</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the current keyboard DELAY and INTERVAL repeat rate in milliseconds as (VALUES DELAY INTERVAL).
+<a name="enable-key-repeat-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-key-repeat-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>現在のキーボードの DELAY および INTERVAL リピート率を、ミリ秒単位で <span class="code">(VALUES DELAY INTERVAL)</span> として返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-KEY-REPEAT-P -->
 
-
 <!-- Entry for ENABLE-RLE-ACCEL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-rle-accel'><b>enable-rle-accel</b> <i>value <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Enables RLE blit acceleration when <span class="code">T</span>, disables RLE acceleration when <span class="code">NIL</span>. RLE acceleration can substantially speed up blitting of images with large horizontal runs of transparent pixels (i.e., pixels that match the key color).
+<a name="enable-rle-accel"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-rle-accel</span> <span class="parameter">value <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">T</span> の時、 RLE ブリットアクセラレーションを有効にし、 <span class="code">NIL</span> の時、 RLE アクセラレーションを無効にする。 RLE アクセラレーションは、透明ピクセル（つまり、キーカラーと一致するピクセル）が水平方向に長く続く画像のブリットを、大幅に高速化できる。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-RLE-ACCEL -->
 
-
 <!-- Entry for ENABLE-UNICODE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-unicode'><b>enable-unicode</b> <i>state</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Unicode translation is enabled with STATE is T, and disabled when STATE is NIL. To obtain the character codes corresponding to received keyboard events, Unicode translation must first be turned on using this function. The translation incurs a slight overhead for each keyboard event and is therefore disabled by default. For each subsequently received key down event, the unicode member of the SDL_keysym structure will then contain the corresponding character code, or zero for keysyms that do not correspond to any character code. Note that only key press events will be translated, not release events. Returns the previous unicode translation state.
+<a name="enable-unicode"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-unicode</span> <span class="parameter">state</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>Unicode 変換は、 <span class="parameter">STATE</span> が <span class="code">T</span> である時に有効であり、 <span class="parameter">STATE</span> が <span class="code">NIL</span> である時に無効である。受け取ったキーボードイベントに対応する文字コードを取得するには、この関数を使用して、最初に Unicode 変換がオンにされる必要がある。各キーボードイベントの為の変換は、わずかなオーバーヘッドが発生するので、デフォルトでは無効である。その後に受信される各キーダウンイベントに於いて、構造体 <span class="type">SDL_keysym</span> のメンバ unicode は対応する文字コードを含む。文字コードに対応しない keysym の場合は、ゼロを含む。キー押下（ press ）イベントのみ変換され、放す（ release ）イベントは変換されないことに注意。<span class="note-by-editor">（放す（ release ）イベントは）</span>前回の Unicode 変換状態を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-UNICODE -->
 
-
 <!-- Entry for ENABLE-UNICODE-P -->
-
-<p><br>
-［関数］<br>
-<a class=none name='enable-unicode-p'><b>enable-unicode-p</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Queries the current state of Unicode keyboard translation. Returns T if enabled, NIL if disabled.
+<a name="enable-unicode-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">enable-unicode-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>Unicode キーボード変換の現在の状態を問い合わせる。有効な場合は <span class="code">T</span> 、無効な場合は <span class="code">NIL</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ENABLE-UNICODE-P -->
 
-
 <!-- Entry for FILL-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='fill-surface'><b>fill-surface</b> <i>color <span class="lambda-kw">&amp;key</span> template surface update clipping</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Fills surface with the specified <span class="code">COLOR</span>.    <span class="code">:TEMPLATE</span> accepts  a <span class="code">RECTANGLE</span> defining the fill bounds.    <span class="code">The surface is updated when </span>:UPDATE`
+<a name="fill-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">fill-surface</span> <span class="parameter">color <span class="lambda-kw">&amp;key</span> template surface update clipping</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>指定された <span class="parameter">COLOR</span> でサーフェスを塗りつぶす。 <span class="parameter">TEMPLATE</span> には、塗りつぶす境界を定義した <span class="type">RECTANGLE</span> を受け入れる。 <span class="parameter">UPDATE</span> が<span class="note-by-editor">（おそらく）真の</span>時、サーフェスは更新される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FILL-SURFACE -->
 
-
 <!-- Entry for FILL-SURFACE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='fill-surface-*'><b>fill-surface-*</b> <i>r g b <span class="lambda-kw">&amp;key</span> a template surface update clipping</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Fill the surface with the specified color <span class="code">R</span> <span class="code">G</span> <span class="code">B</span> <span class="code">:A</span> <span class="code">A</span>.  See <a href="#fill-surface">FILL-SURFACE</a>.
+<a name="fill-surface-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">fill-surface-*</span> <span class="parameter">r g b <span class="lambda-kw">&amp;key</span> a template surface update clipping</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>指定された色 <span class="parameter">R</span> <span class="parameter">G</span> <span class="parameter">B</span> <span class="code">:A</span> <span class="parameter">A</span> でサーフェスを塗りつぶす。関数 <a href="#fill-surface"><span class="operator">FILL-SURFACE</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FILL-SURFACE-* -->
 
-
 <!-- Entry for FLOOD-FILL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='flood-fill'><b>flood-fill</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
+<a name="flood-fill"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">flood-fill</span> <span class="parameter">point <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#flood-fill-*"><span class="operator">FLOOD-FILL-*</span></a> 参照。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
+			<li><span class="parameter">POINT</span> は塗りつぶしを示す位置であり、 <span class="type">POINT</span> 型である。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FLOOD-FILL -->
 
 
@@ -3276,21 +3268,21 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for FLOOD-FILL-STACK -->
-
-<p><br>
-［関数］<br>
-<a class=none name='flood-fill-stack'><b>flood-fill-stack</b> <i>point <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#flood-fill-stack-*">FLOOD-FILL-STACK-*</a>.
+<a name="flood-fill-stack"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">flood-fill-stack</span> <span class="parameter">point <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#flood-fill-stack-*"><span class="operator">FLOOD-FILL-STACK-*</span></a> 参照。
 		</p>
 		<div class="title">パラメータ</div>
 		<ul>
-			<li>POINT is the position to state the fill, of type <span class="code">POINT</span>.</li>
+			<li><span class="parameter">POINT</span> は塗りつぶしを示す位置であり、 <span class="type">POINT</span> 型である。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FLOOD-FILL-STACK -->
 
 
@@ -3314,102 +3306,82 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for FP -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='fp'><b>fp</b> <i>rectangle-array</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>fp</b> <i>rectangle-array</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-		<p>Returns the foreign pointer in FOREIGN-OBJECT
+<a name="fp"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">fp</span> <span class="parameter">rectangle-array</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">FOREIGN-OBJECT</span> 中の外部ポインタを返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FP -->
-
 
 <!-- Entry for FP -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>fp</b> <i>(rectangle-array <span class="type">rectangle-array</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array <span class="type">rectangle-array</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">rectangle-array</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">rectangle-array</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for FP -->
-
 
 <!-- Entry for FP -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>fp</b> <i>(rectangle-array <span class="type">color-a</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array <span class="type">color-a</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">color-a</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">color-a</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for FP -->
-
 
 <!-- Entry for FP -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>fp</b> <i>(rectangle-array <span class="type">color</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>fp</b> <i>(rectangle-array <span class="type">color</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">color</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">color</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for FP -->
-
 
 <!-- Entry for FP -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>fp</b> <i>(rectangle-array <span class="type">foreign-object</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">fp</span> <span class="parameter">(rectangle-array <span class="type">foreign-object</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for FP -->
-
 
 <!-- Entry for FRAME-RATE -->
-
-<p><br>
-[Accessor]<br>
-<a class=none name='frame-rate'><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</span> fpsmanager</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>frame-rate</b> <i><span class="lambda-kw">&amp;optional</tt> fpsmanager</i><tt>)</tt> <i>rate</i><tt>)</tt></span></a>
-<blockquote><br>
-
-		<p>Manage the target frame rate for the game loop. <span class="code">RATE</span> &gt; <span class="code">0</span> will lock the game loop to the specified frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> = <span class="code">0</span> will unlock the frame rate, and calculate the average frame rate over a number of frames. <span class="code">RATE</span> &lt; <span class="code">0</span> will unlock the frame rate. The average frane rate is not calculated.
+<a name="frame-rate"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［アクセサ］</span>
+		<span class="operator">frame-rate</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">frame-rate</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span>) <span class="parameter">rate</span>)
+	</p>
+	<div class="desc">
+		<p>対象ゲームループのフレームレートを管理する。 <span class="parameter">RATE</span> &gt; <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が <span class="code">0</span> より大きい場合）</span>は、ゲームループを指定されたフレームレートに固定し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> = <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が <span class="code">0</span> である場合）</span>は、フレームレート固定を解除し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> &lt; <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が負の場合）</span> は、フレームレート固定を解除する。平均フレームレートは計算されない。
 		</p>
-		<p>See <a href="#with-events">WITH-EVENTS</a>, and <a href="#average-fps">AVERAGE-FPS</a>.
+		<p>マクロ <a href="#with-events"><span class="operator">WITH-EVENTS</span></a> および関数 <a href="#average-fps"><span class="operator">AVERAGE-FPS</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FRAME-RATE -->
-
 
 <!-- Entry for FREE -->
 <a name="free"></a>
@@ -3424,7 +3396,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	</div>
 </div>
 <!-- End of entry for FREE -->
-
 
 <!-- Entry for FREE -->
 <div class="def">
@@ -3449,7 +3420,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	</div>
 </div>
 <!-- End of entry for FREE -->
-
 
 <!-- Entry for FREE -->
 <div class="def">
@@ -3511,585 +3481,581 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for GET-CLIP-RECT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-clip-rect'><b>get-clip-rect</b> <i><span class="lambda-kw">&amp;key</span> surface rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the clipping <a href="#rectangle">RECTANGLE</a>.
+<a name="get-clip-rect"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-clip-rect</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>クリッピング <a href="#rectangle"><span class="type">RECTANGLE</span></a> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-CLIP-RECT -->
 
-
 <!-- Entry for GET-FONT-ASCENT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-ascent'><b>get-font-ascent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the maximum pixel ascent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the top of the font to the baseline. It could be used when drawing an individual glyph relative to a top point, by combining it with the glyph&#039;s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
+<a name="get-font-ascent"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-ascent</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> に於ける全ての字形（ glyph ）の最大ピクセル高さ（ ascent ）を返す。これはフォントの上部からベースラインまでの距離とも解釈できる。これは上部の位置までの相対で個々の字形（ glyph ）を描画する時に使用でき、字形（ glyph ）の最大長と組み合わせることにより、画面上の字形（ glyph ）をブリットする時に使用される矩形上部<span class="note-by-editor">（の位置）</span>を解決する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the ascent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+			<li><span class="parameter">FONT</span> の高さ（ ascent ）を整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-ASCENT -->
 
-
 <!-- Entry for GET-FONT-DESCENT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-descent'><b>get-font-descent</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the maximum pixel descent of all glyphs of font <span class="code">FONT</span>. This can also be interpreted as the distance from the baseline to the bottom of the font. It could be used when drawing an individual glyph relative to a bottom point, by combining it with the glyph’s maxy metric to resolve the top of the rectangle used when blitting the glyph on the screen.
+<a name="get-font-descent"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-descent</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> に於ける全ての字形（ glyph ）の最大ピクセル深さ（ descent ）を返す。これはベースラインからフォントの下部までの距離とも解釈できる。これは下部の位置までの相対で個々の字形（ glyph ）を描画する時に使用でき、字形（ glyph ）の最大長と組み合わせることにより、画面上の字形（ glyph ）をブリットする時に使用される矩形上部<span class="note-by-editor">（の位置）</span>を解決する。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the descent of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+			<li><span class="parameter">FONT</span> の深さ（ descent ）を整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-DESCENT -->
 
 
 <!-- Entry for GET-FONT-FACE-FAMILY-NAME -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-face-family-name'><b>get-font-face-family-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the current font face family name of font <span class="code">FONT</span> or <span class="code">NIL</span> if the information is unavailable.
+<a name="get-font-face-family-name"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-face-family-name</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>現在のフォント <span class="parameter">FONT</span> のフォントフェイスファミリー名、あるいは情報が利用できない場合は <span class="code">NIL</span> を返す。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
 			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the name of the <span class="code">FONT</span> face family name as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
+			<li><span class="parameter">FONT</span> のフェイスファミリー名の名前<span class="note-by-editor">（※誤記？）</span>を <span class="type">STRING</span> として返す。あるいは利用できない場合、 <span class="code">NIL</span> を返す。</li>
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-FACE-FAMILY-NAME -->
 
-
 <!-- Entry for GET-FONT-FACE-STYLE-NAME -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-face-style-name'><b>get-font-face-style-name</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the current font face style name of font <span class="code">FONT</span>, or <span class="code">NIL</span> if the information is unavailable.
+<a name="get-font-face-style-name"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-face-style-name</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>現在のフォント <span class="parameter">FONT</span> のフォントフェイススタイル名、あるいは情報が利用できない場合は <span class="code">NIL</span> を返す。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the name of the <span class="code">FONT</span> face style as a <span class="code">STRING</span>, or <span class="code">NIL</span> if unavailable.</li>
+			<li><span class="parameter">FONT</span> のフェイススタイル名を <span class="type">STRING</span> として返す。あるいは利用できない場合、 <span class="code">NIL</span> を返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-FACE-STYLE-NAME -->
 
-
 <!-- Entry for GET-FONT-FACES -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-faces'><b>get-font-faces</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the number of faces &#039;sub-fonts&#039; available in the font <span class="code">FONT</span>. This is a count of the number of specific fonts (based on size and style and other  typographical features perhaps) contained in the font itself. It seems to be a useless  fact to know, since it can’t be applied in any other <span class="code">SDL_TTF</span> functions.
+<a name="get-font-faces"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-faces</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> で利用できるフェイス「サブフォント」の数を返す。これは、フォント自体に含まれる特定のフォント（サイズおよびスタイル、そしておそらく他の印刷上の特徴を基づく）の数である。それは知る価値のない事のようである。何故ならそれは、如何なる <span class="code">SDL_TTF</span> 関数にも適用できないからである。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the number of faces in the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+			<li><span class="parameter">FONT</span> 内のフェイス数を整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-FACES -->
 
-
 <!-- Entry for GET-FONT-HEIGHT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-height'><b>get-font-height</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the maximum pixel height of all glyphs of font <span class="code">FONT</span>. Use this height for rendering text as close together vertically as possible, though adding at least one pixel height to it will space it so they can&#039;t touch. Remember that <span class="code">SDL_TTF</span> doesn&#039;t handle multiline printing so you are responsible for line spacing, see <a href="#get-font-line-skip">GET-FONT-LINE-SKIP</a> as well.
+<a name="get-font-height"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-height</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> に於ける全ての字形（ glyph ）の最大ピクセル高さ（ height ）を返す。テキストを可能な限り垂直に近接するようレンダリングする為に、この高さ（ height ）を使用するが、少なくとも１ピクセル高さに加えると、接触しない空間となる。 <span class="code">SDL_TTF</span> は複数行の印字処理をしないので、ユーザに行間の責任があることを覚えておく必要がある。関数 <a href="#get-font-line-skip"><span class="operator">GET-FONT-LINE-SKIP</span></a> も参照せよ。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Retuns the height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+			<li><span class="parameter">FONT</span> の高さ（ height ）を整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-HEIGHT -->
 
-
 <!-- Entry for GET-FONT-LINE-SKIP -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-line-skip'><b>get-font-line-skip</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the recommended pixel height of a rendered line of text of the font <span class="code">FONT</span>. This is usually larger than the <a href="#get-font-height">GET-FONT-HEIGHT</a> of the font.
+<a name="get-font-line-skip"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-line-skip</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> のレンダリングされるテキスト行の推奨ピクセル高さを返す。これは通常、フォントの<span class="note-by-editor">（関数）</span><a href="#get-font-height"><span class="operator">GET-FONT-HEIGHT</span></a> <span class="note-by-editor">（からの戻り値）</span>より大きい。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the pixel height of the <span class="code">FONT</span> as an <span class="code">INTEGER</span>.</li>
+			<li><span class="parameter">FONT</span> のピクセル高さを整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-LINE-SKIP -->
 
-
 <!-- Entry for GET-FONT-SIZE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-size'><b>get-font-size</b> <i>text <span class="lambda-kw">&amp;key</span> size font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Calculates and returns the resulting <span class="code">SIZE</span> of the <span class="code">SDL:SURFACE</span> that is required to render the text <span class="code">TEXT</span>, or <span class="code">NIL</span> on error. No actual rendering is performed, however correct kerning is calculated for the actual width. The height returned is the same as returned using <a href="#get-font-height">GET-FONT-HEIGHT</a>.
+<a name="get-font-size"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-size</span> <span class="parameter">text <span class="lambda-kw">&amp;key</span> size font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>テキスト <span class="parameter">TEXT</span> をレンダリングするのに必要とされる <span class="type">SDL:SURFACE</span> の <span class="code">SIZE</span> を計算し、その結果を返す。エラー時は <span class="code">NIL</span> を返す。実際のレンダリングは実行されないが、実際の幅の為に正しいカーニングが計算される。返される高さ（ height ）は、関数 <a href="#get-font-height"><span class="operator">GET-FONT-HEIGHT</span></a> を使用して返されるものと同じである。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">TEXT</span> is the string to size, of type <span class="code">STRING</span>.</li>
-			<li><span class="code">SIZE</span> must be one of; <span class="code">:W</span> for the text width or <span class="code">:H</span> for the text height.</li>
-			<li><span class="code">FONT</span> is the font used to calculate the size of the <span class="code">TEXT</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">TEXT</span> は大きさを測る為の文字列であり、 <span class="type">STRING</span> 型である。</li>
+			<li><span class="parameter">SIZE</span> は、次のいずれかである必要がある。：テキストの幅として <span class="code">:W</span> あるいはテキストの高さとして <span class="code">:H</span> 。</li>
+			<li><span class="parameter">FONT</span> は、 <span class="parameter">TEXT</span> の大きさを計算する為に使用されるフォントである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the width or height of the specified <span class="code">SDL:SURFACE</span>, or <span class="code">NIL</span> upon error.</li>
+			<li>指定された <span class="type">SDL:SURFACE</span> の幅あるいは高さを返す。エラー時、 <span class="code">NIL</span> を返す。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-SIZE -->
 
-
 <!-- Entry for GET-FONT-STYLE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-font-style'><b>get-font-style</b> <i><span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the rendering style of the font <span class="code">FONT</span>. If no style is set then <span class="code">:STYLE-NORMAL</span> is returned, or <span class="code">NIL</span> upon error.
+<a name="get-font-style"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-font-style</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> のレンダリングスタイルを返す。スタイルが設定されていない場合、 <span class="code">:STYLE-NORMAL</span> が返される。エラー時、 <span class="code">NIL</span> が返される。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binfs to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Retuns the font style as one or more of: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span></li>
+			<li>フォントスタイルを次のいずれか（複数可）として返す。： <span class="code">:STYLE-NORMAL</span> 、 <span class="code">:STYLE-BOLD</span> 、 <span class="code">:STYLE-ITALIC</span> 、 <span class="code">:STYLE-UNDERLINE</span> 。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-FONT-STYLE -->
 
-
 <!-- Entry for GET-GLYPH-METRIC -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-glyph-metric'><b>get-glyph-metric</b> <i>ch <span class="lambda-kw">&amp;key</span> metric font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the glyph metrics <span class="code">METRIC</span> for the character <span class="code">CH</span>, or <span class="code">NIL</span> upon error.
+<a name="get-glyph-metric"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-glyph-metric</span> <span class="parameter">ch <span class="lambda-kw">&amp;key</span> metric font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>文字 <span class="parameter">CH</span> の字形（ glyph ）の長さ（ metric ） <span class="parameter">METRIC</span> <span class="note-by-editor">（※ <span class="parameter">METRIC</span> で指定される長さ）</span>を返す。エラー時、 <span class="code">NIL</span> を返す。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">CH</span> is a UNICODE chararacter specified as an <span class="code">INTEGER</span>.</li>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object from which to retrieve the glyph metrics of the character <span class="code">CH</span>. Binds to <span class="code">*DEFAULT-FONT*</span> by default. </li>
-			<li><span class="code">METRIC</span> is a <span class="code">KEY</span>word argument and may be one of; <span class="code">:MINX</span>, for the minimum <span class="code">X</span> offset.<br />
-<span class="code">:MAXX</span>, for the maximum <span class="code">X</span> offset. <span class="code">:MINY</span>, for the minimum <span class="code">Y</span> offset. <span class="code">:MAXY</span>, for the maximum <span class="code">Y</span> offset. <span class="code">:ADVANCE</span>, for the advance offset. </li>
+			<li><span class="parameter">CH</span> は、整数（ <span class="type">INTEGER</span> ）として指定された UNICODE 文字である。</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトであり、それより文字 <span class="parameter">CH</span> の字形（ glyph ）の長さを取得する。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
+			<li><span class="parameter">METRIC</span> はキーワード引数であり、次のいずれかである。：
+				<ul>
+					<li><span class="code">:MINX</span> ─ 最小 <span class="code">X</span> オフセット。</li>
+					<li><span class="code">:MAXX</span> ─ 最大 <span class="code">X</span> オフセット。</li>
+					<li><span class="code">:MINY</span> ─ 最小 <span class="code">Y</span> オフセット。</li>
+					<li><span class="code">:MAXY</span> ─ 最大 <span class="code">Y</span> オフセット。</li>
+					<li><span class="code">:ADVANCE</span> ─ 先に進める（ advance ）オフセット。</li>
+				</ul>
+			</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns the glyph metric as an <span class="code">INTEGER</span>.</li>
+			<li>字形（ glyph ）の長さを整数（ <span class="type">INTEGER</span> ）として返す。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(GET-GLYPH-METRIC UNICODE-CHAR :METRIC :MINX :FONT *DEFAULT-FONT*) </pre>
+		<pre class="code">(GET-GLYPH-METRIC UNICODE-CHAR :METRIC :MINX :FONT *DEFAULT-FONT*) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-GLYPH-METRIC -->
 
-
 <!-- Entry for GET-KEY-STATE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-key-state'><b>get-key-state</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the current keypress state of the key KEY. Returns T if the SDL-KEY is pressed, returns NIL if SDL-KEY is not pressed. Note: Use SDL_PumpEvents to update the state array. Note: This function gives you the current state after all events have been processed, so if a key or button has been pressed and released before you process events, then the pressed state will never show up in the getstate calls. Note: This function doesn&#039;t take into account whether shift has been pressed or not. For example: (GET-KEY-STATE :SDL-KEY-F1)
+<a name="get-key-state"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-key-state</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>キー <span class="parameter">KEY</span> の現在のキー押下状態を返す。 <span class="type">SDL-KEY</span> が押されている場合、 <span class="code">T</span> を返し、 <span class="type">SDL-KEY</span> が押されていない場合、 <span class="code">NIL</span> を返す。<span class="note">注釈：</span> 状態（ state ）配列を更新するには、 SDL_PumpEvents を使用する。<span class="note">注釈：</span> この関数は、全てのイベントが処理された後のカレント状態を提供するため、イベント処理前にキーあるいはボタンが押されて放された場合、状態取得コールで押下状態は決して現れない。<span class="note">注釈：</span> この関数は、シフトが押されたかどうかを考慮しない。
 		</p>
 
-</blockquote>
-
+		<div class="title">例</div>
+		<pre class="code">(GET-KEY-STATE :SDL-KEY-F1)</pre>
+	</div>
+</div>
 <!-- End of entry for GET-KEY-STATE -->
 
-
 <!-- Entry for GET-NATIVE-WINDOW -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-native-window'><b>get-native-window</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a foreign pointer to the native SDL display window.
+<a name="get-native-window"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-native-window</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ネイティブ SDL 表示ウィンドウへの外部ポインタを返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-NATIVE-WINDOW -->
 
-
 <!-- Entry for GET-POINT -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='get-point'><b>get-point</b> <i>object</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of object <span class="code">OBJ</span> as a <span class="code">POINT</span>.
+<a name="get-point"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">get-point</span> <span class="parameter">object</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オブジェクト <span class="parameter">OBJECT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、 <span class="type">POINT</span> として返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POINT -->
 
-
 <!-- Entry for GET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-point</b> <i>(object <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-point</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の <span class="type">POINT</span> 座標位置を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POINT -->
 
-
 <!-- Entry for GET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-point</b> <i>(object <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of rectangle <span class="code">RECTANGLE</span> as a <span class="code">POINT</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-point</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、 <span class="type">POINT</span> として返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POINT -->
 
-
 <!-- Entry for GET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-point</b> <i>(object <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the point <span class="code">POINT</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-point</span> <span class="parameter">(point <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>point <span class="parameter">POINT</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POINT -->
-
 
 <!-- Entry for GET-POSITION -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='get-position'><b>get-position</b> <i>object</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#get-POINT">GET-POINT</a>
+<a name="get-position"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">get-position</span> <span class="parameter">object</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#get-point"><span class="operator">GET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POSITION -->
-
 
 <!-- Entry for GET-POSITION -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-position</b> <i>(object <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#get-point">GET-POINT</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-position</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#get-point"><span class="operator">GET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POSITION -->
-
 
 <!-- Entry for GET-POSITION -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-position</b> <i>(object <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#get-POINT">GET-POINT</a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-position</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#get-point"><span class="operator">GET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-POSITION -->
-
 
 <!-- Entry for GET-RECTANGLE -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='get-rectangle'><b>get-rectangle</b> <i>obj</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the rectangle <span class="code">RECTANGLE</span>.
+<a name="get-rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">get-rectangle</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="type">RECTANGLE</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-RECTANGLE -->
-
 
 <!-- Entry for GET-RECTANGLE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>get-rectangle</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the rectangle <span class="code">RECTANGLE</span>.
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">get-rectangle</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for GET-RECTANGLE -->
-
 
 <!-- Entry for GET-SURFACE-RECT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='get-surface-rect'><b>get-surface-rect</b> <i><span class="lambda-kw">&amp;key</span> surface rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="get-surface-rect"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">get-surface-rect</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for GET-SURFACE-RECT -->
 
-
 <!-- Entry for HANDLE-KEY-DOWN -->
-
-<p><br>
-［関数］<br>
-<a class=none name='handle-key-down'><b>handle-key-down</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="handle-key-down"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">handle-key-down</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for HANDLE-KEY-DOWN -->
 
-
 <!-- Entry for HANDLE-KEY-UP -->
-
-<p><br>
-［関数］<br>
-<a class=none name='handle-key-up'><b>handle-key-up</b> <i>key</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="handle-key-up"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">handle-key-up</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for HANDLE-KEY-UP -->
 
-
 <!-- Entry for HEIGHT -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='height'><b>height</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>height</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="height"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">height</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">height</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for HEIGHT -->
 
-
 <!-- Entry for HEIGHT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>height</b> <i>(obj <span class="type">font</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">height</span> <span class="parameter">(font <span class="type">font</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for HEIGHT -->
 
-
 <!-- Entry for HEIGHT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>height</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the height of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">height</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の高さを整数（ <span class="type">INTEGER</span> ）として返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for HEIGHT -->
-
 
 <!-- Entry for HEIGHT -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>height</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>height</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">INTEGER</span> height of the rectangle <span class="code">RECTANGLE</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">height</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の整数（ <span class="type">INTEGER</span> ）の高さを返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for HEIGHT -->
-
 
 <!-- Entry for IMAGE-P -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='image-p'><b>image-p</b> <i>source image-type</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns <span class="code">T</span> when the image type in <span class="code">SOURCE</span> is of <span class="code">IMAGE-TYPE</span>. Returns <span class="code">NIL</span> otherwise. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.  <span class="code">IMAGE-TYPE</span> must be one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>.
+<a name="image-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">image-p</span> <span class="parameter">source image-type</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SOURCE</span> の画像種別が <span class="parameter">IMAGE-TYPE</span> である時、 <span class="code">T</span> を返す。それ以外の場合、 <span class="code">NIL</span> を返す。利用可能な場合、画像に含まれる<span class="e1">マジックナンバー</span>を使用して、画像種別を検出しようとする。 <span class="code">TGA</span> 画像は<span class="e1">マジックナンバー</span>を含まないため、 <span class="code">TGA</span> 画像に対しては、常に <span class="code">NIL</span> が返される。 <span class="parameter">IMAGE-TYPE</span> は次のいずれかである必要がある。： <span class="code">:BMP</span> 、 <span class="code">:GIF</span> 、 <span class="code">:JPG</span> 、 <span class="code">:LBM</span> 、 <span class="code">:PCX</span> 、 <span class="code">:PNG</span> 、 <span class="code">:PNM</span> 、 <span class="code">:TIF</span> 、 <span class="code">:XCF</span> 、 <span class="code">:XPM</span> 、 <span class="code">:XV</span> 。
 		</p>
+
 		<div class="title">例</div>
-<pre class="code">(RWOPS-P SOURCE :IMAGE-TYPE :BMP)
+		<pre class="code">(RWOPS-P SOURCE :IMAGE-TYPE :BMP)
 (IMAGE-P &quot;image.bmp&quot; :IMAGE-TYPE :BMP) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
+			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for IMAGE-P -->
 
 
