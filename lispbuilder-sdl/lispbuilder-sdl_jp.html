@@ -4058,28 +4058,28 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for IMAGE-P -->
 
-
 <!-- Entry for IMAGE-TYPE-OF -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='image-type-of'><b>image-type-of</b> <i>source</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the type of image in source <span class="code">SOURCE</span>. Attempts to detect the image type using the <em>magic number</em> contained in the image if one is available.  Returns one of <span class="code">:BMP</span>, <span class="code">:GIF</span>, <span class="code">:JPG</span>, <span class="code">:LBM</span>, <span class="code">:PCX</span>, <span class="code">:PNG</span>, <span class="code">:PNM</span>, <span class="code">:TIF</span>, <span class="code">:XCF</span>, <span class="code">:XPM</span> or <span class="code">:XV</span>, if the image type can be determined. Returns <span class="code">NIL</span> if the image cannot be determined (The <em>magic number</em> is not supported or the <em>magic number</em> is not found).  <span class="code">NIL</span> is always returned for images of type <span class="code">TGA</span> as a <span class="code">TGA</span> image does not contain a <em>magic number</em>.
+<a name="image-type-of"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">image-type-of</span> <span class="parameter">source</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ソース <span class="parameter">SOURCE</span> の画像種別を返す。利用可能な場合、画像に含まれる<span class="e1">マジックナンバー</span>を使用して、画像種別を検出しようとする。画像種別が判別できる場合、次のいずれかを返す。： <span class="code">:BMP</span> 、 <span class="code">:GIF</span> 、 <span class="code">:JPG</span> 、 <span class="code">:LBM</span> 、 <span class="code">:PCX</span> 、 <span class="code">:PNG</span> 、 <span class="code">:PNM</span> 、 <span class="code">:TIF</span> 、 <span class="code">:XCF</span> 、 <span class="code">:XPM</span> 、 <span class="code">:XV</span> 。画像が判別できない場合（<span class="e1">マジックナンバー</span>に対応されていない、あるいは<span class="e1">マジックナンバー</span>が見つからない）、 <span class="code">NIL</span> を返す。 <span class="code">TGA</span> 画像は<span class="e1">マジックナンバー</span>を含まないため、 <span class="code">TGA</span> 画像に対しては常に <span class="code">NIL</span> が返される。
 		</p>
+
 		<div class="title">例</div>
-<pre class="code">(IMAGE-TYPE-OF SOURCE)
+		<pre class="code">(IMAGE-TYPE-OF SOURCE)
 (IMAGE-TYPE-OF &quot;image.bmp&quot;) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-IMAGE</em></li>
+			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> で対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for IMAGE-TYPE-OF -->
-
 
 <!-- Entry for INIT-SDL -->
 <a name="init-sdl"></a>
@@ -4527,297 +4527,258 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for LOAD-IMAGE -->
 
-
 <!-- Entry for MAP-COLOR -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='map-color'><b>map-color</b> <i>color <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Maps <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If the surface has a palette (8-bit) the index of the closest matching color in the palette will be returned. If the surface has an alpha component it will be returned as all <span class="code">1</span> bits (fully opaque). If the surface color depth is less than 32-bpp then the unused upper bits of the return value can safely be ignored (e.g., with a 16-bpp format the return value can be assigned to a Uint16, and similarly a Uint8 for an 8-bpp format).
+<a name="map-color"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">map-color</span> <span class="parameter">color <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> を <a href="#surface"><span class="type">SURFACE</span></a> のピクセルフォーマットに写像し、サーフェスのカラー値に最も近いピクセル値を返す。サーフェスがパレット（ 8-bit ）を持つ場合、パレット中で最も近い色のインデックスが返される。サーフェスがアルファ成分を持つ場合、全て <span class="code">1</span> のビット（完全不透明）として返される。サーフェスのカラー深度が 32 bpp 未満の場合、戻り値の未使用上位ビットは安全に無視され得る。（例えば、 16 bpp フォーマットでは、戻り値は Uint16 に割り当てられ、 8 bpp フォーマットでの Uint8 も同様である。）
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for MAP-COLOR -->
-
 
 <!-- Entry for MAP-COLOR -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>map-color</b> <i>(color <span class="type">color-a</span>) <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">map-color</span> <span class="parameter">(color <span class="type">color-a</span>) <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for MAP-COLOR -->
-
 
 <!-- Entry for MAP-COLOR -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>map-color</b> <i>(color <span class="type">color</span>) <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">map-color</span> <span class="parameter">(color <span class="type">color</span>) <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for MAP-COLOR -->
-
 
 <!-- Entry for MAP-COLOR-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='map-color-*'><b>map-color-*</b> <i>r g b a <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Maps the color specified by the <span class="code">R</span>, <span class="code">G</span>, <span class="code">B</span>, and <span class="code">A</span> color components to the pixel format of <a href="#surface">SURFACE</a> and returns the pixel value that best approximates the color value of the surface. If <span class="code">A</span> is not <span class="code">NIL</span> then the color is assumed to contain an alpha component. See <a href="#map-color">MAP-COLOR</a> for more details.
+<a name="map-color-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">map-color-*</span> <span class="parameter">r g b a <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>色成分 <span class="parameter">R</span> 、 <span class="parameter">G</span> 、 <span class="parameter">B</span> 、 <span class="parameter">A</span> により指定されたカラーを、 <a href="#surface"><span class="type">SURFACE</span></a> のピクセルフォーマットに写像し、サーフェスのカラー値に最も近いピクセル値を返す。 <span class="parameter">A</span> が <span class="code">NIL</span> でない場合、カラーはアルファ成分を含むと想定される。詳細は、総称関数 <a href="#map-color"><span class="operator">MAP-COLOR</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for MAP-COLOR-* -->
-
 
 <!-- Entry for MAP-COLOR-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>map-color-*</b> <i>(r <span class="type">integer</span>) (g <span class="type">integer</span>) (b <span class="type">integer</span>) a <span class="lambda-kw">&amp;optional</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">map-color-*</span> <span class="parameter">(r <span class="type">integer</span>) (g <span class="type">integer</span>) (b <span class="type">integer</span>) a <span class="lambda-kw">&amp;optional</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for MAP-COLOR-* -->
-
 
 <!-- Entry for NUM-JOYSTICKS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='num-joysticks'><b>num-joysticks</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="num-joysticks"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">num-joysticks</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for NUM-JOYSTICKS -->
 
-
 <!-- Entry for PACK-COLOR -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='pack-color'><b>pack-color</b> <i>color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Packs <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a> into a four byte <span class="code">INTEGER</span>.
+<a name="pack-color"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">pack-color</span> <span class="parameter">color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> を、 4 バイトの整数（ <span class="type">INTEGER</span> ）に詰める。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for PACK-COLOR -->
-
 
 <!-- Entry for PACK-COLOR -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>pack-color</b> <i>(color <span class="type">color-a</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">pack-color</span> <span class="parameter">(color <span class="type">color-a</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for PACK-COLOR -->
-
 
 <!-- Entry for PACK-COLOR -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>pack-color</b> <i>(color <span class="type">color</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">pack-color</span> <span class="parameter">(color <span class="type">color</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for PACK-COLOR -->
-
 
 <!-- Entry for PIXEL-ALPHA-ENABLED-P -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='pixel-alpha-enabled-p'><b>pixel-alpha-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns <span class="code">T</span> if a pixel alpha component (RGBA) is available, or <span class="code">NIL</span> if unavailable (RGB). <em>Note</em>: The pixel alpha component differs from the surface alpha component which is retrieved using <a href="#alpha-enabled-p">ALPHA-ENABLED-P</a>.
+<a name="pixel-alpha-enabled-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">pixel-alpha-enabled-p</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ピクセルアルファ成分（ RGBA ）が利用可能な場合、 <span class="code">T</span> を返し、利用できない場合、 <span class="code">NIL</span> を返す。<span class="note">注釈：</span> ピクセルアルファ成分は、総称関数 <a href="#alpha-enabled-p"><span class="operator">ALPHA-ENABLED-P</span></a> を使用して取得されるサーフェスのアルファ成分とは異なる。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for PIXEL-ALPHA-ENABLED-P -->
-
 
 <!-- Entry for PIXEL-ALPHA-ENABLED-P -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>pixel-alpha-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">pixel-alpha-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for PIXEL-ALPHA-ENABLED-P -->
-
 
 <!-- Entry for POINT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='point'><b>point</b> <i><span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates a new <span class="code">POINT</span> set to the specified horizontal <span class="code">X</span> and vertical <span class="code">Y</span> coordinate.
+<a name="point"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">point</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>指定された水平方向  <span class="parameter">X</span> および垂直方向 <span class="parameter">Y</span> 座標に設定された新しい <span class="type">POINT</span> を生成する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POINT -->
 
-
 <!-- Entry for POINT-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='point-*'><b>point-*</b> <i>point</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
+<a name="point-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">point-*</span> <span class="parameter">point</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オブジェクトの <span class="code">X</span> および <span class="code">Y</span> 座標を展開して返す。 <span class="result">RESULT</span> は <span class="code">(VALUES X Y)</span> である。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POINT-* -->
 
-
 <!-- Entry for POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>point-*</b> <i>(point <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span> as a spread.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">point-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標位置を展開して返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POINT-* -->
 
-
 <!-- Entry for POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>point-*</b> <i>(point <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread.   The <span class="code">RESULT</span> is <span class="code">(VALUES X Y)</span>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">point-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を展開して返す。 <span class="result">RESULT</span> は <span class="code">(VALUES X Y)</span> である。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POINT-* -->
 
-
 <!-- Entry for POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>point-*</b> <i>(point <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> as a spread.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">point-*</span> <span class="parameter">(point <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>point <span class="parameter">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を展開して返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POINT-* -->
-
 
 <!-- Entry for POSITION-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='position-*'><b>position-*</b> <i>obj</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#point-*">POINT-*</a>
+<a name="position-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">position-*</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#point-*"><span class="operator">POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POSITION-* -->
 
-
 <!-- Entry for POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>position-*</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#position">POSITION</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">position-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#position"><span class="operator">POSITION</span></a><span class="e1">（総称関数 <a href="#point-*"><span class="operator">POINT-*</span></a> の誤記？）</span>参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POSITION-* -->
 
-
 <!-- Entry for POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>position-*</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#point-*">POINT-*</a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">position-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#point-*"><span class="operator">POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POSITION-* -->
 
-
 <!-- Entry for POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>position-*</b> <i>(obj <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#point-*">POINT-*</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">position-*</span> <span class="parameter">(point <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#point-*"><span class="operator">POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for POSITION-* -->
 
 
@@ -4971,297 +4932,298 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for RANDOM+1 -->
 
-
 <!-- Entry for RANDOM-RECTANGLE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='random-rectangle'><b>random-rectangle</b> <i>bound-w bound-h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates and return s a new <span class="code">RECTANGLE</span> of random x, y width and height within the specified bounds of width <span class="code">BOUND-W</span> and height <span class="code">BOUND-H</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
+<a name="random-rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">random-rectangle</span> <span class="parameter">bound-w bound-h <span class="lambda-kw">&amp;optional</span> rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>幅 <span class="parameter">BOUND-W</span> および高さ <span class="parameter">BOUND-H</span> の指定された領域内で、ランダムな x 、 y 、幅、高さの新しい <span class="type">RECTANGLE</span> を生成して返す。 <span class="parameter">RECTANGLE</span> が未設定の場合、新しい <span class="type">RECTANGLE</span> オブジェクトの生成を強制する。 <span class="parameter">RECTANGLE</span> が設定されている場合、座標で変更される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RANDOM-RECTANGLE -->
 
-
 <!-- Entry for READ-PIXEL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='read-pixel'><b>read-pixel</b> <i>point <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#read-pixel-*">READ-PIXEL-*</a>.
+<a name="read-pixel"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">read-pixel</span> <span class="parameter">point <span class="lambda-kw">&amp;key</span> clipping surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#read-pixel-*"><span class="operator">READ-PIXEL-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">POINT</span> is the <a href="#point">POINT</a> coordinates of the pixel.</li>
+			<li><span class="parameter">POINT</span> は、ピクセルの <a href="#point"><span class="type">POINT</span></a> 座標である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for READ-PIXEL -->
 
-
 <!-- Entry for READ-PIXEL-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='read-pixel-*'><b>read-pixel-*</b> <i>x y <span class="lambda-kw">&amp;key</span> clipping surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Read the <a href="#color">COLOR</a> of the pixel at <span class="code">X</span> and <span class="code">Y</span> coordiates from <a href="#surface">SURFACE</a>.
+<a name="read-pixel-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">read-pixel-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> clipping surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><a href="#surface"><span class="parameter">SURFACE</span></a> から、 <span class="parameter">X</span> および <span class="parameter">Y</span> 座標に於けるピクセルの <a href="#color"><span class="type">COLOR</span></a> を読み取る。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X</span> and <span class="code">Y</span> specify the coordinates of the pixel, and are of type <span class="code">INTEGER</span>.</li>
-			<li><span class="code">:SURFACE</span> is the target <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:COLOR</span> is the pixel color, of <a href="#color">COLOR</a> or <a href="#color-a">COLOR-A</a>.</li>
-			<li><span class="code">:CLIPPING</span> when left as the default value <span class="code">T</span> will ensure that the pixel is clipped to the dimensions of <span class="code">SURFACE</span>. SDL will core dump if pixels are drawn outside a surface. It is slower, but safer to leave <span class="code">CLIPPING</span> as <span class="code">T</span>. </li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> はピクセルの座標を指定し、整数（ <span class="type">INTEGER</span> ）である。</li>
+			<li><span class="parameter">SURFACE</span> は対象の <a href="#surface"><span class="type">SURFACE</span></a> である。</li>
+			<li><span class="parameter">COLOR</span> はピクセルカラーであり、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> である。</li>
+			<li><span class="parameter">CLIPPING</span> がデフォルト値 <span class="code">T</span> のままである時、ピクセルは <span class="parameter">SURFACE</span> の寸法でクリッピングされる。ピクセルがサーフェスの外側に描画される<span class="note-by-editor">（？）</span>場合、 SDL はコアダンプする。 <span class="parameter">CLIPPING</span> を <span class="code">T</span> のままにしておくのは、低速だがより安全である。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for READ-PIXEL-* -->
 
-
 <!-- Entry for RECTANGLE -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='rectangle'><b>rectangle</b></a>
-<blockquote><br>
-
-		<p>A <span class="code">RECTANGLE</span> object manages the foreign SDL_Rect object. Free using <a href="#free">FREE</a>.
+<a name="rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">rectangle</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">RECTANGLE</span> オブジェクトは、外部 SDL_Rect オブジェクトを管理する。総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE -->
 
-
 <!-- Entry for RECTANGLE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rectangle'><b>rectangle</b> <i><span class="lambda-kw">&amp;key</span> x y w h fp</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Creates a new <span class="code">RECTANGLE</span> from the specified <span class="code">X</span>, <span class="code">Y</span>, width <span class="code">W</span> and height <span class="code">H</span>. If <span class="code">FP&amp;#039; is </span>NIL<span class="code"> then a foreign SDL_Rect is created. If </span>FP<span class="code"> is a pointer to a foreign SDL_Rect object then </span>FP` is used.
+<a name="rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rectangle</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> x y w h fp</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>指定された <span class="parameter">X</span> 、 <span class="parameter">Y</span> 、 幅 <span class="parameter">W</span> 、 高さ <span class="parameter">H</span> から、新しい <span class="type">RECTANGLE</span> を生成する。 <span class="parameter">FP</span> が <span class="code">NIL</span> である場合、外部 SDL_Rect が生成される。 <span class="parameter">FP</span> が外部 SDL_Rect オブジェクトへのポインタである場合、 <span class="parameter">FP</span> が使用される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE -->
 
-
 <!-- Entry for RECTANGLE-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='rectangle-*'><b>rectangle-*</b> <i>obj</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the object as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
+<a name="rectangle-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">rectangle-*</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オブジェクトの <span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> 座標を展開して返す。 <span class="result">RESULT</span> は <span class="code">(VALUES X Y WIDTH HEIGHT)</span> である。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-* -->
 
-
 <!-- Entry for RECTANGLE-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>rectangle-*</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the fields <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> from <span class="code">SURFACE</span> as a spread.
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">rectangle-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> からのフィールド <span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> を展開して返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-* -->
 
-
 <!-- Entry for RECTANGLE-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>rectangle-*</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span> as a spread. The <span class="code">RESULT</span> is <span class="code">(VALUES X Y WIDTH HEIGHT)</span>
+<a name=""></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">rectangle-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> 座標を展開して返す。 <span class="result">RESULT</span> は <span class="code">(VALUES X Y WIDTH HEIGHT)</span> である。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-* -->
-
 
 <!-- Entry for RECTANGLE-FROM-EDGES -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rectangle-from-edges'><b>rectangle-from-edges</b> <i>p1 p2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#rectangle-from-edges-*">RECTANGLE-FROM-EDGES-*</a>.
+<a name="rectangle-from-edges"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rectangle-from-edges</span> <span class="parameter">p1 p2 <span class="lambda-kw">&amp;optional</span> rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#rectangle-from-edges-*"><span class="operator">RECTANGLE-FROM-EDGES-*</span></a> 参照。
 		</p>
 		<ul>
-			<li><span class="code">P1</span> and <span class="code">P2</span> are <span class="code">POINTS</span> that specify the bounds of the <span class="code">RECTANGLE</span>. <span class="code">P1</span> specifies the top left coordinate. <span class="code">P2</span> specifies the lower right coordinate. </li>
+			<li><span class="parameter">P1</span> および <span class="parameter">P2</span> は、 <span class="parameter">RECTANGLE</span> の領域を指定する <span class="type">POINT</span> である。 <span class="parameter">P1</span> は左上の座標を指定する。 <span class="parameter">P2</span> は右下の座標を指定する。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-FROM-EDGES -->
 
-
 <!-- Entry for RECTANGLE-FROM-EDGES-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rectangle-from-edges-*'><b>rectangle-from-edges-*</b> <i>x1 y1 x2 y2 <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a new <span class="code">RECTANGLE</span> using the bounds specified by the <span class="code">INTEGERS</span> <span class="code">X1</span>, <span class="code">X2</span>, <span class="code">Y1</span> and <span class="code">Y2</span>. The coordinates of the rectangle are X = X1, Y = Y1, WIDTH = (- X2 X1), HEIGHT = (- Y2 Y1)
+<a name="rectangle-from-edges-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rectangle-from-edges-*</span> <span class="parameter">x1 y1 x2 y2 <span class="lambda-kw">&amp;optional</span> rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>整数（ <span class="type">INTEGER</span> ） <span class="code">X1</span> 、 <span class="code">X2</span> 、 <span class="code">Y1</span> 、 <span class="code">Y2</span> により指定された領域を使用して、新しい <span class="type">RECTANGLE</span> を返す。矩形の座標は、 <span class="code">X</span> = <span class="parameter">X1</span> 、 <span class="code">Y</span> = <span class="parameter">Y1</span> 、 <span class="code">WIDTH</span> = <span class="code">(- <span class="parameter">X2</span> <span class="parameter">X1</span>)</span> 、 <span class="code">HEIGHT</span> = <span class="code">(- <span class="parameter">Y2</span> <span class="parameter">Y1</span>)</span> である。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X1</span>, <span class="code">Y1</span> specify the top left coordinate as <span class="code">INTEGERS</span>.</li>
-			<li><span class="code">X2</span>, <span class="code">Y2</span> specify the bottom right coordinate as <span class="code">INTEGERS</span>.</li>
-			<li><span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates. </li>
+			<li><span class="parameter">X1</span> 、 <span class="parameter">Y1</span> は、左上の座標を整数（ <span class="type">INTEGER</span> ）として指定する。</li>
+			<li><span class="parameter">X2</span> 、 <span class="parameter">Y2</span> は、右下の座標を整数（ <span class="type">INTEGER</span> ）として指定する。</li>
+			<li><span class="parameter">RECTANGLE</span> が未設定である場合、 <span class="type">RECTANGLE</span> オブジェクトの生成を強制する。 <span class="parameter">RECTANGLE</span> が設定されている場合、座標で変更される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-FROM-EDGES-* -->
 
-
 <!-- Entry for RECTANGLE-FROM-MIDPOINT-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rectangle-from-midpoint-*'><b>rectangle-from-midpoint-*</b> <i>x y w h <span class="lambda-kw">&amp;optional</span> rectangle</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a <span class="code">RECTANGLE</span> of width <span class="code">W</span> and height <span class="code">H</span> with the rectangle mid-point at coordinates <span class="code">X</span> and <span class="code">Y</span>. <span class="code">RECTANGLE</span> if unset will force the creation of a new <span class="code">RECTANGLE</span> object. <span class="code">RECTANGLE</span> if set will be modified with the coordinates.
+<a name="rectangle-from-midpoint-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rectangle-from-midpoint-*</span> <span class="parameter">x y w h <span class="lambda-kw">&amp;optional</span> rectangle</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>中点が座標 <span class="parameter">X</span> および <span class="parameter">Y</span> にある矩形で、幅 <span class="parameter">W</span> および高さ <span class="parameter">H</span> の <span class="type">RECTANGLE</span> を返す。 <span class="parameter">RECTANGLE</span> が未設定である場合、新しい <span class="type">RECTANGLE</span> オブジェクトの生成が強制される。 <span class="parameter">RECTANGLE</span> が設定されている場合、座標で変更される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RECTANGLE-FROM-MIDPOINT-* -->
 
-
 <!-- Entry for RENDER-STRING-BLENDED -->
-
-<p><br>
-［関数］<br>
-<a class=none name='render-string-blended'><b>render-string-blended</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+<a name="render-string-blended"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">render-string-blended</span> <span class="parameter">string <span class="lambda-kw">&amp;key</span> font color free cache</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>テキストカラー <span class="parameter">COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、文字列 <span class="parameter">STRING</span> を新しい <span class="type">SURFACE</span> にレンダリングする。新しいサーフェスの寸法は、高さ == <span class="parameter">FONT</span> の高さ（ height ）、幅 == <span class="parameter">FONT</span> の幅 * <span class="parameter">STRING</span> 長である。サーフェスの背景は透明であるため、他のサーフェスにキー入力できる。<span class="note-by-editor">（※他のサーフェスを越えてキー入力される？）</span>　<span class="parameter">FONT</span> オブジェクトに新しいサーフェスをキャッシュするには、 <span class="code">:CACHE T</span> を使用する。 <span class="code">:FREE T</span> である時、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスは、自動的に解放される。 <span class="code">:FREE NIL</span> である時、呼び出し元は、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスを解放する責任がある。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
-			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+			<li><span class="parameter">STRING</span> は、レンダリングするテキストである。</li>
+			<li><span class="parameter">FONT</span> は、 <span class="parameter">STRING</span> のレンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">COLOR</span> はテキストの色であり、 <span class="type">COLOR</span> 型である。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> に存在するキャッシュされたサーフェスを解放する。</li>
+			<li><span class="parameter">CACHE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> で新しく生成された <span class="type">SURFACE</span> をキャッシュする。キャッシュされたサーフェスは、アクセサ <a href="#cached-surface"><span class="operator">CACHED-SURFACE</span></a> を使用してアクセスでき、総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> を使用して対象のサーフェスにブリットできる。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+			<li>新しいキャッシュされたサーフェス <span class="type">SDL-SURFACE</span> を返す。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
+		<pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RENDER-STRING-BLENDED -->
 
-
 <!-- Entry for RENDER-STRING-SHADED -->
-
-<p><br>
-［関数］<br>
-<a class=none name='render-string-shaded'><b>render-string-shaded</b> <i>string fg-color bg-color <span class="lambda-kw">&amp;key</span> font free cache</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">FG-COLOR</span> and background color <span class="code">BG-COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is filled with <span class="code">BG-COLOR</span> so the surface cannot be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+<a name="render-string-shaded"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">render-string-shaded</span> <span class="parameter">string fg-color bg-color <span class="lambda-kw">&amp;key</span> font free cache</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>テキストカラー <span class="parameter">FG-COLOR</span> および背景色 <span class="parameter">BG-COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、文字列 <span class="parameter">STRING</span> を新しい <span class="type">SURFACE</span> にレンダリングする。新しいサーフェスの寸法は、高さ == <span class="parameter">FONT</span> の高さ（ height ）、幅 == <span class="parameter">FONT</span> の幅 * <span class="parameter">STRING</span> 長である。サーフェスの背景は <span class="parameter">BG-COLOR</span> で塗りつぶされるため、サーフェスは他のサーフェスにキー入力できない。<span class="note-by-editor">（※他のサーフェスを越えてキー入力されない？）</span>　<span class="parameter">FONT</span> オブジェクトに新しいサーフェスをキャッシュするには、 <span class="code">:CACHE T</span> を使用する。 <span class="code">:FREE T</span> である時、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスは、自動的に解放される。 <span class="code">:FREE NIL</span> である時、呼び出し元は、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスを解放する責任がある。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified. </li>
-			<li><span class="code">FG-COLOR</span> color is the text color, of type <span class="code">COLOR</span></li>
-			<li><span class="code">BG-COLOR</span> color is the background color used to fill the surface, of type <span class="code">COLOR</span></li>
-			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisiting cached surface in <span class="code">FONT</span>.</li>
-			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+			<li><span class="parameter">STRING</span> は、レンダリングするテキストである。</li>
+			<li><span class="parameter">FONT</span> は、 <span class="parameter">STRING</span> のレンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">FG-COLOR</span> はテキストカラーであり、 <span class="type">COLOR</span> 型である。</li>
+			<li><span class="parameter">BG-COLOR</span> は、サーフェスを塗りつぶすのに使用される背景色であり、 <span class="type">COLOR</span> 型である。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> に存在するキャッシュされたサーフェスを解放する。</li>
+			<li><span class="parameter">CACHE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> で新しく生成された <span class="type">SURFACE</span> をキャッシュする。キャッシュされたサーフェスは、アクセサ <a href="#cached-surface"><span class="operator">CACHED-SURFACE</span></a> を使用してアクセスでき、総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> を使用して対象のサーフェスにブリットできる。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+			<li>新しいキャッシュされたサーフェス <span class="type">SDL-SURFACE</span> を返す。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(RENDER-STRING-SHADED &quot;Hello World!&quot; F-COLOR B-COLOR) </pre>
+		<pre class="code">(RENDER-STRING-SHADED &quot;Hello World!&quot; F-COLOR B-COLOR) </pre>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RENDER-STRING-SHADED -->
 
-
 <!-- Entry for RENDER-STRING-SOLID -->
-
-<p><br>
-［関数］<br>
-<a class=none name='render-string-solid'><b>render-string-solid</b> <i>string <span class="lambda-kw">&amp;key</span> font color free cache</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Render the string <span class="code">STRING</span> using font <span class="code">FONT</span> with text color <span class="code">COLOR</span> to a new <span class="code">SURFACE</span>. The dimensions of the new surface are height == <span class="code">FONT</span> height, and width == <span class="code">FONT</span> width * <span class="code">STRING</span> length. The surface background is transparent and therefore can be keyed over other surfaces. Use <span class="code">:CACHE T</span> to cache the new surface in the <span class="code">FONT</span> object. When <span class="code">:FREE T</span> any exisiting cached surface in <span class="code">FONT</span> is automatically freed. When <span class="code">:FREE NIL</span> the caller is responsible for freeing any existing cached surface in <span class="code">FONT</span>.
+<a name="render-string-solid"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">render-string-solid</span> <span class="parameter">string <span class="lambda-kw">&amp;key</span> font color free cache</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>テキストカラー <span class="parameter">COLOR</span> のフォント <span class="parameter">FONT</span> を使用して、文字列 <span class="parameter">STRING</span> を新しい <span class="type">SURFACE</span> にレンダリングする。新しいサーフェスの寸法は、高さ == <span class="parameter">FONT</span> の高さ（ height ）、幅 == <span class="parameter">FONT</span> の幅 * <span class="parameter">STRING</span> 長である。サーフェスの背景は透明であるため、他のサーフェスにキー入力できる。<span class="note-by-editor">（※他のサーフェスを越えてキー入力される？）</span>　<span class="parameter">FONT</span> オブジェクトに新しいサーフェスをキャッシュするには、 <span class="code">:CACHE T</span> を使用する。 <span class="code">:FREE T</span> である時、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスは、自動的に解放される。 <span class="code">:FREE NIL</span> である時、呼び出し元は、キャッシュされた <span class="parameter">FONT</span> に存在するサーフェスを解放する責任がある。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STRING</span> is the text to render.</li>
-			<li><span class="code">FONT</span> is the font face used to render the <span class="code">STRING</span>. Of type <span class="code">FONT</span>.  Bound to <span class="code">*DEFAULT-FONT*</span> if unspecified.</li>
-			<li><span class="code">COLOR</span> color is the text color, of type <span class="code">COLOR</span>.</li>
-			<li><span class="code">FREE</span> when <span class="code">T</span> will free any exisitng cached surface in <span class="code">FONT</span>.</li>
-			<li><span class="code">CACHE</span> when <span class="code">T</span> will cache the newly created SURFACE in <span class="code">FONT</span>. Any cached surface can be accessed using <a href="#cached-surface">CACHED-SURFACE</a> and can be blitted to a target surface using <a href="#draw-font">DRAW-FONT</a>. </li>
+			<li><span class="parameter">STRING</span> は、レンダリングするテキストである。</li>
+			<li><span class="parameter">FONT</span> は、 <span class="parameter">STRING</span> のレンダリングに使用されるフォントフェイスであり、 <span class="type">FONT</span> 型である。指定されない場合、 <span class="variable">*DEFAULT-FONT*</span> に束縛される。</li>
+			<li><span class="parameter">COLOR</span> はテキストの色であり、 <span class="type">COLOR</span> 型である。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> に存在するキャッシュされたサーフェスを解放する。</li>
+			<li><span class="parameter">CACHE</span> が <span class="code">T</span> である時、 <span class="parameter">FONT</span> で新しく生成された <span class="type">SURFACE</span> をキャッシュする。キャッシュされたサーフェスは、アクセサ <a href="#cached-surface"><span class="operator">CACHED-SURFACE</span></a> を使用してアクセスでき、総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> を使用して対象のサーフェスにブリットできる。</li>
 		</ul>
+
 		<div class="title">戻り値</div>
 		<ul>
-			<li>Returns a new cached surface <span class="code">SDL-SURFACE</span>.</li>
+			<li>新しいキャッシュされたサーフェス <span class="type">SDL-SURFACE</span> を返す。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
+		<pre class="code">(DRAW-STRING-SOLID &quot;Hello World!&quot; :COLOR A-COLOR) </pre>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em>, and <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> および <span class="module">LISPBUILDER-SDL-TTF</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RENDER-STRING-SOLID -->
 
 
@@ -5288,127 +5250,118 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for RETURN-SUB-SYSTEMS-OF-STATUS -->
 
-
 <!-- Entry for RLE-ACCEL-ENABLED-P -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='rle-accel-enabled-p'><b>rle-accel-enabled-p</b> <i>surface</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>rle-accel-enabled-p</b> <i>surface</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="rle-accel-enabled-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">rle-accel-enabled-p</span> <span class="parameter">surface</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">rle-accel-enabled-p</span> <span class="parameter">surface</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for RLE-ACCEL-ENABLED-P -->
 
-
 <!-- Entry for RLE-ACCEL-ENABLED-P -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>rle-accel-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>rle-accel-enabled-p</b> <i>(surface <span class="type">sdl-surface</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">rle-accel-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">rle-accel-enabled-p</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for RLE-ACCEL-ENABLED-P -->
 
 
 <!-- Entry for ROTATE-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rotate-surface'><b>rotate-surface</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoom smooth</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
+<a name="rotate-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rotate-surface</span> <span class="parameter">degrees <span class="lambda-kw">&amp;key</span> surface free zoom smooth</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">DEGREES</span> まで回転させられた新しい <a href="#surface"><span class="type">SURFACE</span></a> を返す。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">DEGREES</span> is the rotation in degrees.</li>
-			<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
-			<li><span class="code">:ZOOM</span> is the scaling factor.</li>
-			<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
+			<li><span class="parameter">DEGREES</span> は、度単位での回転（角度）である。</li>
+			<li><span class="parameter">SURFACE</span> は、 <a href="#surface"><span class="type">SURFACE</span></a> を回転させるサーフェスである。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">SURFACE</span> を解放する。</li>
+			<li><span class="parameter">ZOOM</span> は縮尺係数である。</li>
+			<li><span class="parameter">SMOOTH</span> が <span class="code">T</span> である時、新しいサーフェスをアンチエイリアスする。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
-			<li><em>LISPBUILDER-SDL</em> supports rotations of only <span class="code">0</span>, <span class="code">90</span>, <span class="code">180</span>, or <span class="code">270</span> degrees. <em>LISPBUILDER-SDL-GFX</em> supports any rotation. </li>
-			<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:SMOOTH</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:SMOOTH</span>.</li>
-			<li><em>LISPBUILDER-SDL</em> ignores <span class="code">:ZOOM</span>. <em>LISPBUILDER-SDL-GFX</em> supports <span class="code">:ZOOM</span>.</li>
-			<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> は、 <span class="code">0</span> 、 <span class="code">90</span> 、 <span class="code">180</span> 、 <span class="code">270</span> 度の回転にのみ対応する。 <span class="module">LISPBUILDER-SDL-GFX</span> は、あらゆる回転（角度）に対応する。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> は <span class="parameter">SMOOTH</span> を無視する。 <span class="module">LISPBUILDER-SDL-GFX</span> は <span class="parameter">:SMOOTH</span> に対応する。</li>
+			<li><span class="module">LISPBUILDER-SDL</span> は <span class="parameter">ZOOM</span> を無視する。 <span class="module">LISPBUILDER-SDL-GFX</span> は <span class="parameter">ZOOM</span> に対応する。</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> は <span class="parameter">FREE</span> を無視する。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ROTATE-SURFACE -->
 
-
 <!-- Entry for ROTATE-SURFACE-XY -->
-
-<p><br>
-［関数］<br>
-<a class=none name='rotate-surface-xy'><b>rotate-surface-xy</b> <i>degrees <span class="lambda-kw">&amp;key</span> surface free zoomx zoomy smooth</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns a new <a href="#surface">SURFACE</a> rotated to <span class="code">DEGREES</span>.
+<a name="rotate-surface-xy"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">rotate-surface-xy</span> <span class="parameter">degrees <span class="lambda-kw">&amp;key</span> surface free zoomx zoomy smooth</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">DEGREES</span> まで回転させられた新しい <a href="#surface"><span class="type">SURFACE</span></a> を返す。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">DEGREES</span> is the rotation in degrees.</li>
-			<li><span class="code">:SURFACE</span> is the surface to rotate <a href="#surface">SURFACE</a>.</li>
-			<li><span class="code">:FREE</span> when <span class="code">T</span> will free <span class="code">SURFACE</span>.</li>
-			<li><span class="code">:ZOOMX</span> and <span class="code">ZOOMY</span> are the the scaling factors. A negative scaling factor will flip the corresponding axis. <em>Note</em>: Flipping is only supported with anti-aliasing turned off. </li>
-			<li><span class="code">:SMOOTH</span> when <span class="code">T</span> will anti-aliase the new surface.</li>
+			<li><span class="parameter">DEGREES</span> は、度単位での回転（角度）である。</li>
+			<li><span class="parameter">SURFACE</span> は、 <a href="#surface"><span class="type">SURFACE</span></a> を回転させるサーフェスである。</li>
+			<li><span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">SURFACE</span> を解放する。</li>
+			<li><span class="parameter">ZOOMX</span> および <span class="parameter">ZOOMY</span> は縮尺係数である。負の縮尺係数は、対応する軸を反転する。<span class="note">注釈：</span> 反転は、アンチエイリアスがオフの場合にのみ対応される。</li>
+			<li><span class="parameter">SMOOTH</span> が <span class="code">T</span> である時、新しいサーフェスをアンチエイリアスする。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-GFX</em></li>
-			<li><em>LISPBUILDER-SDL-GFX</em> ignores <span class="code">:FREE</span>.</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いて対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> は <span class="parameter">FREE</span> を無視する。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for ROTATE-SURFACE-XY -->
 
-
 <!-- Entry for RWOPS -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='rwops'><b>rwops</b></a>
-<blockquote><br>
-
-		<p>A wrapper around a foreign SDL_RWops object. Free using <a href="#free">FREE</a>.
+<a name="rwops"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">rwops</span>
+	</p>
+	<div class="desc">
+		<p>外部 SDL_RWops オブジェクト周りのラッパーである。総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for RWOPS -->
 
-
 <!-- Entry for SAVE-IMAGE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='save-image'><b>save-image</b> <i>surface filename</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Saves the <span class="code">SURFACE</span> as a <span class="code">BMP</span> image to a file at location <span class="code">FILENAME</span>.
+<a name="save-image"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">save-image</span> <span class="parameter">surface filename</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> を <span class="code">BMP</span> 画像として、場所 <span class="parameter">FILENAME</span> にあるファイルへ保存する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SAVE-IMAGE -->
-
 
 <!-- Entry for SDL-ANY-FORMAT -->
 <a name="sdl-any-format"></a>
@@ -5450,25 +5403,23 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for SDL-ASYNC-BLIT -->
 
-
 <!-- Entry for SDL-BITMAP-FONT -->
-
-<p><br>
-[Standard class]<br>
-<a class=none name='sdl-bitmap-font'><b>sdl-bitmap-font</b></a>
-<blockquote><br>
-
-		<p>The <span class="code">SDL-BITMAP-FONT</span> object manages the resources for a bitmap font. Prior to the first call to a <span class="code">RENDER-STRING*</span> function, the cached <a href="#surface">SURFACE</a> is <span class="code">NIL</span>.
+<a name="sdl-bitmap-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">[Standard class]</span>
+		<span class="type">sdl-bitmap-font</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">SDL-BITMAP-FONT</span> オブジェクトは、ビットマップフォント用リソースを管理する。関数 <span class="code">RENDER-STRING*</span> <span class="note-by-editor">（※関数 <a href="#render-string-blended"><span class="operator">render-string-blended</span></a> ／ 関数 <a href="#render-string-shaded"><span class="operator">render-string-shaded</span></a> ／ 関数 <a href="#render-string-solid"><span class="operator">render-string-solid</span></a> ）</span>への最初の呼出前は、キャッシュされた <a href="#surface"><span class="type">SURFACE</span></a> は <span class="code">NIL</span> である。
 		</p>
-		<p>The cached surface is created by a call to any of the RENDER-STRING* functions. Use <a href="#draw-font">DRAW-FONT</a>, <a href="#draw-font-at">DRAW-FONT-AT</a> or <a href="#draw-font-at-*">DRAW-FONT-AT-*</a> to draw the cached surface.
+		<p>キャッシュされたサーフェスは、関数 <span class="code">RENDER-STRING*</span>  への呼び出しにより生成される。キャッシュされたサーフェスを描画するには、総称関数 <a href="#draw-font"><span class="operator">DRAW-FONT</span></a> あるいは総称関数 <a href="#draw-font-at"><span class="operator">DRAW-FONT-AT</span></a> 、総称関数 <a href="#draw-font-at-*"><span class="operator">DRAW-FONT-AT-*</span></a> を使用する。
 		</p>
-		<p>Free using <a href="#free">FREE</a>
+		<p>総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SDL-BITMAP-FONT -->
-
 
 <!-- Entry for SDL-DOUBLEBUF -->
 <a name="sdl-doublebuf"></a>
@@ -5980,536 +5931,485 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for SDL-YVYU-OVERLAY -->
 
-
 <!-- Entry for SET-CELL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='set-cell'><b>set-cell</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to the bounds of <span class="code">RECTANGLE</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
+<a name="set-cell"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">set-cell</span> <span class="parameter">rectangle <span class="lambda-kw">&amp;key</span> surface index</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">INDEX</span> に於ける <span class="code">CELL</span> を、 <span class="parameter">RECTANGLE</span> の領域に設定する。<span class="note">注釈：</span> <span class="parameter">SURFACE</span> がブリットのソースである時、セルの矩形内領域のみが描画される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-CELL -->
 
-
 <!-- Entry for SET-CELL-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='set-cell-*'><b>set-cell-*</b> <i>x y w h <span class="lambda-kw">&amp;key</span> surface index</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">CELL</span> at <span class="code">INDEX</span> to a rectangle bounded by <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span>. <em>Note:</em> When <span class="code">SURFACE</span> is the source of a blit, only the area within the cell rectangle is drawn.
+<a name="set-cell-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">set-cell-*</span> <span class="parameter">x y w h <span class="lambda-kw">&amp;key</span> surface index</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">INDEX</span> に於ける <span class="code">CELL</span> を、 <span class="parameter">X</span> 、 <span class="parameter">Y</span> 、 <span class="parameter">W</span> 、 <span class="parameter">H</span> で囲まれた矩形に設定する。<span class="note">注釈：</span> <span class="parameter">SURFACE</span> がブリットのソースである時、セルの矩形内領域のみが描画される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-CELL-* -->
 
-
 <!-- Entry for SET-CLIP-RECT -->
-
-<p><br>
-［関数］<br>
-<a class=none name='set-clip-rect'><b>set-clip-rect</b> <i>rectangle <span class="lambda-kw">&amp;key</span> surface</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#clip-rect">CLIP-RECT</a>.
+<a name="set-clip-rect"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">set-clip-rect</span> <span class="parameter">rectangle <span class="lambda-kw">&amp;key</span> surface</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#clip-rect"><span class="operator">CLIP-RECT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-CLIP-RECT -->
 
-
 <!-- Entry for SET-COLOR -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-color'><b>set-color</b> <i>dst src</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Copies the <span class="code">RGB/A</span> color components to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
+<a name="set-color"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-color</span> <span class="parameter">dst src</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">RGB/A</span> 色成分を、ソース <span class="parameter">SRC</span> からデスティネーション <span class="parameter">DST</span> へコピーする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-COLOR -->
 
-
 <!-- Entry for SET-COLOR -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-color</b> <i>(dst <span class="type">color</span>) (src <span class="type">color</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-color</span> <span class="parameter">(dst <span class="type">color</span>) (src <span class="type">color</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SET-COLOR -->
 
-
 <!-- Entry for SET-COLOR-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-color-*'><b>set-color-*</b> <i>color <span class="lambda-kw">&amp;key</span> r g b a</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets <span class="code">COLOR</span> to the red <span class="code">R</span>, green <span class="code">G</span>, blue <span class="code">B</span> and alpha <span class="code">A</span> color components.
+<a name="set-color-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-color-*</span> <span class="parameter">color <span class="lambda-kw">&amp;key</span> r g b a</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">COLOR</span> を、赤 <span class="parameter">R</span> 、緑 <span class="parameter">G</span> 、青 <span class="parameter">B</span> 、アルファ <span class="parameter">A</span> 色成分に設定する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-COLOR-* -->
 
-
 <!-- Entry for SET-COLOR-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-color-*</b> <i>(color <span class="type">color</span>) <span class="lambda-kw">&amp;key</span> r g b a</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-color-*</span> <span class="parameter">(color <span class="type">color</span>) <span class="lambda-kw">&amp;key</span> r g b a</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SET-COLOR-* -->
 
-
 <!-- Entry for SET-DEFAULT-FONT -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-default-font'><b>set-default-font</b> <i>font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the font <span class="code">FONT</span> as the default font to be used for subsequent font rendering or drawing operations. Binds the symbol <span class="code">*DEFAULT-FONT*</span> to font. Functions that take a <span class="code">FONT</span> argument use <span class="code">*DEFAULT-FONT*</span> unless otherwise specified. Returns a new <span class="code">FONT</span>, or <span class="code">NIL</span> if unsuccessful.
+<a name="set-default-font"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-default-font</span> <span class="parameter">font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> を、後続のフォントのレンダリングあるいは描画処理として使用されるデフォルトのフォントとして設定する。シンボル <span class="variable">*DEFAULT-FONT*</span> をフォントに束縛する。 <span class="type">FONT</span> の引数をとる関数は、特に指定されない限り、 <span class="parameter">*DEFAULT-FONT*</span> を使用する。新しい  <span class="code">FONT</span> を返す。失敗した場合は、 <span class="code">NIL</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-DEFAULT-FONT -->
-
 
 <!-- Entry for SET-DEFAULT-FONT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-default-font</b> <i>(font <span class="type">bitmap-font</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-default-font</span> <span class="parameter">(font <span class="type">bitmap-font</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SET-DEFAULT-FONT -->
-
 
 <!-- Entry for SET-FONT-STYLE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='set-font-style'><b>set-font-style</b> <i>style <span class="lambda-kw">&amp;key</span> font</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the rendering style <span class="code">STYLE</span> of font <span class="code">FONT</span>. This will flush the internal cache of previously rendered glyphs, even if there is no change in style, so it may be best to check the  current style using <a href="#get-font-style">GET-FONT-STYLE</a> first.
+<a name="set-font-style"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">set-font-style</span> <span class="parameter">style <span class="lambda-kw">&amp;key</span> font</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>フォント <span class="parameter">FONT</span> のレンダリングスタイル <span class="parameter">STYLE</span> を設定する。これはスタイルに変化がない場合でさえ、以前にレンダリングされた字形（ glyph ）の内部キャッシュを流す（ flush ）ため、まず関数 <a href="#get-font-style"><span class="operator">GET-FONT-STYLE</span></a> を使用して、現在のスタイルを確認するのが最善であろう。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object.</li>
-			<li><span class="code">STYLE</span> is a list of one or more: <span class="code">:STYLE-NORMAL</span>, <span class="code">:STYLE-BOLD</span>, <span class="code">:STYLE-ITALIC</span>, <span class="code">:STYLE-UNDERLINE</span>. NOTE: Combining <span class="code">:STYLE-UNDERLINE</span> with anything  can cause a segfault, other combinations may also do this. </li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。</li>
+			<li><span class="code">STYLE</span> は、次の１つ以上のリストである。： <span class="code">:STYLE-NORMAL</span> 、 <span class="code">:STYLE-BOLD</span> 、 <span class="code">:STYLE-ITALIC</span> 、 <span class="code">:STYLE-UNDERLINE</span> 。<span class="note">注釈：</span> <span class="code">:STYLE-UNDERLINE</span> との組み合わせは、セグメンテーション違反となる可能性があり、他の組み合わせでも、こうなるかもしれない。</li>
 		</ul>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Supported in <em>LISPBUILDER-SDL-TTF</em></li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-FONT-STYLE -->
 
-
 <!-- Entry for SET-GL-ATTRIBUTE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='set-gl-attribute'><b>set-gl-attribute</b> <i>attribute value</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="set-gl-attribute"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">set-gl-attribute</span> <span class="parameter">attribute value</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for SET-GL-ATTRIBUTE -->
 
-
 <!-- Entry for SET-POINT -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-point'><b>set-point</b> <i>dst src</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination <span class="code">DST</span> from the source <span class="code">SRC</span>.
+<a name="set-point"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-point</span> <span class="parameter">dst src</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">X</span> および <span class="code">Y</span> 座標を、ソース <span class="parameter">SRC</span> からデスティネーション <span class="parameter">DST</span> へコピーする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT -->
 
-
 <!-- Entry for SET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point</b> <i>(dst <span class="type">sdl-surface</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">POINT</span> position coordinates of <span class="code">SURFACE</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の <span class="type">POINT</span> 座標位置を設定する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT -->
 
-
 <!-- Entry for SET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Copies the <span class="code">X</span> and <span class="code">Y</span> coordinates to the destination rectangle <span class="code">RECTANGLE</span> from the source point <span class="code">POSITION</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">X</span> および <span class="code">Y</span> 座標を、ソースの <span class="type">POINT</span> <span class="parameter">POSITION</span> からデスティネーションの <a href="#rectangle"><span class="type">RECTANGLE</span></a> <span class="parameter">RECTANGLE</span> へコピーする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT -->
 
-
 <!-- Entry for SET-POINT -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point</b> <i>(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the destination point <span class="code">DST</span> to the coordinates in the source point <span class="code">SRC</span>. Returns the destination point <span class="code">DST</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point</span> <span class="parameter">(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>デスティネーション <span class="type">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、ソース <span class="type">POINT</span> <span class="code">SRC</span> の座標に設定する。デスティネーション <span class="type">POINT</span> <span class="parameter">DST</span> を返す。
 		</p>
-
-</blockquote>
-
+		<p class="note-by-editor">※説明が紛らわしいが、値が変わるのはデスティネーション側。「デスティネーションの座標が、ソースと同じ座標に設定される」という意味。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SET-POINT -->
 
-
 <!-- Entry for SET-POINT-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-point-*'><b>set-point-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the object <span class="code">OBJ</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+<a name="set-point-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-point-*</span> <span class="parameter">obj <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>オブジェクト <span class="parameter">OBJ</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。 <span class="parameter">X</span> および <span class="parameter">Y</span> はキーワードパラメータである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT-* -->
 
-
 <!-- Entry for SET-POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> position coordinates of <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are integers.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標位置を設定する。 <span class="parameter">X</span> および <span class="parameter">Y</span> は整数（ <span class="type">INTEGER</span> ）である。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT-* -->
 
-
 <!-- Entry for SET-POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。 <span class="parameter">X</span> および <span class="parameter">Y</span> はキーワードパラメータである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POINT-* -->
 
-
 <!-- Entry for SET-POINT-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-point-*</b> <i>(obj <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the point <span class="code">POINT</span> to <span class="code">X</span> and <span class="code">Y</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-point-*</span> <span class="parameter">(point <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="type">POINT</span> <span class="parameter">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、 <span class="parameter">X</span> および <span class="parameter">Y</span> に設定する。
 		</p>
-
-</blockquote>
-
+		<p class="note-by-editor">※ <span class="parameter">POINT</span> 側が更新される。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SET-POINT-* -->
 
-
 <!-- Entry for SET-POSITION -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-position'><b>set-position</b> <i>dst src</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point">SET-POINT</a>
+<a name="set-position"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-position</span> <span class="parameter">dst src</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point"><span class="operator">SET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION -->
 
-
 <!-- Entry for SET-POSITION -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position</b> <i>(dst <span class="type">sdl-surface</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point">SET-POINT</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point"><span class="operator">SET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION -->
 
-
 <!-- Entry for SET-POSITION -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span> from the point <span class="code">POSITION</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>point <span class="parameter">POSITION</span> から、矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION -->
 
-
 <!-- Entry for SET-POSITION -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position</b> <i>(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point">SET-POINT</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position</span> <span class="parameter">(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point"><span class="operator">SET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION -->
 
-
 <!-- Entry for SET-POSITION-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-position-*'><b>set-position-*</b> <i>obj <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point-*">SET-POINT-*</a>
+<a name="set-position-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-position-*</span> <span class="parameter">obj <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point-*"><span class="operator">SET-POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION-* -->
 
-
 <!-- Entry for SET-POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point-*"><span class="operator">SET-POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION-* -->
 
-
 <!-- Entry for SET-POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span> and <span class="code">Y</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。 <span class="parameter">X</span> および <span class="parameter">Y</span> はキーワードパラメータである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION-* -->
 
-
 <!-- Entry for SET-POSITION-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-position-*</b> <i>(obj <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-position-*</span> <span class="parameter">(point <span class="type">vector</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point-*"><span class="operator">SET-POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-POSITION-* -->
-
 
 <!-- Entry for SET-RECTANGLE -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-rectangle'><b>set-rectangle</b> <i>dst src</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
+<a name="set-rectangle"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-rectangle</span> <span class="parameter">dst src</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> 座標を、ソースの矩形 <span class="parameter">SRC</span> からデスティネーションの矩形 <span class="parameter">DST</span> にコピーする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-RECTANGLE -->
-
 
 <!-- Entry for SET-RECTANGLE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-rectangle</b> <i>(dst <span class="type">rectangle</span>) (src <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Copies the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates to the destination rectangle <span class="code">DST</span> from the source rectangle <span class="code">SRC</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-rectangle</span> <span class="parameter">(dst <span class="type">rectangle</span>) (src <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> 座標を、ソースの矩形 <span class="parameter">SRC</span> からデスティネーションの矩形 <span class="parameter">DST</span> にコピーする。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-RECTANGLE -->
 
-
 <!-- Entry for SET-RECTANGLE-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-rectangle-*'><b>set-rectangle-*</b> <i>rectangle <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> coordinates of the rectangle <span class="code">RECTANGLE</span>. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">WIDTH</span> and <span class="code">HEIGHT</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
+<a name="set-rectangle-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-rectangle-*</span> <span class="parameter">rectangle <span class="lambda-kw">&amp;key</span> x y w h</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> 、 <span class="code">Y</span> 、 <span class="code">WIDTH</span> 、 <span class="code">HEIGHT</span> 座標を設定する。 <span class="parameter">X</span> 、 <span class="parameter">Y</span> 、 <span class="parameter">W</span> 、 <span class="parameter">H</span> は、指定されない場合のデフォルト値を <span class="code">0</span> とするキーワードパラメータである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-RECTANGLE-* -->
 
-
 <!-- Entry for SET-RECTANGLE-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-rectangle-*</b> <i>(rectangle <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y w h</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the coordinates of the rectangle <span class="code">RECTANGLE</span> to the specified <span class="code">X</span>, <span class="code">Y</span> , width <span class="code">W</span> and height <span class="code">HEIGHT</span> coordinates. <span class="code">X</span>, <span class="code">Y</span>, <span class="code">W</span> and <span class="code">H</span> are <span class="code">KEY</span>word parameters of type <span class="code">INTEGER</span>. Returns the rectangle <span class="code">RECTANGLE</span> as RESULT.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-rectangle-*</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) <span class="lambda-kw">&amp;key</span> x y w h</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の座標を、指定された <span class="parameter">X</span> 、 <span class="parameter">Y</span>  、 幅 <span class="parameter">W</span> 、 高さ <span class="parameter">H</span> 座標に設定する。 <span class="parameter">X</span> 、 <span class="parameter">Y</span> 、 <span class="parameter">W</span> 、 <span class="parameter">H</span> は、整数型（ <span class="type">INTEGER</span> ）のキーワードパラメータである。結果として、矩形 <span class="parameter">RECTANGLE</span> を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-RECTANGLE-* -->
 
-
 <!-- Entry for SET-SURFACE -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-surface'><b>set-surface</b> <i>surface position</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the coordinates of the surface SURFACE to <span class="code">POSITION</span>, where position is of type <span class="code">POINT</span>.
+<a name="set-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-surface</span> <span class="parameter">surface position</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>サーフェス <span class="parameter">SURFACE</span> の座標を <span class="parameter">POSITION</span> に設定する。この <span class="parameter">POSITION</span> は <span class="type">POINT</span> 型である。
 		</p>
-
-</blockquote>
-
+		<p class="note-by-editor">※<span class="parameter">SURFACE</span> の座標が更新される。
+		</p>
+	</div>
+</div>
 <!-- End of entry for SET-SURFACE -->
 
-
 <!-- Entry for SET-SURFACE -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-surface</b> <i>(surface <span class="type">sdl-surface</span>) (position <span class="type">vector</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point">SET-POINT</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-surface</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point"><span class="operator">SET-POINT</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-SURFACE -->
 
-
 <!-- Entry for SET-SURFACE-* -->
-
-<p><br>
-［総称関数］<br>
-<a class=none name='set-surface-*'><b>set-surface-*</b> <i>surface <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Sets the coordinates of the surface <span class="code">SURFACE</span>. <span class="code">X</span> and <span class="code">Y</span> are <span class="code">KEY</span>word parameters having default values of <span class="code">0</span> if unspecified.
+<a name="set-surface-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数］</span>
+		<span class="operator">set-surface-*</span> <span class="parameter">surface <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>サーフェス <span class="parameter">SURFACE</span> の座標を設定する。 <span class="parameter">X</span> および <span class="parameter">Y</span> は、指定されない場合のデフォルト値を <span class="code">0</span> とするキーワードパラメータである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-SURFACE-* -->
 
-
 <!-- Entry for SET-SURFACE-* -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>set-surface-*</b> <i>(surface <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#set-point-*">SET-POINT-*</a>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">set-surface-*</span> <span class="parameter">(surface <span class="type">sdl-surface</span>) <span class="lambda-kw">&amp;key</span> x y</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>総称関数 <a href="#set-point-*"><span class="operator">SET-POINT-*</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for SET-SURFACE-* -->
-
 
 <!-- Entry for SHOW-CURSOR -->
 <a name="show-cursor"></a>
@@ -7157,7 +7057,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">SDL ウィンドウサイズ変更イベント</div>
 		<pre class="code">(:VIDEO-RESIZE-EVENT (:W W :H H)
    ...) </pre>
-		<p><span class="constant">SDL-RESIZABLE</span> が関数 <a href="#window">WINDOW</a> へフラグとして渡される時、ユーザはアプリケーションウィンドウのサイズを変更できる。ウィンドウのサイズが変更される時、 <span class="code">VIDEO-RESIZE-EVENT</span> イベントが報告され、新しいウィンドウの幅および高さの値が、それぞれ <span class="parameter">W</span> および <span class="parameter">H</span> に保存される。 <span class="code">VIDEO-RESIZE-EVENT</span> イベントが受け取られた時、ウィンドウは関数 <a href="#window">WINDOW</a> を使用して、新しい寸法へサイズ変更されるべきである。
+		<p><span class="constant">SDL-RESIZABLE</span> が関数 <a href="#window"><span class="operator">WINDOW</span></a> へフラグとして渡される時、ユーザはアプリケーションウィンドウのサイズを変更できる。ウィンドウのサイズが変更される時、 <span class="code">VIDEO-RESIZE-EVENT</span> イベントが報告され、新しいウィンドウの幅および高さの値が、それぞれ <span class="parameter">W</span> および <span class="parameter">H</span> に保存される。 <span class="code">VIDEO-RESIZE-EVENT</span> イベントが受け取られた時、ウィンドウは関数 <a href="#window"><span class="operator">WINDOW</span></a> を使用して、新しい寸法へサイズ変更されるべきである。
 		</p>
 		<ul>
 			<li><span class="parameter">W</span> は、整数値（  <span class="type">INTEGER</span> ）でのウィンドウ幅である。</li>
@@ -7179,7 +7079,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">ユーザ</div>
 		<pre class="code">(:USER-EVENT (:TYPE TYPE :CODE CODE :DATA1 DATA1 :DATA2 DATA2)
    ...) </pre>
-		<p><span class="code">USER-EVENT</span> は、それが SDL ではなくユーザにより生成されるという点で独特である。 <span class="code">USER-EVENT</span> は、関数 <a href="#push-user-event">PUSH-USER-EVENT</a> を使用してイベントキューへプッシュできる。イベントの内容は完全にプログラマ次第である。
+		<p><span class="code">USER-EVENT</span> は、それが SDL ではなくユーザにより生成されるという点で独特である。 <span class="code">USER-EVENT</span> は、関数 <a href="#push-user-event"><span class="operator">PUSH-USER-EVENT</span></a> を使用してイベントキューへプッシュできる。イベントの内容は完全にプログラマ次第である。
 		</p>
 		<ul>
 			<li><span class="parameter">TYPE</span> は、<span class="code">SDL-USER-EVENT</span> から <span class="code">(- SDL-NUM-EVENTS 1)</span> 迄の値である。</li>
@@ -7300,12 +7200,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</p>
 		<ul>
 			<li>ライブラリがまだ初期化されていない場合、あるいは</li>
-			<li>関数 <a href="#sdl-init-on-startup">SDL-INIT-ON-STARTUP</a> の結果が <span class="code">T</span> である場合。</li>
+			<li>関数 <a href="#sdl-init-on-startup"><span class="operator">SDL-INIT-ON-STARTUP</span></a> の結果が <span class="code">T</span> である場合。</li>
 		</ul>
 		<p>SDL ライブラリは次の場合のみ初期化解除される。：
 		</p>
 		<ul>
-			<li>関数 <a href="#sdl-quit-on-exit">SDL-QUIT-ON-EXIT</a> の結果が <span class="code">T</span> である時。</li>
+			<li>関数 <a href="#sdl-quit-on-exit"><span class="operator">SDL-QUIT-ON-EXIT</span></a> の結果が <span class="code">T</span> である時。</li>
 		</ul>
 		<div class="title2">外部ライブラリの初期化／初期化解除</div>
 		<p>SDL ライブラリの初期化あるいは初期化解除に続いて外部ライブラリを自動的に初期化あるいは初期化解除できるようにするフックが提供されている。
