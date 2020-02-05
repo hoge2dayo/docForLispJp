@@ -6451,7 +6451,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for SURFACE -->
 
-
 <!-- Entry for SURFACE-INFO -->
 <a name="surface-info"></a>
 <div class="def">
@@ -6479,7 +6478,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for SURFACE-INFO -->
 
-
 <!-- Entry for TIME-SCALE -->
 <a name="time-scale"></a>
 <div class="def">
@@ -6506,7 +6504,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for TO-DEGREE -->
 
-
 <!-- Entry for TO-RADIAN -->
 <a name="to-radian"></a>
 <div class="def">
@@ -6520,7 +6517,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	</div>
 </div>
 <!-- End of entry for TO-RADIAN -->
-
 
 <!-- Entry for UPDATE-DISPLAY -->
 <a name="update-display"></a>
@@ -6540,187 +6536,174 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for UPDATE-DISPLAY -->
 
-
 <!-- Entry for UPDATE-INPUT-UTIL -->
-
-<p><br>
-［関数］<br>
-<a class=none name='update-input-util'><b>update-input-util</b> <i>time</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>This must be called once for each time period you are updating the application, in order to update keypress information.
+<a name="update-input-util"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">update-input-util</span> <span class="parameter">time</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>これは、ユーザがアプリケーションを更新する周期（ period ）ごとに、一度呼び出される必要がある。キー押下情報を更新する為である。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">TIME</span> is the time in seconds this update represents</li>
+			<li><span class="parameter">TIME</span> は、この更新が表す秒単位の時間である。
 		</ul>
+
 		<div class="title">戻り値</div>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for UPDATE-INPUT-UTIL -->
 
-
 <!-- Entry for UPDATE-SURFACE -->
-
-<p><br>
-［関数］<br>
-<a class=none name='update-surface'><b>update-surface</b> <i>surface <span class="lambda-kw">&amp;optional</span> template</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Updates the surface
+<a name="update-surface"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">update-surface</span> <span class="parameter">surface <span class="lambda-kw">&amp;optional</span> template</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>サーフェスを更新する。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for UPDATE-SURFACE -->
 
-
 <!-- Entry for UPDATE-SURFACE-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='update-surface-*'><b>update-surface-*</b> <i>surface x y w h</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#update-surface">UPDATE-SURFACE</a>.
+<a name="update-surface-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">update-surface-*</span> <span class="parameter">surface x y w h</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#update-surface"><span class="operator">UPDATE-SURFACE</span></a> 参照。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for UPDATE-SURFACE-* -->
 
-
 <!-- Entry for VIDEO-DIMENSIONS -->
-
-<p><br>
-［関数］<br>
-<a class=none name='video-dimensions'><b>video-dimensions</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the best video dimensions if called before a window is created, using <a href="#window">WINDOW</a>. Returns the current video dimensions if called after a window is created. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>
+<a name="video-dimensions"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">video-dimensions</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ウィンドウ生成前に呼び出された場合、関数 <a href="#window"><span class="operator">WINDOW</span></a> を使用して、最適のビデオサイズを返す。ウィンドウ生成後に呼び出された場合、現在のビデオサイズを返す。関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> を使用した SDL 初期化後に呼び出される必要がある。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for VIDEO-DIMENSIONS -->
 
-
 <!-- Entry for VIDEO-DRIVER-NAME -->
-
-<p><br>
-［関数］<br>
-<a class=none name='video-driver-name'><b>video-driver-name</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the driver name of the initialised video driver. The driver name is a <span class="code">STRING</span> containing a one-word identifier like &quot;x11&quot; or &quot;windib&quot;. Returns &#039;NIL&#039; if the video driver is not already initialised with <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
+<a name="video-driver-name"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">video-driver-name</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>初期化されたビデオドライバのドライバ名を返す。ドライバ名は、 &quot;x11&quot; あるいは &quot;windib&quot; のような一単語の識別子を含む <span class="type">STRING</span> である。ビデオドライバがまだ関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> により初期化されていない場合、 <span class="code">NIL</span> を返す。
 		</p>
+
 		<div class="title">例</div>
-<pre class="code">(sdl:with-init ()
+		<pre class="code">(sdl:with-init ()
   (sdl:video-driver-name)) &gt;&gt; &quot;windib&quot; </pre>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for VIDEO-DRIVER-NAME -->
 
-
 <!-- Entry for VIDEO-INFO -->
-
-<p><br>
-［関数］<br>
-<a class=none name='video-info'><b>video-info</b> <i><span class="lambda-kw">&amp;optional</span> info</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns information about the video hardware. <span class="code">GET-VIDEO-INFO</span> must be called after SDL is initialised using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>. If <span class="code">GET-VIDEO-INFO</span> is called before <a href="#window">WINDOW</a>, the information returned is of the <em>best</em> video mode. If <span class="code">GET-VIDEO-INFO</span> is called after <a href="#window">WINDOW</a>, the information returned is of the <em>current</em> video mode.
+<a name="video-info"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">video-info</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> info</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>ビデオハードウェアに関する情報を返す。 <span class="code">GET-VIDEO-INFO</span> は、関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> を使用した SDL 初期化後に呼び出される必要がある。 <span class="code">GET-VIDEO-INFO</span> が関数 <a href="#window"><span class="operator">WINDOW</span></a> の（呼び出し）前に呼び出された場合、返される情報は、<span class="e1">最適な</span>ビデオモードの情報である。 <span class="code">GET-VIDEO-INFO</span> が関数 <a href="#window"><span class="operator">WINDOW</span></a> の（呼び出し）後に呼び出された場合、返される情報は<span class="e1">現在の</span>ビデオモードの情報である。
 		</p>
+		<p class="note-by-editor">※ <span class="code">GET-VIDEO-INFO</span> は関数 <span class="operator">VIDEO-INFO</span> の誤記と思われる。
+		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">INFO</span> can be one of <span class="code">:HW-AVAILABLE</span>, <span class="code">:WM-AVAILABLE</span>, <span class="code">:BLIT-HW</span>, <span class="code">:BLIT-HW-CC</span>, <span class="code">:BLIT-HW-A</span>, <span class="code">:BLIT-SW</span>, <span class="code">:BLIT-SW-CC</span>, <span class="code">:BLIT-SW-A</span>or <span class="code">:BLIT-FILL</span>. If <span class="code">NIL</span>, returns a list of all supported video flags. </li>
+			<li><span class="parameter">INFO</span> は、次のいずれかにできる。： <span class="code">:HW-AVAILABLE</span> 、 <span class="code">:WM-AVAILABLE</span> 、 <span class="code">:BLIT-HW</span> 、 <span class="code">:BLIT-HW-CC</span> 、 <span class="code">:BLIT-HW-A</span> 、 <span class="code">:BLIT-SW</span> 、 <span class="code">:BLIT-SW-CC</span> 、 <span class="code">:BLIT-SW-A</span> 、 <span class="code">:BLIT-FILL</span> 。 <span class="code">NIL</span> である場合、全ての対応されているビデオフラグのリストを返す。
+</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(video-info :HW-AVAILABLE) </pre>
-
-</blockquote>
-
+		<pre class="code">(video-info :HW-AVAILABLE) </pre>
+	</div>
+</div>
 <!-- End of entry for VIDEO-INFO -->
 
-
 <!-- Entry for VIDEO-MEMORY -->
-
-<p><br>
-［関数］<br>
-<a class=none name='video-memory'><b>video-memory</b> <i></i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the amount of video memory of the graphics hardware. Must be called after SDL is initialized using <a href="#init-sdl">INIT-SDL</a> or <a href="#with-init">WITH-INIT</a>.
+<a name="video-memory"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">video-memory</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>グラフィックスハードウェアのビデオメモリの量を返す。関数 <a href="#init-sdl"><span class="operator">INIT-SDL</span></a> あるいはマクロ <a href="#with-init"><span class="operator">WITH-INIT</span></a> を使用して SDL が初期化された後に呼び出される必要がある。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for VIDEO-MEMORY -->
 
-
 <!-- Entry for WIDTH -->
-
-<p><br>
-［総称関数（アクセサ）］<br>
-<a class=none name='width'><b>width</b> <i>obj</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>width</b> <i>obj</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<a name="width"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［総称関数（アクセサ）］</span>
+		<span class="operator">width</span> <span class="parameter">obj</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">width</span> <span class="parameter">obj</span>) <span class="parameter">value</span>)
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for WIDTH -->
 
-
 <!-- Entry for WIDTH -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>width</b> <i>(obj <span class="type">font</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-
-
-</blockquote>
-
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">width</span> <span class="parameter">(font <span class="type">font</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+	</div>
+</div>
 <!-- End of entry for WIDTH -->
 
-
 <!-- Entry for WIDTH -->
-
-<p><br>
-［メソッド］<br>
-<a class=none><b>width</b> <i>(obj <span class="type">sdl-surface</span>)</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Returns the width of <span class="code">SURFACE</span> as an <span class="code">INTEGER</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド］</span>
+		<span class="operator">width</span> <span class="parameter">(surface <span class="type">sdl-surface</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="parameter">SURFACE</span> の幅を整数（ <span class="type">INTEGER</span> ）として返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WIDTH -->
-
 
 <!-- Entry for WIDTH -->
-
-<p><br>
-［メソッド（アクセサ）］<br>
-<a class=none><b>width</b> <i>(obj <span class="type">rectangle</span>)</i> =&gt; <i>result</i></a>
-<br>
-<a class=none><tt>(setf (</tt><b>width</b> <i>(obj <span class="type">rectangle</span>)</i><tt>)</tt> <i>value</i><tt>)</tt></a>
-<blockquote><br>
-
-		<p>Returns the <span class="code">INTEGER</span> width of the rectangle <span class="code">RECTANGLE</span>.
+<div class="def">
+	<p class="form">
+		<span class="deftype">［メソッド（アクセサ）］</span>
+		<span class="operator">width</span> <span class="parameter">(rectangle <span class="type">rectangle</span>)</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>矩形 <span class="parameter">RECTANGLE</span> の整数（ <span class="type">INTEGER</span> ）幅を返す。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WIDTH -->
-
 
 <!-- Entry for WINDOW -->
 <a name="window"></a>
@@ -6754,111 +6737,120 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
                  :FLAGS &#039;(SDL-DOUBLEBUF SDL-FULLSCREEN))</pre>
 	</div>
 </div>
-
-<blockquote><br>
-
-
-</blockquote>
-
 <!-- End of entry for WINDOW -->
 
-
 <!-- Entry for WITH-BEZIER -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-bezier'><b>with-bezier</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a bezier curve of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the Bezier curve is defined by control points. A control point is a vertex containing an X and Y coordinate pair.
+<a name="with-bezier"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-bezier</span> <span class="parameter">(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="variable">*DEFAULT-COLOR*</span> のベジエ曲線を、 <span class="variable">*DEFAULT-SURFACE*</span> に描画する。ベジエ曲線の形状は、制御点により定義される。制御点は、 <span class="code">X</span> および <span class="code">Y</span> 座標の組を含む頂点である。
 		</p>
-		<p>The number of segments <span class="code">SEGENTS</span> used to draw the Bezier curve defaults to 10. The greater the number of segments, the smoother the Bezier curve.
+		<p>ベジエ曲線の描画に使用されるセグメント <span class="parameter">SEGENTS</span> の数は、デフォルトで <span class="code">10</span> である。セグメント数が多いほど、ベジエ曲線は滑らかになる。
 		</p>
-		<div class="title">Local Methods</div>
-		<p>A vertex may be added using:
+
+		<div class="title">ローカルメソッド</div>
+		<p>次を使用して頂点を追加できる。：
 		</p>
 		<ul>
-			<li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">POINT</span>, or</li>
-			<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
+			<li><span class="type">POINT</span> を受け入れる <span class="operator">ADD-VERTEX</span> あるいは</li>
+			<li>x/y 座標を展開したバージョンである <span class="operator">ADD-VERTEX-*</span></li>
 		</ul>
-		<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scop of <span class="code">WITH-BEZIER</span>.
+		<p><span class="operator">ADD-VERTEX</span> および <span class="operator">ADD-VERTEX-*</span> は、マクロ <span class="operator">WITH-BEZIER</span> のスコープ内でのみ有効である。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STYLE</span> is one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. When <span class="code">STYLE</span> is <span class="code">:SOLID</span>, a single continuous line is drawn through the specified waypoints. When <span class="code">STYLE</span> is <span class="code">:DASH</span>, a line is drawn to alternate waypoint pairs. When <span class="code">STYLE</span> is <span class="code">:POINTS</span>, a single point is drawn at each waypoint. </li>
-			<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Bezier curve. Default is 20 segments if unspecified. The greater the number of segments, the smoother the curve. </li>
+			<li><span class="parameter">STYLE</span> は、<span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、  <span class="code">:POINTS</span> のいずれかである。</li>
+				<ul>
+					<li><span class="parameter">STYLE</span> が <span class="code">:SOLID</span> である時、指定された通過点を通る単一の連続線が描画される。<span class="note-by-editor">（※誤記ではないか？　ベジエ曲線は始点と終点以外の制御点を通過しない。）</span></li>
+					<li><span class="parameter">STYLE</span> が <span class="code">:DASH</span> である時、線は通過点の組の間を交互に描画される。</li>
+					<li><span class="parameter">STYLE</span> が <span class="code">:POINTS</span> である時、各通過点に単一の点が描画される。</li>
+				</ul>
+			<li><span class="parameter">SEGMENTS</span> は、ベジエ曲線の描画に使用されるセグメント数である。指定されない場合、デフォルトは <span class="code">20</span> セグメントである。セグメント数が多いほど、曲線は滑らかになる。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
+		<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
    (WITH-BEZIER ()
      (ADD-VERTEX-* 60  40)
      (ADD-VERTEX-* 160 10)
      (ADD-VERTEX-* 170 150)
      (ADD-VERTEX-* 60  150))) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WITH-BEZIER -->
 
 
 <!-- Entry for WITH-COLOR -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-color'><b>with-color</b> <i>(var <span class="lambda-kw">&amp;optional</span> color free) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>A convience macro that binds <span class="code">*DEFAULT-COLOR*</span> to <span class="code">VAR</span> within the scope of <span class="code">WITH-COLOR</span>. <span class="code">VAR</span> is set to <span class="code">COLOR</span> when <span class="code">COLOR</span> is not <span class="code">NIL</span>.<span class="code">VAR</span> must be of type <a href="#color">COLOR</a>, or <a href="#color-a">COLOR-A</a>. <span class="code">VAR</span> is freed using <a href="#free">FREE</a> when <span class="code">FREE</span> is <span class="code">T</span>.
+<a name="with-color"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-color</span> <span class="parameter">(var <span class="lambda-kw">&amp;optional</span> color free) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>マクロ <span class="operator">WITH-COLOR</span> のスコープ内で、<span class="variable">*DEFAULT-COLOR*</span> を <span class="parameter">VAR</span> に束縛する便利なマクロである。 <span class="parameter">COLOR</span> が <span class="code">NIL</span> でない時、 <span class="parameter">VAR</span> は <span class="parameter">COLOR</span> に設定される。 <span class="parameter">VAR</span> <span class="note-by-editor">（※ <span class="parameter">COLOR</span> の誤記か？）</span>は <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> 型である必要がある。 <span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">VAR</span> は総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放される。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WITH-COLOR -->
 
-
 <!-- Entry for WITH-CURVE -->
-
-<p><br>
-［マクロ］<br>
-<a class=none name='with-curve'><b>with-curve</b> <i>(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Draw a Cattmul-Rom spline of <span class="code">*DEFAULT-COLOR*</span> to <span class="code">*DEFAULT-SURFACE*</span>. The shape of the curve is defined by waypoints. A waypoint is a vertex containing an X and Y coordinate pair.
+<a name="with-curve"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［マクロ］</span>
+		<span class="operator">with-curve</span> <span class="parameter">(<span class="lambda-kw">&amp;optional</span> style segments) declaration* statement*</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="variable">*DEFAULT-COLOR*</span> の Cattmul-Rom （キャットムル・ロム）スプライン（曲線）を、 <span class="variable">*DEFAULT-SURFACE*</span> に描画する。曲線の形状は、通過点により定義される。通過点は、 <span class="code">X</span> および <span class="code">Y</span> 座標の組を含む頂点である。
 		</p>
-		<div class="title">Local Methods</div>
-		<p>A vertex may be added using:
+
+		<div class="title">ローカルメソッド</div>
+		<p>頂点は、次を使用して追加される。：
 		</p>
 		<ul>
-			<li><span class="code">ADD-VERTEX</span> which accepts an <span class="code">SDL:POINT</span>, or</li>
-			<li><span class="code">ADD-VERTEX-*</span> which is the x/y spread version</li>
+			<li><span class="type">SDL:POINT</span> を受け入れる <span class="operator">ADD-VERTEX</span> あるいは</li>
+			<li>x/y 展開したバージョンである <span class="operator">ADD-VERTEX-*</span></li>
 		</ul>
-		<p><span class="code">ADD-VERTEX</span> and <span class="code">ADD-VERTEX-*</span> are valid only within the scope of <span class="code">WITH-CURVE</span>.
+		<p><span class="operator">ADD-VERTEX</span> および <span class="operator">ADD-VERTEX-*</span> は、マクロ <span class="operator">WITH-CURVE</span> のスコープ内でのみ有効である。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">STYLE</span> describes the line style used to draw the curve and may be one of <span class="code">:SOLID</span>, <span class="code">:DASH</span>, or <span class="code">:POINTS</span>. Use <span class="code">:SOLID</span> to draw a single continuous line through the specified waypoints. Use <span class="code">:DASH</span> to draw a line between alternate waypoint pairs. Use <span class="code">:POINTS</span> to draw a single pixel at each waypoint. </li>
-			<li><span class="code">SEGMENTS</span> is the number of segments used to draw the Catmull-Rom spline. Default is 20 segments if unspecified. The greater the number of segments, the smoother the spline. </li>
+			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、 <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> のいずれかにできる。</li>
+			<ul>
+				<li><span class="code">:SOLID</span> を使用して、指定された通過点を通る単一の連続線を描画する。</li>
+				<li><span class="code">:DASH</span> を使用して、通過点の組の間を交互に線を描画する。</li>
+				<li><span class="code">:POINTS</span> を使用して、各通過点に単一ピクセルを描画する。</li>
+			</ul>
+			<li><span class="parameter">SEGMENTS</span> は、 Cattmul-Rom （キャットムル・ロム）スプラインを描画するのに使用されるセグメント数である。指定されない場合、デフォルトは <span class="code">20</span> セグメントである。セグメント数が多いほど、スプラインは滑らかになる。</li>
 		</ul>
+
 		<div class="title">例</div>
-<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
+		<pre class="code">(SDL:WITH-COLOR (COL (SDL:COLOR))
    (WITH-CURVE (:SOLID 30)
      (ADD-VERTEX-* 60  40)
      (ADD-VERTEX-* 160 10)
      (ADD-VERTEX-* 170 150)
      (ADD-VERTEX-* 60  150))) </pre>
+
 		<div class="title">パッケージ</div>
 		<ul>
-			<li>Also supported in <em>LISPBUILDER-SDL-GFX</em></li>
+			<li><span class="module">LISPBUILDER-SDL-GFX</span> に於いても対応される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for WITH-CURVE -->
-
 
 <!-- Entry for WITH-DEFAULT-FONT -->
 <a name="with-default-font"></a>
