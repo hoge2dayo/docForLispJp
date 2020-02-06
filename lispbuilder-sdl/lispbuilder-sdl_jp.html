@@ -1796,7 +1796,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<p>関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> 、関数 <a href="#copy-surface"><span class="operator">COPY-SURFACE</span></a> 、関数 <a href="#create-surface"><span class="operator">CREATE-SURFACE</span></a> の違い。：
 		</p>
 		<ul>
-			<li><p>関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> は<span class="e1">常に、キーカラー<span class="note-by-editor">（※カラーキーの誤りか？）</span>およびサーフェスのアルファに対応されている場合、ハードウェアアクセラレーションを使用して、ビデオメモリにサーフェスを生成しようとする</span>。ピクセルアルファ成分を指定できる。＊＊ 新しいサーフェスは、古いサーフェスで塗りつぶされる。
+			<li><p>関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> は<span class="e1">常に、キーカラー<span class="note-by-editor">（※カラーキーの誤記か？）</span>およびサーフェスのアルファに対応されている場合、ハードウェアアクセラレーションを使用して、ビデオメモリにサーフェスを生成しようとする</span>。ピクセルアルファ成分を指定できる。＊＊ 新しいサーフェスは、古いサーフェスで塗りつぶされる。
 		</p></li>
 			<li><p>関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> ＊＊ は、サーフェスを画面フォーマットへ変換する場合、関数 <a href="#convert-to-display-format"><span class="operator">CONVERT-TO-DISPLAY-FORMAT</span></a> を呼び出す。<span class="e1">パラメータ化されたオプションにより、新しいサーフェスをビデオメモリあるいはシステムメモリに生成する。</span>ピクセルフォーマットおよび色は、ソースサーフェスのものと一致する。＊＊ 新しいサーフェスは、古いサーフェスで塗りつぶされる。
 		</p></li>
@@ -2073,7 +2073,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li><span class="parameter">COLOR</span> は、 <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> の線の色である。</li>
 			<li><span class="parameter">STROKE-COLOR</span> が <span class="code">NIL</span> でない時、矩形の周囲に <span class="parameter">COLOR</span> 色で <span class="code">1</span> ピクセルの線を描画する。</li>
 			<li><span class="parameter">ALPHA</span> が <span class="code">0</span> から <span class="code">255</span> 迄である時、矩形を <span class="parameter">SURFACE</span> 上へブリットする時のアルファ透明度の値として使用される。<span class="note">注釈：</span> 中間サーフェスが生成され、矩形はこの中間サーフェス上に描画されてから、このサーフェスが <span class="parameter">SURFACE</span> へブリットされる。</li>
-			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span>　デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリが自動的に必要なクリッピングを実行する。</li>
+			<li><span class="parameter">CLIPPING</span> は <span class="code">NIL</span> である。<span class="note-by-editor">（？）</span> デフォルトは <span class="code">NIL</span> であり、 SDL ライブラリが自動的に必要なクリッピングを実行する。</li>
 		</ul>
 
 		<div class="title">パッケージ</div>
@@ -2847,7 +2847,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -2880,7 +2880,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3237,6 +3237,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>関数 <a href="#flood-fill-*"><span class="operator">FLOOD-FILL-*</span></a> 参照。
 		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
 			<li><span class="parameter">POINT</span> は塗りつぶしを示す位置であり、 <span class="type">POINT</span> 型である。</li>
@@ -3247,25 +3248,27 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 
 <!-- Entry for FLOOD-FILL-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='flood-fill-*'><b>flood-fill-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>Performs a flood fill of surface <span class="code">SURFACE</span> with color <span class="code">COLOR</span>. The fill starts at the position specified by the <span class="code">X</span> and <span class="code">Y</span> coordinates. Uses a stack based flood fill that does a lot of consing because it uses PUSH/POP as the stack.  This function is fast.
+<a name="flood-fill-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">flood-fill-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>色 <span class="parameter">COLOR</span> でサーフェス <span class="parameter">SURFACE</span> の領域塗りつぶし（ flood fill ）を実行する。塗りつぶしは、 <span class="parameter">X</span> および <span class="parameter">Y</span> 座標により指定された位置で開始する。スタックとしてプッシュ／ポップを使用するため、多量の cons を行なうスタックベースの領域塗りつぶし（ flood fill ）を使用する。この関数は高速である。
 		</p>
+		<p class="note-by-editor">※ <span class="parameter">surface</span> が <span class="code">NIL</span> の場合、 <span class="variable">*default-surface*</span> の値が用いられるが、この時 <span class="variable">*default-surface*</span> の値が <span class="code">NIL</span> である場合、エラーとなる。他の描画関数と異なり、 <span class="variable">*display-surface*</span> の値が用いられないので注意を要する。
+		</p>
+
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">X</span> and <span class="code">Y</span> are <span class="code">INTEGER</span> coordinates.</li>
-			<li><span class="code">SURFACE</span> is the target surface, of type <span class="code">SDL:SDL-SURFACE</span>. Bound to <span class="code">SDL:*DEFAULT-SURFACE*</span> if unspecified.</li>
-			<li><span class="code">COLOR</span> is the fill color, of type <span class="code">SDL:COLOR</span> or <span class="code">SDL:COLOR-A</span>. Bound to <span class="code">SDL:*DEFAULT-COLOR*</span> if unspecified.</li>
+			<li><span class="parameter">X</span> および <span class="parameter">Y</span> は整数（ <span class="type">INTEGER</span> ）座標である。</li>
+			<li><span class="parameter">SURFACE</span> は対象のサーフェスであり、 <span class="type">SDL:SDL-SURFACE</span> 型である。指定されない場合、 <span class="variable">SDL:*DEFAULT-SURFACE*</span> に束縛される。</li>
+			<li><span class="parameter">COLOR</span> は塗りつぶしの色であり、 <span class="type">SDL:COLOR</span> 型あるいは <span class="type">SDL:COLOR-A</span> 型である。指定されない場合、 <span class="variable">SDL:*DEFAULT-COLOR*</span> に束縛される。</li>
 		</ul>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FLOOD-FILL-* -->
-
 
 <!-- Entry for FLOOD-FILL-STACK -->
 <a name="flood-fill-stack"></a>
@@ -3285,25 +3288,23 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 </div>
 <!-- End of entry for FLOOD-FILL-STACK -->
 
-
 <!-- Entry for FLOOD-FILL-STACK-* -->
-
-<p><br>
-［関数］<br>
-<a class=none name='flood-fill-stack-*'><b>flood-fill-stack-*</b> <i>x y <span class="lambda-kw">&amp;key</span> surface color</i> =&gt; <i>result</i></a>
-<blockquote><br>
-
-		<p>See <a href="#flood-fill-*">FLOOD-FILL-*</a>.
+<a name="flood-fill-stack-*"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">flood-fill-stack-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p>関数 <a href="#flood-fill-*"><span class="operator">FLOOD-FILL-*</span></a> 参照。
 		</p>
-		<p><span class="code">FLOOD-FILL-STACK-*</span> is maintains an internal array-based stack.
+		<p>関数 <span class="operator">FLOOD-FILL-STACK-*</span> は、内部の配列を基にしたスタックを保持する。
 		</p>
-		<p><em>Note</em>: More of an experiment to see if an array would be faster than a bunch of consing.  The timing of both functions indicates they run at the same speed. With compiler declarations it may have better results.  Another disadvantage to this is it preallocates the stack, chewing up quite a bit of ram.
+		<p><span class="note">注釈：</span> 配列が多量のコンシングより高速かどうかを確認するための多くの実験。<span class="note-by-editor">（実験用の関数という意味か？）</span> 両方の関数のタイミングは、それらが同じ速度で実行することを示す。コンパイラ宣言を伴うと、よりよい結果が得られることがある。これのもう一つの欠点は、事前にスタックを割り当てて、かなり多くの RAM を消費することである。
 		</p>
-
-</blockquote>
-
+	</div>
+</div>
 <!-- End of entry for FLOOD-FILL-STACK-* -->
-
 
 <!-- Entry for FP -->
 <a name="fp"></a>
@@ -3375,7 +3376,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">frame-rate</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span> =&gt; <span class="result">result</span> ／ (setf (<span class="operator">frame-rate</span> <span class="parameter"><span class="lambda-kw">&amp;optional</span> fpsmanager</span>) <span class="parameter">rate</span>)
 	</p>
 	<div class="desc">
-		<p>対象ゲームループのフレームレートを管理する。 <span class="parameter">RATE</span> &gt; <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が <span class="code">0</span> より大きい場合）</span>は、ゲームループを指定されたフレームレートに固定し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> = <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が <span class="code">0</span> である場合）</span>は、フレームレート固定を解除し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> &lt; <span class="code">0</span> <span class="note-by-editor">（※ <span class="parameter">RATE</span> が負の場合）</span> は、フレームレート固定を解除する。平均フレームレートは計算されない。
+		<p>対象ゲームループのフレームレートを管理する。 <span class="parameter">RATE</span> &gt; <span class="code">0</span> <span class="note-by-editor">（である場合）</span>は、ゲームループを指定されたフレームレートに固定し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> = <span class="code">0</span> <span class="note-by-editor">（である場合）</span>は、フレームレート固定を解除し、フレーム数を通じた平均フレームレートを計算する。 <span class="parameter">RATE</span> &lt; <span class="code">0</span> <span class="note-by-editor">（である場合）</span> は、フレームレート固定を解除する。平均フレームレートは計算されない。
 		</p>
 		<p>マクロ <a href="#with-events"><span class="operator">WITH-EVENTS</span></a> および関数 <a href="#average-fps"><span class="operator">AVERAGE-FPS</span></a> 参照。
 		</p>
@@ -3516,7 +3517,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3545,7 +3546,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3574,7 +3575,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</ul>
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3603,7 +3604,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3632,7 +3633,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3661,7 +3662,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3690,7 +3691,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3721,7 +3722,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3750,7 +3751,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -3792,7 +3793,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -4052,7 +4053,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -4075,7 +4076,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-IMAGE</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -4251,7 +4252,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パッケージ</div>
 		<ul>
-			<li><span class="module">LISPBUILDER-SDL-TTF</span> で対応される。</li>
+			<li><span class="module">LISPBUILDER-SDL-TTF</span> に於いて対応される。</li>
 		</ul>
 	</div>
 </div>
@@ -6134,7 +6135,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>デスティネーション <span class="type">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、ソース <span class="type">POINT</span> <span class="code">SRC</span> の座標に設定する。デスティネーション <span class="type">POINT</span> <span class="parameter">DST</span> を返す。
 		</p>
-		<p class="note-by-editor">※説明が紛らわしいが、値が変わるのはデスティネーション側。「デスティネーションの座標が、ソースと同じ座標に設定される」という意味。
+		<p class="note-by-editor">※説明が紛らわしいが、値が変わるのはデスティネーション側。
 		</p>
 	</div>
 </div>
@@ -6365,7 +6366,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>サーフェス <span class="parameter">SURFACE</span> の座標を <span class="parameter">POSITION</span> に設定する。この <span class="parameter">POSITION</span> は <span class="type">POINT</span> 型である。
 		</p>
-		<p class="note-by-editor">※<span class="parameter">SURFACE</span> の座標が更新される。
+		<p class="note-by-editor">※ <span class="parameter">SURFACE</span> の座標が更新される。
 		</p>
 	</div>
 </div>
@@ -6766,7 +6767,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<ul>
 			<li><span class="parameter">STYLE</span> は、<span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、  <span class="code">:POINTS</span> のいずれかである。</li>
 				<ul>
-					<li><span class="parameter">STYLE</span> が <span class="code">:SOLID</span> である時、指定された通過点を通る単一の連続線が描画される。<span class="note-by-editor">（※誤記ではないか？　ベジエ曲線は始点と終点以外の制御点を通過しない。）</span></li>
+					<li><span class="parameter">STYLE</span> が <span class="code">:SOLID</span> である時、指定された通過点を通る単一の連続線が描画される。<span class="note-by-editor">（※誤記？　ベジエ曲線は始点と終点以外の制御点を通過しない。）</span></li>
 					<li><span class="parameter">STYLE</span> が <span class="code">:DASH</span> である時、線は通過点の組の間を交互に描画される。</li>
 					<li><span class="parameter">STYLE</span> が <span class="code">:POINTS</span> である時、各通過点に単一の点が描画される。</li>
 				</ul>
@@ -6798,7 +6799,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">with-color</span> <span class="parameter">(var <span class="lambda-kw">&amp;optional</span> color free) declaration* statement*</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>マクロ <span class="operator">WITH-COLOR</span> のスコープ内で、<span class="variable">*DEFAULT-COLOR*</span> を <span class="parameter">VAR</span> に束縛する便利なマクロである。 <span class="parameter">COLOR</span> が <span class="code">NIL</span> でない時、 <span class="parameter">VAR</span> は <span class="parameter">COLOR</span> に設定される。 <span class="parameter">VAR</span> <span class="note-by-editor">（※ <span class="parameter">COLOR</span> の誤記か？）</span>は <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> 型である必要がある。 <span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">VAR</span> は総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放される。
+		<p>マクロ <span class="operator">WITH-COLOR</span> のスコープ内で、<span class="variable">*DEFAULT-COLOR*</span> を <span class="parameter">VAR</span> に束縛する便利なマクロである。 <span class="parameter">COLOR</span> が <span class="code">NIL</span> でない時、 <span class="parameter">VAR</span> は <span class="parameter">COLOR</span> に設定される。 <span class="parameter">VAR</span> <span class="note-by-editor">（※ <span class="parameter">COLOR</span> の誤記？）</span>は <a href="#color"><span class="type">COLOR</span></a> あるいは <a href="#color-a"><span class="type">COLOR-A</span></a> 型である必要がある。 <span class="parameter">FREE</span> が <span class="code">T</span> である時、 <span class="parameter">VAR</span> は総称関数 <a href="#free"><span class="operator">FREE</span></a> を使用して解放される。
 		</p>
 	</div>
 </div>
@@ -6827,11 +6828,11 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、 <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> のいずれかにできる。</li>
+			<li><span class="parameter">STYLE</span> は、曲線の描画に使用される線のスタイルを記述し、次のいずれかである。：  <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。</li>
 			<ul>
-				<li><span class="code">:SOLID</span> を使用して、指定された通過点を通る単一の連続線を描画する。</li>
-				<li><span class="code">:DASH</span> を使用して、通過点の組の間を交互に線を描画する。</li>
-				<li><span class="code">:POINTS</span> を使用して、各通過点に単一ピクセルを描画する。</li>
+				<li>指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。</li>
+				<li>通過点の組の間を交互に線を描画するには、 <span class="code">:DASH</span> を使用する。</li>
+				<li>各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
 			</ul>
 			<li><span class="parameter">SEGMENTS</span> は、 Cattmul-Rom （キャットムル・ロム）スプラインを描画するのに使用されるセグメント数である。指定されない場合、デフォルトは <span class="code">20</span> セグメントである。セグメント数が多いほど、スプラインは滑らかになる。</li>
 		</ul>
@@ -6957,7 +6958,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li><span class="parameter">UNICODE</span> は変換された文字である。 unicode フィールドは、 UNICODE 変換が SDL_EnableUNICODE で有効である時にのみ使用される。 unicode が非 0 である場合、これはキー押下に対応する UNICODE 文字である。文字の上位 9 ビットが 0 である場合、これは同等の ASCII 文字に写像される。</li>
 		</ul>
 
-		<p class="note-by-editor">※ <span class="code">SDL-KEY-DOWN</span> とある箇所は本当か？　<span class="code">:SDL-KEY-DOWN</span> はカーソルキーの「↓」を示す値である。
+		<p class="note-by-editor">※ <span class="code">SDL-KEY-DOWN</span> は誤記？　<span class="code">:SDL-KEY-DOWN</span> はカーソルキーの「↓」を示す値である。
 		</p>
 		<p class="note-by-editor">※キーを示すシンボルは、<span class="code">keysym.lisp</span> で定義されている。
 		</p>
@@ -7333,7 +7334,12 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="parameter">STYLE</span> は、図形の描画に使用される線のスタイルを記述し、次のいずれかである。： <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。通過点の間に交互に線を描画するには、 <span class="code">:DASH</span> を使用する。各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
+			<li><span class="parameter">STYLE</span> は、図形の描画に使用される線のスタイルを記述し、次のいずれかである。： <span class="code">:SOLID</span> 、 <span class="code">:DASH</span> 、 <span class="code">:POINTS</span> 。</li>
+			<ul>
+				<li>指定された通過点を通る単一の連続線を描画するには、 <span class="code">:SOLID</span> を使用する。</li>
+				<li>通過点の間に交互に線を描画するには、 <span class="code">:DASH</span> を使用する。</li>
+				<li>各通過点に単一ピクセルを描画するには、 <span class="code">:POINTS</span> を使用する。</li>
+			</ul>
 		</ul>
 
 		<div class="title">例</div>
