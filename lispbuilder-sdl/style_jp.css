@@ -91,7 +91,7 @@ pre.none {
 }
 
 .code {
-	background-color : #dddddd;
+	background-color : #eeeeff;
 	font-family : "HGGothicM", monospace;
 }
 
@@ -110,8 +110,8 @@ div.def {
 p.form {
 	margin : 0 0 20px 0;
 	padding : 10px;
-	border : solid 1px #000;
-	background-color : #ffffff;
+	border : solid 1px #000000;
+	background-color : #eeeeee;
 	font-family : "HGGothicM", monospace;
 }
 
@@ -124,6 +124,7 @@ div.desc {
 div.title {
 	margin : 4px 0;
 	padding : 3px 1em;
+	border : 1px solid #444400;
 	background-color : #ffffdd;
 	font-family : "HGGothicM", monospace;
 	font-weight : bold;
@@ -166,13 +167,13 @@ div.title2 {
 /* モジュール名 */
 .module {
 	font-family : "HGGothicM", monospace;
-	background-color : #ddddff;
+	background-color : #ddeedd;
 }
 
 /* オペレータ（関数、マクロなど） */
 .operator {
 	font-family : "HGGothicM", monospace;
-	color : #006688;
+	color : #0055aa;
 }
 /* 型名 */
 .type {
