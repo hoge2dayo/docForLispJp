@@ -444,7 +444,7 @@
 		<span class="variable">*default-display*</span>
 	</p>
 	<div class="desc">
-		<p>シンボル <span class="variable">*DEFAULT-DISPLAY*</span> は、関数 <a href="#WINDOW"><span class="operator">WINDOW</span></a> により、その時点の表示面 <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> に束縛される。
+		<p>シンボル <span class="variable">*DEFAULT-DISPLAY*</span> は、関数 <a href="#WINDOW"><span class="operator">WINDOW</span></a> により、その時点のサーフェス <a href="#display-surface"><span class="type">DISPLAY-SURFACE</span></a> に束縛される。
 </p>
 	</div>
 </div>
@@ -551,7 +551,7 @@
 		<pre class="code">(DRAW-SURFACE SURF-1 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)
 (DRAW-SURFACE SURF-2 :SURFACE SDL:*DEFAULT-DISPLAY*)</pre>
-		<p>上記は、<span class="variable">*DEFAULT-SURFACE*</span> を表示面へ設定することにより、短縮化できる。
+		<p>上記は、<span class="variable">*DEFAULT-SURFACE*</span> をサーフェスへ設定することにより、短縮化できる。
 		</p>
 		<pre class="code">(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
   (DRAW-SURFACE SURF-1)
@@ -1548,7 +1548,7 @@
 		<span class="operator">check-types</span> <span class="parameter">type <span class="lambda-kw">&amp;rest</span> rest</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><span class="parameter">rest</span> の項目に対してマクロ <span class="operator">CHECK-TYPE</span> を実行する。
+		<p><span class="lambda-kw">rest</span> の項目に対してマクロ <span class="operator">CHECK-TYPE</span> を実行する。
 		</p>
 	</div>
 </div>
@@ -1608,7 +1608,7 @@
 		<span class="operator">clear-display</span> <span class="parameter">color <span class="lambda-kw">&amp;key</span> surface update</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>色 <span class="parameter">COLOR</span> を使用して、表示面を塗りつぶす。 <span class="parameter">SURFACE</span> は、指定されない場合、 <span class="variable">*DEFAULT-DISPLAY*</span> へ束縛される。 <span class="parameter">UPDATE</span> が <span class="code">T</span> である時、画面は更新される。
+		<p>カラー <span class="parameter">COLOR</span> を使用して、サーフェスを塗りつぶす。 <span class="parameter">SURFACE</span> は、指定されない場合、 <span class="variable">*DEFAULT-DISPLAY*</span> へ束縛される。 <span class="parameter">UPDATE</span> が <span class="code">T</span> である時、画面は更新される。
 		</p>
 	</div>
 </div>
@@ -1914,7 +1914,7 @@
 		<span class="operator">copy-point</span> <span class="parameter">point</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>point <span class="parameter">POINT</span> のコピーを返す。
+		<p><span class="type">POINT</span> <span class="parameter">POINT</span> のコピーを返す。
 		</p>
 	</div>
 </div>
@@ -2051,7 +2051,7 @@
 	</p>
 	<div class="desc">
 
-		<p>カレントの表示面。 <span class="variable">SDL:*DEFAULT-DISPLAY*</span> を使用することでアクセスできる。
+		<p>カレントのサーフェス。 <span class="variable">SDL:*DEFAULT-DISPLAY*</span> を使用することでアクセスできる。
 		</p>
 	</div>
 </div>
@@ -3395,7 +3395,7 @@
 		<span class="operator">flood-fill-*</span> <span class="parameter">x y <span class="lambda-kw">&amp;key</span> surface color</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>色 <span class="parameter">COLOR</span> でサーフェス <span class="parameter">SURFACE</span> の領域塗りつぶし（ flood fill ）を実行する。塗りつぶしは、 <span class="parameter">X</span> および <span class="parameter">Y</span> 座標により指定された位置で開始する。スタックとしてプッシュ／ポップを使用するため、多量の cons を行なうスタックベースの領域塗りつぶし（ flood fill ）を使用する。この関数は高速である。
+		<p>カラー <span class="parameter">COLOR</span> でサーフェス <span class="parameter">SURFACE</span> の領域塗りつぶし（ flood fill ）を実行する。塗りつぶしは、 <span class="parameter">X</span> および <span class="parameter">Y</span> 座標により指定された位置で開始する。スタックとしてプッシュ／ポップを使用するため、多量の cons を行なうスタックベースの領域塗りつぶし（ flood fill ）を使用する。この関数は高速である。
 		</p>
 		<p class="note-by-editor">※ <span class="parameter">surface</span> が <span class="code">NIL</span> の場合、 <span class="variable">*default-surface*</span> の値が用いられるが、この時 <span class="variable">*default-surface*</span> の値が <span class="code">NIL</span> である場合、エラーとなる。他の描画関数と異なり、 <span class="variable">*display-surface*</span> の値が用いられないので注意を要する。
 		</p>
@@ -3551,7 +3551,7 @@
 		<span class="operator">free</span> <span class="parameter">(foreign-object <span class="type">display-surface</span>)</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>表示面の解放は、有効な操作ではない。
+		<p>サーフェスの解放は、有効な操作ではない。
 		</p>
 	</div>
 </div>
@@ -4942,7 +4942,7 @@
 		<span class="operator">point-*</span> <span class="parameter">(point <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>point <span class="parameter">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を展開して返す。
+		<p><span class="type">POINT</span> <span class="parameter">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を展開して返す。
 		</p>
 	</div>
 </div>
