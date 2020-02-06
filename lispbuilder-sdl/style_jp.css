@@ -39,55 +39,8 @@ a:focus {
 	border : none;
 }
 
-a.none {
-	text-decoration : none;
-	padding : 0;
-}
-
-a.none:visited {
-	text-decoration : none;
-	padding : 0;
-}
-
-a.none:hover {
-	text-decoration : none;
-	border : none;
-}
-
-a.none:focus {
-	text-decoration : none;
-	border : none;
-}
-
-a.noborder {
-	text-decoration : none;
-	padding : 0;
-}
-
-a.noborder:visited {
-	text-decoration : none;
-	padding : 0;
-}
-
-a.noborder:hover {
-	text-decoration : none;
-	padding : 0;
-	border : none;
-}
-
-a.noborder:focus {
-	text-decoration : none;
-	padding : 0;
-	border : none;
-}
-
 pre {
 	padding : 5px;
-}
-
-pre.none {
-	padding : 5px;
-	background-color : #ffffff;
 }
 
 .code {
