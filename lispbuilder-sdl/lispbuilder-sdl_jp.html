@@ -414,15 +414,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">例</div>
 		<pre class="code">
-(DRAW-BOX A-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>)
-(DRAW-BOX B-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>)
-(DRAW-BOX C-BOX :SURFACE <span class="variable">SDL:*DEFAULT-DISPLAY*</span> :COLOR <span class="variable">SDL:*BLACK*</span>) </pre>
+(DRAW-BOX A-BOX :SURFACE SDL:*DEFAULT-DISPLAY* :COLOR SDL:*BLACK*)
+(DRAW-BOX B-BOX :SURFACE SDL:*DEFAULT-DISPLAY* :COLOR SDL:*BLACK*)
+(DRAW-BOX C-BOX :SURFACE SDL:*DEFAULT-DISPLAY* :COLOR SDL:*BLACK*) </pre>
 
 		<p>上記は、 <span class="variable">*DEFAULT-COLOR*</span> を <span class="variable">*BLACK*</span> へ設定することにより、短縮化できる。
 		</p>
 
-		<pre class="code">(WITH-SURFACE (DISP <span class="variable">SDL:*DEFAULT-DISPLAY*</span>)
-  (WITH-COLOR (COL <span class="variable">SDL:*BLACK*</span>)
+		<pre class="code">(WITH-SURFACE (DISP SDL:*DEFAULT-DISPLAY*)
+  (WITH-COLOR (COL SDL:*BLACK*)
     (DRAW-BOX A-BOX)
     (DRAW-BOX B-BOX)
     (DRAW-BOX C-BOX)))</pre>
@@ -454,7 +454,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>キーワードパラメータで <span class="type">FONT</span> を受け入れる関数は <span class="parameter">FONT</span> が指定されない場合に、デフォルトでシンボル <span class="variable">*DEFAULT-FONT*</span> に束縛する可能性が高い。
 		</p>
-		<p>マクロ <a href="#with-default-font"><span class="operator">WITH-DEFAULT-FONT</span></a> および <a href="#with-font"><span class="operator">WITH-FONT</span></a> 、 <a href="#initialise-default-font"><span class="operator">INITIALISE-DEFAULT-FONT</span></a> により、<span class="parameter">FONT</span> は <span class="variable">*DEFAULT-FONT*</span> に束縛される。
+		<p>マクロ <a href="#with-default-font"><span class="operator">WITH-DEFAULT-FONT</span></a> およびマクロ <a href="#with-font"><span class="operator">WITH-FONT</span></a> 、関数 <a href="#initialise-default-font"><span class="operator">INITIALISE-DEFAULT-FONT</span></a> により、<span class="parameter">FONT</span> は <span class="variable">*DEFAULT-FONT*</span> に束縛される。
 		</p>
 		<div class="title">例</div>
 		<pre class="code">(draw-string-solid-* &quot;draw string centered&quot; 100 100
@@ -1150,7 +1150,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for ALPHA -->
 
 <!-- Entry for ALPHA -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -1174,7 +1173,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for ALPHA-ENABLED-P -->
 
 <!-- Entry for ALPHA-ENABLED-P -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -1785,7 +1783,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">convert-to-display-format</span> <span class="parameter"><span class="lambda-kw">&amp;key</span> surface enable-alpha enable-color-key pixel-alpha free inherit</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>ビデオフレームバッファ（ <span class="variable">*display surface*</span> ）のピクセルフォーマットおよび色に一致する新しいサーフェスを返す。これは高速ブリットに適している。新しいサーフェスは、 <span class="parameter">INHERIT</span> が <span class="code">NIL</span> <span class="e1">でない限り</span>、ソースのピクセルおよびアルファ、カラーキーを継承する。
+		<p>ビデオフレームバッファ（ <span class="variable">*display-surface*</span> ）のピクセルフォーマットおよび色に一致する新しいサーフェスを返す。これは高速ブリットに適している。新しいサーフェスは、 <span class="parameter">INHERIT</span> が <span class="code">NIL</span> <span class="e1">でない限り</span>、ソースのピクセルおよびアルファ、カラーキーを継承する。
 		</p>
 		<p>ハードウェアのカラーキーあるいはアルファブリットアクセラレーションの利点を得る為には、 <span class="parameter">ENABLE-COLOR-KEY</span> あるいは <span class="parameter">ENABLE-ALPHA</span> を使用する。サーフェスが一旦生成された後でこれらのフラグを有効にしても、最初にサーフェスがビデオメモリで生成されていなかった場合、利用可能なハードウェアアクセラレーションを必ずしも使用する訳ではない。
 		</p>
@@ -3179,7 +3177,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">enable-unicode</span> <span class="parameter">state</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>Unicode 変換は、 <span class="parameter">STATE</span> が <span class="code">T</span> である時に有効であり、 <span class="parameter">STATE</span> が <span class="code">NIL</span> である時に無効である。受け取ったキーボードイベントに対応する文字コードを取得するには、この関数を使用して、最初に Unicode 変換がオンにされる必要がある。各キーボードイベントの為の変換は、わずかなオーバーヘッドが発生するので、デフォルトでは無効である。その後に受信される各キーダウンイベントに於いて、構造体 <span class="type">SDL_keysym</span> のメンバ unicode は対応する文字コードを含む。文字コードに対応しない keysym の場合は、ゼロを含む。キー押下（ press ）イベントのみ変換され、放す（ release ）イベントは変換されないことに注意。<span class="note-by-editor">（放す（ release ）イベントは）</span>前回の Unicode 変換状態を返す。
+		<p>Unicode 変換は、 <span class="parameter">STATE</span> が <span class="code">T</span> である時に有効であり、 <span class="parameter">STATE</span> が <span class="code">NIL</span> である時に無効である。受け取ったキーボードイベントに対応する文字コードを取得するには、この関数を使用して、最初に Unicode 変換がオンにされる必要がある。各キーボードイベントの為の変換は、わずかなオーバーヘッドが発生するので、デフォルトでは無効である。その後に受信される各キーダウンイベントに於いて、構造体 <span class="type">SDL_keysym</span> のメンバ Unicode は対応する文字コードを含む。文字コードに対応しない keysym の場合は、ゼロを含む。キー押下（ press ）イベントのみ変換され、放す（ release ）イベントは変換されないことに注意。<span class="note-by-editor">（放す（ release ）イベントは）</span>前回の Unicode 変換状態を返す。
 		</p>
 	</div>
 </div>
@@ -3300,7 +3298,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		</p>
 		<p>関数 <span class="operator">FLOOD-FILL-STACK-*</span> は、内部の配列を基にしたスタックを保持する。
 		</p>
-		<p><span class="note">注釈：</span> 配列が多量のコンシングより高速かどうかを確認するための多くの実験。<span class="note-by-editor">（実験用の関数という意味か？）</span> 両方の関数のタイミングは、それらが同じ速度で実行することを示す。コンパイラ宣言を伴うと、よりよい結果が得られることがある。これのもう一つの欠点は、事前にスタックを割り当てて、かなり多くの RAM を消費することである。
+		<p><span class="note">注釈：</span> 配列が多量のコンシングより高速かどうかを確認するための多くの実験。<span class="note-by-editor">（※実験用の関数という意味か？）</span> 両方の関数のタイミングは、それらが同じ速度で実行することを示す。コンパイラ宣言を伴うと、よりよい結果が得られることがある。これのもう一つの欠点は、事前にスタックを割り当てて、かなり多くの RAM を消費することである。
 		</p>
 	</div>
 </div>
@@ -3321,7 +3319,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for FP -->
 
 <!-- Entry for FP -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -3333,7 +3330,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for FP -->
 
 <!-- Entry for FP -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -3345,7 +3341,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for FP -->
 
 <!-- Entry for FP -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -3357,7 +3352,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for FP -->
 
 <!-- Entry for FP -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド］</span>
@@ -3566,7 +3560,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 
 		<div class="title">パラメータ</div>
 		<ul>
-			<li><span class="code">FONT</span> is a <span class="code">FONT</span> object. Binds to <span class="code">*DEFAULT-FONT*</span> by default.</li>
+			<li><span class="parameter">FONT</span> は <span class="type">FONT</span> オブジェクトである。デフォルトで <span class="variable">*DEFAULT-FONT*</span> に束縛する。</li>
 		</ul>
 
 		<div class="title">戻り値</div>
@@ -3938,7 +3932,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for GET-RECTANGLE -->
 
 <!-- Entry for GET-RECTANGLE -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド］</span>
@@ -4465,15 +4458,15 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">例</div>
 		<ul>
 			<li>マジックナンバーを使用して <span class="code">BMP</span> 画像をロードする。
-				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span>)</span>
+				<p><span class="code">(LOAD-IMAGE &quot;image.bmp&quot;)</span>
 				</p>
 			</li>
 			<li><span class="code">TGA</span> 画像をロードする。
-				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.tga&quot;</span> :IMAGE-TYPE :TGA)</span>
+				<p><span class="code">(LOAD-IMAGE &quot;image.tga&quot; :IMAGE-TYPE :TGA)</span>
 				</p>
 			</li>
 			<li><span class="code">BMP</span> 画像を <span class="code">TGA</span> としてロードすることを試みる。
-				<p><span class="code">(LOAD-IMAGE <span class="string">&quot;image.bmp&quot;</span> :IMAGE-TYPE :TGA :FORCE T)</span>
+				<p><span class="code">(LOAD-IMAGE &quot;image.bmp&quot; :IMAGE-TYPE :TGA :FORCE T)</span>
 				</p>
 			</li>
 		</ul>
@@ -4908,7 +4901,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for R -->
 
 <!-- Entry for R -->
-<!-- <a name=""></a> -->
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド（アクセサ）］</span>
@@ -5041,7 +5033,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for RECTANGLE-* -->
 
 <!-- Entry for RECTANGLE-* -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド］</span>
@@ -5055,7 +5046,6 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 <!-- End of entry for RECTANGLE-* -->
 
 <!-- Entry for RECTANGLE-* -->
-<a name=""></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［メソッド］</span>
@@ -5772,7 +5762,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 			<li>関数 <a href="#set-color-key"><span class="operator">SET-COLOR-KEY</span></a> へ <span class="code">FLAG</span> として渡された時 ： 関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> および関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> を伴う描画の時、サーフェスは RLE アクセラレーションを使用して描画される。サーフェスは、最初に関数 <a href="#blit-surface"><span class="operator">BLIT-SURFACE</span></a> あるいは関数 <a href="#draw-surface"><span class="operator">DRAW-SURFACE</span></a> 、関数 <a href="#convert-surface"><span class="operator">CONVERT-SURFACE</span></a> が呼び出された時、で、実際に RLE アクセラレーション用にエンコードされる。</li>
 			<li><a href="#surface"><span class="type">SURFACE</span></a> の <span class="code">FLAGS</span> フィールドから読み取られた時 ： カラーキーブリットが RLE でアクセラレーションされることを示す。</li>
 		</ul>
-		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color">MAP-COLOR</a> はしばしば、許容値を取得するのに有用である。
+		<p>RLE アクセラレーションは、透明ピクセルが水平方向に長い画像（つまり、キーカラーと一致するピクセル）のブリットを大幅に高速化できる。キーは、サーフェスと同じピクセルフォーマットである必要があり、総称関数 <a href="#map-color"><span class="operator">MAP-COLOR</span></a> はしばしば、許容値を取得するのに有用である。
 		</p>
 
 		<p class="note-by-editor">※関数 <span class="operator">SET-COLOR-KEY</span> は廃止されている。
@@ -6032,7 +6022,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">set-default-font</span> <span class="parameter">font</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>フォント <span class="parameter">FONT</span> を、後続のフォントのレンダリングあるいは描画処理として使用されるデフォルトのフォントとして設定する。シンボル <span class="variable">*DEFAULT-FONT*</span> をフォントに束縛する。 <span class="type">FONT</span> の引数をとる関数は、特に指定されない限り、 <span class="parameter">*DEFAULT-FONT*</span> を使用する。新しい  <span class="code">FONT</span> を返す。失敗した場合は、 <span class="code">NIL</span> を返す。
+		<p>フォント <span class="parameter">FONT</span> を、後続のフォントのレンダリングあるいは描画処理として使用されるデフォルトのフォントとして設定する。シンボル <span class="variable">*DEFAULT-FONT*</span> をフォントに束縛する。 <span class="type">FONT</span> の引数をとる関数は、特に指定されない限り、 <span class="variable">*DEFAULT-FONT*</span> を使用する。新しい  <span class="code">FONT</span> を返す。失敗した場合は、 <span class="code">NIL</span> を返す。
 		</p>
 	</div>
 </div>
@@ -6133,7 +6123,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">set-point</span> <span class="parameter">(dst <span class="type">vector</span>) (src <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>デスティネーション <span class="type">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、ソース <span class="type">POINT</span> <span class="code">SRC</span> の座標に設定する。デスティネーション <span class="type">POINT</span> <span class="parameter">DST</span> を返す。
+		<p>デスティネーション <span class="type">POINT</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を、ソース <span class="type">POINT</span> <span class="parameter">SRC</span> の座標に設定する。デスティネーション <span class="type">POINT</span> <span class="parameter">DST</span> を返す。
 		</p>
 		<p class="note-by-editor">※説明が紛らわしいが、値が変わるのはデスティネーション側。
 		</p>
@@ -6230,7 +6220,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<span class="operator">set-position</span> <span class="parameter">(rectangle <span class="type">rectangle</span>) (position <span class="type">vector</span>)</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p>point <span class="parameter">POSITION</span> から、矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。
+		<p><span class="type">POINT</span> <span class="parameter">POSITION</span> から、矩形 <span class="parameter">RECTANGLE</span> の <span class="code">X</span> および <span class="code">Y</span> 座標を設定する。
 		</p>
 	</div>
 </div>
@@ -6997,7 +6987,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 		<div class="title">ジョイスティックモーションイベント</div>
 			<pre class="code">(:JOY-AXIS-MOTION-EVENT (:WHICH WHICH :AXIS AXIS :VALUE VALUE)
    &amp;BODY BODY) </pre>
-		<p>JOY-AXIS-MOTION-EVENT イベントは、ユーザがジョイスティックの軸を動かす度に発生する。
+		<p><span class="code">JOY-AXIS-MOTION-EVENT</span> イベントは、ユーザがジョイスティックの軸を動かす度に発生する。
 		</p>
 		<ul>
 			<li><span class="parameter">WHICH</span> は、ジョイスティックデバイスのインデックスである。イベントを報告したジョイスティックのインデックスである。</li>
@@ -7169,7 +7159,7 @@ The code comes with a <a href="http://www.opensource.org/licenses/bsd-license.ph
 	<div class="desc">
 		<p>マクロ <span class="operator">WITH-INIT</span> は、 <span class="code">BODY</span> でフォームを実行する前に SDL ライブラリと SDL サブシステムの初期化を試みる便利なマクロである。マクロ <span class="operator">WITH-INIT</span> 終了の際、 SDL ライブラリと SDL サブシステムを初期化解除する。
 		</p>
-		<p>lispbuilder-sdl 初期化ルーチンは、Lisp 開発環境が外部ライブラリを１回ロードする一方で、ライブラリを複数回初期化および初期化解除する事実により、やや複雑である。Ｃ／Ｃ＋＋開発環境は、オープンして各実行後にライブラリをクローズし、不完全あるいは不具合ある初期化解除関数によりハングされた全てのリソースを解放する。そのため、ライブラリが再初期化される前にリソースが適切に供給されない時、Ｃのライブラリは Lisp 環境に於いて頻繁にコアダンプする。
+		<p>LISPBUILDER-SDL 初期化ルーチンは、Lisp 開発環境が外部ライブラリを１回ロードする一方で、ライブラリを複数回初期化および初期化解除する事実により、やや複雑である。Ｃ／Ｃ＋＋開発環境は、オープンして各実行後にライブラリをクローズし、不完全あるいは不具合ある初期化解除関数によりハングされた全てのリソースを解放する。そのため、ライブラリが再初期化される前にリソースが適切に供給されない時、Ｃのライブラリは Lisp 環境に於いて頻繁にコアダンプする。
 		</p>
 		<p>LISPBUILDER-SDL は、外部ライブラリの初期化／初期化解除をより細かく制御できるようにする機能を、プログラマに提供する。これらの機能を提供する関数は次のとおりである。：
 		</p>
