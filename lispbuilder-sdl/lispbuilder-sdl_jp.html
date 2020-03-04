@@ -211,6 +211,7 @@
       <li><a href="#key-held-p"><span class="code">key-held-p</span></a>
       <li><a href="#key-held-time"><span class="code">key-held-time</span></a>
       <li><a href="#key-pressed-p"><span class="code">key-pressed-p</span></a>
+      <li><a href="#key-released-p"><span class="code">key-released-p</span></a>
       <li><a href="#key-repeat-delay"><span class="code">key-repeat-delay</span></a>
       <li><a href="#key-repeat-interval"><span class="code">key-repeat-interval</span></a>
       <li><a href="#key="><span class="code">key=</span></a>
@@ -4497,6 +4498,20 @@
 		<span class="operator">key-held-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
+		<p>キーが押さえられていた時間を返す。それはキーが押された直後である、あるいは押されたままになっていることを意味する。
+		</p>
+
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">KEY</span> は SDL キー定義である。（例： <span class="code">SDL-KEY-ESCAPE</span> ）</li>
+		</ul>
+
+		<div class="title">戻り値</div>
+		<p>キーが押さえられている場合、 <span class="code">T</span> である。
+		</p>
+
+		<p class="note-by-editor">キーが押さえられている場合の戻り値は時間であり、 <span class="code">T</span> ではない。
+		</p>
 	</div>
 </div>
 <!-- End of entry for KEY-HELD-P -->
@@ -4523,30 +4538,44 @@
 		<span class="operator">key-pressed-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
+		<p>キーが押された直後である場合、 <span class="code">T</span> を返す。
+		</p>
+
+		<div class="title">パラメータ</div>
+		<ul>
+			<li><span class="parameter">KEY</span> は SDL キー定義である。（例： <span class="code">SDL-KEY-ESCAPE</span> ）</li>
+		</ul>
+
+		<div class="title">戻り値</div>
+		<p>キーが押された直後である場合、 <span class="code">T</span> である。
+		</p>
 	</div>
 </div>
 <!-- End of entry for KEY-PRESSED-P -->
 
 
-<!-- Entry for KEYS-DOWN-P -->
-<a name="keys-down-p"></a>
+<!-- Entry for KEY-RELEASED-P -->
+<a name="key-released-p"></a>
 <div class="def">
 	<p class="form">
 		<span class="deftype">［関数］</span>
-		<span class="operator">keys-down-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+		<span class="operator">key-released-p</span> <span class="parameter">key</span> =&gt; <span class="result">result</span>
 	</p>
 	<div class="desc">
-		<p><span class="note">注釈：</span> ステート配列を更新するには SDL_PumpEvents を使用する。<span class="note">注釈：</span> この関数は、全てのイベントが処理された後、現在の状態を返す。そのため、イベントを処理する前にキーあるいはボタンが押されて離された場合、押された状態は決してジェスチャーコールに現れない。<span class="note">注釈：</span> この関数は、シフトが現在押されているかどうかは考慮しない。
+		<p>キーが放された直後である場合、 <span class="code">T</span> を返す。
 		</p>
-		<div class="title">戻り値</div>
+
+		<div class="title">パラメータ</div>
 		<ul>
-			<li>現在押されている全てのキーをリストとして返す。</li>
+			<li><span class="parameter">KEY</span> は SDL キー定義である。（例： <span class="code">SDL-KEY-ESCAPE</span> ）</li>
 		</ul>
-		<div class="title">例</div>
-		<pre class="code">(KEYS-DOWN-P)</pre>
+
+		<div class="title">戻り値</div>
+		<p>キーが放された直後である場合、 <span class="code">T</span> である。
+		</p>
 	</div>
 </div>
-<!-- End of entry for KEYS-DOWN-P -->
+<!-- End of entry for KEY-RELEASED-P -->
 
 
 <!-- Entry for KEY-REPEAT-DELAY -->
@@ -4590,6 +4619,27 @@
 	</div>
 </div>
 <!-- End of entry for KEY= -->
+
+
+<!-- Entry for KEYS-DOWN-P -->
+<a name="keys-down-p"></a>
+<div class="def">
+	<p class="form">
+		<span class="deftype">［関数］</span>
+		<span class="operator">keys-down-p</span> <span class="parameter"></span> =&gt; <span class="result">result</span>
+	</p>
+	<div class="desc">
+		<p><span class="note">注釈：</span> ステート配列を更新するには SDL_PumpEvents を使用する。<span class="note">注釈：</span> この関数は、全てのイベントが処理された後、現在の状態を返す。そのため、イベントを処理する前にキーあるいはボタンが押されて離された場合、押された状態は決してジェスチャーコールに現れない。<span class="note">注釈：</span> この関数は、シフトが現在押されているかどうかは考慮しない。
+		</p>
+		<div class="title">戻り値</div>
+		<ul>
+			<li>現在押されている全てのキーをリストとして返す。</li>
+		</ul>
+		<div class="title">例</div>
+		<pre class="code">(KEYS-DOWN-P)</pre>
+	</div>
+</div>
+<!-- End of entry for KEYS-DOWN-P -->
 
 
 <!-- Entry for LIST-MODES -->
