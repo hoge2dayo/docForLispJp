@@ -1,0 +1,2092 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+
+<head>
+	<title>USOCKET - API リファレンス</title>
+	<link rel="stylesheet" type="text/css" href="style_jp.css"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+<body>
+
+<h2> USOCKET - API リファレンス</h2>
+
+<a name="toc-systems"></a>
+<h3>システム</h3>
+
+
+<!-- Entry for USOCKET -->
+<div>
+	<p class="system">
+		<a href="#system-usocket"><span class="system-name">usocket</span></a>
+	</p>
+	<div class="desc">
+		<p>Universal socket library for Common Lisp
+		</p>
+	</div>
+</div>
+<!-- End of entry for USOCKET -->
+
+
+<!-- Entry for USOCKET-SERVER -->
+<div>
+	<p class="system">
+		<a href="#system-usocket-server"><span class="system-name">usocket-server</span></a>
+	</p>
+	<div class="desc">
+		<p>Universal socket library for Common Lisp (server side)
+		</p>
+	</div>
+</div>
+<!-- End of entry for USOCKET-SERVER -->
+
+
+<!-- Entry for USOCKET-TEST -->
+<div>
+	<p class="system">
+		<a href="#system-usocket-test"><span class="system-name">usocket-test</span></a>
+	</p>
+	<div class="desc">
+		<p>Tests for usocket
+		</p>
+	</div>
+</div>
+<!-- End of entry for USOCKET-TEST -->
+
+
+<a name="system-usocket"></a>
+<!-- Entry for system USOCKET -->
+<h4 class="system">usocket</h4>
+<div class="desc">
+	<p>Universal socket library for Common Lisp
+	</p>
+</div>
+
+
+	<!-- Entry for *WILDCARD-HOST* -->
+	<a name="*WILDCARD-HOST*"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［変数］</span>
+			<span class="variable">*WILDCARD-HOST*</span>
+		</p>
+		<p>初期値：<span class="code">#(0 0 0 0)</span>
+		</p>
+		<div class="desc">
+			<p>Hostname to pass when all interfaces in the current system are to be bound.  If this variable is passed to socket-listen, IPv6 capable systems will also listen for IPv6 connections.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for *WILDCARD-HOST* -->
+
+
+	<!-- Entry for *AUTO-PORT* -->
+	<a name="*AUTO-PORT*"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［変数］</span>
+			<span class="variable">*AUTO-PORT*</span>
+		</p>
+		<p>初期値：<span class="code">0</span>
+		</p>
+		<div class="desc">
+			<p>Port number to pass when an auto-assigned port number is wanted.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for *AUTO-PORT* -->
+
+
+	<!-- Entry for *VERSION* -->
+	<a name="*VERSION*"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［変数］</span>
+			<span class="variable">*VERSION*</span>
+		</p>
+		<p>初期値：<span class="string">&quot;0.8.3&quot;</span>
+		</p>
+		<div class="desc">
+			<p>usocket version string
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for *VERSION* -->
+
+
+	<!-- Entry for +MAX-DATAGRAM-PACKET-SIZE+ -->
+	<a name="+MAX-DATAGRAM-PACKET-SIZE+"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［変数］</span>
+			<span class="variable">+MAX-DATAGRAM-PACKET-SIZE+</span>
+		</p>
+		<p>初期値：<span class="code">65507</span>
+		</p>
+		<div class="desc">
+			<p>The theoretical maximum amount of data in a UDP datagram.
+			</p>
+			<p>The IPv4 UDP packets have a 16-bit length constraint, and IP+UDP header has 28-byte.
+			</p>
+			<pre class="code">IP_MAXPACKET = 65535,       /* netinet/ip.h */
+sizeof(struct ip) = 20,     /* netinet/ip.h */
+sizeof(struct udphdr) = 8,  /* netinet/udp.h */</pre>
+			<p>65535 - 20 - 8 = 65507
+			</p>
+			<p>(But for UDP broadcast, the maximum message size is limited by the MTU size of the underlying link)
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for +MAX-DATAGRAM-PACKET-SIZE+ -->
+
+
+	<!-- Entry for USOCKET -->
+	<a name="USOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［クラス］</span>
+			<span class="type">USOCKET</span>
+		</p>
+		<div class="desc">
+			<p>The main socket class. Sockets should be closed using the `socket-close' method.
+			</p>
+			<ul class="slot-list">
+				<li class="slot">
+					<span class="code">SOCKET</span> （<span>アクセサ</span> <span class="code">SOCKET</span> ）
+					<p class="desc">Implementation specific socket object instance.'
+					</p>
+				</li>
+				<li class="slot">
+					<span class="code">WAIT-LIST</span> （<span>アクセサ</span> <span class="code">WAIT-LIST</span> ）
+					<p class="desc">WAIT-LIST the object is associated with.
+					</p>
+				</li>
+				<li class="slot">
+					<span class="code">STATE</span> （<span>アクセサ</span> <span class="code">STATE</span> ）
+					<p class="desc">Per-socket return value for the `wait-for-input' function. The value stored in this slot can be any of
+						<ul>
+							<li><span class="code">NIL</span>          - not ready</li>
+							<li><span class="code">:READ</span>        - ready to read</li>
+							<li><span class="code">:READ-WRITE</span>  - ready to read and write</li>
+							<li><span class="code">:WRITE</span>       - ready to write</li>
+						</ul>
+The last two remain unused in the current version.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End of entry for USOCKET -->
+
+
+	<!-- Entry for SOCKET-STATE -->
+	<a name="SOCKET-STATE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-STATE</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>
+				<ul>
+					<li><span class="code">NIL</span>          - not ready</li>
+					<li><span class="code">:READ</span>        - ready to read</li>
+					<li><span class="code">:READ-WRITE</span>  - ready to read and write</li>
+					<li><span class="code">:WRITE</span>       - ready to write</li>
+				</ul>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-STATE -->
+
+
+	<!-- Entry for SOCKET-STATE -->
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-STATE</span> <span class="parameter">((socket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-STATE -->
+
+
+	<!-- Entry for STREAM-USOCKET -->
+	<a name="STREAM-USOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［クラス］</span>
+			<span class="type">STREAM-USOCKET</span> <span class="parameter">(<span class="type">USOCKET</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Stream socket class.'Contrary to other sockets, these sockets may be closed either with the `socket-close' method or by closing the associated stream (which can be retrieved with the `socket-stream' accessor).
+			</p>
+			<ul class="slot-list">
+				<li class="slot">
+					<span class="code">STREAM</span> （<span>アクセサ</span> <span class="code">SOCKET-STREAM</span> ）
+					<p class="desc">Stream instance associated with the socket.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End of entry for STREAM-USOCKET -->
+
+
+	<!-- Entry for STREAM-SERVER-USOCKET -->
+	<a name="STREAM-SERVER-USOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［クラス］</span>
+			<span class="type">STREAM-SERVER-USOCKET</span> <span class="parameter">(<span class="type">USOCKET</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Socket which listens for stream connections to be initiated from remote sockets.
+			</p>
+			<ul class="slot-list">
+				<li class="slot">
+					<span class="code">ELEMENT-TYPE</span> （<span>リーダ</span> <span class="code">ELEMENT-TYPE</span> ）
+					<p class="desc">Default element type for streams created by `socket-accept'.
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End of entry for STREAM-SERVER-USOCKET -->
+
+
+	<!-- Entry for DATAGRAM-USOCKET -->
+	<a name="DATAGRAM-USOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［クラス］</span>
+			<span class="type">DATAGRAM-USOCKET</span> <span class="parameter">(<span class="type">USOCKET</span>)</span>
+		</p>
+		<div class="desc">
+			<p>UDP (inet-datagram) socket
+			</p>
+			<ul class="slot-list">
+				<li class="slot">
+					<span class="code">CONNECTED-P</span> （<span>アクセサ</span> <span class="code">CONNECTED-P</span> ）
+					<p class="desc">
+					</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- End of entry for DATAGRAM-USOCKET -->
+
+
+	<!-- Entry for USOCKET-P -->
+	<a name="USOCKET-P"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">USOCKET-P</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for USOCKET-P -->
+
+
+	<!-- Entry for STREAM-USOCKET-P -->
+	<a name="STREAM-USOCKET-P"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">STREAM-USOCKET-P</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for STREAM-USOCKET-P -->
+
+
+	<!-- Entry for STREAM-SERVER-USOCKET-P -->
+	<a name="STREAM-SERVER-USOCKET-P"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">STREAM-SERVER-USOCKET-P</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for STREAM-SERVER-USOCKET-P -->
+
+
+	<!-- Entry for DATAGRAM-USOCKET-P -->
+	<a name="DATAGRAM-USOCKET-P"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">DATAGRAM-USOCKET-P</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for DATAGRAM-USOCKET-P -->
+
+
+	<!-- Entry for SOCKET-ACCEPT -->
+	<a name="SOCKET-ACCEPT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-ACCEPT</span> <span class="parameter">(socket <span class="lambda-kw">&amp;key</span> element-type)</span>
+		</p>
+		<div class="desc">
+			<p>Accepts a connection from `socket', returning a `stream-socket'. The stream associated with the socket returned has `element-type' when explicitly specified, or the element-type passed to `socket-listen' otherwise.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-ACCEPT -->
+
+
+	<!-- Entry for SOCKET-CLOSE -->
+	<a name="SOCKET-CLOSE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-CLOSE</span> <span class="parameter">(usocket)</span>
+		</p>
+		<div class="desc">
+			<p>Close a previously opened `usocket'.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-CLOSE -->
+
+
+	<!-- Entry for SOCKET-CLOSE -->
+	<a name="SOCKET-CLOSE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-CLOSE</span> <span class="parameter">((usocket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-CLOSE -->
+
+
+	<!-- Entry for SOCKET-SHUTDOWN -->
+	<a name="SOCKET-SHUTDOWN"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-SHUTDOWN</span> <span class="parameter">(usocket direction)</span>
+		</p>
+		<div class="desc">
+			<p>Shutdown communication on the socket in <span class="parameter">DIRECTION</span>. After a shutdown no input and/or output of the indicated <span class="parameter">DIRECTION</span> can be performed on the `usocket'. <span class="parameter">DIRECTION</span> should be either <span class="code">:INPUT</span> or <span class="code">:OUTPUT</span> or <span class="code">:IO</span>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-SHUTDOWN -->
+
+
+	<!-- Entry for SOCKET-SEND -->
+	<a name="SOCKET-SEND"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-SEND</span> <span class="parameter">(usocket buffer length &amp;key host port)</span>
+		</p>
+		<div class="desc">
+			<p>Send packets through a previously opend `usocket&apos;.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-SEND -->
+
+
+	<!-- Entry for SOCKET-RECEIVE -->
+	<a name="SOCKET-RECEIVE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-RECEIVE</span> <span class="parameter">(usocket buffer length &amp;key)</span>
+		</p>
+		<div class="desc">
+			<p>Receive packets from a previously opend `usocket&apos;. Returns 4 values: <span class="code">(values buffer size host port)</span>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-RECEIVE -->
+
+
+	<!-- Entry for GET-LOCAL-ADDRESS -->
+	<a name="GET-LOCAL-ADDRESS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">GET-LOCAL-ADDRESS</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>Returns the IP address of the socket.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-LOCAL-ADDRESS -->
+
+
+	<!-- Entry for GET-PEER-ADDRESS -->
+	<a name="GET-PEER-ADDRESS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">GET-PEER-ADDRESS</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>Returns the IP address of the peer the socket is connected to.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-PEER-ADDRESS -->
+
+
+	<!-- Entry for GET-LOCAL-PORT -->
+	<a name="GET-LOCAL-PORT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">GET-LOCAL-PORT</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>Returns the IP port of the socket. This function applies to both `stream-usocket&apos; and `server-stream-usocket&apos; type objects.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-LOCAL-PORT -->
+
+
+	<!-- Entry for GET-PEER-NAME -->
+	<a name="GET-PEER-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">GET-PEER-NAME</span> <span class="parameter">(socket)</span>
+		</p>
+		<div class="desc">
+			<p>Returns the IP address and port of the peer the socket is connected to as values.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-PEER-NAME -->
+
+
+	<!-- Entry for WITH-CONNECTED-SOCKET -->
+	<a name="WITH-CONNECTED-SOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">WITH-CONNECTED-SOCKET</span> <span class="parameter">((var socket) <span class="lambda-kw">&body</span> body)</span>
+		</p>
+		<div class="desc">
+			<p>Bind `socket&apos; to `var&apos;, ensuring socket destruction on exit. `body&apos; is only evaluated when `var&apos; is bound to a non-null value. The `body&apos; is an implied progn form.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WITH-CONNECTED-SOCKET -->
+
+
+	<!-- Entry for WITH-CLIENT-SOCKET -->
+	<a name="WITH-CLIENT-SOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">WITH-CLIENT-SOCKET</span> <span class="parameter">((socket-var stream-var <span class="lambda-kw">&rest</span> socket-connect-args) <span class="lambda-kw">&body</span> body)</span>
+		</p>
+		<div class="desc">
+			<p>Bind the socket resulting from a call to `socket-connect&apos; with the arguments `socket-connect-args&apos; to `socket-var&apos; and if `stream-var&apos; is non-nil, bind the associated socket stream to it.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WITH-CLIENT-SOCKET -->
+
+
+	<!-- Entry for WITH-SERVER-SOCKET -->
+	<a name="WITH-SERVER-SOCKET"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">WITH-SERVER-SOCKET</span> <span class="parameter">((var server-socket) <span class="lambda-kw">&body</span> body)</span>
+		</p>
+		<div class="desc">
+			<p>Bind `server-socket&apos; to `var&apos;, ensuring socket destruction on exit. `body&apos; is only evaluated when `var&apos; is bound to a non-null value. The `body&apos; is an implied progn form.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WITH-SERVER-SOCKET -->
+
+
+	<!-- Entry for WITH-SOCKET-LISTENER -->
+	<a name="WITH-SOCKET-LISTENER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">WITH-SOCKET-LISTENER</span> <span class="parameter">((socket-var <span class="lambda-kw">&rest</span> socket-listen-args) <span class="lambda-kw">&body</span> body)</span>
+		</p>
+		<div class="desc">
+			<p>Bind the socket resulting from a call to `socket-listen&apos; with arguments `socket-listen-args&apos; to `socket-var&apos;.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WITH-SOCKET-LISTENER -->
+
+
+	<!-- Entry for MAKE-WAIT-LIST -->
+	<a name="MAKE-WAIT-LIST"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">MAKE-WAIT-LIST</span> <span class="parameter">(waiters)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for MAKE-WAIT-LIST -->
+
+
+	<!-- Entry for ADD-WAITER -->
+	<a name="ADD-WAITER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">ADD-WAITER</span> <span class="parameter">(wait-list input)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for ADD-WAITER -->
+
+
+	<!-- Entry for REMOVE-WAITER -->
+	<a name="REMOVE-WAITER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">REMOVE-WAITER</span> <span class="parameter">(wait-list input)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for REMOVE-WAITER -->
+
+
+	<!-- Entry for REMOVE-ALL-WAITERS -->
+	<a name="REMOVE-ALL-WAITERS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">REMOVE-ALL-WAITERS</span> <span class="parameter">(wait-list)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for REMOVE-ALL-WAITERS -->
+
+
+	<!-- Entry for WAIT-FOR-INPUT -->
+	<a name="WAIT-FOR-INPUT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">WAIT-FOR-INPUT</span> <span class="parameter">(socket-or-sockets <span class="lambda-kw">&amp;key</span> timeout ready-only <span class="lambda-kw">&amp;aux</span> (single-socket-p (usocket-p socket-or-sockets)))</span>
+		</p>
+		<div class="desc">
+			<p>Waits for one or more streams to become ready for reading from the socket. When `timeout&apos; (a non-negative real number) is specified, wait `timeout&apos; seconds, or wait indefinitely when it isn&apos;t specified. A `timeout&apos; value of 0 (zero) means polling. Returns two values: the first value is the list of streams which are readable (or in case of server streams acceptable). <span class="constant">NIL</span> may be returned for this value either when waiting timed out or when it was interrupted (EINTR). The second value is a real number indicating the time remaining within the timeout period or <span class="constant">NIL</span> if none. Without the READY-ONLY arg, <span class="operator">WAIT-FOR-INPUT</span> will return all sockets in the original list you passed it. This prevents a new list from being consed up. Some users of USOCKET were reluctant to use it if it wouldn&apos;t behave that way, expecting it to cost significant performance to do the associated garbage collection. Without the READY-ONLY arg, you need to check the socket STATE slot for the values documented in usocket.lisp in the usocket class.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WAIT-FOR-INPUT -->
+
+
+	<!-- Entry for INTEGER-TO-OCTET-BUFFER -->
+	<a name="INTEGER-TO-OCTET-BUFFER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">INTEGER-TO-OCTET-BUFFER</span> <span class="parameter">(integer buffer octets <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INTEGER-TO-OCTET-BUFFER -->
+
+
+	<!-- Entry for OCTET-BUFFER-TO-INTEGER -->
+	<a name="OCTET-BUFFER-TO-INTEGER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">OCTET-BUFFER-TO-INTEGER</span> <span class="parameter">(buffer octets <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for OCTET-BUFFER-TO-INTEGER -->
+
+
+	<!-- Entry for PORT-TO-OCTET-BUFFER -->
+	<a name="PORT-TO-OCTET-BUFFER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">PORT-TO-OCTET-BUFFER</span> <span class="parameter">(port buffer <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<p>初期値：<span class="code">xxxx</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for PORT-TO-OCTET-BUFFER -->
+
+
+	<!-- Entry for IP-TO-OCTET-BUFFER -->
+	<a name="IP-TO-OCTET-BUFFER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">IP-TO-OCTET-BUFFER</span> <span class="parameter">(ip buffer <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for IP-TO-OCTET-BUFFER -->
+
+
+	<!-- Entry for PORT-FROM-OCTET-BUFFER -->
+	<a name="PORT-FROM-OCTET-BUFFER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">PORT-FROM-OCTET-BUFFER</span> <span class="parameter">(buffer <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for PORT-FROM-OCTET-BUFFER -->
+
+
+	<!-- Entry for IP-FROM-OCTET-BUFFER -->
+	<a name="IP-FROM-OCTET-BUFFER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">IP-FROM-OCTET-BUFFER</span> <span class="parameter">(buffer <span class="lambda-kw">&amp;key</span> (start 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for IP-FROM-OCTET-BUFFER -->
+
+
+	<!-- Entry for HBO-TO-DOTTED-QUAD -->
+	<a name="HBO-TO-DOTTED-QUAD"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">HBO-TO-DOTTED-QUAD</span> <span class="parameter">(integer)</span>
+		</p>
+		<div class="desc">
+			<p>Host-byte-order integer to dotted-quad string conversion utility.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HBO-TO-DOTTED-QUAD -->
+
+
+	<!-- Entry for  HBO-TO-VECTOR-QUAD -->
+	<a name=" HBO-TO-VECTOR-QUAD"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator"> HBO-TO-VECTOR-QUAD</span> <span class="parameter">(integer)</span>
+		</p>
+		<div class="desc">
+			<p>Host-byte-order integer to dotted-quad string conversion utility.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  HBO-TO-VECTOR-QUAD -->
+
+
+	<!-- Entry for VECTOR-QUAD-TO-DOTTED-QUAD -->
+	<a name="VECTOR-QUAD-TO-DOTTED-QUAD"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">VECTOR-QUAD-TO-DOTTED-QUAD</span> <span class="parameter">(vector)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for VECTOR-QUAD-TO-DOTTED-QUAD -->
+
+
+	<!-- Entry for DOTTED-QUAD-TO-VECTOR-QUAD -->
+	<a name="DOTTED-QUAD-TO-VECTOR-QUAD"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">DOTTED-QUAD-TO-VECTOR-QUAD</span> <span class="parameter">(string)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for DOTTED-QUAD-TO-VECTOR-QUAD -->
+
+
+	<!-- Entry for HOST-BYTE-ORDER -->
+	<a name="HOST-BYTE-ORDER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">HOST-BYTE-ORDER</span> <span class="parameter">(address)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-BYTE-ORDER -->
+
+
+	<!-- Entry for HOST-BYTE-ORDER -->
+	<a name="HOST-BYTE-ORDER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">HOST-BYTE-ORDER</span> <span class="parameter">((string <span class="type">string</span>))</span>
+		</p>
+		<div class="desc">
+			<p>Convert a string, such as 192.168.1.1, to host-byte-order, such as 3232235777.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-BYTE-ORDER -->
+
+
+	<!-- Entry for HOST-BYTE-ORDER -->
+	<a name="HOST-BYTE-ORDER"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">HOST-BYTE-ORDER</span> <span class="parameter">((vector <span class="type">vector</span>))</span>
+		</p>
+		<div class="desc">
+			<p>Convert a vector, such as <span class="code">#(192 168 1 1)</span>, to host-byte-order, such as 3232235777.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-BYTE-ORDER -->
+
+
+	<!-- Entry for VECTOR-TO-IPV6-HOST -->
+	<a name="VECTOR-TO-IPV6-HOST"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">VECTOR-TO-IPV6-HOST</span> <span class="parameter">(vector)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for VECTOR-TO-IPV6-HOST -->
+
+
+	<!-- Entry for IPV6-HOST-TO-VECTOR -->
+	<a name="IPV6-HOST-TO-VECTOR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">IPV6-HOST-TO-VECTOR</span> <span class="parameter">(string)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for IPV6-HOST-TO-VECTOR -->
+
+
+	<!-- Entry for HOST-TO-HOSTNAME -->
+	<a name="HOST-TO-HOSTNAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">HOST-TO-HOSTNAME</span> <span class="parameter">(host)</span>
+		</p>
+		<div class="desc">
+			<p>Translate a string, vector quad or 16 byte IPv6 address to a stringified hostname.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-TO-HOSTNAME -->
+
+
+	<!-- Entry for IP= -->
+	<a name="IP="></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">IP=</span> <span class="parameter">(ip1 ip2)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for IP= -->
+
+
+	<!-- Entry for IP/= -->
+	<a name="IP/="></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">IP/=</span> <span class="parameter">(ip1 ip2)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for IP/= -->
+
+
+	<!-- Entry for GET-HOST-BY-NAME -->
+	<a name="GET-HOST-BY-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">GET-HOST-BY-NAME</span> <span class="parameter">(name)</span>
+		</p>
+		<div class="desc">
+			<p>0.7.1+: if there&apos;re IPv4 addresses, return the first IPv4 address.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-HOST-BY-NAME -->
+
+
+	<!-- Entry for GET-RANDOM-HOST-BY-NAME -->
+	<a name="GET-RANDOM-HOST-BY-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">GET-RANDOM-HOST-BY-NAME</span> <span class="parameter">(name)</span>
+		</p>
+		<div class="desc">
+			<p>0.7.1+: if there&apos;re IPv4 addresses, only return a random IPv4 address.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-RANDOM-HOST-BY-NAME -->
+
+
+	<!-- Entry for INSUFFICIENT-IMPLEMENTATION -->
+	<a name="INSUFFICIENT-IMPLEMENTATION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">INSUFFICIENT-IMPLEMENTATION</span> <span class="code">(<span class="type">ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>The ancestor of all errors usocket may generate because of insufficient support from the underlying implementation with respect to the arguments given to `function&apos;. One call may signal several errors, if the caller allows processing to continue. 
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INSUFFICIENT-IMPLEMENTATION -->
+
+
+	<!-- Entry for UNSUPPORTED -->
+	<a name="UNSUPPORTED"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">UNSUPPORTED</span> <span class="code">(<span class="type">INSUFFICIENT-IMPLEMENTATION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Signalled when the underlying implementation doesn&apos;t allow supporting the requested feature. When you see this error, go bug your vendor/implementation developer!
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNSUPPORTED -->
+
+
+	<!-- Entry for UNIMPLEMENTED -->
+	<a name="UNIMPLEMENTED"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">UNIMPLEMENTED</span> <span class="code">(<span class="type">INSUFFICIENT-IMPLEMENTATION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Signalled if a certain feature might be implemented, based on the features of the underlying implementation, but hasn&apos;t been implemented yet.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNIMPLEMENTED -->
+
+
+	<!-- Entry for SOCKET-CONDITION -->
+	<a name="SOCKET-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">SOCKET-CONDITION</span> <span class="code">(<span class="type">CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Parent condition for all socket related conditions.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-CONDITION -->
+
+
+	<!-- Entry for SOCKET-ERROR -->
+	<a name="SOCKET-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">SOCKET-ERROR</span> <span class="code">(<span class="type">SOCKET-CONDITION</span>, <span class="type">ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Parent error for all socket related errors
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-ERROR -->
+
+
+	<!-- Entry for  NS-CONDITION -->
+	<a name=" NS-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type"> NS-CONDITION</span> <span class="code">(<span class="type">CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Parent condition for all name resolution conditions.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  NS-CONDITION -->
+
+
+	<!-- Entry for NS-ERROR -->
+	<a name="NS-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NS-ERROR</span> <span class="code">(<span class="type">NS-CONDITION</span>, <span class="type">ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Parent error for all name resolution errors.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NS-ERROR -->
+
+
+	<!-- Entry for INTERRUPTED-CONDITION -->
+	<a name="INTERRUPTED-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">INTERRUPTED-CONDITION</span> <span class="code">(<span class="type">SOCKET-CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INTERRUPTED-CONDITION -->
+
+
+	<!-- Entry for UNKNOWN-CONDITION -->
+	<a name="UNKNOWN-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">UNKNOWN-CONDITION</span> <span class="code">(<span class="type">SOCKET-CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Condition raised when there&apos;s no other - more applicable - condition available.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNKNOWN-CONDITION -->
+
+
+	<!-- Entry for ADDRESS-IN-USE-ERROR -->
+	<a name="ADDRESS-IN-USE-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">ADDRESS-IN-USE-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for ADDRESS-IN-USE-ERROR -->
+
+
+	<!-- Entry for ADDRESS-NOT-AVAILABLE-ERROR -->
+	<a name="ADDRESS-NOT-AVAILABLE-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">ADDRESS-NOT-AVAILABLE-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for ADDRESS-NOT-AVAILABLE-ERROR -->
+
+
+	<!-- Entry for BAD-FILE-DESCRIPTOR-ERROR -->
+	<a name="BAD-FILE-DESCRIPTOR-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">BAD-FILE-DESCRIPTOR-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for BAD-FILE-DESCRIPTOR-ERROR -->
+
+
+	<!-- Entry for CONNECTION-REFUSED-ERROR -->
+	<a name="CONNECTION-REFUSED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">CONNECTION-REFUSED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for CONNECTION-REFUSED-ERROR -->
+
+
+	<!-- Entry for CONNECTION-ABORTED-ERROR -->
+	<a name="CONNECTION-ABORTED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">CONNECTION-ABORTED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for CONNECTION-ABORTED-ERROR -->
+
+
+	<!-- Entry for CONNECTION-RESET-ERROR -->
+	<a name="CONNECTION-RESET-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">CONNECTION-RESET-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for CONNECTION-RESET-ERROR -->
+
+
+	<!-- Entry for INVALID-ARGUMENT-ERROR -->
+	<a name="INVALID-ARGUMENT-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">INVALID-ARGUMENT-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INVALID-ARGUMENT-ERROR -->
+
+
+	<!-- Entry for NO-BUFFERS-ERROR -->
+	<a name="NO-BUFFERS-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NO-BUFFERS-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NO-BUFFERS-ERROR -->
+
+
+	<!-- Entry for OPERATION-NOT-SUPPORTED-ERROR -->
+	<a name="OPERATION-NOT-SUPPORTED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">OPERATION-NOT-SUPPORTED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for OPERATION-NOT-SUPPORTED-ERROR -->
+
+
+	<!-- Entry for OPERATION-NOT-PERMITTED-ERROR -->
+	<a name="OPERATION-NOT-PERMITTED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">OPERATION-NOT-PERMITTED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for OPERATION-NOT-PERMITTED-ERROR -->
+
+
+	<!-- Entry for PROTOCOL-NOT-SUPPORTED-ERROR -->
+	<a name="PROTOCOL-NOT-SUPPORTED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">PROTOCOL-NOT-SUPPORTED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for PROTOCOL-NOT-SUPPORTED-ERROR -->
+
+
+	<!-- Entry for SOCKET-TYPE-NOT-SUPPORTED-ERROR -->
+	<a name="SOCKET-TYPE-NOT-SUPPORTED-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">SOCKET-TYPE-NOT-SUPPORTED-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-TYPE-NOT-SUPPORTED-ERROR -->
+
+
+	<!-- Entry for NETWORK-UNREACHABLE-ERROR -->
+	<a name="NETWORK-UNREACHABLE-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NETWORK-UNREACHABLE-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NETWORK-UNREACHABLE-ERROR -->
+
+
+	<!-- Entry for NETWORK-DOWN-ERROR -->
+	<a name="NETWORK-DOWN-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NETWORK-DOWN-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NETWORK-DOWN-ERROR -->
+
+
+	<!-- Entry for NETWORK-RESET-ERROR -->
+	<a name="NETWORK-RESET-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NETWORK-RESET-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NETWORK-RESET-ERROR -->
+
+
+	<!-- Entry for HOST-DOWN-ERROR -->
+	<a name="HOST-DOWN-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">HOST-DOWN-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-DOWN-ERROR -->
+
+
+	<!-- Entry for HOST-UNREACHABLE-ERROR -->
+	<a name="HOST-UNREACHABLE-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">HOST-UNREACHABLE-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for HOST-UNREACHABLE-ERROR -->
+
+
+	<!-- Entry for SHUTDOWN-ERROR -->
+	<a name="SHUTDOWN-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">SHUTDOWN-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SHUTDOWN-ERROR -->
+
+
+	<!-- Entry for TIMEOUT-ERROR -->
+	<a name="TIMEOUT-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">TIMEOUT-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for TIMEOUT-ERROR -->
+
+
+	<!-- Entry for DEADLINE-TIMEOUT-ERROR -->
+	<a name="DEADLINE-TIMEOUT-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">DEADLINE-TIMEOUT-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for DEADLINE-TIMEOUT-ERROR -->
+
+
+	<!-- Entry for INVALID-SOCKET-ERROR -->
+	<a name="INVALID-SOCKET-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">INVALID-SOCKET-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INVALID-SOCKET-ERROR -->
+
+
+	<!-- Entry for INVALID-SOCKET-STREAM-ERROR -->
+	<a name="INVALID-SOCKET-STREAM-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">INVALID-SOCKET-STREAM-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for INVALID-SOCKET-STREAM-ERROR -->
+
+
+	<!-- Entry for UNKNOWN-ERROR -->
+	<a name="UNKNOWN-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">UNKNOWN-ERROR</span> <span class="code">(<span class="type">SOCKET-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Error raised when there&apos;s no other - more applicable - error available.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNKNOWN-ERROR -->
+
+
+	<!-- Entry for  NS-TRY-AGAIN-CONDITION -->
+	<a name=" NS-TRY-AGAIN-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type"> NS-TRY-AGAIN-CONDITION</span> <span class="code">(<span class="type">NS-CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  NS-TRY-AGAIN-CONDITION -->
+
+
+	<!-- Entry for NS-UNKNOWN-CONDITION -->
+	<a name="NS-UNKNOWN-CONDITION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NS-UNKNOWN-CONDITION</span> <span class="code">(<span class="type">NS-CONDITION</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Condition raised when there&apos;s no other - more applicable - condition available.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NS-UNKNOWN-CONDITION -->
+
+
+	<!-- Entry for NS-HOST-NOT-FOUND-ERROR -->
+	<a name="NS-HOST-NOT-FOUND-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NS-HOST-NOT-FOUND-ERROR</span> <span class="code">(<span class="type">NS-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NS-HOST-NOT-FOUND-ERROR -->
+
+
+	<!-- Entry for NS-NO-RECOVERY-ERROR -->
+	<a name="NS-NO-RECOVERY-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NS-NO-RECOVERY-ERROR</span> <span class="code">(<span class="type">NS-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NS-NO-RECOVERY-ERROR -->
+
+
+	<!-- Entry for NS-UNKNOWN-ERROR -->
+	<a name="NS-UNKNOWN-ERROR"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［コンディション］</span>
+			<span class="type">NS-UNKNOWN-ERROR</span> <span class="code">(<span class="type">NS-ERROR</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Error raised when there&apos;s no other - more applicable - error available.
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for NS-UNKNOWN-ERROR -->
+
+
+	<!-- Entry for WITH-MAPPED-CONDITIONS -->
+	<a name="WITH-MAPPED-CONDITIONS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">WITH-MAPPED-CONDITIONS</span> <span class="parameter">((<span class="lambda-kw">&amp;optional</span> socket host-or-ip) <span class="lambda-kw">&body</span> body)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for WITH-MAPPED-CONDITIONS -->
+
+
+	<!-- Entry for UNSUPPORTED -->
+	<a name="UNSUPPORTED"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">UNSUPPORTED</span> <span class="parameter">(feature context <span class="lambda-kw">&amp;key</span> minimum)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNSUPPORTED -->
+
+
+	<!-- Entry for UNIMPLEMENTED -->
+	<a name="UNIMPLEMENTED"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［マクロ］</span>
+			<span class="operator">UNIMPLEMENTED</span> <span class="parameter">(feature context)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for UNIMPLEMENTED -->
+
+
+	<!-- Entry for GET-HOSTS-BY-NAME -->
+	<a name="GET-HOSTS-BY-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">GET-HOSTS-BY-NAME</span> <span class="parameter">(name)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-HOSTS-BY-NAME -->
+
+
+	<!-- Entry for SOCKET-CONNECT -->
+	<a name="SOCKET-CONNECT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">SOCKET-CONNECT</span> <span class="parameter">(host port <span class="lambda-kw">&amp;key</span> (protocol :stream) (element-type &apos;character) timeout deadline (nodelay <span class="constant">t</span> nodelay-specified) local-host local-port <span class="lambda-kw">&amp;aux</span> (sockopt-tcp-nodelay-p (fboundp &apos;sb-bsd-sockets:sockopt-tcp-nodelay)))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-CONNECT -->
+
+
+	<!-- Entry for SOCKET-LISTEN -->
+	<a name="SOCKET-LISTEN"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">SOCKET-LISTEN</span> <span class="parameter">(host port <span class="lambda-kw">&amp;key</span> reuseaddress (reuse-address <span class="constant">nil</span> reuse-address-supplied-p) (backlog 5) (element-type &apos;character))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-LISTEN -->
+
+
+	<!-- Entry for SOCKET-ACCEPT -->
+	<a name="SOCKET-ACCEPT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="variable">SOCKET-ACCEPT</span> <span class="parameter">((usocket <span class="type">stream-server-usocket</span>) <span class="lambda-kw">&amp;key</span> element-type)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-ACCEPT -->
+
+
+	<!-- Entry for SOCKET-CLOSE -->
+	<a name="SOCKET-CLOSE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-CLOSE</span> <span class="parameter">((usocket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-CLOSE -->
+
+
+	<!-- Entry for  SOCKET-CLOSE -->
+	<a name=" SOCKET-CLOSE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator"> SOCKET-CLOSE</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  SOCKET-CLOSE -->
+
+
+	<!-- Entry for SOCKET-SHUTDOWN -->
+	<a name="SOCKET-SHUTDOWN"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-SHUTDOWN</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>) direction)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-SHUTDOWN -->
+
+
+	<!-- Entry for SOCKET-SEND -->
+	<a name="SOCKET-SEND"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-SEND</span> <span class="parameter">((usocket <span class="type">datagram-usocket</span>) buffer size <span class="lambda-kw">&amp;key</span> host port (offset 0))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-SEND -->
+
+
+	<!-- Entry for SOCKET-RECEIVE -->
+	<a name="SOCKET-RECEIVE"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-RECEIVE</span> <span class="parameter">((usocket <span class="type">datagram-usocket</span>) buffer length <span class="lambda-kw">&amp;key</span> (element-type &apos;(unsigned-byte 8)))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-RECEIVE -->
+
+
+	<!-- Entry for GET-LOCAL-NAME -->
+	<a name="GET-LOCAL-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">GET-LOCAL-NAME</span> <span class="parameter">((usocket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-LOCAL-NAME -->
+
+
+	<!-- Entry for  GET-PEER-NAME -->
+	<a name=" GET-PEER-NAME"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator"> GET-PEER-NAME</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  GET-PEER-NAME -->
+
+
+	<!-- Entry for GET-LOCAL-ADDRESS -->
+	<a name="GET-LOCAL-ADDRESS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">GET-LOCAL-ADDRESS</span> <span class="parameter">((usocket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-LOCAL-ADDRESS -->
+
+
+	<!-- Entry for GET-PEER-ADDRESS -->
+	<a name="GET-PEER-ADDRESS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">GET-PEER-ADDRESS</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-PEER-ADDRESS -->
+
+
+	<!-- Entry for GET-LOCAL-PORT -->
+	<a name="GET-LOCAL-PORT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">GET-LOCAL-PORT</span> <span class="parameter">((usocket <span class="type">usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-LOCAL-PORT -->
+
+
+	<!-- Entry for GET-PEER-PORT -->
+	<a name="GET-PEER-PORT"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">GET-PEER-PORT</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>))</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for GET-PEER-PORT -->
+
+
+	<!-- Entry for *BACKEND* -->
+	<a name="*BACKEND*"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［変数］</span>
+			<span class="variable">*BACKEND*</span>
+		</p>
+		<p>初期値：<span class="code">:native</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for *BACKEND* -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">(socket option <span class="lambda-kw">&key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Get a socket's internal options
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［総称関数］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value socket option <span class="lambda-kw">&key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>Set a socket's internal options
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((socket <span class="type">usocket</span>) (option t) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (socket <span class="type">usocket</span>) (option <span class="type">t</span>) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((socket <span class="type">usocket</span>) (option <span class="type">symbol</span>) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (socket <span class="type">usocket</span>) (option <span class="type">symbol</span>) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>) (option (eql :receive-timeout)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">stream-usocket</span>) (option (eql :receive-timeout)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for  SOCKET-OPTION -->
+	<a name=" SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator"> SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>) (option (eql :send-timeout)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for  SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">stream-usocket</span>) (option (eql :send-timeout)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">stream-server-usocket</span>) (option (eql :reuse-address)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">stream-server-usocket</span>) (option (eql :reuse-address)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">datagram-usocket</span>) (option (eql :broadcast)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">datagram-usocket</span>) (option (eql :broadcast)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>) (option (eql :tcp-no-delay)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for SOCKET-OPTION -->
+	<a name="SOCKET-OPTION"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">SOCKET-OPTION</span> <span class="parameter">((usocket <span class="type">stream-usocket</span>) (option (eql :tcp-nodelay)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for SOCKET-OPTION -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">stream-usocket</span>) (option (eql :tcp-no-delay)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+	<!-- Entry for (setf SOCKET-OPTION) -->
+	<a name="(setf SOCKET-OPTION)"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［メソッド］</span>
+			<span class="operator">(setf SOCKET-OPTION)</span> <span class="parameter">(new-value (usocket <span class="type">stream-usocket</span>) (option (eql :tcp-nodelay)) <span class="lambda-kw">&amp;key</span>)</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for (setf SOCKET-OPTION) -->
+
+
+<!-- End of entry for package USOCKET -->
+
+
+<a name="system-usocket-server"></a>
+<!-- Entry for system USOCKET-SERVER -->
+<h4 class="system">usocket-server</h4>
+<div class="desc">
+	<p>Universal socket library for Common Lisp (server side)
+	</p>
+</div>
+<!-- End of entry for system USOCKET-SERVER -->
+
+
+<a name="system-usocket-test"></a>
+<!-- Entry for system USOCKET-TEST -->
+<h4 class="system">usocket-test</h4>
+<div class="desc">
+	<p>Tests for usocket
+	</p>
+</div>
+
+
+	<!-- Entry for RUN-USOCKET-TESTS -->
+	<a name="RUN-USOCKET-TESTS"></a>
+	<div class="def">
+		<p class="form">
+			<span class="deftype">［関数］</span>
+			<span class="operator">RUN-USOCKET-TESTS</span>
+		</p>
+		<div class="desc">
+			<p>
+			</p>
+		</div>
+	</div>
+	<!-- End of entry for RUN-USOCKET-TESTS -->
+
+
+	<div>
+		<p>Also exports
+		</p>
+		<div class="desc">
+			<p><span class="code">REGRESSION-TEST:DO-TESTS</span>
+			</p>
+		</div>
+	</div>
+
+<!-- End of entry for system USOCKET-TEST -->
+
+
+</body>
+</html>

@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+body {
+	margin : 0;
+	font-family : "Yu Mincho", serif; /* tahoma, arial, sans-serif; */
+	padding : 50px 100px;
+	line-height : 1.5em;
+	color : black;
+}
+
+h2 {
+	font-size : 140%;
+	border-bottom : 1px solid #449977;
+}
+
+h3 {
+	text-decoration : underline;
+}
+
+a {
+	text-decoration : none;
+	padding : 1px 2px 1px 2px;
+}
+
+a:visited {
+	text-decoration : none;
+	padding : 1px 2px 1px 2px;
+}
+
+a:hover {
+	text-decoration : none;
+	padding : 1px 1px 1px 1px;
+	border : 1px solid #000000;
+}
+
+a:focus {
+	text-decoration : none;
+	padding : 1px 2px 1px 2px;
+	border : none;
+}
+
+pre {
+	padding : 5px;
+}
+
+.code {
+	background-color : #eeeeff;
+	font-family : "HGGothicM", monospace;
+}
+
+pre.code {
+	margin : 0 16px;
+	padding : 5px;
+	border : 1px solid #0000cc;
+	line-height : 1.3em;
+}
+
+div.def {
+	margin : 0;
+	padding : 0;
+}
+
+.system {
+	background-color : #ffffdd;
+	font-family : "HGGothicM", monospace;
+	font-weight : bold;
+}
+
+p.system {
+	padding : 4px;
+}
+
+h4.system {
+	padding : 4px;
+}
+
+p.form {
+	margin : 0 0 20px 0;
+	padding : 10px;
+	border : solid 1px #000000;
+	background-color : #eeeeee;
+	font-family : "HGGothicM", monospace;
+}
+
+li.slot p.desc {
+	margin : 4px 10px;
+}
+
+/* 説明 */
+div.desc {
+	margin-left : 1em;
+}
+
+/* 項目のタイトル */
+div.title {
+	margin : 4px 0;
+	padding : 3px 1em;
+	border : 1px solid #444400;
+	background-color : #ffffdd;
+	font-family : "HGGothicM", monospace;
+	font-weight : bold;
+}
+/* title より低いレベルのタイトル */
+div.title2 {
+	margin : 3px 0;
+	padding : 3px 1em;
+	background-color : #ffddbb;
+	font-family : "HGGothicM", monospace;
+}
+
+/* 注釈 */
+.note {
+	font-weight : bold;
+	color : #880000;
+}
+/* 注釈（気づいた内容の追記） */
+.note-by-editor {
+	background-color : #eeeeee;
+	color : #ff0000;
+	font-size : smaller;
+}
+
+/* 定義しているものの種別（関数、変数など） */
+.deftype {
+	font-weight : bold;
+}
+
+/* 強調１ */
+.e1 {
+	font-weight : bold;
+	color : #cc0000;
+}
+/* 強調２ */
+.e2 {
+	font-weight : bold;
+}
+
+/* モジュール名 */
+.module {
+	font-family : "HGGothicM", monospace;
+	background-color : #ddeedd;
+}
+
+/* オペレータ（関数、マクロなど） */
+.operator {
+	font-family : "HGGothicM", monospace;
+	color : #0055aa;
+}
+/* 型名 */
+.type {
+	font-family : "HGGothicM", monospace;
+	text-decoration : underline dashed;
+}
+/* パラメータ */
+.parameter {
+	font-family : "HGGothicM", monospace;
+	font-style : italic;
+}
+/* 結果／戻り値 */
+.result {
+	font-family : "HGGothicM", monospace;
+	color : #aa00aa;
+}
+/* 文字列定数 */
+.string {
+	font-family : "HGGothicM", monospace;
+	color : #aa0044;
+}
+/* キーワード */
+.keyword {
+	font-family : "HGGothicM", monospace;
+	color : #aa00aa
+}
+/* Lisp コード中のコメント */
+.comment {
+	font-family : "HGGothicM", monospace;
+	color : #008800;
+}
+/* グローバル変数 */
+.variable {
+	font-family : "HGGothicM", monospace;
+	color : #0000ff;
+}
+/* 定数 */
+.constant {
+	font-family : "HGGothicM", monospace;
+	color : #aa0088;
+}
+/* ラムダキーワード */
+.lambda-kw {
+	font-family : "HGGothicM", monospace;
+	font-weight : bold;
+}
