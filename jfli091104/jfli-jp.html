@@ -1,0 +1,589 @@
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" media="screen" href="jfli-jp.css">
+</head>
+	<body>
+	<h1><a href="/" title="Rich Hickey's jfli - Common Lisp 用 Java 外部言語インタフェース（ FLI ）">jfli 
+	- Common Lisp 用 Java 外部言語インタフェース（ FLI ）</a></h1>
+
+	<h5>Copyright (c) Rich Hickey. All rights reserved.</h5>
+
+	<p>
+	このソフトウェアの使用および配布条件は <a href="http://opensource.org/licenses/cpl.php">Common Public License1.0</a> でカバーされており、それはこの配布ルートにあるファイル CPL.TXT にある。
+	どのような形式であれ、このソフトウェアを使用することにより、ユーザはこのライセンス条項に拘束される。
+	ユーザはこの通告およびその他をこのソフトウェアから削除してはならない。
+	</p>
+
+	<h2>Contents</h2>
+
+	<ul>
+		<li>
+			<a href="#intro">はじめに</a>
+		</li>
+		<li>
+			<a href="#download">ダウンロード</a>
+		</li>
+		<li>
+			<a href="#setup">セットアップおよび構成</a>
+		</li>
+		<li>
+			<a href="#quickstart">クイックスタート</a>
+		</li>
+		<li>
+			<a href="#api">API リファレンス</a>
+			<ul>
+				<li>
+					<a href="#jvmcreation">JVM 生成と初期化</a>
+				</li>
+				<li>
+					<a href="#wrappergen">ラッパー生成</a>
+				</li>
+				<li>
+					<a href="#objects">オブジェクト作成</a>
+				</li>
+				<li>
+					<a href="#arrays">配列対応</a>
+				</li>
+				<li>
+					<a href="#proxies">プロキシ - Lisp への Java コールバック</a>
+				</li>
+				<li>
+					<a href="#utilities">ユーティリティ</a>
+				</li>
+			</ul>
+		</li>
+		<li>
+			<a href="#summary">要約</a>
+		</li>
+	</ul>
+
+
+	<a name="intro"></a> <h3>はじめに</h3>
+
+	<p>
+	私の目的は Lisp プログラム用に Java および Java ライブラリへ、それらが Lisp ライブラリであるかのように、包括的かつ安全、動的なの Lispy アクセスを提供することであった。
+	つまり、Java ではなく Lisp での作業に重点を置いている。
+	</p>
+
+	<p>
+	私が採用した方法は、JNI を使用して Lisp プロセスに JVM インスタンスを埋め込むことであった。
+	私は LispWorks 独自の FLI および非 C （あるいは Java ! ）コードを使用して、これを実現できた。それは LW FLI への敬意である。
+	JNI 層（本質的に JNI API 全体のラッパー）の最上部に於いて、私は Java リフレクションを使用してこのユーザレベル API を構築した。
+	この最初のバージョンは Xanalys <a href="http://www.lispworks.com/">LispWorks</a> で構築されており、固有のコードが含まれている。
+	</p>
+
+
+	<p>
+	<em>jfli</em> ("jay fly") は次の機能を提供する。：
+	</p>
+
+	<ul>
+
+		<li>
+			名前つきクラスあるいは jar ファイルで与えられる全パッケージ（サブ）ツリーによるコンストラクタおよびフィールド、メソッドの関数自動生成
+		</li>
+
+		<li>
+			意図しない現象の回避および衝突の回避、有用なエディタ補完を目指した Java -> Lisp パッケージおよび名前のマッピング。
+		</li>
+
+		<li>
+			フィールド並びに JavaBeans プロパティプロトコルに倣ったメソッド用の setf-able セッター生成。
+		</li>
+
+		<li>
+			Java 配列作成および Java 配列への aref のようなアクセス。
+		</li>
+
+		<li>
+			キーワード形式フィールドおよびプロパティの初期化を可能とする 'new' マクロ。
+		</li>
+
+		<li>
+			Java 側を反映した Lisp 継承階層を伴う Java オブジェクトへの型つき参照は、 Java クラスおよびインタフェース型で特定された Lisp メソッドを使用できる。
+		</li>
+
+		<li>
+			Lisp に於ける任意の Java インタフェース実装、およびそれらインタフェースを介した Java から Lisp へのコールバック。（これには、jfli で提供される単一の５行ダミー Java プロキシスタブが必要であった。）
+		</li>
+
+		<li>
+			Lisp から参照された Java オブジェクト寿命の自動管理、プリミティブ引数／戻り値のボクシング／アンボクシング、文字列変換、Java 例外処理、オーバーロード解決など。
+		</li>
+	</ul>
+
+	<p>
+	私は LWM および LWW （それぞれ Apple のものと Sun のものを使用。）を使用して jfli をビルドし、それ（訳注． jfli ）は両方の上でうまく機能する。
+	他の LispWorks へのありふれたポートであるべきで、また堅牢な FLI を備えた Common Lisp への可能なポートであるべきです。
+	準拠した JNI 実装を備えた JVM でも機能するはずである。
+	</p>
+
+	<a name="download"></a> <h3>ダウンロード</h3>
+
+	<p>
+	jfli は <a href="http://sourceforge.net/projects/jfli/">SourceForge</a> 上で配信される。
+	</p>
+
+	<a name="setup"></a> <h3>セットアップおよび構成</h3>
+
+	<p>
+	jfli は、２つの Lisp ファイルとオプションの Java .jar ファイルで提供される。
+	一つ目の Lisp ファイル jni.lisp は、Java Native Interface への低レベル API を定義しており、ここでは文書化されていない。
+	二つ目の jfli.lisp は jni.lisp に依存しており、ここで文書化されているユーザ API を提供する。
+	jni.lisp のコンパイル・ロードを行った後、jfli.lisp のコンパイル・ロードを行うだけである。
+	<code>(use-package <span class="keyword">:jfli</span>)</code> により API を使用する準備が出来る。
+	JVM を作成する前に、 <a href="#jnilibpath"><code>*jni-lib-path*</code></a> を設定することで、 Java JNI ライブラリを見つける方法をライブラリに知らせる必要がある点に注意。
+	</p>
+	<p>
+	Java から Lisp へのコールバックを許したい場合、<a href="#jvmcreation">JVM 作成</a>時クラスパス（ CLASSPATH ）に jfli.jar を配置する必要がある。
+	</p>
+
+
+	<a name="quickstart"></a> <h3>クイックスタート</h3>
+	<p>
+	このサンプルセッションは、jni.lisp および jfli.lisp が fasl ファイルにコンパイルされていることを前提にする。
+	</p>
+	<pre>
+CL-USER 4 &gt; (load <span class="string">"/lisp/jni"</span>)
+<span class="comment">; fasl ファイル C:\lisp\jni.fsl をロード</span>
+#P<span class="string">"C:/lisp/jni.fsl"</span>
+
+CL-USER 5 &gt; (load <span class="string">"/lisp/jfli"</span>)
+<span class="comment">; fasl ファイル  C:\lisp\jfli.fsl をロード</span>
+#P<span class="string">"C:/lisp/jfli.fsl"</span>
+
+<span class="comment">;ユーザ API は完全に jfli パッケージに含まれる</span>
+CL-USER 6 &gt; (use-package <span class="keyword">:jfli</span>)
+T
+
+<span class="comment">;Java の位置をライブラリに伝える</span>
+CL-USER 7 &gt; (setf *jni-lib-path* <span class="string">"/j2sdk1.4.2_01/jre/bin/client/jvm.dll"</span>)
+<span class="string">"/j2sdk1.4.2_01/jre/bin/client/jvm.dll"</span>
+
+<span class="comment">;VM を開始する - classpath の設定方法に注意</span>
+CL-USER 8 &gt; (create-jvm <span class="string">"-Djava.class.path=/lisp/jfli.jar"</span>)
+0
+#&lt;Pointer: JNI:PVM = #x081022A0>
+#&lt;Pointer: JNI:PENV = #x0086A858>
+
+<span class="comment">;Object のメンバ用ラッパーを定義する</span>
+CL-USER 9 &gt; (def-java-class <span class="string">"java.lang.Object"</span>)
+NIL
+
+<span class="comment">;および Properties 、Hashtable の様なクラス</span>
+CL-USER 10 &gt; (def-java-class <span class="string">"java.util.Properties"</span>)
+#&lt;STANDARD-CLASS |java.util|:PROPERTIES. 2066B964>
+
+<span class="comment">;これらのパッケージがまだ存在しない場合、上記で作成される</span>
+<span class="comment">;簡単名称アクセスの為にパッケージを使用する</span>
+
+CL-USER 11 &gt; (use-package <span class="string">"java.lang"</span>)
+T
+
+CL-USER 12 &gt; (use-package <span class="string">"java.util"</span>)
+T
+
+<span class="comment">;Properties インスタンス作成。キーワード形式のメンバ初期化、文字列変換などに注意。</span>
+<span class="comment">;型づけされた戻り値にも注意。</span>
+CL-USER 13 &gt; (setf p (new properties. <span class="keyword">:getproperty</span> <span class="string">"fred"</span> <span class="string">"ethel"</span>))
+#&lt;PROPERTIES. 20664A94>
+
+<span class="comment">;仮想関数は正常に機能する。</span>
+CL-USER 14 &gt; (object.tostring p)
+<span class="string">"{fred=ethel}"</span>
+
+<span class="comment">;セッターはメンバ関数用に生成された。何故ならそれは JavaBeans プロパティプロトコルに従うためである。</span>
+CL-USER 15 &gt; (setf (properties.getproperty p <span class="string">"ricky"</span>) <span class="string">"lucy"</span>)
+<span class="string">"lucy"</span>
+
+CL-USER 16 &gt; (object.tostring p)
+<span class="string">"{ricky=lucy, fred=ethel}"</span>
+
+CL-USER 17 &gt; (properties.size p)
+2
+
+<span class="comment">;完全な動的アクセス。必要に応じてラッパーを作成。</span>
+CL-USER 18 &gt; (def-java-class <span class="string">"java.lang.Class"</span>)
+#&lt;STANDARD-CLASS CLASS. 20680EC4>
+
+CL-USER 19 &gt; (class.getname (object.getclass p))
+<span class="string">"java.util.Properties"</span>
+
+CL-USER 20 &gt; (def-java-class <span class="string">"java.util.Enumeration"</span>)
+#&lt;STANDARD-CLASS ENUMERATION. 20669274>
+
+<span class="comment">;ベンダーの言語拡張を待つ必要がない。 Lisp を使用するのだから！</span>
+CL-USER 21 &gt; (defmacro doenum ((e enum) &body body)
+               (let ((genum (gensym)))
+                 `(let ((,genum ,enum))
+                    (do ()
+                        ((not (enumeration.hasmoreelements ,genum)))
+                      (let ((,e (enumeration.nextelement ,genum)))
+                        ,@body)))))
+DOENUM
+
+<span class="comment">;Java ではまだこれを行うことはできない。</span>
+CL-USER 22 &gt; (doenum (prop (properties.elements p)) (print (object.tostring prop)))
+
+<span class="string">"lucy"</span>
+<span class="string">"ethel"</span>
+NIL
+
+<span class="comment">;doc string が生成され、元の Java シグネチャが与えられ、オーバーロードが示される。</span>
+CL-USER 23 &gt; (documentation 'properties.getproperty 'function)
+<span class="string">"java.lang.String getProperty(java.lang.String,java.lang.String)
+java.lang.String getProperty(java.lang.String)
+"</span>
+
+CL-USER 24 &gt; (documentation 'properties.new 'function)
+<span class="string">"java.util.Properties()
+java.util.Properties(java.util.Properties)
+"</span>
+	</pre>
+
+	<a name="api"></a> <h2>API リファレンス</h2>
+
+	<a name="jvmcreation"></a> <h3>JVM 生成と初期化</h3>
+	<ul>
+
+		<li>
+			<a name="jnilibpath"></a><code>*jni-lib-path*</code>
+			<p>
+			create-jvm 呼出に先立ち、これを jvm dll を指すようにセットする。
+			</p>
+		</li>
+
+		<li>
+			<strong>関数</strong> <code>(create-jvm &rest option-strings) -> 不定</code>
+			<p>
+			JVM を作成／開始する。これは一度のみ実行できる。（ Java の制限。）
+			<em>他の jfli 関数を呼び出す前に、これを呼び出さなければならない。</em>
+			option strings は JVM 制御、特に classpath に使用できる。：
+			</p>
+			<p>
+			<pre>(create-jvm <span class="string">"-Djava.class.path=/Lisp/jfli.jar"</span>)</pre>
+			</p>
+			<p>
+			他の初期化オプションについては、JNI ドキュメント参照。
+			</p>
+		</li>
+
+		<li>
+			<a name="enableproxies"></a> <strong>関数</strong> <code>(enable-java-proxies) 
+			-> 不定</code>
+			<p>
+			Java->Lisp コールバック準備を設定する。 new-proxy への呼出前に（一度）呼び出される必要があり、classpath に jfli.jar が含まれる必要がある。
+			</p>
+		</li>
+	</ul>
+
+	<a name="wrappergen"></a> <h3>ラッパー生成</h3>
+
+	<ul>
+		<li>
+			<strong>マクロ</strong> <code>(def-java-class full-class-name) -> 不定</code>
+			<p>
+			パッケージ修飾され大文字小文字が正確な Java クラス名を文字列として与えると、その public コンストラクタ、フィールド、メソッド用ラッパー関数を生成する。
+			</p>
+			<p>
+			Java への生成コア API は、マクロ def-java-class である。このマクロは、拡張の際、指定されたクラスの public コンストラクタおよびフィールド、メソッドを全て探す為に Java リフレクションを使用し、それらにアクセスする関数を生成する。
+			</p>
+			<h4>生成された API</h4>
+例えば、<code>(def-java-class <span class="string">"java.lang.ClassName"</span>)</code> を評価した際、いくつかのシンボル／関数を取得する。：
+			<ul>
+				<li>
+					<code>|java.lang|</code> で名づけられたパッケージ（大文字小文字に注意。）から、以下がエクスポートされる。：
+				</li>
+				<li>
+					クラスシンボル： <code>classname.</code> （ピリオドが名前の一部である点に注意。）　これは通常、型名が必要な場所で使用できる。
+					これはまた、Lisp 型づけされた参照クラスの名前としても機能する。
+				</li>
+				<li>
+					public コンストラクタを持つ全ての非インタフェースクラスは、次のものを取得する。；
+					<ul>
+						<li>
+							コンストラクタ、<code>(classname.new &rest args) -> 型づけされた参照</code> 、これは新規作成されたオブジェクトへの型づけされた参照を返す。
+						</li>
+						<li>
+							総称関数 <a href=#makenew><code>make-new</code></a> で定義され、最終的に <code>classname.new</code> を呼び出し、class-symbol （の値）で特定されたメソッド。
+						</li>
+					</ul>
+					コンストラクタがオーバーロードされている場合、ただ一つの関数が生成され、それがオーバーロード解決処理をする点に注意。関数の documentation string は、Java 観点からのコンストラクタのシグネチャを記述する。フィールドの場合と同じ引数変換が実行される。（以下参照。）
+				</li>
+				<li>
+					全ての public フィールドはゲッター関数を取得する。：
+					<code>(classname.fieldname [instance]) -> フィールド値</code><br>
+					そしてセッター：
+					<code>(setf classname.fieldname [instance])</code><br>
+					インスタンスフィールドラッパーは、最初の引数にインスタンスをとる。
+					static フィールドはシンボルマクロ <code>*classname.fieldname*</code> を取得する。
+					<p>
+					フィールドの型がプリミティブである場合、フィールド値はネイティブの Lisp 値に変換される。
+					Java String の場合、Lisp 文字列に変換される。
+					それ以外の場合、Java オブジェクトへの一般的な参照が返される。
+					同様に、セット時、プリミティブ用に Lisp 値が、 String 用に Lisp 文字列が、参照型用に（一般的あるいは型づけされた）参照が受け入れられる。
+					</p>
+				</li>
+				<li>
+					全ての public メソッドは、ラッパー関数を取得する。：
+					<code>(classname.methodname &rest args) -> return-value</code><br>
+					コンストラクタ同様、メソッドがオーバーロードされる場合、オーバーロード解決を処理する単一のラッパーが生成される。
+					メソッドが JavaBean プロパティプロトコルに従う場合（つまり、<code>getSomething</code> および<code>isSomething</code> と呼ばれ、対応する <code>setSomething</code> が存在。）、後者を呼び出す <code>(setf classname.methodname)</code> が定義される。
+					<p>
+					同じ引数および戻り値の変換は、フィールドの場合と同様に実行される。
+					関数の documentation string は、Java 観点からのメソッドシグネチャを記述する。
+					</p>
+
+				</li>
+				<li>
+					class-symbol を名前として持つ Lisp クラス。そのスーパークラスとして、Java スーパークラス／スーパーインタフェースに対応する他の Lisp クラスがあり、そのいくつかは前方参照クラスかもしれない。
+					このクラスのインスタンスは、関数 classname.new／総称関数 make-new／マクロ new により返され、この時点で階層全体は finalize された standard-class で構成される。
+				</li>
+				<li>
+					クラスラッパーおよびシンボル、クラス、その他の型に関連するパッケージの定義中に、他の Java 型を参照する必要があるため、それらもまた作成されるかもしれない点に注意。
+					全ての場合に於いて、それらは上記の名前およびパッケージで作成される。
+				</li>
+			</ul>
+		</li>
+
+		<li>
+			<strong>関数</strong> <code>(get-jar-classnames jar-file-name &rest packages) 
+			-> 文字列のリスト</code>
+			<p>
+			クラス名文字列のリストを返す。 packages は、再帰検索の場合 <span class="string">"java/lang"</span> 、非再帰検索の場合 <span class="string">"java/util/"</span> （末尾のスラッシュに注意。）形式の文字列である必要がある。
+			</p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(dump-wrapper-defs-to-file filename classnames)  -> 
+			不定</code>
+			<p>
+			クラス名のリスト（例えば、 <code>get-jar-classnames</code> から。）を与えられ、 <code>def-java-class</code> への呼出をファイルへ書き込む。：
+			</p>
+			<pre>
+(dump-wrapper-defs-to-file <span class="string">"/lisp/java-lang.lisp"</span>
+  (get-jar-classnames <span class="string">"/j2sdk1.4.2_01/jre/lib/rt.jar"</span> <span class="string">"java/lang/"</span>))
+(compile-file <span class="string">"/lisp/java-lang"</span>)
+(load <span class="string">"/lisp/java-lang"</span>)
+(use-package <span class="string">"java.lang"</span>)
+<span class="comment">;java.lang の全てのラッパーが利用可能になった。</span>
+</pre>
+		</li>
+	</ul>
+
+	<a name="objects"></a> <h3>オブジェクト作成</h3>
+	<ul>
+		<li>
+			<strong><a name="makenew"></a>総称関数</strong> <code>(make-new class-symbol 
+			&rest args) -> 型づけられた参照</code>
+			<p>
+			コンストラクタの before／after メソッド定義を可能にする。関数 <code>classname.new</code> を呼び出す。 new マクロはこれへの呼出へ展開する。
+			</p>
+		</li>
+		<li>
+			<strong>マクロ</strong> <code>(new class-spec &rest args) -> 型づけられた参照</code>
+			<br>
+			<p>
+			class-spec -> class-name | (class-name this-name)<br>
+			class-name -> <span class="string">"パッケージ.修飾された.クラス名"</span> | classname.<br>
+			args -> [actual-arg]* [init-arg-spec]*<br>
+			init-arg-spec -> init-arg | (init-arg)<br>
+			init-arg -> <span class="keyword">:settable-field-or-method</span> [params]* value （キーワードである点に注意。）<br>
+			| .method-name [args]* （ピリオドで始まる点に注意。）<br>
+			</p>
+
+			<p>
+			総称関数 make-new への呼出へ展開することで、class-name の新しいインスタンスを作成し、フィールドあるいはアクセサの設定および／もしくはメンバ関数を呼出で初期化する。
+			this-name が指定された場合、それは新規に割り当てられたオブジェクトに束縛され、init-args で使用可能となる。：
+			</p>
+			<pre>
+(new (button. this) shell *SWT.CENTER*   <span class="comment">;実際の引数</span>
+       <span class="keyword">:gettext</span> <span class="string">"Call Lisp"</span>               <span class="comment">;JavaBean プロパティ</span>
+       (.addlistener *swt.selection*      <span class="comment">;メソッド呼出</span>
+         (new-proxy (listener.
+                     (handleevent (event)
+                       (declare (ignore event))
+                       (setf (button.gettext this)   <span class="comment">;this は新しいインスタンスに束縛される。</span>
+                             (format nil <span class="string">"~A ~A"</span>
+                                   (lisp-implementation-type)
+                                   (lisp-implementation-version)))
+                       nil))))
+      .setsize 200 100                    <span class="comment">;括弧は省略可能</span>
+      (.setlocation 40 40))
+			</pre>
+			次へ展開される。：
+			<pre>
+(LET* ((#:G598 (MAKE-NEW BUTTON. SHELL *SWT.CENTER*)) (THIS #:G598))
+  (SETF (BUTTON.GETTEXT #:G598) <span class="string">"Call Lisp"</span>)
+  (BUTTON.ADDLISTENER #:G598
+                      *SWT.SELECTION*
+                      (NEW-PROXY (LISTENER.
+                                  (HANDLEEVENT
+                                   (EVENT)
+                                   (DECLARE (IGNORE EVENT))
+                                   (SETF (BUTTON.GETTEXT THIS)
+                                         (FORMAT NIL
+                                                 <span class="string">"~A ~A"</span>
+                                                 (LISP-IMPLEMENTATION-TYPE)
+                                                 (LISP-IMPLEMENTATION-VERSION)))
+                                   NIL))))
+  (BUTTON.SETSIZE #:G598 200 100)
+  (BUTTON.SETLOCATION #:G598 40 40)
+  #:G598)
+			</pre>
+
+		</li>
+	</ul>
+	<a name="arrays"></a> <h3>配列対応</h3>
+	<ul>
+		<li>
+			<strong>総称関数</strong> <code>(make-new-array type &rest dimensions) -> 
+			新規配列への参照</code>
+			<p>
+			全ての Java クラス指定子について定義されたメソッドを持つ総称関数。：
+			<ul>
+				<li>
+					<span class="string">"パッケージ.修飾された.クラス名"</span> の文字列
+				</li>
+				<li>
+					クラスシンボル（の値） － クラス名。
+				</li>
+				<li>
+					プリミティブ指定キーワード － <span class="keyword">:boolean</span>|<span class="keyword">:byte</span>|<span class="keyword">:char</span>|<span class="keyword">:double</span>|<span class="keyword">:float</span>|<span class="keyword">:int</span>|<span class="keyword">:long</span>|<span class="keyword">:short</span>
+				</li>
+			</ul>
+			</p>
+			<p>
+			指示した型と次元の Java 配列を作成する。
+			</p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(jlength array) -> 整数</code>
+			<p>
+			Java array への length 同様。
+			</p>
+		</li>
+
+		<li>
+			<strong>関数</strong> <code>(jref array &rest subscripts) -> 参照</code>
+			<p>
+			非プリミティブ（参照）型 Java 配列への aref 同様であり、セット可能。
+			</p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(jref-xxx array &rest subscripts) -> 値</code>
+			<p>
+			ここの xxx は boolean|byte|char|double|float|int|long|short である。プリミティブ型 Java 配列への jref 同様であり、セット可能。
+			</p>
+		</li>
+
+	</ul>
+
+	<a name="proxies"></a> <h3>プロキシ - Lisp への Java コールバック</h3>
+	<ul>
+		<p>
+		プロキシにより、一つ以上のインタフェースを実装した Java オブジェクトを Lisp で作成できるため、Java から Lisp へのコールバックが可能になる。
+		このプロキシ API を使用する前に、関数 <a href=#enableproxies><code>enable-java-proxies</code></a> を呼び出す必要がある。
+		重要な制限は、Lisp により開始されたスレッドから以外の Lisp へのコールバックに、LispWorks が 対応していないように見える点である。そのため、プロキシが任意の Java スレッドからは呼び出されないように保証しなければならない！
+		</p>
+		<li>
+			<strong>マクロ</strong> <code>(new-proxy &rest interface-defs) -> 参照</code>
+			<p>
+			interface-def -> (interface-name method-defs+)<br>
+			interface-name -> <span class="string">"パッケージ.修飾された.クラス名"</span> | classname. （ Java インタフェース型を名づける必要がある。）<br>
+			method-def -> (method-name arg-defs* body) <br>
+			arg-def -> arg-name | (arg-name arg-type) arg-type -> <span class="string">"パッケージ.修飾された.クラス名"</span> | classname. | <span class="keyword">:primitive</span> <br>
+			method-name -> シンボル | 文字列 （大文字小文字を区別せずに一致される。）
+			</p>
+
+			<p>
+			提供されたインタフェースを実装する Java オブジェクトを作成、登録して返す。
+			</p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(unregister-proxy proxy) -> 不定</code>
+			<p>
+			プロキシ（マクロ <code>new-proxy</code> により作成されていなければならない。）の処理を停止して、Lisp 側から参照を削除する。
+			まず Java から参照されていないことを確認すること！
+			</p>
+		</li>
+	</ul>
+
+	<a name="utilities"></a> <h3>ユーティリティ</h3>
+	<ul>
+
+		<li>
+			<strong>関数</strong> <code>(jeq obj1 obj2) -> boolean</code>
+			<p>
+			２つの Java オブジェクトは同じであるか？ これは Object.equals() と同じではない点に注意。
+			<p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(find-java-class class-sym-or-string) -> Java クラスオブジェクトへの参照</code>
+			<p>
+			Java クラス指定子が与えられ、Java クラスオブジェクトを返す。 jfli 使用時、 Class.forName() よりこれを使用すること。
+			</p>
+		</li>
+
+		<li>
+			<strong>関数</strong> <code>(make-typed-ref java-ref) -> 型づけられた参照</code>
+			<p>
+			一般的な Java 参照を与えられると、オブジェクトの完全な型を決定し、型づけられた参照ラッパーのインスタンスを返す。関数 classname.new／総称関数 make-new／マクロ new は常に型づけられた参照を返す。しかし Java メソッドは Object やインタフェース型を返す可能性があり、型決定の費用を常に負担したくないため、フィールドおよびメソッドラッパー関数は、一般的な参照を返す。
+			必要に応じて、この関数を使用して、オブジェクトの完全な実際の型に対応する型づけられた参照を作成する。
+			</p>
+		 </li>
+		<li>
+			<strong>関数</strong> <code>(box-xxx value) -> Java プリミティブのラッパークラスへの参照</code>
+			<p>ここの xxx は boolean|byte|char|double|float|int|long|short|string である。
+			互換性のある Lisp 値を与えられると、対応する Java プリミティブラッパークラスのインスタンスを作成する。例えば Integer である。
+			これは滅多に必要とされないが、オーバーロード解決を強制するのに使用できる。</p>
+		</li>
+		<li>
+			<strong>関数</strong> <code>(unbox-xxx ref) -> Lisp 値</code>
+			<p>ここの xxx は boolean|byte|char|double|float|int|long|short|string である。
+			Java プリミティブラッパークラスのインスタンスを与えられると、対応する互換 Lisp 値のインスタンスを作成する。
+			これは滅多に必要とされないが、Java Object ベースの API により返された値のアンボックスに使用できる。
+			</p>
+		</li>
+ 	</ul>
+	
+	<a name="summary"></a> <h3>要約</h3>
+<p>
+jfli がお役に立てれば幸いです。私が今でも慣れ親しんでいる言語である Common Lisp の実用性および相互運用性の強化し、日々高く評価されていくことを心から願っている。コメントおよびコードの貢献を歓迎します。
+</p>
+<p>
+Rich Hickey, 2004 年 7 月
+</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
